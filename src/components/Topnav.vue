@@ -6,7 +6,7 @@
       <div class="menu-container" :class="{ 'hide-mobile': !isBottom }">
 
         <div class="menu" :class="{ 'active': activeIndex==0 }">
-          <a href="#">
+          <a href="/user/dashboard">
             <div class="icon">
               <img src="/assets/img/icon/home.svg" alt="Image Icon" />
             </div>
@@ -137,7 +137,7 @@
               <div class="text-container">
                 <h6 class="h3">แก้ไขข้อมูลส่วนตัว</h6>
               </div>
-              <div class="btns mt-0">
+              <div class="btns">
                 <Button type="submit" text="บันทึก" classer="btn-color-01" :prepend="true" icon="check-white.svg" />
               </div>
             </div>
@@ -195,7 +195,7 @@
               <div class="text-container">
                 <h6 class="h3">เปลี่ยนรหัสผ่าน</h6>
               </div>
-              <div class="btns mt-0">
+              <div class="btns">
                 <Button type="submit" text="บันทึก" classer="btn-color-01" :prepend="true" icon="check-white.svg" />
               </div>
             </div>
@@ -206,7 +206,7 @@
                 <FormGroup
                   label="รหัสผ่านเดิม" type="password" name="password" :required="true"
                   :value="reenterPassword" @input="reenterPassword = $event" 
-                  :classer="{ 'error': !isValidPassword && password != reenterPassword }" 
+                  :classer="!isValidPassword && password != reenterPassword? 'error': ''" 
                   :errorText="!isValidPassword && password != reenterPassword? 'ระบุรหัสผ่านเดิมผิด': ''"
                 />
               </div>
@@ -220,7 +220,7 @@
                 <FormGroup 
                   label="ยืนยันรหัสผ่าน" type="password" name="conf_password" :required="true" 
                   :value="confPassword" @input="confPassword = $event" 
-                  :classer="{ 'error': !isValidPassword && newPassword != confPassword }" 
+                  :classer="!isValidPassword && newPassword != confPassword? 'error': ''" 
                   :errorText="!isValidPassword && newPassword != confPassword? 'ยืนยันรหัสผ่านไม่ตรงกับรหัสผ่านใหม่': ''"
                 />
               </div>
@@ -259,7 +259,7 @@ export default {
   },
   props: {
     isBottom: { type: Boolean, default: false },
-    activeIndex: { type: Number, default: 0 },
+    activeIndex: { type: Number, default: null },
     isAdmin: { type: Boolean, default: false },
     profile: { type: String, default: '/assets/img/misc/profile-01.svg' },
     prefix: { type: String, default: 'นพ.' },

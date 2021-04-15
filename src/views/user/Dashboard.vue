@@ -1,5 +1,5 @@
 <template>
-  <Topnav />
+  <Topnav :activeIndex="0" />
   <section class="auth-01 with-topnav section-padding" style="background-image:url('/assets/img/bg/01.jpg');">
     <div class="filter"></div>
     <div class="container pos-relative">
@@ -11,7 +11,7 @@
       </p>
       <div class="grids mt-3" data-aos="fade-up" data-aos-delay="300">
         <div class="grid lg-1-3">
-          <SpecialCard01 href="/" icon="lab-01.svg" text="ลงทะเบียนส่งตรวจ" />
+          <SpecialCard01 href="/user/cases" icon="lab-01.svg" text="ลงทะเบียนส่งตรวจ" />
         </div>
         <div class="grid lg-1-3">
           <SpecialCard01 href="/" icon="lab-02.svg" text="ลงทะเบียนส่งตรวจพิเศษ" />
@@ -30,7 +30,7 @@
     </div>
   </section>
   <AuthFooter />
-  <Topnav :isBottom="true" />
+  <Topnav :activeIndex="0" :isBottom="true" />
 </template>
 
 <script>

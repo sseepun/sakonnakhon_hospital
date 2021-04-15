@@ -1,7 +1,7 @@
 
 /* Topnav */
 nav.topnav{
-    position:fixed; top:0; left:0; width:100%; background:#ffffff; z-index:90;
+    position:fixed; top:0; left:0; width:100%; background:#ffffff; z-index:85;
     border-bottom:1px solid #E1E1E1;
 }
 nav.topnav > .wrapper{
@@ -74,7 +74,8 @@ nav.topnav .show-mobile{display:none!important;}
 nav.topnav + .topnav-spacer{display:block; width:100%; height:4rem;}
 
 nav.topnav.bottom{
-    display:none; top:unset; bottom:0; border-bottom:0; border-top:1px solid #E1E1E1;
+    display:none; top:unset; bottom:0; border-bottom:0; z-index:95;
+    border-top:1px solid #E1E1E1;
 }
 nav.topnav.bottom > .wrapper{justify-content:center;}
 nav.topnav.bottom .menu{position:unset; margin:0 .875rem;}
