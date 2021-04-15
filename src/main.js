@@ -2,4 +2,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+
+import Button from './components/Button'
+import FormGroup from './components/FormGroup'
+app.component('Button', Button)
+app.component('FormGroup', FormGroup)
+
+app.use(router).mount('#app')

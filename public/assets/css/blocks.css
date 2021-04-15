@@ -1,15 +1,21 @@
 
 /* Auth 01 */
-.auth-01{display:block; position:relative; width:100%;}
-.auth-01 > .wrapper{
-    min-height:calc(100vh - 4.5rem); display:flex; align-items:center; justify-content:center;
-    width:100%; background-size:cover; background-position:center;
+.auth-01{
+    position:relative; display:flex; width:100%; min-height:calc(100vh - 4.5rem);
+    background-size:cover; background-position:center;
+}
+.auth-01.with-topnav{min-height:calc(100vh - 8.5rem);}
+.auth-01 > .filter{
+    position:absolute; top:0; bottom:0; left:0; right:0;
+    background-image:linear-gradient(104.79deg, rgba(0,0,0,.44) 3.45%, 
+        rgba(0,0,0,.3) 43.68%, rgba(0,0,0,.02) 100%);
+    backdrop-filter:blur(4px);
 }
 @media screen and (max-width:991.98px){
-    .auth-01 > .wrapper{min-height:calc(100vh - 4rem);}
+    .auth-01{min-height:calc(100vh - 4rem);}
 }
 @media screen and (max-width:767.98px){
-    .auth-01 > .wrapper{min-height:calc(100vh - 3.75rem);}
+    .auth-01{min-height:calc(100vh - 3.75rem);}
 }
 
 
