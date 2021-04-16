@@ -1,5 +1,5 @@
 <template>
-  <Topnav />
+  <Topnav :userRole="userRole" />
 
   <section class="section-full">
     <div class="container">
@@ -67,7 +67,7 @@
     ]"
   />
 
-  <Topnav :isBottom="true" />
+  <Topnav :userRole="userRole" :isBottom="true" />
 </template>
 
 <script>
@@ -86,6 +86,7 @@ export default {
   },
   data() {
     return {
+      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
       isOpenedOptions: false,
       columns1: [
         { key: 'sent_to', text: 'นำส่ง' },
@@ -104,28 +105,66 @@ export default {
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
 
-    for(var i=0; i<22; i++){
+    for(var i=0; i<7; i++){
       this.rows1.push({
-        sent_to: { text: 'ชิ้นเนื้อ' },
-        sent_date: { text: '05/12/2563, 10:34' },
-        case_id: { text: 'FI63-01526' },
-        hn: { text: '1088052' },
-        an: { text: '1254454' },
-        name: { text: 'สงกรานต์ สุขุมมณีวงศ์' },
-        thai_id: { text: '1-9698-00169-84-9' },
-        card: { text: 'S21-00001' },
-        status: { text: 'รอรับเข้าบริการ' }
+        sent_to: { 
+          type: 'link', text: 'ชิ้นเนื้อ', href: '#', classer: 'color-01'
+        },
+        sent_date: {
+          type: 'link', text: '05/12/2563, 10:34', href: '#'
+        },
+        case_id: { 
+          type: 'link', text: 'FI63-01526', href: '#'
+        },
+        hn: { 
+          type: 'link', text: '1088052', href: '#'
+        },
+        an: { 
+          type: 'link', text: '1254454', href: '#'
+        },
+        name: { 
+          type: 'link', text: 'สงกรานต์ สุขุมมณีวงศ์', href: '#' 
+        },
+        thai_id: { 
+          type: 'link', text: '1-9698-00169-84-9', href: '#'
+        },
+        card: {
+          type: 'link', text: 'S21-00001', href: '#',
+          iconPrepend: 'checkout.svg'
+        },
+        status: {
+          type: 'tag', text: 'รอรับเข้าบริการ', classer: 'tag-01'
+        }
       });
       this.rows1.push({
-        sent_to: { text: 'เซลล์วิทยา' },
-        sent_date: { text: '20/11/2563, 14:05' },
-        case_id: { text: 'FI63-07660' },
-        hn: { text: '1005375' },
-        an: { text: '1254445' },
-        name: { text: 'นวรัตร์ ระเบียบธรรม' },
-        thai_id: { text: '1-4505-53700-28-4' },
-        card: { text: 'CG21-00001' },
-        status: { text: 'รอรับเข้าบริการ' }
+        sent_to: { 
+          type: 'link', text: 'เซลล์วิทยา', href: '#', classer: 'color-11'
+        },
+        sent_date: {
+          type: 'link', text: '20/11/2563, 14:05', href: '#'
+        },
+        case_id: { 
+          type: 'link', text: 'FI63-07660', href: '#'
+        },
+        hn: { 
+          type: 'link', text: '1005375', href: '#'
+        },
+        an: { 
+          type: 'link', text: '1254445', href: '#'
+        },
+        name: { 
+          type: 'link', text: 'นวรัตร์ ระเบียบธรรม', href: '#' 
+        },
+        thai_id: { 
+          type: 'link', text: '1-4505-53700-28-4', href: '#'
+        },
+        card: {
+          type: 'link', text: 'CG21-00001', href: '#',
+          iconPrepend: 'checkout.svg'
+        },
+        status: {
+          type: 'tag', text: 'รอรับเข้าบริการ'
+        }
       });
     }
 

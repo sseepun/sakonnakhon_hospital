@@ -1,5 +1,5 @@
 <template>
-  <Topnav :activeIndex="0" />
+  <Topnav :userRole="userRole" :activeIndex="0" />
   <section class="auth-01 with-topnav section-padding" style="background-image:url('/assets/img/bg/01.jpg');">
     <div class="filter"></div>
     <div class="container pos-relative">
@@ -30,7 +30,7 @@
     </div>
   </section>
   <AuthFooter />
-  <Topnav :activeIndex="0" :isBottom="true" />
+  <Topnav :userRole="userRole" :activeIndex="0" :isBottom="true" />
 </template>
 
 <script>
@@ -44,6 +44,11 @@ export default {
     Topnav,
     AuthFooter,
     SpecialCard01
+  },
+  data() {
+    return {
+      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+    }
   },
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });

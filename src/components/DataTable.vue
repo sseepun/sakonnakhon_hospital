@@ -1,46 +1,57 @@
 <template>
+
   <div class="table-options">
-    <div v-if="orders.length" class="option">
-      จัดเรียงตาม: 
-      <select @input="(event)=>doOrder(event.target.value)">
-        <option 
-          v-for="(order, index) in orders" :key="order.key" :value="order.key" 
-          :selected="index == 0"
-        >
-          {{order.text}}
-        </option>
-      </select>
+    <div v-if="orders.length" class="options hide-mobile">
+      <div class="option">
+        <span class="color-gray">จัดเรียงตาม:</span> 
+        <select class="xs no-border color-01" @input="(event)=>doOrder(event.target.value)">
+          <option 
+            v-for="(order, index) in orders" :key="order.key" :value="order.key" 
+            :selected="index == 0"
+          >
+            {{order.text}}
+          </option>
+        </select>
+      </div>
     </div>
-    <div v-if="search.length > 0" class="option">
-      <div class="form-group">
-        <div class="prepend">
-          <input type="text" placeholder="ค้นหารายการ"
-            @input="(event)=>doSearch(event.target.value)" 
-          />
-          <div class="icon">
-            <img src="/assets/img/icon/search.svg" alt="Image Icon" />
+    <div class="options">
+      <div v-if="search.length > 0" class="option">
+        <div class="form-group">
+          <div class="prepend xs">
+            <input type="text" class="xs" placeholder="ค้นหารายการ"
+              @input="(event)=>doSearch(event.target.value)" 
+            />
+            <div class="icon">
+              <img src="/assets/img/icon/search.svg" alt="Image Icon" />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="option">
-      แสดง 
-      {{Math.min(selfFilteredRows.length, (selfPage - 1) * pp + 1)}} – 
-      {{Math.min(selfFilteredRows.length, selfPage * pp + 1)}} จากทั้งหมด 
-      {{selfFilteredRows.length}} 
-      รายการ
-    </div>
-    <div class="option">
-      <a href="javascript:" @click="changePage(-1)" class="btn-chev" :class="{ 'disabled': selfPage == 1 }">
-        <img src="/assets/img/icon/caret-left.svg" alt="Image Icon" />
-      </a>
-      <a href="javascript:" @click="changePage(1)" class="btn-chev" :class="{ 'disabled': selfPage == selfMaxPage }">
-        <img src="/assets/img/icon/caret-right.svg" alt="Image Icon" />
-      </a>
+      <div class="option hide-mobile">
+        แสดง 
+        {{Math.min(selfFilteredRows.length, (selfPage - 1) * pp + 1)}} – 
+        {{Math.min(selfFilteredRows.length, selfPage * pp + 1)}} จากทั้งหมด 
+        {{selfFilteredRows.length}} 
+        รายการ
+      </div>
+      <div class="option pr-0 show-mobile">
+        แสดงทั้งหมด
+        {{Math.min(pp, selfFilteredRows.length - (selfPage - 1) * pp)}}
+        รายการ
+      </div>
+      <div class="option pr-0 hide-mobile">
+        <a href="javascript:" @click="changePage(-1)" class="btn-chev" :class="{ 'disabled': selfPage == 1 }">
+          <img src="/assets/img/icon/caret-left.svg" alt="Image Icon" />
+        </a>
+        <a href="javascript:" @click="changePage(1)" class="btn-chev" :class="{ 'disabled': selfPage == selfMaxPage }">
+          <img src="/assets/img/icon/caret-right.svg" alt="Image Icon" />
+        </a>
+      </div>
     </div>
   </div>
+
   <div class="table-wrapper">
-    <table class="table">
+    <table class="table-section">
       <thead>
         <tr>
           <th v-for="col in columns" :key="col.key">
@@ -51,7 +62,31 @@
       <tbody v-if="selfRows.length">
         <tr v-for="(row, index) in selfRows" :key="index">
           <td v-for="col in columns" :key="col.key">
-            <div v-html="highlight(col.key, row[col.key].text)"></div>
+            <div v-if="row[col.key].type == 'text'" 
+              class="d-flex ai-center" :class="row[col.key].classer"
+            >
+              <div v-html="highlight(col.key, row[col.key].text)"></div>
+              <img v-if="row[col.key].iconPrepend" class="icon prepend"
+                :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
+              />
+            </div>
+            <a v-else-if="row[col.key].type == 'link'" 
+              class="d-flex ai-center" :class="row[col.key].classer" 
+              :href="row[col.key].href"
+            >
+              <div v-html="highlight(col.key, row[col.key].text)"></div>
+              <img v-if="row[col.key].iconPrepend" class="icon prepend"
+                :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
+              />
+            </a>
+            <div v-else-if="row[col.key].type == 'tag'" 
+              class="tag" :class="row[col.key].classer"
+            >
+              <div v-html="highlight(col.key, row[col.key].text)"></div>
+              <img v-if="row[col.key].iconPrepend" class="icon prepend"
+                :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
+              />
+            </div>
           </td>
         </tr>
       </tbody>
@@ -64,6 +99,7 @@
       </tbody>
     </table>
   </div>
+
 </template>
 
 <script>
@@ -120,7 +156,6 @@ export default {
       return true;
     },
     doOrder(val) {
-      console.log('asd')
       if(val.indexOf('-asc') > -1){
         val = val.replace('-asc', '');
         this.selfFilteredRows.sort(function(a, b){
@@ -149,7 +184,7 @@ export default {
       if(this.search.indexOf(key) > -1 && this.selfSearch){
         return text.replace(
           new RegExp(this.selfSearch, 'ig'), 
-          '<span style="background:blue;">'+this.selfSearch+'</span>'
+          '<span class="h">'+this.selfSearch+'</span>'
         );
       }else{
         return text;

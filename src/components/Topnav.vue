@@ -1,9 +1,15 @@
 <template>
 
-  <nav v-if="!isAdmin" class="topnav" :class="{ 'bottom': isBottom }">
+  <nav v-if="isStaff() || !isBottom" class="topnav" :class="{ 'bottom': isBottom }">
     <div class="wrapper">
-      <div v-if="!isBottom"></div>
-      <div class="menu-container" :class="{ 'hide-mobile': !isBottom }">
+      <a v-if="isStaff() && !isBottom" class="logo" href="/">
+        <img src="/assets/img/logo.svg" alt="Logo" />
+        <div class="text-container">
+          <p class="color-02">โรงพยาบาลศูนย์สกลนคร</p>
+          <p class="color-dark">Sakonnakhon Hospital</p>
+        </div>
+      </a>
+      <div v-if="isStaff()" class="menu-container" :class="{ 'hide-mobile': !isBottom }">
 
         <div class="menu" :class="{ 'active': activeIndex==0 }">
           <a href="/user/dashboard">
@@ -13,7 +19,7 @@
             <div class="text">หน้าแรก</div>
           </a>
         </div>
-        <div class="menu has-children" :class="{ 'active': activeIndex==1 }">
+        <div v-if="isStaffType1()" class="menu has-children" :class="{ 'active': activeIndex==1 }">
           <a href="#">
             <div class="icon">
               <img src="/assets/img/icon/layers.svg" alt="Image Icon" />
@@ -42,7 +48,7 @@
             </div>
           </div>
         </div>
-        <div class="menu" :class="{ 'active': activeIndex==2 }">
+        <div v-if="isStaffType2()" class="menu" :class="{ 'active': activeIndex==2 }">
           <a href="#">
             <div class="icon">
               <img src="/assets/img/icon/tent.svg" alt="Image Icon" />
@@ -113,11 +119,6 @@
       </div>
     </div>
   </nav>
-
-  <nav v-else class="topnav" :class="{ 'bottom': isBottom }">
-
-  </nav>
-
   <div class="topnav-spacer"></div>
 
   <!-- Popup Profile -->
@@ -258,9 +259,9 @@ export default {
     }
   },
   props: {
+    userRole: { type: String, default: 'User' },
     isBottom: { type: Boolean, default: false },
     activeIndex: { type: Number, default: null },
-    isAdmin: { type: Boolean, default: false },
     profile: { type: String, default: '/assets/img/misc/profile-01.svg' },
     prefix: { type: String, default: 'นพ.' },
     firstname: { type: String, default: 'ณรงค์ฤทธิ์' },
@@ -271,6 +272,29 @@ export default {
     alert: { type: Number, default: 2 },
   },
   methods: {
+
+    isStaff() {
+      if(this.userRole.indexOf('Staff') > -1){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    isStaffType1() {
+      if(this.isStaff() && this.userRole.indexOf('พยาธิวิทยา') > -1){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    isStaffType2() {
+      if(this.isStaff() && this.userRole.indexOf('งานศพ') > -1){
+        return true;
+      }else{
+        return false;
+      }
+    },
+
     onSubmitProfile(e) {
       this.isActivePopupProfile = false;
       e.preventDefault();
@@ -287,6 +311,7 @@ export default {
       }
       e.preventDefault();
     }
+
   }
 }
 </script>

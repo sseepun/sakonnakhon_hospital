@@ -4,9 +4,10 @@ nav.topnav{
     position:fixed; top:0; left:0; width:100%; background:#ffffff; z-index:85;
     border-bottom:1px solid #E1E1E1;
 }
-nav.topnav > .wrapper{
-    display:flex; align-items:center; justify-content:space-between; width:100%; padding:0 1rem;
-}
+nav.topnav > .wrapper{display:flex; align-items:center; width:100%; padding:0 1rem;}
+nav.topnav .logo{display:flex; align-items:center; min-width:15rem;}
+nav.topnav .logo > img{display:block; height:3rem; width:auto; margin:0 .5rem 0 0;}
+nav.topnav .logo p{font-size:.875rem; font-weight:400; line-height:1.43; white-space:nowrap;}
 
 nav.topnav .menu-container{display:flex;}
 nav.topnav .menu{position:relative;}
@@ -34,7 +35,7 @@ nav.topnav .submenu:hover > a .icon{opacity:1; filter:grayscale(0);}
 nav.topnav .menu > a img,
 nav.topnav .submenu > a img{display:block; height:100%; width:auto;}
 
-nav.topnav .options{display:flex; align-items:center;}
+nav.topnav .options{display:flex; align-items:center; margin:0 0 0 auto;}
 nav.topnav .option{position:relative;}
 nav.topnav .option > a{
     position:relative; display:flex; align-items:center; height:4rem; padding:0 1rem;
@@ -78,6 +79,7 @@ nav.topnav.bottom{
     border-top:1px solid #E1E1E1;
 }
 nav.topnav.bottom > .wrapper{justify-content:center;}
+nav.topnav.bottom .options{margin:0;}
 nav.topnav.bottom .menu{position:unset; margin:0 .875rem;}
 nav.topnav.bottom .menu > a{position:relative; padding:0 .625rem;}
 nav.topnav.bottom .menu > a .icon{margin:0;}
@@ -98,6 +100,9 @@ nav.topnav.bottom + .topnav-spacer{display:none;}
 @media screen and (max-width:991.98px){
     nav.topnav .hide-mobile{display:none!important;}
     nav.topnav .show-mobile{display:flex!important;}
+    nav.topnav .logo{min-width:unset;}
+    nav.topnav .logo > img{height:2.5rem;}
+    nav.topnav .logo p{font-size:.8125rem;}
     nav.topnav .menu > a, nav.topnav .option > a{height:3.5rem;}
     nav.topnav .option > a > .num{top:.625rem;}
     nav.topnav + .topnav-spacer{height:3.5rem;}
