@@ -31,9 +31,20 @@ const routes = [
     component: () => import('../views/user/CaseCytologyAdd.vue')
   },
   {
+    path: '/user/case-cytology-custom-add',
+    name: 'UserCaseCytologyCustomAddPage',
+    component: () => import('../views/user/CaseCytologyCustomAdd.vue')
+  },
+  
+  {
     path: '/user/case-biopsy-add',
     name: 'UserCaseBiopsyAddPage',
     component: () => import('../views/user/CaseBiopsyAdd.vue')
+  },
+  {
+    path: '/user/case-biopsy-custom-add',
+    name: 'UserCaseBiopsyCustomAddPage',
+    component: () => import('../views/user/CaseBiopsyCustomAdd.vue')
   },
 
 ]

@@ -64,22 +64,22 @@
 
             <div class="grid sm-100 mt-0">
               <div class="grids">
-                <div class="grid xl-15 lg-20 sm-1-3 xs-70">
+                <div class="grid xl-15 lg-20 sm-1-3 xs-2-3">
                   <FormGroup 
                     type="text" label="*HN" name="hn" :required="true" placeholder="1234567" 
                     :value="hn" @input="hn = $event"
                   />
                 </div>
-                <div class="grid xl-15 lg-20 sm-1-3 xs-70">
+                <div class="grid xl-15 lg-20 sm-1-3 xs-2-3">
                   <FormGroup type="text" label="*AN" name="an" :required="true" placeholder="1234567" />
                 </div>
-                <div v-if="caseType == 2" class="grid xl-15 lg-20 sm-1-3 xs-70">
+                <div v-if="caseType == 2" class="grid xl-15 lg-20 sm-1-3 xs-2-3">
                   <FormGroup type="datepicker" label="*วันที่" name="case_date" :required="true" placeholder="01/01/2564" />
                 </div>
-                <div v-if="caseType == 2" class="grid xl-15 lg-20 sm-1-3 xs-70">
+                <div v-if="caseType == 2" class="grid xl-15 lg-20 sm-1-3 xs-2-3">
                   <FormGroup type="text" label="*ห้องตรวจ" name="room" :required="true" placeholder="1508" />
                 </div>
-                <div class="grid xl-15 lg-20 sm-25 xs-30">
+                <div class="grid xl-15 lg-20 sm-25 xs-1-3">
                   <div class="form-group">
                     <label>&nbsp;</label>
                     <div class="btns mt-0">
@@ -118,7 +118,7 @@
               <FormGroup type="plain" label="สิทธิการรักษา" :value="patientFound? 'บัตรทอง': '-'" />
             </div>
             <div class="grid lg-20 md-1-3">
-              <FormGroup type="plain" label="โรงพยาบาล" :value="patientFound? 'สกลนคร': '-'" />
+              <FormGroup type="plain" label="โรงพยาบาล" :value="patientFound? 'โรงพยาบาลสกลนคร': '-'" />
             </div>
             <div class="grid lg-20 md-0 sm-0"></div>
             <div class="grid lg-20 md-1-3">
@@ -138,7 +138,7 @@
             <div class="grid lg-30 md-40 xs-75">
               <FormGroup 
                 type="datepicker" label="กำหนดวันที่รายงานผล (Due Date)" 
-                :value="selectedDate" name="date" wrapperClass="append"
+                name="date" placeholder="12/12/2563" wrapperClass="append"
                 :append="true" icon="calendar.svg" 
                 @input="selectedDate = $event" 
               />
@@ -159,7 +159,7 @@
       <div class="section-px section-py-grid border-bottom bcolor-fgray" data-aos="fade-up" data-aos-delay="0">
         <div class="grids">
           <div v-for="(bag, index) in bags" :key="index"
-            class="grid xl-45 lg-50 md-2-3 sm-90"
+            class="grid xl-40 lg-50 md-2-3 sm-90"
           >
             <SpecialCard02 
               :itemIndex="index" :name="'bag_'+index" 
@@ -168,7 +168,7 @@
               @input-delete="deleteBagSection($event)"
             />
           </div>
-          <div class="grid xl-45 lg-50 md-2-3 sm-90">
+          <div class="grid xl-40 lg-50 md-2-3 sm-90">
             <SpecialCard02 type="Add" @input-add="addBagSection()" />
           </div>
         </div>
@@ -177,7 +177,7 @@
         <div class="grids">
           <div class="grid sm-100">
             <CheckboxSet 
-              label="Site (ตำแหน่ง)" name="radio_2" 
+              label="Site (ตำแหน่ง)" name="site" 
               :textInput="true" textInputPlaceholder="โปรดระบุ" 
               :value="1" 
               :options="[

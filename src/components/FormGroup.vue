@@ -29,9 +29,9 @@
         @input="(event)=>$emit('input', event.target.value)" 
         :required="required? true: false"
       >
-        <option v-for="option in options" :value="option.id" 
-        :selected="value == option.id || value == option.value" :key="option.id">
-          {{option.value}}
+        <option v-for="option in options" :value="option.value" 
+        :selected="option.value == value || option.text == value" :key="option.value">
+          {{option.text}}
         </option>
       </select>
       <div v-if="icon" class="icon">
@@ -46,7 +46,7 @@
     </label>
     <div :class="wrapperClass">
       <div class="plain-text">
-        <p class="color-gray">{{value}}</p>
+        <p class="color-dark">{{value}}</p>
       </div>
     </div>
   </div>

@@ -148,7 +148,12 @@
               <div class="grid lg-30">
                 <FormGroup
                   label="คำนำหน้า" type="select" name="prefix" :value="prefix" :required="true"
-                  :options="[ { id:'นาย', value:'นาย' }, { id:'นาง', value:'นาง' }, { id:'น.ส.', value:'น.ส.' }, { id:'นพ.', value:'นพ.' } ]"
+                  :options="[ 
+                    { value: 'นาย', text: 'นาย' }, 
+                    { value: 'นาง', text: 'นาง' }, 
+                    { value: 'น.ส.', text: 'น.ส.' }, 
+                    { value: 'นพ.', text: 'นพ.' }
+                  ]"
                 />
               </div>
               <div class="sep"></div>

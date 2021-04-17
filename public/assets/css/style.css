@@ -159,6 +159,11 @@ input[type=file].xs, select.xs, textarea.xs{
 }
 select.xs{padding:.125rem .5rem;}
 
+::placeholder{color:#cccccc!important;}
+:-ms-input-placeholder{color:#cccccc!important;}
+::-ms-input-placeholder{color:#cccccc!important;}
+
+
 /* Input Wrapper */
 .form-group .prepend, .form-group .append{position:relative; width:100%;}
 .form-group .prepend .icon, .form-group .append .icon{
@@ -184,6 +189,10 @@ select.xs{padding:.125rem .5rem;}
 .form-group .prepend.xs textarea{padding-left:2.375rem!important;}
 .form-group .append.xs input, .form-group .append.xs select,
 .form-group .append.xs textarea{padding-right:2.375rem!important;}
+
+.form-group .fit-wrapper{width:100%; display:flex; align-items:center;}
+.form-group .fit-wrapper > span{margin:0 .5rem;}
+.form-group .fit-wrapper > span:last-child{margin-right:0;}
 
 
 /* Error */
