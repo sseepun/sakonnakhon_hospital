@@ -248,6 +248,7 @@
     .grids > .grid.xl-25{width:calc(25% - var(--gs));}
     .grids > .grid.xl-30{width:calc(30% - var(--gs));}
     .grids > .grid.xl-40{width:calc(40% - var(--gs));}
+    .grids > .grid.xl-45{width:calc(45% - var(--gs));}
     .grids > .grid.xl-50{width:calc(50% - var(--gs));}
     .grids > .grid.xl-60{width:calc(60% - var(--gs));}
     .grids > .grid.xl-70{width:calc(70% - var(--gs));}
@@ -266,6 +267,7 @@
     .grids.no-gap > .grid.xl-25{width:25%;}
     .grids.no-gap > .grid.xl-30{width:30%;}
     .grids.no-gap > .grid.xl-40{width:40%;}
+    .grids.no-gap > .grid.xl-45{width:45%;}
     .grids.no-gap > .grid.xl-50{width:50%;}
     .grids.no-gap > .grid.xl-60{width:60%;}
     .grids.no-gap > .grid.xl-70{width:70%;}
@@ -283,6 +285,7 @@
     .gallery-grids > .grid.xl-25{width:calc(25% - var(--ggs));}
     .gallery-grids > .grid.xl-30{width:calc(30% - var(--ggs));}
     .gallery-grids > .grid.xl-40{width:calc(40% - var(--ggs));}
+    .gallery-grids > .grid.xl-45{width:calc(45% - var(--ggs));}
     .gallery-grids > .grid.xl-50{width:calc(50% - var(--ggs));}
     .gallery-grids > .grid.xl-60{width:calc(60% - var(--ggs));}
     .gallery-grids > .grid.xl-70{width:calc(70% - var(--ggs));}
@@ -636,7 +639,21 @@
 @media screen and (max-width:575.98px){
     /* xs */
     .grids > .grid{width:calc(100% - var(--gs))!important;}
+    .grids > .grid.xs-10{width:calc(10% - var(--gs))!important;}
+    .grids > .grid.xs-15{width:calc(15% - var(--gs))!important;}
+    .grids > .grid.xs-20{width:calc(20% - var(--gs))!important;}
+    .grids > .grid.xs-25{width:calc(25% - var(--gs))!important;}
+    .grids > .grid.xs-30{width:calc(30% - var(--gs))!important;}
+    .grids > .grid.xs-40{width:calc(40% - var(--gs))!important;}
     .grids > .grid.xs-50{width:calc(50% - var(--gs))!important;}
+    .grids > .grid.xs-60{width:calc(60% - var(--gs))!important;}
+    .grids > .grid.xs-70{width:calc(70% - var(--gs))!important;}
+    .grids > .grid.xs-75{width:calc(75% - var(--gs))!important;}
+    .grids > .grid.xs-80{width:calc(80% - var(--gs))!important;}
+    .grids > .grid.xs-90{width:calc(90% - var(--gs))!important;}
+    .grids > .grid.xs-100{width:calc(100% - var(--gs))!important;}
+    .grids > .grid.xs-1-3{width:calc(33.3333% - var(--gs))!important;}
+    .grids > .grid.xs-2-3{width:calc(66.6666% - var(--gs))!important;}
     
     .grids.no-gap > .grid{width:100%!important;}
     .grids.no-gap > .grid.xs-50{width:50%!important;}

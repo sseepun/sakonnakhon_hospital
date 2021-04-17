@@ -1,0 +1,15 @@
+<template>
+  <ul>
+    <li><a href="/auth/signin" target="_blank">/auth/signin</a></li>
+    <li><a href="/user/dashboard" target="_blank">/user/dashboard</a></li>
+    <li><a href="/user/cases" target="_blank">/user/cases</a></li>
+    <li><a href="/user/case-biopsy-add" target="_blank">/user/case-biopsy-add</a></li>
+    <li><a href="/user/case-cytology-add" target="_blank">/user/case-cytology-add</a></li>
+  </ul>
+</template>
+
+<script>
+export default {
+  name: 'HomePage',
+}
+</script>

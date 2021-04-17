@@ -107,7 +107,7 @@
               </a>
             </div>
             <div class="submenu exit">
-              <a href="/">
+              <a href="/auth/signin">
                 <div class="icon">
                   <img src="/assets/img/icon/exit.svg" alt="Image Icon" />
                 </div>

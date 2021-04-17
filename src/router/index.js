@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AuthSignInPage from '../views/auth/SignIn.vue'
+import HomePage from '../views/Home.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: AuthSignInPage
+    component: HomePage
   },
   {
     path: '/auth/signin',
     name: 'AuthSignInPage',
-    component: AuthSignInPage
+    component: () => import('../views/auth/SignIn.vue')
   },
 
   // User
@@ -23,6 +23,17 @@ const routes = [
     path: '/user/cases',
     name: 'UserCasesPage',
     component: () => import('../views/user/Cases.vue')
+  },
+
+  {
+    path: '/user/case-cytology-add',
+    name: 'UserCaseCytologyAddPage',
+    component: () => import('../views/user/CaseCytologyAdd.vue')
+  },
+  {
+    path: '/user/case-biopsy-add',
+    name: 'UserCaseBiopsyAddPage',
+    component: () => import('../views/user/CaseBiopsyAdd.vue')
   },
 
 ]

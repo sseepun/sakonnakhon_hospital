@@ -65,9 +65,9 @@
 
 /* Section Full */
 .section-full{display:flex; padding:1rem 0; min-height:calc(100vh - 4rem);}
-.section-full > .container{border:1px solid #E1E1E1; border-radius:1rem;}
+.section-full > .container{border:1px solid #E1E1E1; border-radius:1rem; overflow:hidden;}
 .section-full .section-header{
-    width:100%; padding:1.5rem 2rem 0 2rem; border-bottom:1px solid #e1e1e1;
+    width:100%; padding:1.5rem 2rem 1rem 2rem; border-bottom:1px solid #e1e1e1;
 }
 .section-full .section-header .header-wrapper{
     width:100%; display:flex; align-items:center; justify-content:space-between;
@@ -75,20 +75,25 @@
 }
 .section-full .section-header .header-wrapper .btns{width:auto; margin:0;}
 .section-full .section-header .show-mobile{display:none!important;}
+.section-full .section-px{padding-left:2rem!important; padding-right:2rem!important;}
+.section-full .section-py-grid{padding-top:0!important; padding-bottom:1.5rem!important;}
 @media screen and (max-width:991.98px){
     .section-full{min-height:calc(100vh - 7rem);}
-    .section-full .section-header{padding:1.25rem 1.5rem 0 1.5rem;}
+    .section-full .section-header{padding:1.25rem 1.5rem .75rem 1.5rem;}
     .section-full .section-header .show-mobile{display:block!important;}
     .section-full .section-header .hide-mobile{display:none!important;}
+    .section-full .section-px{padding-left:1.5rem!important; padding-right:1.5rem!important;}
 }
 @media screen and (max-width:767.98px){
-    .section-full .section-header{padding:1rem 1.25rem 0 1.25rem;}
+    .section-full .section-header{padding:1rem 1.25rem .5rem 1.25rem;}
     .section-full .section-header .header-wrapper{margin:.5rem 0 0 0;}
+    .section-full .section-px{padding-left:1.25rem!important; padding-right:1.25rem!important;}
 }
 @media screen and (max-width:575.98px){
     .section-full{padding:0;}
     .section-full > .container{max-width:100%; border:0; border-radius:0;}
-    .section-full .section-header{padding:1rem 1rem 0 1rem;}
+    .section-full .section-header{padding:1rem 1rem .5rem 1rem;}
+    .section-full .section-px{padding-left:1rem!important; padding-right:1rem!important;}
 }
 
 

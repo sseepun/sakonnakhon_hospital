@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
     <label class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
@@ -12,11 +13,12 @@
         :required="required? true: false"
       ></textarea>
       <div v-if="icon" class="icon">
-        <img :src="'/assets/img/icon/'+icon+'.svg'" alt="Image Icon" />
+        <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
       </div>
     </div>
   </div>
-  <div v-if="type === 'select'" class="form-group" :class="classer">
+
+  <div v-else-if="type === 'select'" class="form-group" :class="classer">
     <label class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
@@ -37,6 +39,44 @@
       </div>
     </div>
   </div>
+
+  <div v-else-if="type == 'plain'" class="form-group" :class="classer">
+    <label class="p color-gray">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <div :class="wrapperClass">
+      <div class="plain-text">
+        <p class="color-gray">{{value}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div v-else-if="type == 'datepicker'" class="form-group" :class="classer">
+    <label class="p color-gray">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <DatePicker 
+      v-model="value" is-inline title-position="left" 
+      :is-required="required? true: false" 
+      @click="handleInput"
+    >
+      <template v-slot="{ inputValue, inputEvents }">
+        <div :class="wrapperClass">
+          <input
+            type="text" 
+            :name="name" 
+            :placeholder="placeholder" 
+            :value="inputValue"
+            v-on="inputEvents"  
+          />
+          <div v-if="icon" class="icon">
+            <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
+          </div>
+        </div>
+      </template>
+    </DatePicker>
+  </div>
+
   <div v-else class="form-group" :class="classer">
     <label class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
@@ -55,6 +95,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -62,7 +103,7 @@ export default {
   name: 'FormGroup',
   props: {
     classer: { type: String, default: '' },
-    value: { type: String, default: '' },
+    value: { type: [String, Number, Date], default: '' },
     label: { type: String, default: 'From Group' },
     errorText: { type: String, default: '' },
     type: { type: String, default: 'text' },
@@ -72,6 +113,11 @@ export default {
     options: { type: Array, default: [] },
     wrapperClass: { type: String, default: '' },
     icon: { type: String, default: '' },
+  },
+  methods: {
+    handleInput() {
+      return this.$emit('input', this.value);
+    }
   },
   emits: [ 'input' ]
 }
