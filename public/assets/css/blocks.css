@@ -143,11 +143,6 @@ table.table-section th:last-child,
 table.table-section td:last-child{padding-right:2rem;}
 table.table-section td a{color:#212121;}
 table.table-section td a:hover{color:#047857;}
-table.table-section .tag{
-    display:flex; align-items:center; padding:.1875rem .75rem 0 .75rem; color:#212121;
-    margin:-.1875rem 0 0 0; background:#D2F4EE; border:1px solid rgba(0,0,0,.08);
-    border-radius:.375rem;
-}
 table.table-section .icon{
     display:block; height:.5625rem; width:auto; transform:translateY(-.0625rem);
 }

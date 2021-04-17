@@ -80,12 +80,9 @@
               />
             </a>
             <div v-else-if="row[col.key].type == 'tag'" 
-              class="tag" :class="row[col.key].classer"
+              class="ss-tag" :class="row[col.key].classer"
             >
               <div v-html="highlight(col.key, row[col.key].text)"></div>
-              <img v-if="row[col.key].iconPrepend" class="icon prepend"
-                :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
-              />
             </div>
           </td>
         </tr>

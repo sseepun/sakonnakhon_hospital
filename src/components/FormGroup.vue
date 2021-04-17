@@ -46,7 +46,7 @@
     </label>
     <div :class="wrapperClass">
       <div class="plain-text">
-        <p class="color-dark">{{value}}</p>
+        <p>{{value}}</p>
       </div>
     </div>
   </div>

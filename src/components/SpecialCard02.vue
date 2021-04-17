@@ -8,6 +8,22 @@
       <p class="color-01">เพิ่มรายการสิ่งส่งตรวจ</p>
     </div>
   </div>
+  <div v-else-if="type == 'Complete'" class="ss-card ss-card-02 style-complete border bcolor-fgray">
+    <div class="wrapper">
+      <div class="form-group">
+        <label class="p color-gray">ประเภทของรายการสิ่งส่งตรวจ</label>
+        <div class="plain-text">
+          <p>{{value}}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="p color-gray">จำนวนถุง</label>
+        <div class="plain-text">
+          <p>{{valueCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div v-else class="ss-card ss-card-02 border bcolor-fgray">
     <div class="wrapper">
       <div class="form-group">

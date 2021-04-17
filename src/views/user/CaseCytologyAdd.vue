@@ -8,7 +8,7 @@
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
             <a href="/user/cases" class="btn color-gray h-color-01">
-              <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+              <img class="icon-prepend xs" src="/assets/img/icon/chev-left.svg" alt="Image Icon" />
               ย้อนกลับ
             </a>
           </div>
@@ -117,10 +117,9 @@
             <div class="grid lg-20 md-1-3">
               <FormGroup type="plain" label="สิทธิการรักษา" :value="patientFound? 'บัตรทอง': '-'" />
             </div>
-            <div class="grid lg-20 md-1-3">
+            <div class="grid lg-40 md-1-3">
               <FormGroup type="plain" label="โรงพยาบาล" :value="patientFound? 'โรงพยาบาลสกลนคร': '-'" />
             </div>
-            <div class="grid lg-20 md-0 sm-0"></div>
             <div class="grid lg-20 md-1-3">
               <FormGroup type="plain" label="รหัสแพทย์" :value="patientFound? '1088052': '-'" />
             </div>

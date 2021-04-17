@@ -8,7 +8,7 @@
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
             <a href="/user/cases" class="btn color-gray h-color-01">
-              <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+              <img class="icon-prepend xs" src="/assets/img/icon/chev-left.svg" alt="Image Icon" />
               ย้อนกลับ
             </a>
           </div>

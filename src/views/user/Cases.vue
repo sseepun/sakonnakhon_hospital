@@ -139,7 +139,7 @@ export default {
           iconPrepend: 'checkout.svg'
         },
         status: {
-          type: 'tag', text: 'รอรับเข้าบริการ', classer: 'tag-01'
+          type: 'tag', text: 'รอรับเข้าบริการ'
         }
       });
       this.rows1.push({
