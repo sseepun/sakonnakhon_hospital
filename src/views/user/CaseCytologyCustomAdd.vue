@@ -90,17 +90,13 @@
               <FormGroup type="datepicker" label="*วันเดือนปีเกิด" name="birth_date" :required="true" placeholder="22/11/2528" />
             </div>
             <div class="grid xl-25 lg-40 md-50 sm-2-3 xs-90">
-              <div class="form-group">
-                <label class="p color-gray">*อายุ</label>
-                <div class="fit-wrapper">
-                  <input type="number" name="age_year" required min="0" max="100" step="1" placeholder="00" />
-                  <span class="p color-gray">ปี</span>
-                  <input type="number" name="age_month" required min="0" max="12" step="1" placeholder="00" />
-                  <span class="p color-gray">เดือน</span>
-                  <input type="number" name="age_day" required min="0" max="31" step="1" placeholder="00" />
-                  <span class="p color-gray">วัน</span>
-                </div>
-              </div>
+              <FormGroupAge 
+                label="*อายุ" 
+                name0="age_year" 
+                name1="age_month"  
+                name2="age_day" 
+                :required="true"
+              />
             </div>
             <div class="grid xl-20 md-1-3">
               <FormGroup 

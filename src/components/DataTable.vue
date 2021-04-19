@@ -1,6 +1,6 @@
 <template>
 
-  <div class="table-options">
+  <div v-if="withOptions" class="table-options">
     <div v-if="orders.length" class="options hide-mobile">
       <div class="option">
         <span class="color-gray">จัดเรียงตาม:</span> 
@@ -105,6 +105,7 @@ export default {
   props: {
     columns: { type: Array, default: [] },
     rows: { type: Array, default: [] },
+    withOptions: { type: Boolean, default: true },
     page: { type: Number, default: 1 },
     pp: { type: Number, default: 10 },
     search: { type: Array, default: [] },
@@ -116,7 +117,8 @@ export default {
       selfMaxPage: Math.ceil(this.rows.length / this.pp),
       selfFilteredRows: [...this.rows],
       selfRows: [...this.rows].slice(0, this.page * this.pp),
-      selfSearch: ''
+      selfSearch: '',
+      selfOrder: ''
     }
   },
   methods: {
@@ -150,9 +152,11 @@ export default {
       this.selfRows = this.selfFilteredRows.slice(
         (this.selfPage - 1) * this.pp, this.selfPage * this.pp
       );
+      this.doOrder(this.selfOrder);
       return true;
     },
     doOrder(val) {
+      this.selfOrder = val;
       if(val.indexOf('-asc') > -1){
         val = val.replace('-asc', '');
         this.selfFilteredRows.sort(function(a, b){

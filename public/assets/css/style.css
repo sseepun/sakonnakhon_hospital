@@ -163,7 +163,6 @@ select.xs{padding:.125rem .5rem;}
 :-ms-input-placeholder{color:#cccccc!important;}
 ::-ms-input-placeholder{color:#cccccc!important;}
 
-
 /* Input Wrapper */
 .form-group .prepend, .form-group .append{position:relative; width:100%;}
 .form-group .prepend .icon, .form-group .append .icon{
@@ -197,12 +196,18 @@ select.xs{padding:.125rem .5rem;}
 .form-group .fit-wrapper > span:last-child{margin-right:0;}
 
 
-/* Error */
+/* Label & Error */
+.form-group > label{display:flex; justify-content:space-between; transition:color .25s;}
+.form-group > label.focused{color:#047857!important;}
 .error{color:#BC4A4A; transition:all .25s;}
 .form-group.error > label{color:#BC4A4A!important;}
 .form-group.error > label > .error{margin:0 0 0 auto;}
 .form-group.error input, .form-group.error select, 
 .form-group.error textarea{border-color:#BC4A4A!important;}
+@media screen and (max-width:575.98px){
+    .form-group > label{flex-wrap:wrap;}
+    .form-group.error > label > .error{width:100%; margin:0;}
+}
 
 
 /* Checkbox Set */
@@ -415,6 +420,9 @@ fieldset{padding:0; margin:0; border:0;}
 .ss-card-02.style-complete .form-group:nth-child(1){width:calc(100% - 6rem);}
 .ss-card-02.style-complete .form-group:nth-child(2){margin-right:0;}
 
+.ss-card-02-text{display:block; width:100%; text-align:right; font-size:16px;}
+.ss-card-02.error{border-color:#BC4A4A!important;}
+
 @media screen and (max-width:575.98px){
     .ss-card-02{padding:.75rem;}
     .ss-card-02 .form-group{margin:0 .75rem 0 0;}
@@ -475,6 +483,7 @@ fieldset{padding:0; margin:0; border:0;}
     margin:-.1875rem 0 0 0; background:#D2F4EE; border:1px solid rgba(0,0,0,.08);
     border-radius:.375rem;
 }
+.ss-tag.ss-tag-warning{background:#FBEECC; border-color:rgba(0,0,0,.08);}
 
 
 /* Stripe */

@@ -10,14 +10,14 @@
             <div class="grids">
               <div class="grid sm-100">
                 <FormGroup 
-                  label="Username" 
+                  label="Username" :classer="{ 'error': !isValid && !username }"
                   :value="username" @input="username = $event"
                   wrapperClass="prepend" icon="user.svg" 
                 />
               </div>
               <div class="grid sm-100">
                 <FormGroup 
-                  label="Password" type="password" 
+                  label="Password" type="password" :classer="{ 'error': !isValid && !password }"
                   :value="password" @input="password = $event"
                   wrapperClass="prepend password" icon="lock.svg" 
                 />

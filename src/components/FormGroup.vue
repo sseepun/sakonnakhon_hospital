@@ -1,15 +1,16 @@
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
       <textarea rows="5"
         :name="name" 
         :placeholder="placeholder" 
-        :value="value" 
+        v-model="value" 
         @input="(event)=>$emit('input', event.target.value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
       ></textarea>
       <div v-if="icon" class="icon">
@@ -19,14 +20,15 @@
   </div>
 
   <div v-else-if="type === 'select'" class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
       <select 
         :name="name" 
-        :value="value" 
+        v-model="value" 
         @input="(event)=>$emit('input', event.target.value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
       >
         <option v-for="option in options" :value="option.value" 
@@ -52,7 +54,7 @@
   </div>
 
   <div v-else-if="type == 'datepicker'" class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <DatePicker 
@@ -67,7 +69,8 @@
             :name="name" 
             :placeholder="placeholder" 
             :value="inputValue"
-            v-on="inputEvents"  
+            v-on="inputEvents" 
+            @focusin="isFocused = true" @focusout="isFocused = false" 
           />
           <div v-if="icon" class="icon">
             <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
@@ -78,7 +81,7 @@
   </div>
 
   <div v-else class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
@@ -86,8 +89,9 @@
         :type="type" 
         :name="name" 
         :placeholder="placeholder" 
-        :value="value" 
+        v-model="value" 
         @input="(event)=>$emit('input', event.target.value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false" 
       />
       <div v-if="icon" class="icon">
@@ -113,6 +117,7 @@ export default {
     options: { type: Array, default: [] },
     wrapperClass: { type: String, default: '' },
     icon: { type: String, default: '' },
+    isFocused: { type: Boolean, default: false }
   },
   methods: {
     handleInput() {

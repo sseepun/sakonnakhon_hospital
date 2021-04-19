@@ -3,7 +3,7 @@
 
   <section class="section-full">
     <div class="container">
-      <form action="/user/case-biopsy-complete" method="POST">
+      <form action="/user/case-biopsy-complete" method="GET" @submit="onSubmit">
 
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
@@ -42,7 +42,7 @@
           <div class="grids">
             <div class="grid sm-100">
               <CheckboxSet 
-                label="ประเภททะเบียน" name="case_type" :value="1" :required="true"
+                label="ประเภททะเบียน" name="case_type" :value="1"
                 :options="[
                   { value: 1, text: 'Surgical pathology (S)' },
                   { value: 2, text: 'Frozen Selction (F)' },
@@ -51,81 +51,127 @@
               />
             </div>
             <div class="grid lg-20 md-1-3 xs-75">
-              <FormGroup type="text" label="*HN" name="hn" :required="true" placeholder="1234567" />
+              <FormGroup 
+                type="text" label="*HN" name="hn" placeholder="1234567" 
+                :value="dataset.hn" @input="dataset.hn = $event" 
+                :errorText="isValidated && !dataset.hn? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.hn? 'error': ''" 
+              />
             </div>
             <div class="grid lg-20 md-1-3 xs-75">
-              <FormGroup type="text" label="*AN" name="an" :required="true" placeholder="1234567" />
+              <FormGroup 
+                type="text" label="*AN" name="an" placeholder="1234567"
+                :value="dataset.an" @input="dataset.an = $event" 
+                :errorText="isValidated && !dataset.an? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.an? 'error': ''" 
+              />
             </div>
             <div class="sep"></div>
 
             <div class="grid xl-20 md-1-3 xs-75">
               <FormGroup 
-                type="select" label="คำนำหน้า" name="prefix" :value="1" 
+                type="select" label="คำนำหน้า" name="prefix" 
                 :options="[
                   { value: 1, text: 'นาย' },
                   { value: 2, text: 'นาง' },
                   { value: 3, text: 'นางสาว' }
                 ]"
+                :value="dataset.prefix" @input="dataset.prefix = $event" 
               />
             </div>
             <div class="grid xl-25 md-1-3">
-              <FormGroup type="text" label="*ชื่อ นามสกุล" name="name" :required="true" placeholder="จริงใจ ยินดี" />
+              <FormGroup 
+                type="text" label="*ชื่อ นามสกุล" name="name" placeholder="จริงใจ ยินดี"
+                :value="dataset.name" @input="dataset.name = $event" 
+                :errorText="isValidated && !dataset.name? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.name? 'error': ''" 
+              />
             </div>
             <div class="grid xl-20 md-1-3">
               <CheckboxSet 
-                label="*เพศ" name="sex" :required="true"
+                label="*เพศ" name="sex"
                 :options="[
                   { value: 1, text: 'ชาย' },
                   { value: 2, text: 'หญิง' }
                 ]"
+                :value="dataset.sex" @input="dataset.sex = $event" 
+                :errorText="isValidated && !dataset.sex? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.sex? 'error': ''" 
               />
             </div>
             <div class="grid xl-15 md-1-3 xs-75">
               <FormGroup type="text" label="สัญชาติ" name="nationality" placeholder="ไทย" />
             </div>
             <div class="grid xl-20 md-1-3 xs-75">
-              <FormGroup type="text" label="*หมายเลขบัตรประชาชน" name="thai_id" :required="true" placeholder="1-9698-00169-84-9" />
+              <FormGroup 
+                type="text" label="*หมายเลขบัตรประชาชน" name="thai_id" placeholder="1-9698-00169-84-9" 
+                :value="dataset.thaiId" @input="dataset.thaiId = $event" 
+                :errorText="isValidated && !dataset.thaiId? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.thaiId? 'error': ''" 
+              />
             </div>
 
             <div class="grid xl-20 md-1-3 xs-75">
-              <FormGroup type="datepicker" label="*วันเดือนปีเกิด" name="birth_date" :required="true" placeholder="22/11/2528" />
+              <FormGroup 
+                type="datepicker" label="*วันเดือนปีเกิด" name="birth_date" placeholder="22/11/2528"
+                :value="dataset.birthDate" @input="dataset.birthDate = $event" 
+                :errorText="isValidated && !dataset.birthDate? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.birthDate? 'error': ''" 
+              />
             </div>
             <div class="grid xl-25 lg-40 md-50 sm-2-3 xs-90">
-              <div class="form-group">
-                <label class="p color-gray">*อายุ</label>
-                <div class="fit-wrapper">
-                  <input type="number" name="age_year" required min="0" max="100" step="1" placeholder="00" />
-                  <span class="p color-gray">ปี</span>
-                  <input type="number" name="age_month" required min="0" max="12" step="1" placeholder="00" />
-                  <span class="p color-gray">เดือน</span>
-                  <input type="number" name="age_day" required min="0" max="31" step="1" placeholder="00" />
-                  <span class="p color-gray">วัน</span>
-                </div>
-              </div>
+              <FormGroupAge 
+                label="*อายุ" 
+                name0="age_year" :value0="dataset.ageYear" 
+                @input0="dataset.ageYear = $event" 
+                name1="age_month" :value1="dataset.ageMonth" 
+                @input1="dataset.ageMonth = $event" 
+                name2="age_day" :value2="dataset.ageDay" 
+                @input2="dataset.ageDay = $event"  
+                :errorText="isValidated && (!dataset.ageYear || !dataset.ageMonth || !dataset.ageDay)? 'กรุณาระบุ': ''" 
+                :classer="isValidated && (!dataset.ageYear || !dataset.ageMonth || !dataset.ageDay)? 'error': ''" 
+              />
             </div>
             <div class="grid xl-20 md-1-3">
               <FormGroup 
-                type="select" label="*สิทธิการรักษา" name="card_type" :value="1" :required="true"
+                type="select" label="*สิทธิการรักษา" name="card_type" 
                 :options="[
                   { value: 1, text: 'ประกันสังคม' },
                   { value: 2, text: 'บัตรทอง' }
-                ]"
+                ]" 
+                :value="dataset.cardType" @input="dataset.cardType = $event" 
+                :errorText="isValidated && !dataset.cardType? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.cardType? 'error': ''" 
               />
             </div>
             <div class="grid xl-35 md-2-3 sm-100">
               <FormGroup 
-                type="select" label="*โรงพยาบาล" name="hospital" :value="1" :required="true"
+                type="select" label="*โรงพยาบาล" name="hospital" 
                 :options="[
-                  { value: 1, text: 'โรงพยาบาลสกลนคร' }
-                ]"
+                  { value: 1, text: 'โรงพยาบาลสกลนคร' },
+                  { value: 2, text: 'สาธารณะสุข' }
+                ]" 
+                :value="dataset.hospital" @input="dataset.hospital = $event" 
+                :errorText="isValidated && !dataset.hospital? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.hospital? 'error': ''" 
               />
             </div>
 
             <div class="grid xl-20 md-1-3 xs-75">
-              <FormGroup type="text" label="*รหัสแพทย์" name="doctor_id" :required="true" placeholder="1088052" />
+              <FormGroup 
+                type="text" label="*รหัสแพทย์" name="doctor_id" placeholder="1088052" 
+                :value="dataset.doctorId" @input="dataset.doctorId = $event" 
+                :errorText="isValidated && !dataset.doctorId? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.doctorId? 'error': ''" 
+              />
             </div>
             <div class="grid xl-25 md-1-3">
-              <FormGroup type="text" label="*แพทย์ผู้รักษา" name="doctor_name" :required="true" placeholder="นพ.ณรงค์ฤทธิ์ พรมบุรี" />
+              <FormGroup 
+                type="text" label="*แพทย์ผู้รักษา" name="doctor_name" placeholder="นพ.ณรงค์ฤทธิ์ พรมบุรี"  
+                :value="dataset.doctorName" @input="dataset.doctorName = $event" 
+                :errorText="isValidated && !dataset.doctorName? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.doctorName? 'error': ''"
+              />
             </div>
             <div class="grid xl-20 md-1-3 xs-75">
               <FormGroup type="text" label="WARD" name="ward" placeholder="Cohort Ward" />
@@ -134,10 +180,12 @@
 
             <div class="grid lg-30 md-40 xs-75">
               <FormGroup 
-                type="datepicker" label="*กำหนดวันที่รายงานผล (Due Date)" :required="true"
+                type="datepicker" label="*กำหนดวันที่รายงานผล (Due Date)"
                 name="date" placeholder="12/12/2563" wrapperClass="append"
                 :append="true" icon="calendar.svg" 
-                @input="selectedDate = $event" 
+                :value="dataset.selectedDate" @input="dataset.selectedDate = $event" 
+                :errorText="isValidated && !dataset.selectedDate? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.selectedDate? 'error': ''"
               />
             </div>
             <div class="grid lg-60 md-60 sm-100">
@@ -159,9 +207,12 @@
             >
               <SpecialCard02 
                 :itemIndex="index" :name="'bag_'+index" 
-                :value="bag.value" @input="bag.value = $event" 
-                :valueCount="bag.valueCount" @input-count="bagTotalChange(index, $event)" 
-                @input-delete="deleteBagSection($event)"
+                :value="bag.value"  
+                :valueCount="bag.valueCount" 
+                @input="bag.value = $event"
+                @input-count="bagTotalChange(index, $event)" 
+                @input-delete="deleteBagSection($event)" 
+                :errorText="isValidated && (!bag.value || !bag.valueCount)? 'กรุณาระบุ': ''" 
               />
             </div>
             <div class="grid xl-40 lg-50 md-2-3 sm-90">
@@ -221,11 +272,30 @@ export default {
   data() {
     return {
       userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
-      selectedDate: new Date(),
+
+      isValidated: false,
+      dataset: {
+        hn: '',
+        an: '',
+        prefix: 1,
+        name: '',
+        sex: 1,
+        thaiId: '',
+        birthDate: '',
+        ageYear: null,
+        ageMonth: null,
+        ageDay: null,
+        cardType: 1,
+        hospital: 1,
+        doctorId: '',
+        doctorName: '',
+        selectedDate: ''
+      },
+      
+      bagTotal: 0,
       bags: [
         { value: '', valueCount: null }
       ],
-      bagTotal: 0
     }
   },
   created() {
@@ -253,6 +323,21 @@ export default {
         }
       });
       return true;
+    },
+    onSubmit(e) {
+      var that = this;
+      that.isValidated = true;
+      
+      var isValid = true;
+      Object.keys(that.dataset).forEach(function(k){
+        if(!that.dataset[k]){
+          isValid = false;
+        }
+      });
+
+      if(!isValid){
+        e.preventDefault();
+      }
     }
   }
 }
