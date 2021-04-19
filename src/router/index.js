@@ -58,7 +58,11 @@ const routes = [
     name: 'UserCaseCytologyCustomAddPage',
     component: () => import('../views/user/CaseCytologyCustomAdd.vue')
   },
-
+  {
+    path: '/user/case-cytology-complete',
+    name: 'UserCaseCytologyCompletePage',
+    component: () => import('../views/user/CaseCytologyComplete.vue')
+  },
 ]
 
 const router = createRouter({

@@ -63,7 +63,14 @@
           </div>
           
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 2 }">
-            Tab 2
+            <DataTable 
+              :columns="columns3" :rows="rows3" 
+              :search="[ 'sent_to', 'case_id', 'hn', 'block_no', 'name', 'thai_id' ]" 
+              :orders="[
+                { key: 'sent_date-desc', text: 'วันที่นำเข้า (ใหม่สุด)' },
+                { key: 'sent_date-asc', text: 'วันที่นำเข้า (เก่าสุด)' }
+              ]"
+            />
           </div>
 
         </div>
@@ -126,8 +133,20 @@ export default {
         { key: 'card', text: 'ใบส่งตรวจ' },
         { key: 'status', text: 'สถานะ' },
       ],
-      rows2: []
+      rows2: [],
 
+      columns3: [
+        { key: 'sent_to', text: 'นำส่ง' },
+        { key: 'sent_date', text: 'วันที่นำเข้า' },
+        { key: 'case_id', text: 'ID Case' },
+        { key: 'hn', text: 'HN' },
+        { key: 'block_no', text: 'Block No.' },
+        { key: 'name', text: 'ชื่อ นามสกุล' },
+        { key: 'thai_id', text: 'เลขบัตรประชาชน' },
+        { key: 'card', text: 'ใบส่งตรวจ' },
+        { key: 'report', text: 'ใบรายงานผล' },
+      ],
+      rows3: []
     }
   },
   created() {
@@ -256,7 +275,69 @@ export default {
           type: 'tag', text: 'รอรับเข้าบริการ'
         }
       });
-    
+
+      this.rows3.push({
+        sent_to: { 
+          type: 'link', text: 'ชิ้นเนื้อ', href: '#', classer: 'color-11'
+        },
+        sent_date: {
+          type: 'link', text: '05/12/2563, 10:34', href: '#'
+        },
+        case_id: { 
+          type: 'link', text: 'FI63-07660', href: '#'
+        },
+        hn: { 
+          type: 'link', text: '1005375', href: '#'
+        },
+        block_no: { 
+          type: 'link', text: 'P63-4001R', href: '#'
+        },
+        name: { 
+          type: 'link', text: 'นวรัตร์ ระเบียบธรรม', href: '#' 
+        },
+        thai_id: { 
+          type: 'link', text: '1-4505-53700-28-4', href: '#'
+        },
+        card: {
+          type: 'link', text: 'CG21-00001', href: '#',
+          iconPrepend: 'checkout.svg'
+        },
+        report: {
+          type: 'link', text: '1088052-S64-0001', href: '#',
+          iconPrepend: 'checkout.svg'
+        }
+      });
+      this.rows3.push({
+        sent_to: { 
+          type: 'link', text: 'เซลล์วิทยา', href: '#', classer: 'color-01'
+        },
+        sent_date: {
+          type: 'link', text: '20/11/2563, 14:05', href: '#'
+        },
+        case_id: { 
+          type: 'link', text: 'FI63-07660', href: '#'
+        },
+        hn: { 
+          type: 'link', text: '1005375', href: '#'
+        },
+        block_no: { 
+          type: 'link', text: 'P63-4001R', href: '#'
+        },
+        name: { 
+          type: 'link', text: 'นวรัตร์ ระเบียบธรรม', href: '#' 
+        },
+        thai_id: { 
+          type: 'link', text: '1-4505-53700-28-4', href: '#'
+        },
+        card: {
+          type: 'link', text: 'CG21-00001', href: '#',
+          iconPrepend: 'checkout.svg'
+        },
+        report: {
+          type: 'link', text: '1088052-S64-0001', href: '#',
+          iconPrepend: 'checkout.svg'
+        }
+      });
     }
 
   },
