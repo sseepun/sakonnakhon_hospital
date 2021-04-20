@@ -212,7 +212,7 @@
                 @input="bag.value = $event"
                 @input-count="bagTotalChange(index, $event)" 
                 @input-delete="deleteBagSection($event)" 
-                :errorText="isValidated && (!bag.value || !bag.valueCount)? 'กรุณาระบุ': ''" 
+                :errorText="isValidated && (!bag.value || !bag.valueCount)? 'กรุณาระบุ': ''"
               />
             </div>
             <div class="grid xl-40 lg-50 md-2-3 sm-90">

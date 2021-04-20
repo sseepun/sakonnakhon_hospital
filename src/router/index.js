@@ -29,6 +29,11 @@ const routes = [
     name: 'UserCasesPage',
     component: () => import('../views/user/Cases.vue')
   },
+  {
+    path: '/user/special-cases',
+    name: 'UserSpecialCasesPage',
+    component: () => import('../views/user/SpecialCases.vue')
+  },
   
   // User Biopsy Pages
   {
@@ -46,6 +51,11 @@ const routes = [
     name: 'UserCaseBiopsyCompletePage',
     component: () => import('../views/user/CaseBiopsyComplete.vue')
   },
+  {
+    path: '/user/case-biopsy-complete-edit',
+    name: 'UserCaseBiopsyCompleteEditPage',
+    component: () => import('../views/user/CaseBiopsyCompleteEdit.vue')
+  },
 
   // User Cytology Pages
   {
@@ -62,6 +72,19 @@ const routes = [
     path: '/user/case-cytology-complete',
     name: 'UserCaseCytologyCompletePage',
     component: () => import('../views/user/CaseCytologyComplete.vue')
+  },
+
+
+  // User Special Cases
+  {
+    path: '/user/special-case-add',
+    name: 'UserSpecialCaseAddPage',
+    component: () => import('../views/user/SpecialCaseAdd.vue')
+  },
+  {
+    path: '/user/special-case-complete',
+    name: 'SpecialCaseCompletePage',
+    component: () => import('../views/user/SpecialCaseComplete.vue')
   },
 ]
 
