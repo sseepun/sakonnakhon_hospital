@@ -34,6 +34,11 @@ const routes = [
     name: 'UserSpecialCasesPage',
     component: () => import('../views/user/SpecialCases.vue')
   },
+  {
+    path: '/user/slides',
+    name: 'UserSlidesPage',
+    component: () => import('../views/user/Slides.vue')
+  },
   
   // User Biopsy Pages
   {
@@ -97,6 +102,13 @@ const routes = [
     path: '/user/case-pathology-history',
     name: 'UserCasePathologyHistoryPage',
     component: () => import('../views/user/CasePathologyHistory.vue')
+  },
+
+  // User Slides
+  {
+    path: '/user/slide-add',
+    name: 'UserSlideAddPage',
+    component: () => import('../views/user/SlideAdd.vue')
   },
 ]
 

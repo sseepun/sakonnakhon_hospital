@@ -189,31 +189,31 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'link', text: 'เซลล์วิทยา', href: '#', classer: 'color-01'
+          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01'
         },
         case_id: { 
-          type: 'link', text: 'FI63-12911', href: '#'
+          type: 'text', text: 'FI63-12911',
         },
         hn: { 
-          type: 'link', text: '1088052', href: '#'
+          type: 'text', text: '1088052',
         },
         name: { 
-          type: 'link', text: 'สงกรานต์ สุขุมมณีวงศ์', href: '#' 
+          type: 'text', text: 'สงกรานต์ สุขุมมณีวงศ์', 
         },
         age: { 
-          type: 'link', text: '64 ปี', href: '#'
+          type: 'text', text: '64 ปี',
         },
         block_ex: { 
-          type: 'link', text: 'P63-31891', href: '#'
+          type: 'text', text: 'P63-31891',
         },
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         result_date: {
-          type: 'link', text: '04/12/2563, 12:34', href: '#'
+          type: 'text', text: '04/12/2563, 12:34',
         },
         provider: { 
-          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '#'
+          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
           type: 'link', text: 'R-202001-0001', href: '#',
@@ -223,31 +223,31 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'link', text: 'ชิ้นเนื้อ', href: '#', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'link', text: 'FI63-07821', href: '#'
+          type: 'text', text: 'FI63-07821',
         },
         hn: { 
-          type: 'link', text: '1068055', href: '#'
+          type: 'text', text: '1068055',
         },
         name: { 
-          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '#' 
+          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
         },
         age: { 
-          type: 'link', text: '23 ปี', href: '#'
+          type: 'text', text: '23 ปี',
         },
         block_ex: { 
-          type: 'link', text: 'P63-21341', href: '#'
+          type: 'text', text: 'P63-21341',
         },
         sent_date: {
-          type: 'link', text: '20/12/2563, 14:05', href: '#'
+          type: 'text', text: '20/12/2563, 14:05',
         },
         result_date: {
-          type: 'link', text: '24/12/2563, 12:34', href: '#'
+          type: 'text', text: '24/12/2563, 12:34',
         },
         provider: { 
-          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '#'
+          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
           type: 'link', text: 'R-202001-0002', href: '#',
@@ -257,31 +257,31 @@ export default {
 
       this.rows2.push({
         sent_to: { 
-          type: 'link', text: 'เซลล์วิทยา', href: '#', classer: 'color-01'
+          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01'
         },
         case_id: { 
-          type: 'link', text: 'FI63-12911', href: '#'
+          type: 'text', text: 'FI63-12911',
         },
         hn: { 
-          type: 'link', text: '1088052', href: '#'
+          type: 'text', text: '1088052',
         },
         name: { 
-          type: 'link', text: 'สงกรานต์ สุขุมมณีวงศ์', href: '#' 
+          type: 'text', text: 'สงกรานต์ สุขุมมณีวงศ์', 
         },
         age: { 
-          type: 'link', text: '64 ปี', href: '#'
+          type: 'text', text: '64 ปี',
         },
         block_ex: { 
-          type: 'link', text: 'P63-31891', href: '#'
+          type: 'text', text: 'P63-31891',
         },
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         result_date: {
-          type: 'link', text: '04/12/2563, 12:34', href: '#'
+          type: 'text', text: '04/12/2563, 12:34',
         },
         provider: { 
-          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '#'
+          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
           type: 'link', text: 'R-202001-0001', href: '#',
@@ -291,31 +291,31 @@ export default {
 
       this.rows2.push({
         sent_to: { 
-          type: 'link', text: 'ชิ้นเนื้อ', href: '#', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'link', text: 'FI63-07821', href: '#'
+          type: 'text', text: 'FI63-07821',
         },
         hn: { 
-          type: 'link', text: '1068055', href: '#'
+          type: 'text', text: '1068055',
         },
         name: { 
-          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '#' 
+          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
         },
         age: { 
-          type: 'link', text: '23 ปี', href: '#'
+          type: 'text', text: '23 ปี',
         },
         block_ex: { 
-          type: 'link', text: 'P63-21341', href: '#'
+          type: 'text', text: 'P63-21341',
         },
         sent_date: {
-          type: 'link', text: '20/12/2563, 14:05', href: '#'
+          type: 'text', text: '20/12/2563, 14:05',
         },
         result_date: {
-          type: 'link', text: '24/12/2563, 12:34', href: '#'
+          type: 'text', text: '24/12/2563, 12:34',
         },
         provider: { 
-          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '#'
+          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
           type: 'link', text: 'R-202001-0002', href: '#',
@@ -325,34 +325,34 @@ export default {
       
       this.rows3.push({
         sent_to: { 
-          type: 'link', text: 'ชิ้นเนื้อ', href: '#', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'link', text: 'FI63-07821', href: '#'
+          type: 'text', text: 'FI63-07821',
         },
         hn: { 
-          type: 'link', text: '1068055', href: '#'
+          type: 'text', text: '1068055',
         },
         name: { 
-          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '#' 
+          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
         },
         age: { 
-          type: 'link', text: '23 ปี', href: '#'
+          type: 'text', text: '23 ปี',
         },
         block_ex: { 
-          type: 'link', text: 'P63-21341', href: '#'
+          type: 'text', text: 'P63-21341',
         },
         sent_date: {
-          type: 'link', text: '20/12/2563, 14:05', href: '#'
+          type: 'text', text: '20/12/2563, 14:05',
         },
         result_date: {
-          type: 'link', text: '24/12/2563, 12:34', href: '#'
+          type: 'text', text: '24/12/2563, 12:34',
         },
         trials: {
-          type: 'link', text: '3', href: '#'
+          type: 'text', text: '3',
         },
         provider: { 
-          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '#'
+          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
           type: 'link', text: 'R-202001-0002', href: '#',
@@ -362,31 +362,31 @@ export default {
       
       this.rows4.push({
        sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         staff_name: { 
-          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '#' 
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', 
         },
         staff_phone: { 
-          type: 'link', text: '041550880 ต่อ 1200', href: '#'
+          type: 'text', text: '041550880 ต่อ 1200',
         },
         note: {
-          type: 'link', text: 'B715/e', href: '#',
+          type: 'text', text: 'B715/e',
         },
         total_case: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total_block: {
-          type: 'link', text: '8', href: '#',
+          type: 'text', text: '8',
         },
         total_slide: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total: {
-          type: 'link', text: '3', href: '#',
+          type: 'text', text: '3',
         },
         sent_lab: {
-          type: 'link', text: 'N Health', href: '#',
+          type: 'text', text: 'N Health',
         },
         result:{
           type: 'link', text: 'รายงานผล.pdf', href: '#',

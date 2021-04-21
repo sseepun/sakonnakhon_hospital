@@ -39,12 +39,14 @@
           <div class="grids">
             <div class="grid sm-100">
               <CheckboxSet 
-                label="ประเภททะเบียน" name="case_type" :value="1"
+                label="ประเภททะเบียน" name="case_type"
                 :options="[
                   { value: 1, text: 'สีย้อมพิเศษ' },
                   { value: 2, text: 'IHC' },
                   { value: 3, text: 'Molecular' }
                 ]"
+                :value="dataset.case_type"
+
               />
             </div>
             <div class="grid lg-15 md-1-3 xs-75">
@@ -173,6 +175,7 @@ export default {
 
       isValidated: false,
       dataset: {
+        case_type: 1,
         bookNo: '',
         bookDate: '',
         staffName: '',

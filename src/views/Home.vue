@@ -8,6 +8,7 @@
     <li><a href="/user/special-cases" target="_blank">/user/special-cases</a></li>
     <li><a href="/user/special-case-add" target="_blank">/user/special-case-add</a></li>
     <li><a href="/user/special-case-complete" target="_blank">/user/special-case-complete</a></li>
+    <li><a href="/user/slides" target="_blank">/user/slides</a></li>
     <li><a href="/user/case-biopsy-add" target="_blank">/user/case-biopsy-add</a></li>
     <li><a href="/user/case-biopsy-custom-add" target="_blank">[validation] /user/case-biopsy-custom-add</a></li>
     <li><a href="/user/case-biopsy-complete" target="_blank">/user/case-biopsy-complete</a></li>

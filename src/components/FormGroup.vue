@@ -92,7 +92,8 @@
         v-model="value" 
         @input="(event)=>$emit('input', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
-        :required="required? true: false" 
+        :required="required? true: false"
+        :disabled="disabled? true: false"
       />
       <div v-if="icon" class="icon">
         <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
@@ -117,7 +118,8 @@ export default {
     options: { type: Array, default: [] },
     wrapperClass: { type: String, default: '' },
     icon: { type: String, default: '' },
-    isFocused: { type: Boolean, default: false }
+    isFocused: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false }
   },
   methods: {
     handleInput() {

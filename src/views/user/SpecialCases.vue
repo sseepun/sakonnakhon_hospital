@@ -130,31 +130,31 @@ export default {
 
       this.rows1.push({
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         staff_name: { 
-          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '#' 
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', 
         },
         staff_phone: { 
-          type: 'link', text: '041550880 ต่อ 1200', href: '#'
+          type: 'text', text: '041550880 ต่อ 1200',
         },
         note: {
-          type: 'link', text: 'B715/e', href: '#',
+          type: 'text', text: 'B715/e',
         },
         total_case: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total_block: {
-          type: 'link', text: '8', href: '#',
+          type: 'text', text: '8',
         },
         total_slide: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total: {
-          type: 'link', text: '3', href: '#',
+          type: 'text', text: '3',
         },
         sent_lab: {
-          type: 'link', text: 'N Health', href: '#',
+          type: 'text', text: 'N Health',
         },
         status: {
           type: 'tag', text: 'รอผลตรวจ'
@@ -162,31 +162,31 @@ export default {
       });
       this.rows1.push({
         sent_date: {
-          type: 'link', text: '18/11/2563, 08:44', href: '#'
+          type: 'text', text: '18/11/2563, 08:44',
         },
         staff_name: { 
-          type: 'link', text: 'ณรงค์ศักดิ์ พรหมมุณี', href: '#' 
+          type: 'text', text: 'ณรงค์ศักดิ์ พรหมมุณี',
         },
         staff_phone: { 
-          type: 'link', text: '041550880 ต่อ 1004', href: '#'
+          type: 'text', text: '041550880 ต่อ 1004',
         },
         note: {
-          type: 'link', text: 'B715/e', href: '#',
+          type: 'text', text: 'B715/e',
         },
         total_case: {
-          type: 'link', text: '1', href: '#',
+          type: 'text', text: '1',
         },
         total_block: {
-          type: 'link', text: '12', href: '#',
+          type: 'text', text: '12',
         },
         total_slide: {
-          type: 'link', text: '6', href: '#',
+          type: 'text', text: '6',
         },
         total: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         sent_lab: {
-          type: 'link', text: 'N Health', href: '#',
+          type: 'text', text: 'N Health',
         },
         status: {
           type: 'tag', text: 'รอผลตรวจ'
@@ -195,34 +195,34 @@ export default {
     
       this.rows2.push({
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         staff_name: { 
-          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '#' 
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา',
         },
         staff_phone: { 
-          type: 'link', text: '041550880 ต่อ 1200', href: '#'
+          type: 'text', text: '041550880 ต่อ 1200',
         },
         note: {
-          type: 'link', text: 'B715/e', href: '#',
+          type: 'text', text: 'B715/e',
         },
         total_case: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total_block: {
-          type: 'link', text: '8', href: '#',
+          type: 'text', text: '8',
         },
         total_slide: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total: {
-          type: 'link', text: '3', href: '#',
+          type: 'text', text: '3',
         },
         sent_lab: {
-          type: 'link', text: 'N Health', href: '#',
+          type: 'text', text: 'N Health',
         },
         result:{
-          type: 'link', text: 'รายงานผล.pdf', href: '#',
+          type: 'text', text: 'รายงานผล.pdf',
           iconPrepend: 'checkout.svg'
         },
         status: {
@@ -231,34 +231,34 @@ export default {
       });
       this.rows2.push({
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '#'
+          type: 'text', text: '20/11/2563, 14:05',
         },
         staff_name: { 
-          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '#' 
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา',
         },
         staff_phone: { 
-          type: 'link', text: '041550880 ต่อ 1200', href: '#'
+          type: 'text', text: '041550880 ต่อ 1200',
         },
         note: {
-          type: 'link', text: 'B715/e', href: '#',
+          type: 'text', text: 'B715/e',
         },
         total_case: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total_block: {
-          type: 'link', text: '8', href: '#',
+          type: 'text', text: '8',
         },
         total_slide: {
-          type: 'link', text: '2', href: '#',
+          type: 'text', text: '2',
         },
         total: {
-          type: 'link', text: '3', href: '#',
+          type: 'text', text: '3',
         },
         sent_lab: {
-          type: 'link', text: 'N Health', href: '#',
+          type: 'text', text: 'N Health',
         },
         result:{
-          type: 'link', text: '-', href: '#'
+          type: 'text', text: '-',
         },
         status: {
           type: 'tag', text: 'ถูกยกเลิก'
