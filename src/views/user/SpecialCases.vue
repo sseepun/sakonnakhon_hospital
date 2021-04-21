@@ -81,7 +81,7 @@ import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
 
 export default {
-  name: 'UserSpecialCasesPage',
+  name: 'SpecialCasesPage',
   components: {
     Topnav,
     PopupOptions,

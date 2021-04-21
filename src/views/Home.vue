@@ -3,6 +3,8 @@
     <li><a href="/auth/signin" target="_blank">/auth/signin</a></li>
     <li><a href="/user/dashboard" target="_blank">/user/dashboard</a></li>
     <li><a href="/user/cases" target="_blank">/user/cases</a></li>
+    <li><a href="/user/case-pathology" target="_blank">/user/case-pathology</a></li>
+    <li><a href="/user/case-pathology-history" target="_blank">/user/case-pathology-history</a></li>
     <li><a href="/user/special-cases" target="_blank">/user/special-cases</a></li>
     <li><a href="/user/special-case-add" target="_blank">/user/special-case-add</a></li>
     <li><a href="/user/special-case-complete" target="_blank">/user/special-case-complete</a></li>

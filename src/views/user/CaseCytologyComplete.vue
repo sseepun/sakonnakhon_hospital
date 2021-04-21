@@ -153,7 +153,7 @@ import Topnav from '../../components/Topnav';
 import SpecialCard02 from '../../components/SpecialCard02';
 
 export default {
-  name: 'CaseBiopsyCompletePage',
+  name: 'CaseCytologyCompletePage',
   components: {
     Topnav,
     SpecialCard02

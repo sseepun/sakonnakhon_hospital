@@ -83,8 +83,20 @@ const routes = [
   },
   {
     path: '/user/special-case-complete',
-    name: 'SpecialCaseCompletePage',
+    name: 'UserSpecialCaseCompletePage',
     component: () => import('../views/user/SpecialCaseComplete.vue')
+  },
+
+   // User Pathotology Pages
+   {
+    path: '/user/case-pathology',
+    name: 'UserCasePathologyPage',
+    component: () => import('../views/user/CasePathology.vue')
+  },
+  {
+    path: '/user/case-pathology-history',
+    name: 'UserCasePathologyHistoryPage',
+    component: () => import('../views/user/CasePathologyHistory.vue')
   },
 ]
 
