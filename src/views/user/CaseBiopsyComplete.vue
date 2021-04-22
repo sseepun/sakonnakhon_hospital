@@ -12,18 +12,25 @@
           </a>
         </div>
         <div class="header-wrapper">
-          <div class="text-container d-flex ai-center">
-            <h6 class="h3">รายละเอียดรายการส่งตรวจชิ้นเนื้อ</h6>
-            | <div class="ss-tag">รอรับเข้าบริการ</div>
+          <div class="text-container pr-2">
+            <span class="h3">
+              รายละเอียดรายการส่งตรวจชิ้นเนื้อ
+            </span>
+            <span class="ss-sep hide-mobile"></span>
+            <span class="ss-tag">รอรับเข้าบริการ</span>
           </div>
           <div class="btns hide-mobile">
             <Button 
-              type="submit" text="บันทึกทะเบียน" 
-              classer="btn-color-01" :prepend="true" icon="check-white.svg" 
+              text="แก้ไข" href="/user/case-biopsy-custom-add" 
+              classer="btn-color-03 mr-3" :prepend="true" icon="edit-white.svg" 
+            />
+            <Button 
+              text="พิมพ์ใบส่งตรวจ" href="#" 
+              classer="btn-color-04" :prepend="true" icon="printer-black.svg" 
             />
           </div>
           <div class="btns show-mobile">
-            <Button type="submit" text="บันทึก" classer="btn-color-01 btn-sm" />
+            <Button text="พิมพ์" href="#" classer="btn-color-04 btn-sm" />
           </div>
         </div>
       </div>

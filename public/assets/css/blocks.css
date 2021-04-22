@@ -77,6 +77,15 @@
 .section-full .section-header .show-mobile{display:none!important;}
 .section-full .section-px{padding-left:2rem!important; padding-right:2rem!important;}
 .section-full .section-py-grid{padding-top:0!important; padding-bottom:1.5rem!important;}
+
+
+.section-full .section-header .text-container .ss-sep{
+    transform:translateY(-.5rem); margin:0 1rem 0 .5rem;
+}
+.section-full .section-header .text-container .ss-tag{
+    transform:translateY(-.125rem); margin:0 0 0 .25rem;
+}
+
 @media screen and (max-width:991.98px){
     .section-full{min-height:calc(100vh - 7rem);}
     .section-full .section-header{padding:1.25rem 1.5rem .75rem 1.5rem;}

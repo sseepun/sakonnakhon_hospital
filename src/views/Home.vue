@@ -17,7 +17,7 @@
     <li><a href="/user/case-biopsy-complete" target="_blank">/user/case-biopsy-complete</a></li>
     <li><a href="/user/case-cytology-add" target="_blank">/user/case-cytology-add</a></li>
     <li><a href="/user/case-cytology-custom-add" target="_blank">/user/case-cytology-custom-add</a></li>
-    <li><a href="/user/case-cytology-complete" target="_blank">** /user/case-cytology-complete</a></li>
+    <li><a href="/user/case-cytology-complete" target="_blank">/user/case-cytology-complete</a></li>
   </ul>
 </template>
 

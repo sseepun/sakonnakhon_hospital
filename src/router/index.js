@@ -61,11 +61,6 @@ const routes = [
     name: 'UserCaseBiopsyCompletePage',
     component: () => import('../views/user/CaseBiopsyComplete.vue')
   },
-  {
-    path: '/user/case-biopsy-complete-edit',
-    name: 'UserCaseBiopsyCompleteEditPage',
-    component: () => import('../views/user/CaseBiopsyCompleteEdit.vue')
-  },
 
   // User Cytology Pages
   {

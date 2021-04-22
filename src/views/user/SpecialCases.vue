@@ -18,7 +18,7 @@
             <div class="btns hide-mobile">
               <Button 
                 href="/user/special-case-add" text="ลงทะเบียนส่งตรวจ" 
-                classer="btn-color-01 mr-3" :prepend="true" icon="plus-white.svg" 
+                classer="btn-color-01" :prepend="true" icon="plus-white.svg" 
               />
             </div>
             <div class="btns show-mobile">

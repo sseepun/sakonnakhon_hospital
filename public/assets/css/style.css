@@ -123,6 +123,31 @@ p, .p{font-size:1rem;} p.sm, .p.sm{font-size:.875rem;}
 }
 .btn.btn-color-02:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
 .btn.btn-color-02:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-03, .btn.btn-color-03:focus{
+    color:#ffffff; background:#6e6e6e; border-color:#6e6e6e;
+}
+.btn.btn-color-03:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-03:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-04, .btn.btn-color-04:focus{
+    color:#303030; background:#ffffff; border-color:#303030;
+}
+.btn.btn-color-04:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-04:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-05, .btn.btn-color-05:focus{
+    color:#ffffff; background:#764ABA; border-color:#764ABA;
+}
+.btn.btn-color-05:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-05:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-06, .btn.btn-color-06:focus{
+    color:#ffffff; background:#BC4A4A; border-color:#BC4A4A;
+}
+.btn.btn-color-06:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-06:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-07, .btn.btn-color-07:focus{
+    color:#ffffff; background:#2978D3; border-color:#2978D3;
+}
+.btn.btn-color-07:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-07:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
 
 .btn > .icon-append, .btn > .icon-prepend{
     display:inline-block; height:1.5rem; width:auto; margin:-.5rem -.25rem 0 .5rem;
@@ -477,13 +502,24 @@ fieldset{padding:0; margin:0; border:0;}
 .ss-img .tag-count{background:rgba(255,255,255,.8); color:#212121;}
 
 
+/* Special Separation */
+.ss-sep{position:relative; display:inline-block; margin:0 1.25rem;}
+.ss-sep::before{
+    content:''; position:absolute; top:-.75rem; bottom:-.75rem; width:1.5px;
+    background:#C8C8C8;
+}
+
+
 /* Special Tag */
 .ss-tag{
     display:inline-block; padding:.1875rem .75rem 0 .75rem; color:#212121;
     margin:-.1875rem 0 0 0; background:#D2F4EE; border:1px solid rgba(0,0,0,.08);
-    border-radius:.375rem;
+    border-radius:.375rem; white-space:nowrap;
 }
-.ss-tag.ss-tag-warning{background:#FBEECC; border-color:rgba(0,0,0,.08);}
+.ss-tag.ss-tag-warning{background:#FBEECC;}
+.ss-tag.ss-tag-danger{background:#F8CCE5;}
+.ss-tag.ss-tag-info{background:#CCE5FB;}
+.ss-tag.ss-tag-purple{background:#E1D3F7;}
 
 
 /* Stripe */
@@ -676,6 +712,14 @@ fieldset{padding:0; margin:0; border:0;}
 .pb-5{padding-bottom:1.25rem!important;}
 .pb-6{padding-bottom:1.5rem!important;}
 
+.pr-0{padding-right:0!important;}
+.pr-1{padding-right:.25rem!important;}
+.pr-2{padding-right:.5rem!important;}
+.pr-3{padding-right:.75rem!important;}
+.pr-4{padding-right:1rem!important;}
+.pr-5{padding-right:1.25rem!important;}
+.pr-6{padding-right:1.5rem!important;}
+
 
 /* Colors */
 .color-white, .h-color-white:hover{color:#ffffff!important;}
@@ -688,6 +732,8 @@ fieldset{padding:0; margin:0; border:0;}
 .color-01, .h-color-01:hover{color:#047857!important;}
 .color-02, .h-color-02:hover{color:#006838!important;}
 .color-11, .h-color-11:hover{color:#D17219!important;}
+.color-12, .h-color-12:hover{color:#2978D3!important;}
+.color-13, .h-color-13:hover{color:#764ABA!important;}
 
 .bg-white{background:#ffffff!important;}
 .bg-black{background:#000000!important;}
@@ -699,6 +745,8 @@ fieldset{padding:0; margin:0; border:0;}
 .bg-01{background:#047857!important;}
 .bg-02{background:#006838!important;}
 .bg-11{background:#D17219!important;}
+.bg-12{background:#2978D3!important;}
+.bg-13{background:#764ABA!important;}
 
 .bcolor-white{border-color:#ffffff!important;}
 .bcolor-black{border-color:#000000!important;}
@@ -710,3 +758,5 @@ fieldset{padding:0; margin:0; border:0;}
 .bcolor-01{border-color:#047857!important;}
 .bcolor-02{border-color:#006838!important;}
 .bcolor-11{border-color:#D17219!important;}
+.bcolor-12{border-color:#2978D3!important;}
+.bcolor-13{border-color:#764ABA!important;}
