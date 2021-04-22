@@ -297,7 +297,6 @@ export default {
         }
       });
     }
-
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }

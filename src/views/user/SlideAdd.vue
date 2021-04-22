@@ -46,7 +46,7 @@
                 :classer="isValidated && !dataset.doctorName? 'error': ''" 
               />
             </div>
-            <div class="grid lg-1-3 md-1-3 xs-75">
+            <div class="grid lg-1-3 md-1-3">
               <FormGroup 
                 type="text" label="*กลุ่มงาน" name="specialty" placeholder="พยาธิวิทยา"
                 :value="dataset.specialty" @input="dataset.specialty = $event" 
@@ -107,7 +107,7 @@
               />
             </div>
 
-            <div class="grid lg-25 md-1-3">
+            <div class="grid lg-25 md-1-3 xs-2-3">
               <FormGroup 
                 type="text" label="*เลขที่สไลด์/พาราฟินบล็อค" name="slide_no" placeholder="123456"
                 :value="dataset.slideNo" @input="dataset.slideNo = $event" 

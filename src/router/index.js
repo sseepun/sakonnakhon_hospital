@@ -39,6 +39,11 @@ const routes = [
     name: 'UserSlidesPage',
     component: () => import('../views/user/Slides.vue')
   },
+  {
+    path: '/user/funeral',
+    name: 'UserFuneralPage',
+    component: () => import('../views/user/Funeral.vue')
+  },
   
   // User Biopsy Pages
   {
@@ -109,6 +114,23 @@ const routes = [
     path: '/user/slide-add',
     name: 'UserSlideAddPage',
     component: () => import('../views/user/SlideAdd.vue')
+  },
+  {
+    path: '/user/slide-approve',
+    name: 'UserSlideApprovePage',
+    component: () => import('../views/user/SlideApprove.vue')
+  },
+  {
+    path: '/user/slide-return',
+    name: 'UserSlideReturnPage',
+    component: () => import('../views/user/SlideReturn.vue')
+  },
+
+  // User Funeral
+  {
+    path: '/user/funeral-add',
+    name: 'UserFuneralAddPage',
+    component: () => import('../views/user/FuneralAdd.vue')
   },
 ]
 
