@@ -18,6 +18,10 @@
           </div>
           <div class="btns hide-mobile">
             <Button 
+              text="แก้ไข" @click="cancelAlert=!cancelAlert"
+              classer="btn-color-06 mr-3" :prepend="true" icon="close-white.svg" 
+            />
+            <Button 
               type="submit" text="เสร็จสิ้น" 
               classer="btn-color-01" :prepend="true" icon="check-white.svg" 
             />
@@ -100,8 +104,92 @@
         </p>
       </div>
 
+      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+        <div class="grids">
+          <div class="grid xl-40 lg-60 md-80 sm-100">
+            <div class="d-flex jc-space-between">
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/clip.svg" alt="Image Icon" />
+                รายงานผล รพ.สกลนคร 28/10/2563.pdf
+              </div>
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/download.svg" alt="Image Icon" />
+                <img src="/assets/img/icon/delete.svg" alt="Image Icon" />
+              </div>
+            </div>
+          </div>
+          <div class="sep"></div>
+          <div class="grid xl-40 lg-60 md-80 sm-100">
+            <div class="d-flex jc-space-between">
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/clip.svg" alt="Image Icon" />
+                รายงานผล รพ.สกลนคร 28/10/2563.pdf
+              </div>
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/download.svg" alt="Image Icon" />
+                <img src="/assets/img/icon/delete.svg" alt="Image Icon" />
+              </div>
+            </div>
+          </div>
+          <div class="sep"></div>
+          <div class="grid xl-40 lg-60 md-80 sm-100">
+            <div class="d-flex jc-space-between">
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/clip.svg" alt="Image Icon" />
+                รายงานผล รพ.สกลนคร 28/10/2563.pdf
+              </div>
+              <div class="d-flex ai-center">
+                <img class="mr-3" src="/assets/img/icon/download.svg" alt="Image Icon" />
+                <img src="/assets/img/icon/delete.svg" alt="Image Icon" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
+
+
+  <!-- Alert Popup -->
+  <div class="popup-container" :class="{ 'active': cancelAlert }">
+    <div class="wrapper">
+      <div class="close-filter" @click="cancelAlert = !cancelAlert"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onSubmitProfile">
+        <div class="popup-box">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="cancelAlert = !cancelAlert">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ยกเลิกการส่งตรวจ</h6>
+              </div>
+              <div class="btns">
+                <Button 
+                  text="ยืนยันการยกเลิก" href="/user/special-case-complete"
+                  classer="btn-color-06 hide-mobile" :prepend="true" icon="close-white.svg" 
+                />
+                <Button 
+                  text="ยืนยัน" href="/user/special-case-complete"
+                  classer="btn-color-06 btn-sm show-mobile"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="body pt-4 pb-5">
+            <p class="color-gray">หมายเหตุ</p>
+            <p class="mt-2">
+              คุณสามารถยกเลิกการส่งตรวจได้ เนื่องจากอาจจะเกิดขึ้นผิดพลาดบางอย่าง เกิดขึ้น เช่น ความผิดพลาดในการระบุข้อมูล หากคุณ “ยกเลิก” รายการนี้จะไม่ ถูกนำส่งตรวจไปภายนอก กรุณากดปุ่ม “ยืนยันการยกเลิก” เพื่อยืนยันการยกเลิกนี้
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <Topnav :userRole="userRole" :isBottom="true" />
 </template>
@@ -121,6 +209,7 @@ export default {
   data() {
     return {
       userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      cancelAlert: false,
       columns1:[
         { key: 'prefix', text: 'คำนำหน้า'},
         { key: 'name', text: '*ชื่อ นามสกุล' },

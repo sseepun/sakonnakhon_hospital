@@ -128,6 +128,11 @@ const routes = [
     name: 'UserFuneralAddPage',
     component: () => import('../views/user/FuneralAdd.vue')
   },
+  {
+    path: '/user/funeral-complete',
+    name: 'UserFuneralCompletePage',
+    component: () => import('../views/user/FuneralComplete.vue')
+  },
 
 
   // Admin Pages

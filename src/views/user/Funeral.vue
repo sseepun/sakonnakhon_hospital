@@ -207,7 +207,7 @@ export default {
           type: 'text', text: 'สกลนคร 3',
         },
         status: {
-          type: 'tag', text: 'รอจำหน่าย'
+          type: 'tag', text: 'รอจำหน่าย', classer: 'ss-tag-info'
         }
       });
     
@@ -237,7 +237,7 @@ export default {
           type: 'text', text: 'สกลนคร 1',
         },
         status: {
-          type: 'tag', text: 'เก็บรักษา'
+          type: 'tag', text: 'เก็บรักษา', classer: 'ss-tag-danger'
         }
       });
 
@@ -267,7 +267,7 @@ export default {
           type: 'text', text: 'สกลนคร 3',
         },
         status: {
-          type: 'tag', text: 'รอการทำลาย'
+          type: 'tag', text: 'รอการทำลาย', classer: 'ss-tag-warning'
         }
       });
 
@@ -297,7 +297,7 @@ export default {
           type: 'text', text: 'สกลนคร 1',
         },
         status: {
-          type: 'tag', text: 'จำหน่ายแล้ว'
+          type: 'tag', text: 'จำหน่ายแล้ว', classer: 'ss-tag-purple'
         },
         view_icon: {
           type: 'text',
@@ -331,7 +331,7 @@ export default {
           type: 'text', text: 'สกลนคร 3',
         },
         status: {
-          type: 'tag', text: 'ทำลายแล้ว'
+          type: 'tag', text: 'ทำลายแล้ว', classer: 'ss-tag-danger'
         },
          view_icon: {
           type: 'text',
