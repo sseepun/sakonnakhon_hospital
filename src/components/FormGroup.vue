@@ -1,7 +1,7 @@
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
-    <label class="p color-gray" :class="{ 'focused': isFocused }">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
@@ -12,6 +12,8 @@
         @input="(event)=>$emit('input', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
       ></textarea>
       <div v-if="icon" class="icon">
         <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
@@ -20,7 +22,7 @@
   </div>
 
   <div v-else-if="type === 'select'" class="form-group" :class="classer">
-    <label class="p color-gray" :class="{ 'focused': isFocused }">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
@@ -30,6 +32,8 @@
         @input="(event)=>$emit('input', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
       >
         <option v-for="option in options" :value="option.value" 
         :selected="option.value == value || option.text == value" :key="option.value">
@@ -43,18 +47,18 @@
   </div>
 
   <div v-else-if="type == 'plain'" class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label v-if="label" class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
       <div class="plain-text">
-        <p>{{value}}</p>
+        <p v-html="value"></p>
       </div>
     </div>
   </div>
 
   <div v-else-if="type == 'datepicker'" class="form-group" :class="classer">
-    <label class="p color-gray" :class="{ 'focused': isFocused }">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <DatePicker 
@@ -81,7 +85,7 @@
   </div>
 
   <div v-else class="form-group" :class="classer">
-    <label class="p color-gray" :class="{ 'focused': isFocused }">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
@@ -93,6 +97,7 @@
         @input="(event)=>$emit('input', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
+        :readonly="readonly? true: false"
         :disabled="disabled? true: false"
       />
       <div v-if="icon" class="icon">
@@ -115,11 +120,12 @@ export default {
     name: { type: String, default: '' },
     placeholder: { type: String, default: '' },
     required: { type: Boolean, default: false },
+    readonly: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
     options: { type: Array, default: [] },
     wrapperClass: { type: String, default: '' },
     icon: { type: String, default: '' },
-    isFocused: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false }
+    isFocused: { type: Boolean, default: false }
   },
   methods: {
     handleInput() {

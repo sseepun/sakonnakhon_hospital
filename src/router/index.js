@@ -10,6 +10,7 @@ const routes = [
     component: HomePage
   },
 
+
   // Auth Pages
   {
     path: '/auth/signin',
@@ -45,7 +46,7 @@ const routes = [
     component: () => import('../views/user/Funeral.vue')
   },
   
-  // User Biopsy Pages
+  // User - Biopsy Pages
   {
     path: '/user/case-biopsy-add',
     name: 'UserCaseBiopsyAddPage',
@@ -62,7 +63,7 @@ const routes = [
     component: () => import('../views/user/CaseBiopsyComplete.vue')
   },
 
-  // User Cytology Pages
+  // User - Cytology Pages
   {
     path: '/user/case-cytology-add',
     name: 'UserCaseCytologyAddPage',
@@ -80,7 +81,7 @@ const routes = [
   },
 
 
-  // User Special Cases
+  // User - Special Cases
   {
     path: '/user/special-case-add',
     name: 'UserSpecialCaseAddPage',
@@ -92,8 +93,8 @@ const routes = [
     component: () => import('../views/user/SpecialCaseComplete.vue')
   },
 
-   // User Pathotology Pages
-   {
+  // User - Pathotology Pages
+  {
     path: '/user/case-pathology',
     name: 'UserCasePathologyPage',
     component: () => import('../views/user/CasePathology.vue')
@@ -104,7 +105,7 @@ const routes = [
     component: () => import('../views/user/CasePathologyHistory.vue')
   },
 
-  // User Slides
+  // User - Slides
   {
     path: '/user/slide-add',
     name: 'UserSlideAddPage',
@@ -121,12 +122,52 @@ const routes = [
     component: () => import('../views/user/SlideReturn.vue')
   },
 
-  // User Funeral
+  // User - Funeral
   {
     path: '/user/funeral-add',
     name: 'UserFuneralAddPage',
     component: () => import('../views/user/FuneralAdd.vue')
   },
+
+
+  // Admin Pages
+  {
+    path: '/admin',
+    name: 'AdminDashboardPage',
+    component: () => import('../views/admin/Dashboard.vue')
+  },
+  
+  // Admin - Users
+  {
+    path: '/admin/users',
+    name: 'AdminUsersPage',
+    component: () => import('../views/admin/Users.vue')
+  },
+  {
+    path: '/admin/user-add',
+    name: 'AdminUserAddPage',
+    component: () => import('../views/admin/UserAdd.vue')
+  },
+  {
+    path: '/admin/user-edit',
+    name: 'AdminUserEditPage',
+    component: () => import('../views/admin/UserEdit.vue')
+  },
+  
+  // Admin - Data Settings
+  {
+    path: '/admin/data-settings',
+    name: 'AdminDataSettingsPage',
+    component: () => import('../views/admin/DataSettings.vue')
+  },
+  
+  // Admin - Case Types
+  {
+    path: '/admin/case-types',
+    name: 'AdminCaseTypesPage',
+    component: () => import('../views/admin/CaseTypes.vue')
+  },
+
 ]
 
 const router = createRouter({

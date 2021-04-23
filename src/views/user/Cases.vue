@@ -106,7 +106,7 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       isOpenedOptions: false,
 
       columns1: [

@@ -23,7 +23,7 @@ nav.topnav .menu > a::before{
 nav.topnav .menu.active > a::before{left:0; right:unset; width:100%;}
 nav.topnav .menu > a .icon, nav.topnav .menu > a .chev,
 nav.topnav .submenu > a .icon{
-    height:1.25rem; width:1.25rem; margin:0 .5rem .25rem 0; opacity:.7;
+    height:1.5rem; width:1.5rem; margin:0 .5rem .25rem 0; opacity:.7;
     filter:grayscale(100%); transition:opacity .25s, filter .25s;
 }
 nav.topnav .menu > a .chev{height:.375rem; margin:0 0 .1875rem .5rem;}
@@ -108,6 +108,52 @@ nav.topnav.bottom + .topnav-spacer{display:none;}
     nav.topnav + .topnav-spacer{height:3.5rem;}
     nav.topnav.bottom{display:block;}
     nav.topnav.bottom + .topnav-spacer{display:block;}
+}
+
+
+/* Sidenav */
+nav.sidenav{position:fixed; top:4rem; left:0; height:calc(100vh - 4rem); z-index:80;}
+nav.sidenav > .wrapper{display:block; position:relative; height:100%;}
+nav.sidenav > .wrapper > .filter{
+    display:none; position:absolute; top:0; bottom:0; left:0; width:100vw;
+    background:rgba(0,0,0,.6); cursor:pointer; pointer-events:none; opacity:0;
+    transition:opacity .45s;
+}
+nav.sidenav .menu-container{
+    position:relative; display:block; width:16rem; height:100%;
+    background:#ffffff; transition:transform .45s;
+}
+nav.sidenav .scroll-wrapper{
+    width:100%; height:100%; padding:1rem 1.5rem 1rem 0; overflow-x:hidden; overflow-y:auto;
+}
+nav.sidenav .menu > a{
+    display:flex; align-items:center; height:3rem; padding:0 .5rem 0 1rem; font-size:1rem;
+    font-weight:300; color:#6e6e6e; border-radius:0 1000em 1000em 0; margin:1rem 0 0 0;
+    transition:color .25s, background .25s;
+}
+nav.sidenav .menu:hover > a, nav.sidenav .menu.active > a{color:#047857;}
+nav.sidenav .menu.active > a{background:#D2F4EE;}
+nav.sidenav .menu > a .icon{
+    height:1.5rem; width:1.5rem; margin:0 1rem 0 0; opacity:.7;
+    filter:grayscale(100%); transition:opacity .25s, filter .25s;
+}
+nav.sidenav .menu:hover > a .icon,
+nav.sidenav .menu.active > a .icon{opacity:1; filter:grayscale(0);}
+nav.sidenav .menu > a img{display:block; height:100%; width:auto;}
+nav.sidenav .btn-toggle{
+    position:absolute; top:0; left:100%; width:2.5rem; height:2.5rem;
+    display:none; align-items:center; justify-content:center; background:#ffffff;
+    border-bottom:1px solid #E1E1E1; border-right:1px solid #E1E1E1;
+}
+nav.sidenav .hamburger > *{background:#404040;}
+@media screen and (max-width:991.98px){
+    nav.sidenav{top:3.5rem; height:calc(100vh - 3.5rem); pointer-events:none;}
+    nav.sidenav.active{pointer-events:auto;}
+    nav.sidenav > .wrapper > .filter{display:block;}
+    nav.sidenav.active > .wrapper > .filter{opacity:1; pointer-events:auto;}
+    nav.sidenav .menu-container{border-right:1px solid #E1E1E1; transform:translateX(-16rem);}
+    nav.sidenav.active .menu-container{transform:translateX(0);}
+    nav.sidenav .btn-toggle{display:flex; pointer-events:auto!important;}
 }
 
 

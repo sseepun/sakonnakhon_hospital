@@ -1,12 +1,18 @@
 <template>
   <div class="form-group" :class="classer">
-    <label class="p color-gray">
+    <label v-if="label" class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <fieldset>
       <div class="checkbox-set">
         <div v-for="(option, index) in options" :key="index" class="checkbox">
-          <input :type="type" 
+          <input v-if="type == 'checkbox'" :type="type" 
+            :name="name" :id="name+'_'+index" :value="option.value"
+            :required="required? true: false" 
+            :checked="value.indexOf(option.value)>-1? true: false" 
+            @change="(event)=>$emit('input', event.target.value)"
+          />
+          <input v-else :type="type" 
             :name="name" :id="name+'_'+index" :value="option.value"
             :required="required? true: false" 
             :checked="option.value==value? true: false" 
@@ -40,7 +46,7 @@ export default {
     name: { type: String, default: '' },
     required: { type: Boolean, default: false },
     options: { type: Array, default: [] },
-    value: { type: [String, Number, Date], default: '' },
+    value: { type: [String, Array, Number, Date], default: '' },
     textInput: { type: Boolean, default: false },
     textInputPlaceholder: { type: String, default: '' },
   },

@@ -2,7 +2,7 @@
 
   <nav v-if="isStaff() || !isBottom" class="topnav" :class="{ 'bottom': isBottom }">
     <div class="wrapper">
-      <a v-if="isStaff() && !isBottom" class="logo" href="/">
+      <a v-if="(isStaff() || isAdmin()) && !isBottom" class="logo" href="/">
         <img src="/assets/img/logo.svg" alt="Logo" />
         <div class="text-container">
           <p class="color-02">โรงพยาบาลศูนย์สกลนคร</p>
@@ -210,24 +210,26 @@
             <div class="grids">
               <div class="grid sm-100">
                 <FormGroup
-                  label="รหัสผ่านเดิม" type="password" name="password" :required="true"
+                  label="รหัสผ่านเดิม" type="password" name="password" 
                   :value="reenterPassword" @input="reenterPassword = $event" 
-                  :classer="!isValidPassword && password != reenterPassword? 'error': ''" 
-                  :errorText="!isValidPassword && password != reenterPassword? 'ระบุรหัสผ่านเดิมผิด': ''"
+                  :classer="isValidPassword && passwordErrorText? 'error': ''" 
+                  :errorText="isValidPassword && passwordErrorText? passwordErrorText: ''"
                 />
               </div>
               <div class="grid sm-100">
                 <FormGroup 
-                  label="รหัสผ่านใหม่" type="password" name="new_password" :required="true" 
+                  label="รหัสผ่านใหม่" type="password" name="new_password" 
                   :value="newPassword" @input="newPassword = $event" 
+                  :classer="isValidPassword && newPasswordErrorText? 'error': ''" 
+                  :errorText="isValidPassword && newPasswordErrorText? newPasswordErrorText: ''"
                 />
               </div>
               <div class="grid sm-100">
                 <FormGroup 
-                  label="ยืนยันรหัสผ่าน" type="password" name="conf_password" :required="true" 
+                  label="ยืนยันรหัสผ่าน" type="password" name="conf_password" 
                   :value="confPassword" @input="confPassword = $event" 
-                  :classer="!isValidPassword && newPassword != confPassword? 'error': ''" 
-                  :errorText="!isValidPassword && newPassword != confPassword? 'ยืนยันรหัสผ่านไม่ตรงกับรหัสผ่านใหม่': ''"
+                  :classer="isValidPassword && confPasswordErrorText? 'error': ''" 
+                  :errorText="isValidPassword && confPasswordErrorText? confPasswordErrorText: ''"
                 />
               </div>
             </div>
@@ -255,12 +257,16 @@ export default {
   data() {
     return {
       isActivePopupProfile: false,
+
       isActivePopupPassword: false,
-      isValidPassword : true,
+      isValidPassword : false,
       password: '1234',
       reenterPassword: '',
       newPassword: '',
-      confPassword: ''
+      confPassword: '',
+      passwordErrorText: '',
+      newPasswordErrorText: '',
+      confPasswordErrorText: '',
     }
   },
   props: {
@@ -299,21 +305,52 @@ export default {
         return false;
       }
     },
+    isAdmin() {
+      if(this.userRole.indexOf('Admin') > -1){
+        return true;
+      }else{
+        return false;
+      }
+    },
 
     onSubmitProfile(e) {
       this.isActivePopupProfile = false;
       e.preventDefault();
     },
+
     onSubmitPassword(e) {
-      if(this.password != this.reenterPassword || this.newPassword != this.confPassword){
-        this.isValidPassword = false;
-      }else{
+      this.isValidPassword = true;
+      this.passwordErrorText = '';
+      this.newPasswordErrorText = '';
+      this.confPasswordErrorText = '';
+
+      var isValid = true;
+      
+      if(this.password != this.reenterPassword){
+        isValid = false; this.passwordErrorText = 'ระบุรหัสผ่านเดิมผิด';
+      }
+      if(this.newPassword != this.confPassword){
+        isValid = false; this.confPasswordErrorText = 'ยืนยันรหัสผ่านไม่ตรงกับรหัสผ่านใหม่';
+      }
+
+      if(!this.reenterPassword){
+        isValid = false; this.passwordErrorText = 'กรุณาระบุ';
+      }
+      if(!this.newPassword){
+        isValid = false; this.newPasswordErrorText = 'กรุณาระบุ';
+      }
+      if(!this.confPassword){
+        isValid = false; this.confPasswordErrorText = 'กรุณาระบุ';
+      }
+
+      if(isValid){
         this.isActivePopupPassword = false;
-        this.isValidPassword = true;
+        this.isValidPassword = false;
         this.reenterPassword = '';
         this.newPassword = '';
         this.confPassword = '';
       }
+
       e.preventDefault();
     }
 
