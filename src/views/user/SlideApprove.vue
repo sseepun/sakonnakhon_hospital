@@ -16,8 +16,12 @@
             <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
           </div>
           <div class="btns hide-mobile">
+             <Button 
+              type="submit" text="ไม่อนุมัติการยืม"
+              classer="btn-color-06 mr-3" :prepend="true" icon="cross-white.svg" 
+            />
             <Button 
-              type="submit" text="อนุมัติการยืม" 
+              type="submit" text="อนุมัติการยืม"
               classer="btn-color-01" :prepend="true" icon="check-white.svg" 
             />
           </div>

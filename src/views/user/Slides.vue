@@ -47,7 +47,7 @@
             />
           </div>
           
-          <div class="tab-content" :class="{ 'active': tabActiveIndex == 1 }">
+          <div v-if="userRole != 'User'" class="tab-content" :class="{ 'active': tabActiveIndex == 1 }">
             <DataTable 
               :columns="columns2" :rows="rows2" 
               :search="[ 'sent_to', 'case_id', 'hn', 'block_no', 'name', 'thai_id' ]" 
@@ -104,7 +104,6 @@ export default {
     return {
       userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
       isOpenedOptions: false,
-
       columns1: [
         { key: 'slide_no', text: 'เลขที่สไลด์ / พาราฟินบล็อค' },
         { key: 'name', text: 'ชื่อ นามสกุล ผู้ยืม' },
@@ -112,7 +111,7 @@ export default {
         { key: 'slide_type', text: 'ประเภทสไลด์' },
         { key: 'agency', text: 'หน่วยงาน' },
         { key: 'phone', text: 'เบอร์โทร' },
-        { key: 'status', text: '' },
+        { key: 'status', text: this.userRole == 'User' ? 'สถานะ': '' },
       ],
       rows1: [],
 
@@ -167,10 +166,15 @@ export default {
         phone: { 
           type: 'text', text: '02-22312398', 
         },
-        status: {
-          type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '#',
-          iconPrepend: 'checkout.svg'
-        }
+        status: this.userRole == 'User' ? 
+          {
+            type: 'tag', text: 'เสร็จสิ้น'
+          }
+          :
+          {
+            type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '/user/slide-approve',
+            iconPrepend: 'checkout.svg'
+          } 
       });
      
       this.rows2.push({

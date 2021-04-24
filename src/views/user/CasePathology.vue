@@ -255,6 +255,40 @@ export default {
         },
       });
 
+      this.rows1.push({
+        sent_to: { 
+          type: 'text', text: 'ส่งตรวจพิเศษ', classer: 'color-12'
+        },
+        case_id: { 
+          type: 'text', text: 'EX63-12911',
+        },
+        hn: { 
+          type: 'text', text: '1009630',
+        },
+        name: { 
+          type: 'text',  text: 'อิบรอฮีม หลังยาหน่าย', 
+        },
+        age: { 
+          type: 'text', text: '-',
+        },
+        block_ex: { 
+          type: 'text', text: 'P63-98721',
+        },
+        sent_date: {
+          type: 'text', text: '20/11/2563, 14:05',
+        },
+        result_date: {
+          type: 'text', text: '04/12/2563, 12:34',
+        },
+        provider: { 
+          type: 'text', text: 'บริษัท N Health',
+        },
+        card: {
+          type: 'link', text: 'R-202001-0003', href: '#',
+          iconPrepend: 'checkout.svg'
+        },
+      });
+
       this.rows2.push({
         sent_to: { 
           type: 'text', text: 'เซลล์วิทยา', classer: 'color-01'
