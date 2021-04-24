@@ -157,7 +157,9 @@
                   </div>
                 </div>
 
-                <div v-else class="d-flex ai-center" :class="row[col.key].classer">
+                <div v-else class="d-flex ai-center" :class="row[col.key].classer" 
+                  :title="row[col.key].text"
+                >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                   <img v-if="row[col.key].iconPrepend" class="icon prepend"
                     :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 

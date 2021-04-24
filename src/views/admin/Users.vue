@@ -192,7 +192,7 @@ export default {
         { key: 'firstname', text: 'ชื่อ' },
         { key: 'lastname', text: 'นามสกุล' },
         { key: 'phone', text: 'เบอร์โทร' },
-        { key: 'email', text: 'Email' },
+        { key: 'email', text: 'Email', classer: 'wrap-md' },
         { key: 'role', text: 'สิทธิ์ผู้ใช้งาน' },
         { key: 'status', text: 'สถานะ' },
         { key: 'options', text: '' }
@@ -221,7 +221,7 @@ export default {
         firstname: { text: 'ณรงค์ฤทธิ์' },
         lastname: { text: 'พรมบุรี' },
         phone: { text: '02-22312398' },
-        email: { text: 'odiotortorsem@gmail.com', classer: 'wrap' },
+        email: { text: 'odiotortorsem@gmail.com' },
         role: { type: 'tag', text: 'HEAD STAFF', classer: 'ss-tag-purple' },
         status: { type: 'status', value: 1, classer: 'wrap-sm' },
         options: {
@@ -238,7 +238,7 @@ export default {
         firstname: { text: 'ณรงค์ฤทธิ์' },
         lastname: { text: 'พรมบุรี' },
         phone: { text: '02-22312398' },
-        email: { text: 'odiotortorsem@gmail.com', classer: 'wrap' },
+        email: { text: 'odiotortorsem@gmail.com' },
         role: { type: 'tag', text: 'STAFF', classer: 'ss-tag-info' },
         status: { type: 'status', value: 0, classer: 'wrap-sm' },
         options: {
@@ -255,7 +255,7 @@ export default {
         firstname: { text: 'ณรงค์ฤทธิ์' },
         lastname: { text: 'พรมบุรี' },
         phone: { text: '02-22312398' },
-        email: { text: 'odiotortorsem@gmail.com', classer: 'wrap' },
+        email: { text: 'odiotortorsem@gmail.com' },
         role: { type: 'tag', text: 'USER' },
         status: { type: 'status', value: 1, classer: 'wrap-sm' },
         options: {
@@ -272,7 +272,7 @@ export default {
         firstname: { text: 'ณรงค์ฤทธิ์' },
         lastname: { text: 'พรมบุรี' },
         phone: { text: '02-22312398' },
-        email: { text: 'odiotortorsem@gmail.com', classer: 'wrap' },
+        email: { text: 'odiotortorsem@gmail.com' },
         role: { type: 'tag', text: 'ADMIN', classer: 'ss-tag-warning' },
         status: { type: 'status', value: 1, classer: 'wrap-sm' },
         options: {
