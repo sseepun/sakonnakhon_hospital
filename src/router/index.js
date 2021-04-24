@@ -134,6 +134,13 @@ const routes = [
     component: () => import('../views/user/FuneralComplete.vue')
   },
 
+  // User - Team Pages
+  {
+    path: '/user/teams',
+    name: 'UserTeamsPage',
+    component: () => import('../views/user/Teams.vue')
+  },
+
 
   // Admin Pages
   {

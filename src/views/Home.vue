@@ -16,6 +16,9 @@
     <a href="/user/special-cases" target="_blank">/user/special-cases</a> <br>
     <a href="/user/special-case-add" target="_blank">/user/special-case-add</a> <br>
     <a href="/user/special-case-complete" target="_blank">/user/special-case-complete</a> <br>
+    <a href="/user/funeral" target="_blank">/user/funeral</a> <br>
+    <a href="/user/funeral-add" target="_blank">/user/funeral-add</a> <br>
+    <a href="/user/funeral-complete" target="_blank">/user/funeral-complete</a> <br>
     <a href="/user/slides" target="_blank">/user/slides</a> <br>
     <a href="/user/slide-add" target="_blank">/user/slide-add</a> <br>
     <a href="/user/funeral" target="_blank">/user/funeral</a> <br>

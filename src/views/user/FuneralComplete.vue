@@ -93,25 +93,25 @@
           <div class="grid lg-15 md-1-3 xs-50">
             <FormGroup type="plain" label="วันที่เสียชีวิต" value="01/11/2564" />
           </div>
-           <div class="grid lg-50 md-1-3">
+           <div class="grid lg-50 md-1-3 xs-50">
             <FormGroup type="plain" label="เวลาเสียชีวิต" value="16:42" />
           </div>
           <!-- Second row -->
           <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="ประเภท" value="ตายผิดธรรมชาติ (คดี)" />
+            <FormGroup type="plain" label="ประเภท" value="ตายผิดธรรมชาติ <span class='color-sgray'>(คดี)</span>" />
           </div>
           <div class="grid lg-80 md-1-3">
             <FormGroup type="plain" label="สาเหตุการตาย" value="อุบัติเหตุทางท้องถนน" />
           </div>
 
           <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="ชนิดของศพ" value="ศพ/อวัยวะ(หัวใจ)" />
+            <FormGroup type="plain" label="ชนิดของศพ" value="ศพ/อวัยวะ <span class='color-sgray'>(หัวใจ)</span<" />
           </div>
           <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="เกี่ยวกับคดี" value="มีคดี (ขับรถโดยประมาท)" />
+            <FormGroup type="plain" label="เกี่ยวกับคดี" value="มีคดี <span class='color-sgray'>(ขับรถโดยประมาท)</span>" />
           </div>
           <div class="grid lg-70 md-1-3">
-            <FormGroup type="plain" label="มีการติดต่อโรคร้ายแรง?" value="ติดต่อโรคร้ายแรง (Covid-19)" />
+            <FormGroup type="plain" label="มีการติดต่อโรคร้ายแรง?" value="ติดต่อโรคร้ายแรง <span class='color-sgray'>(Covid-19)</span>" />
           </div>
           <div class="grid lg-15 md-1-3">
             <FormGroup type="plain" label="การฉีดยาดองศพ" value="ดองศพ" />
@@ -128,10 +128,10 @@
       </div>
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
-          <div class="grid lg-15 md-1-3">
+          <div class="grid lg-15 md-1-3 xs-50">
             <FormGroup type="plain" label="ใบเสร็จเล่มที่" value="089005" />
           </div>
-          <div class="grid lg-15 md-1-3">
+          <div class="grid lg-15 md-1-3 xs-50">
             <FormGroup type="plain" label="เลขที่" value="​408" />
           </div>
           <div class="grid lg-15 md-1-3 xs-50">

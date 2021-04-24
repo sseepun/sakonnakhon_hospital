@@ -859,6 +859,8 @@ fieldset{padding:0; margin:0; border:0;}
 .color-13, .h-color-13:hover{color:#764ABA!important;}
 .color-14, .h-color-14:hover{color:#f8f8f8!important;}
 
+.color-danger, .h-color-danger:hover{color: #BC4A4A !important;}
+
 .bg-white{background:#ffffff!important;}
 .bg-black{background:#000000!important;}
 .bg-dark{background:#404040!important;}
