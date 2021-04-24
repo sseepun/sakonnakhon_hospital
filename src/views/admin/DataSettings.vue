@@ -36,9 +36,9 @@
             <DataTable 
               :rows="prefixData" 
               :columns="[
-                { key: 'prefix', text: 'คำนำหน้า' },
+                { key: 'prefix', text: 'คำนำหน้า', classer: 'w-full' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
-                { key: 'status', text: 'Status' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -70,9 +70,9 @@
             <DataTable 
               :rows="treatmentData" 
               :columns="[
-                { key: 'treatment', text: 'สิทธิการรักษา' },
+                { key: 'treatment', text: 'สิทธิการรักษา', classer: 'w-full' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
-                { key: 'status', text: 'Status' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -106,14 +106,14 @@
               :columns="[
                 { key: 'hospital_id', text: 'รหัสโรงพยาบาล' },
                 { key: 'name', text: 'ชื่อโรงพยาบาล' },
-                { key: 'province', text: 'จังหวัด' },
-                { key: 'city', text: 'อำเภอ' },
-                { key: 'address', text: 'ที่อยู่' },
-                { key: 'type', text: 'ประเภท' },
+                { key: 'province', text: 'จังหวัด', classer: 'wrap' },
+                { key: 'city', text: 'อำเภอ', classer: 'wrap' },
+                { key: 'address', text: 'ที่อยู่', classer: 'wrap' },
+                { key: 'type', text: 'ประเภท', classer: 'wrap' },
                 { key: 'phone', text: 'เบอร์โทรศัพท์' },
-                { key: 'email', text: 'อีเมล' },
+                { key: 'email', text: 'อีเมล', classer: 'wrap' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
-                { key: 'status', text: 'Status' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -161,9 +161,9 @@
             <DataTable 
               :rows="departmentData" 
               :columns="[
-                { key: 'name', text: 'ชื่อแผนก' },
+                { key: 'name', text: 'ชื่อแผนก', classer: 'w-full' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
-                { key: 'status', text: 'Status' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -195,9 +195,9 @@
             <DataTable 
               :rows="positionData" 
               :columns="[
-                { key: 'name', text: 'ชื่อตำแหน่ง' },
+                { key: 'name', text: 'ชื่อตำแหน่ง', classer: 'w-full' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
-                { key: 'status', text: 'Status' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -230,13 +230,13 @@
               :rows="labData" 
               :columns="[
                 { key: 'name', text: 'ห้องวิจัยภายนอก' },
-                { key: 'province', text: 'จังหวัด' },
-                { key: 'city', text: 'อำเภอ' },
-                { key: 'address', text: 'ที่อยู่' },
-                { key: 'type', text: 'ประเภท' },
+                { key: 'province', text: 'จังหวัด', classer: 'wrap' },
+                { key: 'city', text: 'อำเภอ', classer: 'wrap' },
+                { key: 'address', text: 'ที่อยู่', classer: 'wrap' },
+                { key: 'type', text: 'ประเภท', classer: 'wrap' },
                 { key: 'phone', text: 'เบอร์โทรศัพท์' },
-                { key: 'email', text: 'อีเมล' },
-                { key: 'status', text: 'Status' },
+                { key: 'email', text: 'อีเมล', classer: 'wrap' },
+                { key: 'status', text: 'Status', classer: 'wrap-sm' },
                 { key: 'options', text: '' }
               ]"
               :orders="[
@@ -310,7 +310,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบคำนำหน้า" 
                 />
               </div>
             </div>
@@ -347,7 +347,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบสิทธิการรักษา" 
                 />
               </div>
             </div>
@@ -384,7 +384,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบโรงพยาบาล" 
                 />
               </div>
             </div>
@@ -421,7 +421,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบแผนก" 
                 />
               </div>
             </div>
@@ -458,7 +458,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบตำแหน่ง" 
                 />
               </div>
             </div>
@@ -495,7 +495,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบห้องวิจัยภายนอก" 
                 />
               </div>
             </div>
@@ -529,16 +529,12 @@ export default {
       sidenavActiveIndex: 2,
       tabActiveIndex: 0,
 
-      isActivePopupDelete: false,
-      deleteNote: '',
-      deleteErrorText: '',
-
       prefixPopupOpened: false,
       prefixData: [
         {
           prefix: { text: 'นาย' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -548,7 +544,7 @@ export default {
         {
           prefix: { text: 'นาง' },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -558,7 +554,7 @@ export default {
         {
           prefix: { text: 'นางสาว' },
           date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 2 },
@@ -572,7 +568,7 @@ export default {
         {
           treatment: { text: 'ประกันสังคม' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -582,7 +578,7 @@ export default {
         {
           treatment: { text: 'ข้าราชการ' },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -592,7 +588,7 @@ export default {
         {
           treatment: { text: 'บัตรทอง' },
           date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 2 },
@@ -602,7 +598,7 @@ export default {
         {
           treatment: { text: 'รัฐวิสาหกิจ' },
           date: { text: '09/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 3 },
@@ -615,15 +611,15 @@ export default {
       hospitalData: [
         {
           hospital_id: { text: '1234567' },
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
-          province: { text: 'สกลนคร', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
+          name: { text: 'โรงพยาบาลสกลนคร' },
+          province: { text: 'สกลนคร', value: 2 },
+          city: { text: 'เมือง', value: 1 },
+          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม' },
+          type: { text: 'รัฐบาล', value: 1 },
           phone: { text: '034-212522' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
+          email: { text: 'sakonnakhon_hospital@hotmail.com' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -632,15 +628,15 @@ export default {
         },
         {
           hospital_id: { text: '1234567' },
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
+          name: { text: 'โรงพยาบาลสกลนคร' },
           province: { text: 'สกลนคร', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
+          city: { text: 'เมือง', value: 1 },
+          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม' },
+          type: { text: 'รัฐบาล', value: 1 },
           phone: { text: '034-212522' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
+          email: { text: 'sakonnakhon_hospital@hotmail.com' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -654,7 +650,7 @@ export default {
         {
           name: { text: 'อายุรกรรม' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -664,7 +660,7 @@ export default {
         {
           name: { text: 'พยาธิวิทยากายวิภาค' },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -678,7 +674,7 @@ export default {
         {
           name: { text: 'แพทย์' },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -688,7 +684,7 @@ export default {
         {
           name: { text: 'นักกายภาพบำบัด' },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -698,7 +694,7 @@ export default {
         {
           name: { text: 'ทันตแพทย์' },
           date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 2 },
@@ -708,7 +704,7 @@ export default {
         {
           name: { text: 'พยาบาล' },
           date: { text: '09/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 3 },
@@ -718,7 +714,7 @@ export default {
         {
           name: { text: 'นักเทคนิคการแพทย์' },
           date: { text: '08/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 4 },
@@ -730,14 +726,14 @@ export default {
       labPopupOpened: false,
       labData: [
         {
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
-          province: { text: 'สกลนคร', classer: 'wrap-sm', value: 1 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
+          name: { text: 'โรงพยาบาลสกลนคร' },
+          province: { text: 'สกลนคร', value: 1 },
+          city: { text: 'เมือง', value: 1 },
+          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม' },
+          type: { text: 'รัฐบาล', value: 1 },
           phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          email: { text: 'sakonnakhon_hospital@hotmail.com' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -745,14 +741,14 @@ export default {
           }
         },
         {
-          name: { text: 'N Health', classer: 'wrap' },
-          province: { text: 'นครปฐม', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '196 ถนนเทศา ตำบลพระปฐมเจดีย์', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
+          name: { text: 'N Health' },
+          province: { text: 'นครปฐม', value: 2 },
+          city: { text: 'เมือง', value: 1 },
+          address: { text: '196 ถนนเทศา ตำบลพระปฐมเจดีย์' },
+          type: { text: 'รัฐบาล', value: 1 },
           phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          email: { text: 'sakonnakhon_hospital@hotmail.com' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -760,14 +756,14 @@ export default {
           }
         },
         {
-          name: { text: 'KMUTT Lab', classer: 'wrap' },
-          province: { text: 'นราธิวาส', classer: 'wrap-sm', value: 3 },
-          city: { text: 'ระแงะ', classer: 'wrap', value: 2 },
-          address: { text: '88 หมู่ 1 ถ.รถไฟ ต.ตันหยงมัส', classer: 'wrap' },
-          type: { text: 'เอกชน', classer: 'wrap', value: 2 },
+          name: { text: 'KMUTT Lab' },
+          province: { text: 'นราธิวาส', value: 3 },
+          city: { text: 'ระแงะ', value: 2 },
+          address: { text: '88 หมู่ 1 ถ.รถไฟ ต.ตันหยงมัส' },
+          type: { text: 'เอกชน', value: 2 },
           phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          email: { text: 'sakonnakhon_hospital@hotmail.com' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 2 },

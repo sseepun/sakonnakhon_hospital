@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="options">
-      <div v-if="search.length > 0" class="option">
+      <div v-if="search.length > 0" class="option option-search">
         <div class="form-group">
           <div class="prepend xs">
             <input type="text" class="xs" placeholder="ค้นหารายการ"
@@ -68,6 +68,12 @@
           <img src="/assets/img/icon/caret-right.svg" alt="Image Icon" />
         </a>
       </div>
+      <div v-if="allowDownload" class="option option-download hide-mobile">
+        <a class="btn btn-action btn-color-08 btn-sm" :href="downloadUrl" download>
+          <img class="icon-prepend sm" src="/assets/img/icon/download-blue.svg" alt="Image Icon" />
+          ดาวน์โหลด
+        </a>
+      </div>
     </div>
   </div>
 
@@ -88,7 +94,7 @@
 
             <!-- Row Data -->
             <template v-if="index != editingIndex">
-              <td v-for="col in columns" :key="col.key">
+              <td v-for="col in columns" :key="col.key" :class="col.classer">
 
                 <a v-if="row[col.key].type == 'link'" 
                   class="d-flex ai-center" :class="row[col.key].classer" 
@@ -164,9 +170,9 @@
             <!-- Row Edit -->
             <template v-else>
               <td v-for="(add, key) in addOptions" :key="key" class="td-input">
-                <div v-if="add.type == 'text'">
+                <div v-if="add.type == 'text' || add.type == 'number'">
                   <input
-                    type="text" class="xs w-full" v-model="row[key].text" 
+                    :type="add.type" class="xs w-full" v-model="row[key].text" 
                     :placeholder="add.placeholder" :required="add.required" 
                     @input="addData[key] = $event.target.value" 
                   />
@@ -196,7 +202,7 @@
 
           <!-- Row Add -->
           <tr v-if="allowAdd && !adding && Object.keys(addOptions).length">
-            <td :colspan="columns.length">
+            <td :colspan="columns.length" class="td-input-text">
               <a class="btn-add color-01" href="#" @click="toggleAdding()">
                 <div class="icon">
                   <img src="/assets/img/icon/plus.svg" alt="Image Icon" />
@@ -207,9 +213,9 @@
           </tr>
           <tr v-else-if="allowAdd && adding && Object.keys(addOptions).length">
             <td v-for="(add, key) in addOptions" :key="key" class="td-input">
-              <div v-if="add.type == 'text'">
+              <div v-if="add.type == 'text' || add.type == 'number'">
                 <input
-                  type="text" class="xs w-full" v-model="add.value" 
+                  :type="add.type" class="xs w-full" v-model="add.value" 
                   :placeholder="add.placeholder" :required="add.required" 
                   @input="addData[key] = $event.target.value" 
                 />
@@ -264,6 +270,8 @@ export default {
     allowAdd: { type: Boolean, default: false },
     allowAddText: { type: String, default: '' },
     addOptions: { type: Object, default: {} },
+    allowDownload: { type: Boolean, default: false },
+    downloadUrl: { type: String, default: '' },
   },
   data() {
     return {

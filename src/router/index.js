@@ -136,8 +136,6 @@ const routes = [
     name: 'AdminDashboardPage',
     component: () => import('../views/admin/Dashboard.vue')
   },
-  
-  // Admin - Users
   {
     path: '/admin/users',
     name: 'AdminUsersPage',
@@ -153,19 +151,35 @@ const routes = [
     name: 'AdminUserEditPage',
     component: () => import('../views/admin/UserEdit.vue')
   },
-  
-  // Admin - Data Settings
   {
     path: '/admin/data-settings',
     name: 'AdminDataSettingsPage',
     component: () => import('../views/admin/DataSettings.vue')
   },
-  
-  // Admin - Case Types
   {
     path: '/admin/case-types',
     name: 'AdminCaseTypesPage',
     component: () => import('../views/admin/CaseTypes.vue')
+  },
+  {
+    path: '/admin/slide-settings',
+    name: 'AdminSlideSettingsPage',
+    component: () => import('../views/admin/SlideSettings.vue')
+  },
+  {
+    path: '/admin/products',
+    name: 'AdminProductsPage',
+    component: () => import('../views/admin/Products.vue')
+  },
+  {
+    path: '/admin/survey-settings',
+    name: 'AdminSurveySettingsPage',
+    component: () => import('../views/admin/SurveySettings.vue')
+  },
+  {
+    path: '/admin/records',
+    name: 'AdminRecordsPage',
+    component: () => import('../views/admin/Records.vue')
   },
 
 ]

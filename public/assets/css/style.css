@@ -142,6 +142,11 @@ p, .p{font-size:1rem;} p.sm, .p.sm{font-size:.875rem;}
 }
 .btn.btn-color-07:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
 .btn.btn-color-07:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-08, .btn.btn-color-08:focus{
+    color:#2978D3; background:#ffffff; border-color:#2978D3;
+}
+.btn.btn-color-08:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-08:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
 
 .btn > .icon-append, .btn > .icon-prepend{
     display:inline-block; height:1.5rem; width:auto; margin:-.5rem -.25rem 0 .5rem;
@@ -150,9 +155,11 @@ p, .p{font-size:1rem;} p.sm, .p.sm{font-size:.875rem;}
 .btn > .icon-prepend{margin:-.5rem .5rem 0 -.25rem;}
 .btn.btn-sm > .icon-append{margin-left:0;}
 .btn.btn-sm > .icon-prepend{margin-right:0;}
-.btn > .icon-append.xs, .btn > .icon-prepend.xs{
-    height:.75rem; margin:0 -.125rem 0 .5rem; transform:translateY(0);
-}
+.btn > .icon-append.sm, 
+.btn > .icon-prepend.sm{height:1.125rem; margin:0 -.125rem -.25rem .25rem; transform:translateY(0);}
+.btn > .icon-prepend.sm{margin:0 .25rem -.25rem -.125rem;}
+.btn > .icon-append.xs, 
+.btn > .icon-prepend.xs{height:.75rem; margin:0 -.125rem 0 .5rem; transform:translateY(0);}
 .btn > .icon-prepend.xs{margin:0 .5rem 0 -.125rem;}
 
 .btn.disabled{pointer-events:none; opacity:.4;}

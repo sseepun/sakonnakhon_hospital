@@ -32,7 +32,16 @@
   <div class="pl-6 pb-6">
     <h6 class="h3 fw-600">Admin Pages</h6>
     <div>
-      <a href="/admin" target="_blank">/admin</a>
+      <a href="/admin" target="_blank">/admin</a> <br>
+      <a href="/admin/users" target="_blank">/admin/users</a> <br>
+      <a href="/admin/user-add" target="_blank">/admin/user-add</a> <br>
+      <a href="/admin/user-edit" target="_blank">/admin/user-edit</a> <br>
+      <a href="/admin/data-settings" target="_blank">/admin/data-settings</a> <br>
+      <a href="/admin/case-types" target="_blank">/admin/case-types</a> <br>
+      <a href="/admin/slide-settings" target="_blank">/admin/slide-settings</a> <br>
+      <a href="/admin/products" target="_blank">/admin/products</a> <br>
+      <a href="/admin/survey-settings" target="_blank">/admin/survey-settings</a> <br>
+      <a href="/admin/records" target="_blank">/admin/records</a> <br>
     </div>
   </div>
 </template>

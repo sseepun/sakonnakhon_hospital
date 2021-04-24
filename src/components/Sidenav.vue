@@ -43,15 +43,15 @@
             </a>
           </div>
           <div class="menu" :class="{ 'active': activeIndex==4 }">
-            <a href="/admin">
+            <a href="/admin/slide-settings">
               <div class="icon">
-                <img src="/assets/img/icon/telescope.svg" alt="Image Icon" />
+                <img src="/assets/img/icon/slide.svg" alt="Image Icon" />
               </div>
-              <div class="text">ตั้งค่าการส่งตรวจ</div>
+              <div class="text">ตั้งค่าแบบฟอร์มยืมสไลด์</div>
             </a>
           </div>
           <div class="menu" :class="{ 'active': activeIndex==5 }">
-            <a href="/admin">
+            <a href="/admin/products">
               <div class="icon">
                 <img src="/assets/img/icon/shopping-bag.svg" alt="Image Icon" />
               </div>
@@ -59,7 +59,7 @@
             </a>
           </div>
           <div class="menu" :class="{ 'active': activeIndex==6 }">
-            <a href="/admin">
+            <a href="/admin/survey-settings">
               <div class="icon">
                 <img src="/assets/img/icon/survey.svg" alt="Image Icon" />
               </div>
@@ -67,7 +67,7 @@
             </a>
           </div>
           <div class="menu" :class="{ 'active': activeIndex==7 }">
-            <a href="/admin">
+            <a href="/admin/records">
               <div class="icon">
                 <img src="/assets/img/icon/history.svg" alt="Image Icon" />
               </div>

@@ -21,12 +21,11 @@
             :activeIndex="tabActiveIndex" 
             @clicked="tabActiveIndex = $event" 
             :tabs="[ 
-              'คำนำหน้า ('+prefixData.length+')',
-              'สิทธิการรักษา ('+treatmentData.length+')',
-              'โรงพยาบาล ('+hospitalData.length+')',
-              'หน่วยงาน/แผนก ('+departmentData.length+')',
-              'ตำแหน่ง ('+positionData.length+')',
-              'ห้องวิจัยภายนอก ('+labData.length+')'
+              'รายการสิ่งส่งตรวจชิ้นเนื้อ ('+tissueTypeData.length+')',
+              'รายการสิ่งส่งตรวจเซลล์ ('+cellTypeData.length+')',
+              'รายการย้อม Immuno ('+immunoData.length+')',
+              'รายการย้อม Histo ('+histoData.length+')',
+              'ICD-O ('+icdData.length+')'
             ]" 
           />
         </div>
@@ -34,9 +33,11 @@
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 0 }">
             <DataTable 
-              :rows="prefixData" 
+              :rows="tissueTypeData" 
               :columns="[
-                { key: 'prefix', text: 'คำนำหน้า' },
+                { key: 'code_id', text: 'รหัสกรมบัญชีกลาง' },
+                { key: 'type', text: 'รายการ', classer: 'w-full' },
+                { key: 'price', text: 'ราคารัฐบาล (บาท)' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
                 { key: 'status', text: 'Status' },
                 { key: 'options', text: '' }
@@ -45,7 +46,7 @@
                 { key: 'date-desc', text: 'เพิ่มล่าสุด' },
                 { key: 'date-asc', text: 'เพิ่มเก่าสุด' },
               ]" 
-              :search="[ 'prefix', 'date' ]" 
+              :search="[ 'code_id', 'type', 'price' ]" 
               :groups="{
                 filter: 'status',
                 options: [
@@ -53,24 +54,28 @@
                   { text: 'Inactive', value: 0, checked: true }
                 ]
               }" 
-              :allowAdd="true" allowAddText="เพิ่มคำนำหน้า" 
+              :allowAdd="true" allowAddText="เพิ่มประเภทรายการสิ่งส่งตรวจชิ้นเนื้อ" 
               :addOptions="{
-                prefix: { type: 'text', value: '', placeholder: 'ระบุคำนำหน้า', required: true },
+                code_id: { type: 'text', value: '', placeholder: 'ระบุรหัส', required: true },
+                type: { type: 'text', value: '', placeholder: 'ระบุรายการสิ่งส่งตรวจ', required: true },
+                price: { type: 'number', value: '', placeholder: 'ระบุราคา', required: true },
                 date: { type: 'empty' },
                 status: {
                   type: 'select', value: 1, required: true,
                   options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
                 }
               }" 
-              @click-delete="onPrefixDeleting($event)" 
+              @click-delete="onTissueTypeDeleting($event)" 
             />
           </div>
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 1 }">
             <DataTable 
-              :rows="treatmentData" 
+              :rows="cellTypeData" 
               :columns="[
-                { key: 'treatment', text: 'สิทธิการรักษา' },
+                { key: 'code_id', text: 'รหัสกรมบัญชีกลาง' },
+                { key: 'type', text: 'รายการ', classer: 'w-full' },
+                { key: 'price', text: 'ราคารัฐบาล (บาท)' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
                 { key: 'status', text: 'Status' },
                 { key: 'options', text: '' }
@@ -79,7 +84,7 @@
                 { key: 'date-desc', text: 'เพิ่มล่าสุด' },
                 { key: 'date-asc', text: 'เพิ่มเก่าสุด' },
               ]" 
-              :search="[ 'treatment', 'date' ]" 
+              :search="[ 'code_id', 'type', 'price' ]" 
               :groups="{
                 filter: 'status',
                 options: [
@@ -87,31 +92,28 @@
                   { text: 'Inactive', value: 0, checked: true }
                 ]
               }" 
-              :allowAdd="true" allowAddText="เพิ่มสิทธิการรักษา" 
+              :allowAdd="true" allowAddText="เพิ่มประเภทรายการสิ่งส่งตรวจเซลล์" 
               :addOptions="{
-                treatment: { type: 'text', value: '', placeholder: 'ระบุสิทธิการรักษา', required: true },
+                code_id: { type: 'text', value: '', placeholder: 'ระบุรหัส', required: true },
+                type: { type: 'text', value: '', placeholder: 'ระบุรายการสิ่งส่งตรวจ', required: true },
+                price: { type: 'number', value: '', placeholder: 'ระบุราคา', required: true },
                 date: { type: 'empty' },
                 status: {
                   type: 'select', value: 1, required: true,
                   options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
                 }
               }" 
-              @click-delete="onTreatmentDeleting($event)" 
+              @click-delete="onCellTypeDeleting($event)" 
             />
           </div>
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 2 }">
             <DataTable 
-              :rows="hospitalData" 
+              :rows="immunoData" 
               :columns="[
-                { key: 'hospital_id', text: 'รหัสโรงพยาบาล' },
-                { key: 'name', text: 'ชื่อโรงพยาบาล' },
-                { key: 'province', text: 'จังหวัด' },
-                { key: 'city', text: 'อำเภอ' },
-                { key: 'address', text: 'ที่อยู่' },
-                { key: 'type', text: 'ประเภท' },
-                { key: 'phone', text: 'เบอร์โทรศัพท์' },
-                { key: 'email', text: 'อีเมล' },
+                { key: 'code_id', text: 'รหัสกรมบัญชีกลาง' },
+                { key: 'type', text: 'รายการ', classer: 'w-full' },
+                { key: 'price', text: 'ราคารัฐบาล (บาท)' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
                 { key: 'status', text: 'Status' },
                 { key: 'options', text: '' }
@@ -120,7 +122,7 @@
                 { key: 'date-desc', text: 'เพิ่มล่าสุด' },
                 { key: 'date-asc', text: 'เพิ่มเก่าสุด' },
               ]" 
-              :search="[ 'hospital_id', 'name', 'province', 'city', 'address', 'type' ]" 
+              :search="[ 'code_id', 'type', 'price' ]" 
               :groups="{
                 filter: 'status',
                 options: [
@@ -128,40 +130,28 @@
                   { text: 'Inactive', value: 0, checked: true }
                 ]
               }" 
-              :allowAdd="true" allowAddText="เพิ่มโรงพยาบาล" 
+              :allowAdd="true" allowAddText="เพิ่มรายการย้อม Immuno" 
               :addOptions="{
-                hospital_id: { type: 'text', value: '', placeholder: 'ระบุรหัส', required: true },
-                name: { type: 'text', value: '', placeholder: 'ระบุชื่อโรงพยาบาล', required: true },
-                province: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'สกลนคร' }, { value: 2, text: 'นครปฐม' } ]
-                },
-                city: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'เมือง' } ]
-                },
-                address: { type: 'text', value: '', placeholder: 'ระบุที่อยู่โรงพยาบาล', required: true },
-                type: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'รัฐบาล' }, { value: 2, text: 'เอกชน' } ]
-                },
-                phone: { type: 'text', value: '', placeholder: '012-3456789', required: true },
-                email: { type: 'text', value: '', placeholder: 'sample@gmail.com', required: true },
+                code_id: { type: 'text', value: '', placeholder: 'ระบุรหัส', required: true },
+                type: { type: 'text', value: '', placeholder: 'ระบุรายการสิ่งส่งตรวจ', required: true },
+                price: { type: 'number', value: '', placeholder: 'ระบุราคา', required: true },
                 date: { type: 'empty' },
                 status: {
                   type: 'select', value: 1, required: true,
                   options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
                 }
               }" 
-              @click-delete="onHospitalDeleting($event)" 
+              @click-delete="onImmunoDeleting($event)" 
             />
           </div>
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 3 }">
             <DataTable 
-              :rows="departmentData" 
+              :rows="histoData" 
               :columns="[
-                { key: 'name', text: 'ชื่อแผนก' },
+                { key: 'code_id', text: 'รหัสกรมบัญชีกลาง' },
+                { key: 'type', text: 'รายการ', classer: 'w-full' },
+                { key: 'price', text: 'ราคารัฐบาล (บาท)' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
                 { key: 'status', text: 'Status' },
                 { key: 'options', text: '' }
@@ -170,7 +160,7 @@
                 { key: 'date-desc', text: 'เพิ่มล่าสุด' },
                 { key: 'date-asc', text: 'เพิ่มเก่าสุด' },
               ]" 
-              :search="[ 'name', 'date' ]" 
+              :search="[ 'code_id', 'type', 'price' ]" 
               :groups="{
                 filter: 'status',
                 options: [
@@ -178,24 +168,27 @@
                   { text: 'Inactive', value: 0, checked: true }
                 ]
               }" 
-              :allowAdd="true" allowAddText="เพิ่มแผนก" 
+              :allowAdd="true" allowAddText="เพิ่มรายการย้อม Histo" 
               :addOptions="{
-                name: { type: 'text', value: '', placeholder: 'ระบุแผนก', required: true },
+                code_id: { type: 'text', value: '', placeholder: 'ระบุรหัส', required: true },
+                type: { type: 'text', value: '', placeholder: 'ระบุรายการสิ่งส่งตรวจ', required: true },
+                price: { type: 'number', value: '', placeholder: 'ระบุราคา', required: true },
                 date: { type: 'empty' },
                 status: {
                   type: 'select', value: 1, required: true,
                   options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
                 }
               }" 
-              @click-delete="onDepartmentDeleting($event)" 
+              @click-delete="onHistoDeleting($event)" 
             />
           </div>
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 4 }">
             <DataTable 
-              :rows="positionData" 
+              :rows="icdData" 
               :columns="[
-                { key: 'name', text: 'ชื่อตำแหน่ง' },
+                { key: 'term', text: 'Term' },
+                { key: 'icd', text: 'ICDO3.2', classer: 'w-full' },
                 { key: 'date', text: 'วันที่เพิ่มข้อมูล' },
                 { key: 'status', text: 'Status' },
                 { key: 'options', text: '' }
@@ -204,7 +197,7 @@
                 { key: 'date-desc', text: 'เพิ่มล่าสุด' },
                 { key: 'date-asc', text: 'เพิ่มเก่าสุด' },
               ]" 
-              :search="[ 'name', 'date' ]" 
+              :search="[ 'term', 'icd' ]" 
               :groups="{
                 filter: 'status',
                 options: [
@@ -212,69 +205,17 @@
                   { text: 'Inactive', value: 0, checked: true }
                 ]
               }" 
-              :allowAdd="true" allowAddText="เพิ่มตำแหน่ง" 
+              :allowAdd="true" allowAddText="เพิ่มรายการ ICD-O" 
               :addOptions="{
-                name: { type: 'text', value: '', placeholder: 'ระบุตำแหน่ง', required: true },
+                term: { type: 'text', value: '', placeholder: 'ระบุ Term', required: true },
+                icd: { type: 'text', value: '', placeholder: 'ระบุ ICDO3.2', required: true },
                 date: { type: 'empty' },
                 status: {
                   type: 'select', value: 1, required: true,
                   options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
                 }
               }" 
-              @click-delete="onPositionDeleting($event)" 
-            />
-          </div>
-
-          <div class="tab-content" :class="{ 'active': tabActiveIndex == 5 }">
-            <DataTable 
-              :rows="labData" 
-              :columns="[
-                { key: 'name', text: 'ห้องวิจัยภายนอก' },
-                { key: 'province', text: 'จังหวัด' },
-                { key: 'city', text: 'อำเภอ' },
-                { key: 'address', text: 'ที่อยู่' },
-                { key: 'type', text: 'ประเภท' },
-                { key: 'phone', text: 'เบอร์โทรศัพท์' },
-                { key: 'email', text: 'อีเมล' },
-                { key: 'status', text: 'Status' },
-                { key: 'options', text: '' }
-              ]"
-              :orders="[
-                { key: 'name-desc', text: 'ชื่อล่าสุด' },
-                { key: 'name-asc', text: 'ชื่อเก่าสุด' },
-              ]" 
-              :search="[ 'name', 'province', 'city', 'address', 'type' ]" 
-              :groups="{
-                filter: 'status',
-                options: [
-                  { text: 'Active', value: 1, checked: true },
-                  { text: 'Inactive', value: 0, checked: true }
-                ]
-              }" 
-              :allowAdd="true" allowAddText="เพิ่มห้องวิจัยภายนอก" 
-              :addOptions="{
-                name: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
-                province: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'สกลนคร' }, { value: 2, text: 'นครปฐม' }, { value: 3, text: 'นราธิวาส' } ]
-                },
-                city: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'เมือง' }, { value: 2, text: 'ระแงะ' } ]
-                },
-                address: { type: 'text', value: '', placeholder: 'ระบุที่อยู่โรงพยาบาล', required: true },
-                type: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'รัฐบาล' }, { value: 2, text: 'เอกชน' } ]
-                },
-                phone: { type: 'text', value: '', placeholder: '012-3456789', required: true },
-                email: { type: 'text', value: '', placeholder: 'sample@gmail.com', required: true },
-                status: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'Active' }, { value: 0, text: 'Inactive' } ]
-                }
-              }" 
-              @click-delete="onLabDeleting($event)" 
+              @click-delete="onIcdDeleting($event)" 
             />
           </div>
           
@@ -283,22 +224,22 @@
     </div>
   </section>
 
-  <!-- Popup Prefix -->
-  <div class="popup-container" :class="{ 'active': prefixPopupOpened }">
+  <!-- Popup Tissue Type -->
+  <div class="popup-container" :class="{ 'active': tissueTypePopupOpened }">
     <div class="wrapper">
-      <div class="close-filter" @click="prefixPopupOpened = !prefixPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onPrefixDelete">
+      <div class="close-filter" @click="tissueTypePopupOpened = !tissueTypePopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onTissueTypeDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="prefixPopupOpened = !prefixPopupOpened">
+              <a href="javascript:" class="btn btn-close" @click="tissueTypePopupOpened = !tissueTypePopupOpened">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ยืนยันการลบคำนำหน้า</h6>
+                <h6 class="h3">ยืนยันการลบประเภทรายการสิ่งส่งตรวจชิ้นเนื้อ</h6>
               </div>
               <div class="btns">
                 <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
@@ -310,7 +251,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบประเภทรายการสิ่งส่งตรวจชิ้นเนื้อ" 
                 />
               </div>
             </div>
@@ -320,22 +261,22 @@
     </div>
   </div>
 
-  <!-- Popup Treatment -->
-  <div class="popup-container" :class="{ 'active': treatmentPopupOpened }">
+  <!-- Popup Cell Type -->
+  <div class="popup-container" :class="{ 'active': cellTypePopupOpened }">
     <div class="wrapper">
-      <div class="close-filter" @click="treatmentPopupOpened = !treatmentPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onTreatmentDelete">
+      <div class="close-filter" @click="cellTypePopupOpened = !cellTypePopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onCellTypeDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="treatmentPopupOpened = !treatmentPopupOpened">
+              <a href="javascript:" class="btn btn-close" @click="cellTypePopupOpened = !cellTypePopupOpened">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ยืนยันการลบสิทธิการรักษา</h6>
+                <h6 class="h3">ยืนยันการลบรายการสิ่งส่งตรวจเซลล์</h6>
               </div>
               <div class="btns">
                 <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
@@ -347,7 +288,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบรายการสิ่งส่งตรวจเซลล์" 
                 />
               </div>
             </div>
@@ -357,22 +298,22 @@
     </div>
   </div>
 
-  <!-- Popup Hospital -->
-  <div class="popup-container" :class="{ 'active': hospitalPopupOpened }">
+  <!-- Popup Immuno -->
+  <div class="popup-container" :class="{ 'active': immunoPopupOpened }">
     <div class="wrapper">
-      <div class="close-filter" @click="hospitalPopupOpened = !hospitalPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onHospitalDelete">
+      <div class="close-filter" @click="immunoPopupOpened = !immunoPopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onImmunoDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="hospitalPopupOpened = !hospitalPopupOpened">
+              <a href="javascript:" class="btn btn-close" @click="immunoPopupOpened = !immunoPopupOpened">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ยืนยันการลบโรงพยาบาล</h6>
+                <h6 class="h3">ยืนยันการลบรายการย้อม Immuno</h6>
               </div>
               <div class="btns">
                 <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
@@ -384,7 +325,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบรายการย้อม Immuno" 
                 />
               </div>
             </div>
@@ -394,22 +335,22 @@
     </div>
   </div>
 
-  <!-- Popup Department -->
-  <div class="popup-container" :class="{ 'active': departmentPopupOpened }">
+  <!-- Popup Histo -->
+  <div class="popup-container" :class="{ 'active': histoPopupOpened }">
     <div class="wrapper">
-      <div class="close-filter" @click="departmentPopupOpened = !departmentPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onDepartmentDelete">
+      <div class="close-filter" @click="histoPopupOpened = !histoPopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onHistoDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="departmentPopupOpened = !departmentPopupOpened">
+              <a href="javascript:" class="btn btn-close" @click="histoPopupOpened = !histoPopupOpened">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ยืนยันการลบแผนก</h6>
+                <h6 class="h3">ยืนยันการลบรายการย้อม Histo</h6>
               </div>
               <div class="btns">
                 <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
@@ -421,7 +362,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบรายการย้อม Histo" 
                 />
               </div>
             </div>
@@ -431,22 +372,22 @@
     </div>
   </div>
 
-  <!-- Popup Position -->
-  <div class="popup-container" :class="{ 'active': positionPopupOpened }">
+  <!-- Popup ICD -->
+  <div class="popup-container" :class="{ 'active': icdPopupOpened }">
     <div class="wrapper">
-      <div class="close-filter" @click="positionPopupOpened = !positionPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onPositionDelete">
+      <div class="close-filter" @click="icdPopupOpened = !icdPopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onIcdDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="positionPopupOpened = !positionPopupOpened">
+              <a href="javascript:" class="btn btn-close" @click="icdPopupOpened = !icdPopupOpened">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ยืนยันการลบตำแหน่ง</h6>
+                <h6 class="h3">ยืนยันการลบรายการ ICD-O</h6>
               </div>
               <div class="btns">
                 <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
@@ -458,44 +399,7 @@
               <div class="grid sm-100">
                 <FormGroup
                   label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Popup Lab -->
-  <div class="popup-container" :class="{ 'active': labPopupOpened }">
-    <div class="wrapper">
-      <div class="close-filter" @click="labPopupOpened = !labPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onLabDelete">
-        <div class="popup-box">
-          <div class="header">
-            <div class="btns mt-0">
-              <a href="javascript:" class="btn btn-close" @click="labPopupOpened = !labPopupOpened">
-                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ยกเลิก
-              </a>
-            </div>
-            <div class="header-wrapper">
-              <div class="text-container">
-                <h6 class="h3">ยืนยันการลบห้องวิจัยภายนอก</h6>
-              </div>
-              <div class="btns">
-                <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
-              </div>
-            </div>
-          </div>
-          <div class="body">
-            <div class="grids">
-              <div class="grid sm-100">
-                <FormGroup
-                  label="หมายเหตุ" type="textarea" name="note" :required="true" 
-                  placeholder="กรุณาระบุหมายเหตุของการลบผู้ใช้งานนี้" 
+                  placeholder="กรุณาระบุหมายเหตุของการลบรายการ ICD-O" 
                 />
               </div>
             </div>
@@ -529,16 +433,14 @@ export default {
       sidenavActiveIndex: 3,
       tabActiveIndex: 0,
 
-      isActivePopupDelete: false,
-      deleteNote: '',
-      deleteErrorText: '',
-
-      prefixPopupOpened: false,
-      prefixData: [
+      tissueTypePopupOpened: false,
+      tissueTypeData: [
         {
-          prefix: { text: 'นาย' },
+          code_id: { text: '38106' },
+          type: { text: 'Appendix' },
+          price: { text: 500 },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -546,9 +448,11 @@ export default {
           }
         },
         {
-          prefix: { text: 'นาง' },
+          code_id: { text: '38002' },
+          type: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาวมากกว่า 2 ซม แต่ไม่เกิน 5 ซม' },
+          price: { text: 1000 },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
@@ -556,23 +460,27 @@ export default {
           }
         },
         {
-          prefix: { text: 'นางสาว' },
+          code_id: { text: '38003' },
+          type: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาวมากกว่า 5 ซม' },
+          price: { text: 1500 },
           date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 2 },
             delete: { type: 'emit', id: 2 }
           }
-        }
+        },
       ],
 
-      treatmentPopupOpened: false,
-      treatmentData: [
+      cellTypePopupOpened: false,
+      cellTypeData: [
         {
-          treatment: { text: 'ประกันสังคม' },
+          code_id: { text: '38106' },
+          type: { text: 'Conventional Pap smear' },
+          price: { text: 500 },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -580,50 +488,27 @@ export default {
           }
         },
         {
-          treatment: { text: 'ข้าราชการ' },
+          code_id: { text: '38002' },
+          type: { text: 'Non-gynecologic specimen' },
+          price: { text: 1000 },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
             delete: { type: 'emit', id: 1 }
           }
         },
-        {
-          treatment: { text: 'บัตรทอง' },
-          date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 2 },
-            delete: { type: 'emit', id: 2 }
-          }
-        },
-        {
-          treatment: { text: 'รัฐวิสาหกิจ' },
-          date: { text: '09/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 3 },
-            delete: { type: 'emit', id: 3 }
-          }
-        }
       ],
 
-      hospitalPopupOpened: false,
-      hospitalData: [
+      immunoPopupOpened: false,
+      immunoData: [
         {
-          hospital_id: { text: '1234567' },
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
-          province: { text: 'สกลนคร', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
-          phone: { text: '034-212522' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
+          code_id: { text: '38106' },
+          type: { text: 'Conventional Pap smear' },
+          price: { text: 500 },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -631,54 +516,27 @@ export default {
           }
         },
         {
-          hospital_id: { text: '1234567' },
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
-          province: { text: 'สกลนคร', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
-          phone: { text: '034-212522' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 1 },
-            delete: { type: 'emit', id: 1 }
-          }
-        }
-      ],
-
-      departmentPopupOpened: false,
-      departmentData: [
-        {
-          name: { text: 'อายุรกรรม' },
-          date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 0 },
-            delete: { type: 'emit', id: 0 }
-          }
-        },
-        {
-          name: { text: 'พยาธิวิทยากายวิภาค' },
+          code_id: { text: '38002' },
+          type: { text: 'Non-gynecologic specimen' },
+          price: { text: 1000 },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
             delete: { type: 'emit', id: 1 }
           }
-        }
+        },
       ],
 
-      positionPopupOpened: false,
-      positionData: [
+      histoPopupOpened: false,
+      histoData: [
         {
-          name: { text: 'แพทย์' },
+          code_id: { text: '30501' },
+          type: { text: 'H&E' },
+          price: { text: 40 },
           date: { text: '12/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -686,58 +544,26 @@ export default {
           }
         },
         {
-          name: { text: 'นักกายภาพบำบัด' },
+          code_id: { text: '38010' },
+          type: { text: 'M-AFB' },
+          price: { text: 1000 },
           date: { text: '11/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 1 },
             delete: { type: 'emit', id: 1 }
           }
         },
-        {
-          name: { text: 'ทันตแพทย์' },
-          date: { text: '10/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 2 },
-            delete: { type: 'emit', id: 2 }
-          }
-        },
-        {
-          name: { text: 'พยาบาล' },
-          date: { text: '09/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 3 },
-            delete: { type: 'emit', id: 3 }
-          }
-        },
-        {
-          name: { text: 'นักเทคนิคการแพทย์' },
-          date: { text: '08/12/2563, 12:59' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 4 },
-            delete: { type: 'emit', id: 4 }
-          }
-        }
       ],
 
-      labPopupOpened: false,
-      labData: [
+      icdPopupOpened: false,
+      icdData: [
         {
-          name: { text: 'โรงพยาบาลสกลนคร', classer: 'wrap' },
-          province: { text: 'สกลนคร', classer: 'wrap-sm', value: 1 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '1041 ถ.เจริญเมือง ต.ธาตุเชิงชุม', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
-          phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          term: { text: 'Neoplasm, benign' },
+          icd: { text: '8000/0' },
+          date: { text: '12/12/2563, 12:59' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
             edit: { type: 'inline', id: 0 },
@@ -745,35 +571,16 @@ export default {
           }
         },
         {
-          name: { text: 'N Health', classer: 'wrap' },
-          province: { text: 'นครปฐม', classer: 'wrap-sm', value: 2 },
-          city: { text: 'เมือง', classer: 'wrap', value: 1 },
-          address: { text: '196 ถนนเทศา ตำบลพระปฐมเจดีย์', classer: 'wrap' },
-          type: { text: 'รัฐบาล', classer: 'wrap', value: 1 },
-          phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
+          term: { text: 'Tumor, benign' },
+          icd: { text: '8000/0' },
+          date: { text: '11/12/2563, 12:59' },
+          status: { type: 'status', value: 1 },
           options: {
             type: 'options',
-            edit: { type: 'inline', id: 1 },
-            delete: { type: 'emit', id: 1 }
+            edit: { type: 'inline', id: 0 },
+            delete: { type: 'emit', id: 0 }
           }
         },
-        {
-          name: { text: 'KMUTT Lab', classer: 'wrap' },
-          province: { text: 'นราธิวาส', classer: 'wrap-sm', value: 3 },
-          city: { text: 'ระแงะ', classer: 'wrap', value: 2 },
-          address: { text: '88 หมู่ 1 ถ.รถไฟ ต.ตันหยงมัส', classer: 'wrap' },
-          type: { text: 'เอกชน', classer: 'wrap', value: 2 },
-          phone: { text: '061-2125229' },
-          email: { text: 'sakonnakhon_hospital@hotmail.com', classer: 'wrap' },
-          status: { type: 'status', value: 1, classer: 'wrap-sm' },
-          options: {
-            type: 'options',
-            edit: { type: 'inline', id: 2 },
-            delete: { type: 'emit', id: 2 }
-          }
-        }
       ],
 
     }
@@ -783,51 +590,43 @@ export default {
   },
   methods: {
 
-    onPrefixDeleting(id) {
-      this.prefixPopupOpened = !this.prefixPopupOpened;
+    onTissueTypeDeleting(id) {
+      this.tissueTypePopupOpened = !this.tissueTypePopupOpened;
     },
-    onPrefixDelete(e) {
-      this.prefixPopupOpened = !this.prefixPopupOpened;
+    onTissueTypeDelete(e) {
+      this.tissueTypePopupOpened = !this.tissueTypePopupOpened;
       e.preventDefault();
     },
 
-    onTreatmentDeleting(id) {
-      this.treatmentPopupOpened = !this.treatmentPopupOpened;
+    onCellTypeDeleting(id) {
+      this.cellTypePopupOpened = !this.cellTypePopupOpened;
     },
-    onTreatmentDelete(e) {
-      this.treatmentPopupOpened = !this.treatmentPopupOpened;
+    onCellTypeDelete(e) {
+      this.cellTypePopupOpened = !this.cellTypePopupOpened;
       e.preventDefault();
     },
 
-    onHospitalDeleting(id) {
-      this.hospitalPopupOpened = !this.hospitalPopupOpened;
+    onImmunoDeleting(id) {
+      this.immunoPopupOpened = !this.immunoPopupOpened;
     },
-    onHospitalDelete(e) {
-      this.hospitalPopupOpened = !this.hospitalPopupOpened;
+    onImmunoDelete(e) {
+      this.immunoPopupOpened = !this.immunoPopupOpened;
       e.preventDefault();
     },
 
-    onDepartmentDeleting(id) {
-      this.departmentPopupOpened = !this.departmentPopupOpened;
+    onHistoDeleting(id) {
+      this.histoPopupOpened = !this.histoPopupOpened;
     },
-    onDepartmentDelete(e) {
-      this.departmentPopupOpened = !this.departmentPopupOpened;
+    onHistoDelete(e) {
+      this.histoPopupOpened = !this.histoPopupOpened;
       e.preventDefault();
     },
 
-    onPositionDeleting(id) {
-      this.positionPopupOpened = !this.positionPopupOpened;
+    onIcdDeleting(id) {
+      this.icdPopupOpened = !this.icdPopupOpened;
     },
-    onPositionDelete(e) {
-      this.positionPopupOpened = !this.positionPopupOpened;
-      e.preventDefault();
-    },
-
-    onLabDeleting(id) {
-      this.labPopupOpened = !this.labPopupOpened;
-    },
-    onLabDelete(e) {
-      this.labPopupOpened = !this.labPopupOpened;
+    onIcdDelete(e) {
+      this.icdPopupOpened = !this.icdPopupOpened;
       e.preventDefault();
     },
     
