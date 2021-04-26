@@ -19,7 +19,7 @@
         </div>
         <div class="sep"></div>
         <div class="grid lg-1-3">
-          <SpecialCard01 href="/" icon="lab-03.svg" text="ผลตรวจทางพยาธิวิทยา" />
+          <SpecialCard01 href="/user/case-results" icon="lab-03.svg" text="ผลตรวจทางพยาธิวิทยา" />
         </div>
         <div class="grid lg-1-3">
           <SpecialCard01 href="/user/slides" icon="lab-04.svg" text="Block/Slide" />

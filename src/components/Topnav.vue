@@ -57,7 +57,7 @@
           </a>
         </div>
         <div class="menu" :class="{ 'active': activeIndex==3 }">
-          <a href="#">
+          <a href="/user/teams">
             <div class="icon">
               <img src="/assets/img/icon/profile.svg" alt="Image Icon" />
             </div>

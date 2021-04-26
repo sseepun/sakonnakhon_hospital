@@ -80,6 +80,18 @@ const routes = [
     component: () => import('../views/user/CaseCytologyComplete.vue')
   },
 
+  // User - Case Result Pages
+  {
+    path: '/user/case-results',
+    name: 'UserCaseResultsPage',
+    component: () => import('../views/user/CaseResults.vue')
+  },
+  {
+    path: '/user/case-result-read',
+    name: 'UserCaseResultReadPage',
+    component: () => import('../views/user/CaseResultRead.vue')
+  },
+
 
   // User - Special Cases
   {
@@ -91,18 +103,6 @@ const routes = [
     path: '/user/special-case-complete',
     name: 'UserSpecialCaseCompletePage',
     component: () => import('../views/user/SpecialCaseComplete.vue')
-  },
-
-  // User - Pathotology Pages
-  {
-    path: '/user/case-pathology',
-    name: 'UserCasePathologyPage',
-    component: () => import('../views/user/CasePathology.vue')
-  },
-  {
-    path: '/user/case-pathology-history',
-    name: 'UserCasePathologyHistoryPage',
-    component: () => import('../views/user/CasePathologyHistory.vue')
   },
 
   // User - Slides

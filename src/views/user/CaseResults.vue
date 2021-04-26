@@ -17,15 +17,12 @@
             </div>
             <div class="btns hide-mobile">
               <Button 
-                href="/user/case-cytology-add" text="ลงทะเบียนส่งตรวจ" 
-                classer="btn-color-01 mr-3" :prepend="true" icon="plus-white.svg" 
+                href="/user/cases" text="ลงทะเบียนส่งตรวจ" 
+                classer="btn-color-01" :prepend="true" icon="plus-white.svg" 
               />
             </div>
             <div class="btns show-mobile">
-              <Button 
-                text="ลงทะเบียน" classer="btn-color-01 btn-sm" :append="true" icon="chev-down-white.svg" 
-                @clicked="isOpenedOptions = !isOpenedOptions"
-              />
+              <Button href="/user/cases" text="ลงทะเบียน" classer="btn-color-01 btn-sm" />
             </div>
           </div>
           <Tabs01 
@@ -92,15 +89,6 @@
     </div>
   </section>
 
-  <PopupOptions 
-    :isOpenedOptions="isOpenedOptions" 
-    @clicked="isOpenedOptions = !isOpenedOptions"
-    :options="[
-      { text: 'ลงทะเบียนส่งตรวจเซลล์วิทยา', icon: 'plus.svg', href: '/user/case-cytology-add' },
-      { text: 'ลงทะเบียนส่งตรวจชิ้นเนื้อ', icon: 'plus.svg', href: '/user/case-biopsy-add' }
-    ]"
-  />
-
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
@@ -111,7 +99,7 @@ import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
 
 export default {
-  name: 'UserCasePathologyPage',
+  name: 'UserCaseResultsPage',
   components: {
     Topnav,
     PopupOptions,
@@ -122,7 +110,6 @@ export default {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 1,
-      isOpenedOptions: false,
 
       columns1: [
         { key: 'sent_to', text: 'ส่ง' },
@@ -217,7 +204,7 @@ export default {
           type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
         },
         card: {
-          type: 'link', text: 'R-202001-0001', href: '#',
+          type: 'link', text: 'R-202001-0001', href: '/user/case-result-read',
           iconPrepend: 'checkout.svg'
         },
       });

@@ -1,5 +1,5 @@
 <template>
-  <Topnav :userRole="userRole" />
+  <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
 
   <section class="section-full">
     <div class="container">
@@ -83,7 +83,7 @@
     ]"
   />
 
-  <Topnav :userRole="userRole" :isBottom="true" />
+  <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
 <script>
@@ -102,7 +102,8 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
+      userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
+      topnavActiveIndex: 3,
       isOpenedOptions: false,
 
       columns1: [
