@@ -43,6 +43,14 @@
                 { key: 'result_date-desc', text: 'วันที่ออกผล (ใหม่สุด)' },
                 { key: 'result_date-asc', text: 'วันที่ออกผล (เก่าสุด)' },
               ]"
+              :groups="{
+                filter: 'sent_to',
+                options: [
+                  { text: 'เซลล์วิทยา', value: 0, checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                ]
+              }"
             />
           </div>
           
@@ -56,6 +64,14 @@
                 { key: 'result_date-desc', text: 'วันที่ออกผล (ใหม่สุด)' },
                 { key: 'result_date-asc', text: 'วันที่ออกผล (เก่าสุด)' },
               ]"
+              :groups="{
+                filter: 'sent_to',
+                options: [
+                  { text: 'เซลล์วิทยา', value: 0, checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                ]
+              }"
             />
           </div>
 
@@ -70,6 +86,14 @@
                 { key: 'result_date-desc', text: 'วันที่ออกผล (ใหม่สุด)' },
                 { key: 'result_date-asc', text: 'วันที่ออกผล (เก่าสุด)' },
               ]"
+              :groups="{
+                filter: 'sent_to',
+                options: [
+                  { text: 'เซลล์วิทยา', value: 0, checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                ]
+              }"
             />
           </div>
           
@@ -177,7 +201,7 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01'
+          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01', value: 0
         },
         case_id: { 
           type: 'text', text: 'FI63-12911',
@@ -211,7 +235,7 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
         },
         case_id: { 
           type: 'text', text: 'FI63-07821',
@@ -245,7 +269,7 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'ส่งตรวจพิเศษ', classer: 'color-12'
+          type: 'text', text: 'ส่งตรวจพิเศษ', classer: 'color-12', value: 2
         },
         case_id: { 
           type: 'text', text: 'EX63-12911',
@@ -279,7 +303,7 @@ export default {
 
       this.rows2.push({
         sent_to: { 
-          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01'
+          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01', value: 0
         },
         case_id: { 
           type: 'text', text: 'FI63-12911',
@@ -313,7 +337,7 @@ export default {
 
       this.rows2.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
         },
         case_id: { 
           type: 'text', text: 'FI63-07821',
@@ -347,7 +371,7 @@ export default {
       
       this.rows3.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11'
+          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
         },
         case_id: { 
           type: 'text', text: 'FI63-07821',

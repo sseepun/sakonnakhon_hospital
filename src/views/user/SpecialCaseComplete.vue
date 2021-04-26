@@ -26,7 +26,8 @@
               classer="btn-color-01" :prepend="true" icon="check-white.svg" 
             />
           </div>
-          <div class="btns show-mobile">
+          <div class="btns ws-nowrap show-mobile">
+            <Button text="แก้ไข" href="#" classer="btn-color-06 btn-sm mr-1" />
             <Button type="submit" text="เสร็จสิ้น" classer="btn-color-01 btn-sm" />
           </div>
         </div>

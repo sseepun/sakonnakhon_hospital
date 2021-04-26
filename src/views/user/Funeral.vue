@@ -23,8 +23,8 @@
             </div>
             <div class="btns show-mobile">
               <Button 
-                text="ลงทะเบียน" classer="btn-color-01 btn-sm" :append="true" icon="chev-down-white.svg" 
-                @clicked="isOpenedOptions = !isOpenedOptions"
+                text="ลงทะเบียน" classer="btn-color-01 btn-sm"
+                href="/user/funeral-add"
               />
             </div>
           </div>
@@ -73,15 +73,6 @@
       </div>
     </div>
   </section>
-
-  <PopupOptions 
-    :isOpenedOptions="isOpenedOptions" 
-    @clicked="isOpenedOptions = !isOpenedOptions"
-    :options="[
-      { text: 'ลงทะเบียนส่งตรวจเซลล์วิทยา', icon: 'plus.svg', href: '/user/case-cytology-add' },
-      { text: 'ลงทะเบียนส่งตรวจชิ้นเนื้อ', icon: 'plus.svg', href: '/user/case-biopsy-add' }
-    ]"
-  />
 
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>

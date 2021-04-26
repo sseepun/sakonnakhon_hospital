@@ -4,7 +4,7 @@
   <section class="section-full">
     <div class="container">
 
-      <form action="/user/case-biopsy-complete" method="GET">
+      <form action="/user/funeral-complete" method="GET">
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
             <a href="/user/cases" class="btn color-gray h-color-01">

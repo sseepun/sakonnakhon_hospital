@@ -141,6 +141,13 @@ const routes = [
     component: () => import('../views/user/Teams.vue')
   },
 
+  // User - Inventory Pages
+  {
+    path: '/user/inventory',
+    name: 'UserInventoryPage',
+    component: () => import('../views/user/Inventory.vue')
+  },
+
 
   // Admin Pages
   {

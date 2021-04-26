@@ -3,7 +3,7 @@
 
   <section class="section-full">
     <div class="container">
-      <form action="/user/case-biopsy-complete" method="GET" @submit="onSubmit">
+      <form action="/user/special-case-complete" method="GET" @submit="onSubmit">
 
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
@@ -141,10 +141,22 @@
              <DataTable 
               :columns="columns1" :rows="rows1" 
               :withOptions="false"
-              :orders="[
-                { key: 'sent_date-desc', text: 'วันที่ส่งตรวจ (ใหม่สุด)' },
-                { key: 'sent_date-asc', text: 'วันที่ส่งตรวจ (เก่าสุด)' },
-              ]"
+              :addOptions="{
+                prefix: {
+                  type: 'select', required: true, value: 0,
+                  options: [ { value: 0, text: 'นาย'}, { value: 1, text: 'นาง'}, { value: 2, text: 'นางสาว'}  ]
+                },
+                name: { type: 'text' },
+                hn: { type: 'text' },
+                card_type: {
+                  type: 'select', required: true, value: 0,
+                  options: [ { value: 0, text: 'ประกันสังคม'}  ]
+                },
+                block_no: { type: 'text' },
+                immuno: { type: 'text', placeholder: 'เลือกรายการย้อม'},
+                histo: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
+                note: { type: 'text', value: '', placeholder: 'เพิ่มเติม' },
+              }"
             />
           </div>
         </div>
@@ -196,6 +208,7 @@ export default {
         { key: 'immuno', text: 'ลงรายการย้อม Immuno' },
         { key: 'histo', text: 'ลงรายการย้อม Histo' },
         { key: 'note', text: 'Note' },
+        { key: 'options', text: '' },
       ],
       rows1: []
     }
@@ -207,55 +220,33 @@ export default {
 
       this.rows1.push({
         prefix: {
-          type: 'text', text: 'นาย'
+          text: 'นาย', value: 0
         },
         name: { 
-          type: 'text', text: 'สิงโต ภูเขา' 
+          text: 'สิงโต ภูเขา' 
         },
         hn: { 
-          type: 'text', text: '245199'
+          text: '245199'
         },
         card_type: {
-          type: 'text', text: 'ประกันสังคม',
+          text: 'ประกันสังคม', value: 0
         },
         block_no: {
-          type: 'text', text: 'P64-002C',
+          text: 'P64-002C',
         },
         immuno: {
-          type: 'text', text: '-',
+          text: '-',
         },
         histo: {
-          type: 'text', text: 'H&E, Deep, Recut',
+          text: '-',
         },
         note: {
-          type: 'text', text: '-',
-        }
-      });
-
-      this.rows1.push({
-        prefix: {
-          type: 'text', text: 'นาย'
+          text: '-',
         },
-        name: { 
-          type: 'text', text: 'จริงใจ ยินดี' 
-        },
-        hn: { 
-          type: 'text', text: '234556'
-        },
-        card_type: {
-          type: 'text', text: 'ประกันสังคม',
-        },
-        block_no: {
-          type: 'text', text: 'P64-001C',
-        },
-        immuno: {
-          type: 'text', text: 'ACT, ACTH, ALK-1, ALK-p80, B-catenin, Calponin',
-        },
-        histo: {
-          type: 'text', text: '-',
-        },
-        note: {
-          type: 'text', text: '-',
+        options: {
+          type: 'options',
+          edit: { type: 'inline', id: 2 },
+          delete: { type: 'emit', id: 2 }
         }
       });
     }

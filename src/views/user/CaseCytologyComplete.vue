@@ -29,7 +29,8 @@
               classer="btn-color-04" :prepend="true" icon="printer-black.svg" 
             />
           </div>
-          <div class="btns show-mobile">
+          <div class="btns ws-nowrap show-mobile">
+            <Button text="แก้ไข" href="#" classer="btn-color-03 btn-sm mr-1" />
             <Button text="พิมพ์" href="#" classer="btn-color-04 btn-sm" />
           </div>
         </div>

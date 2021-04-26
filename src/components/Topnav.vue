@@ -65,7 +65,7 @@
           </a>
         </div>
         <div class="menu" :class="{ 'active': activeIndex==4 }">
-          <a href="#">
+          <a href="/user/inventory">
             <div class="icon">
               <img src="/assets/img/icon/box.svg" alt="Image Icon" />
             </div>
