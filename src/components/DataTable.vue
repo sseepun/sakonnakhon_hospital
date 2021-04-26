@@ -176,6 +176,8 @@
                   <input
                     :type="add.type" class="xs w-full" v-model="row[key].text" 
                     :placeholder="add.placeholder" :required="add.required" 
+                    :minlength="add.minlength" :maxlength="add.maxlength" 
+                    :min="add.min" :max="add.max" :step="add.step" 
                     @input="addData[key] = $event.target.value" 
                   />
                 </div>
@@ -218,7 +220,9 @@
               <div v-if="add.type == 'text' || add.type == 'number'">
                 <input
                   :type="add.type" class="xs w-full" v-model="add.value" 
-                  :placeholder="add.placeholder" :required="add.required" 
+                  :placeholder="add.placeholder" :required="add.required"  
+                  :minlength="add.minlength" :maxlength="add.maxlength" 
+                  :min="add.min" :max="add.max" :step="add.step" 
                   @input="addData[key] = $event.target.value" 
                 />
               </div>

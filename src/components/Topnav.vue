@@ -31,7 +31,7 @@
           </a>
           <div class="dropdown">
             <div class="submenu">
-              <a href="#">
+              <a href="/user/cases">
                 <div class="icon">
                   <img src="/assets/img/icon/sun.svg" alt="Image Icon" />
                 </div>
@@ -39,7 +39,7 @@
               </a>
             </div>
             <div class="submenu">
-              <a href="#">
+              <a href="/user/cases">
                 <div class="icon">
                   <img src="/assets/img/icon/scalpel.svg" alt="Image Icon" />
                 </div>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div v-if="isStaffType2()" class="menu" :class="{ 'active': activeIndex==2 }">
-          <a href="#">
+          <a href="/user/funeral">
             <div class="icon">
               <img src="/assets/img/icon/tent.svg" alt="Image Icon" />
             </div>
@@ -287,6 +287,8 @@ export default {
     isStaff() {
       if(this.userRole.indexOf('Staff') > -1){
         return true;
+      }else if(this.userRole == 'Super User'){
+        return true;
       }else{
         return false;
       }
@@ -294,12 +296,16 @@ export default {
     isStaffType1() {
       if(this.isStaff() && this.userRole.indexOf('พยาธิวิทยา') > -1){
         return true;
+      }else if(this.userRole == 'Super User'){
+        return true;
       }else{
         return false;
       }
     },
     isStaffType2() {
       if(this.isStaff() && this.userRole.indexOf('งานศพ') > -1){
+        return true;
+      }else if(this.userRole == 'Super User'){
         return true;
       }else{
         return false;

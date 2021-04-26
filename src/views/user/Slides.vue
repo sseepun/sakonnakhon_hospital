@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       isOpenedOptions: false,
       columns1: [
         { key: 'slide_no', text: 'เลขที่สไลด์ / พาราฟินบล็อค' },

@@ -132,7 +132,7 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       dataset: {
         borrower: '',
         borrowerPhone: '',

@@ -3,7 +3,7 @@
 
   <section class="section-full">
     <div class="container">
-      <form action="/user/case-biopsy-complete" method="GET" @submit="onSubmit">
+      <form action="/user/slide-approve" method="GET" @submit="onSubmit">
 
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
@@ -71,7 +71,7 @@
                   { value: 2, text: 'Cytology' },
                   { value: 3, text: 'Consult' }
                 ]"
-                :value="dataset.work_type"
+                :value="dataset.workType"
               />
             </div>
 
@@ -79,9 +79,9 @@
               <FormGroup 
                 type="select" label="*เพื่อการ" name="objective" 
                 :options="[
-                  { value: 0, text: 'ประกอบการรักษาพยาบาล' },
-                  { value: 1, text: 'ส่งรักษาต่อ' },
-                  { value: 2, text: 'อื่นๆ' },
+                  { value: 1, text: 'ประกอบการรักษาพยาบาล' },
+                  { value: 2, text: 'ส่งรักษาต่อ' },
+                  { value: 3, text: 'อื่นๆ' },
                 ]" 
                 :value="dataset.objective" @input="dataset.objective = $event" 
                 :errorText="isValidated && !dataset.objective? 'กรุณาระบุ': ''" 
@@ -90,12 +90,10 @@
             </div>
             <div class="grid lg-30 md-1-3">
               <FormGroup
-                type="text" name="other" label="โปรดระบุ"
-                :classer="dataset.objective != 2 ? 'disabled': ''"
-                :disabled="dataset.objective != 2 ? true: false"
+                type="text" name="other" label="โปรดระบุ" 
+                :disabled="dataset.objective != 3" 
               />
             </div>
-
             <div class="sep"></div>
             
             <div class="grid lg-1-3 md-1-3">
@@ -106,7 +104,6 @@
                 :classer="isValidated && !dataset.patientName? 'error': ''" 
               />
             </div>
-
             <div class="grid lg-25 md-1-3 xs-2-3">
               <FormGroup 
                 type="text" label="*เลขที่สไลด์/พาราฟินบล็อค" name="slide_no" placeholder="123456"
@@ -115,14 +112,13 @@
                 :classer="isValidated && !dataset.slideNo? 'error': ''" 
               />
             </div>
-
             <div class="sep"></div>
 
             <div class="grid lg-1-3 md-1-3">
               <FormGroup 
                 type="select" label="*ช่องทางการรับ" name="sent_type" 
                 :options="[
-                  { value: 0, text: 'ส่งทางไปรณีย์' },
+                  { value: 1, text: 'ส่งทางไปรณีย์' },
                 ]"
                 :value="dataset.sentType" @input="dataset.sentType = $event" 
                 :errorText="isValidated && !dataset.sentType? 'กรุณาระบุ': ''" 
@@ -160,20 +156,18 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
 
       isValidated: false,
       dataset: {
-        bookNo: '',
-        bookDate: '',
-        staffName: '',
-        stafPhone: '',
-        note: '',
-        total_case: null,
-        sentType: 0,
-        work_type: 1,
-        total_slide: null,
-        objective: 0,
+        doctorName: '',
+        specialty: '',
+        doctorPhone: '',
+        workType: 1,
+        objective: 1,
+        patientName: '',
+        slideNo: '',
+        sentType: 1
       },
     }
   },
@@ -198,11 +192,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .form-group.disabled input[type="text"]{
-    background: #e1e1e1;
-  }
-
-
-</style>

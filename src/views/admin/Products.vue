@@ -52,7 +52,10 @@
               }" 
               :allowAdd="true" allowAddText="เพิ่มประเภทสินค้า" 
               :addOptions="{
-                code: { type: 'text', value: '', placeholder: 'AB', required: true },
+                code: { 
+                  type: 'text', value: '', placeholder: 'AB', required: true, 
+                  minlength: 2, maxlength: 2
+                },
                 name: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
                 date: { type: 'empty' },
                 status: {

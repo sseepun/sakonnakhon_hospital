@@ -150,7 +150,6 @@
     </div>
   </section>
 
-
   <!-- Alert Popup -->
   <div class="popup-container" :class="{ 'active': cancelAlert }">
     <div class="wrapper">
@@ -208,7 +207,7 @@ export default {
   },
   data() {
     return {
-      userRole: 'Staff พยาธิวิทยา', /* User, Staff พยาธิวิทยา, Staff งานศพ */
+      userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       cancelAlert: false,
       columns1:[
         { key: 'prefix', text: 'คำนำหน้า'},
