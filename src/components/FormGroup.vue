@@ -1,3 +1,8 @@
+<style scoped>
+  .file-container {position:relative; min-height: 7.75rem; margin-top: 1rem; }
+  .file-container input[type="file"] { cursor: pointer; position: absolute; height:100%; opacity:0; }
+  .file-container .dropzone { position:absolute; z-index:-1; top:0; height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; border: 1px dashed #c8c8c8;}
+</style>
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
@@ -84,6 +89,69 @@
     </DatePicker>
   </div>
 
+  <div v-else-if="type == 'file'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <p class="sm color-sgray">กรุณาแนบไฟล์ บัตรประจำตัวประชาชน หรือ หนังสือมอบฉันทะ เพื่อความสะดวกในการตรวจสอบและยืมสไลด์</p>
+    <div class="file-container w-full">
+      <input 
+        :type="type"
+        :name="name"
+      />
+      <div class="dropzone">
+        <div class="d-flex ai-center jc-center">
+          <div v-if="icon" class="icon">
+            <img :src="'/assets/img/icon/'+icon" class=" mr-3" alt="Image Icon" />
+          </div>
+          <p class="color-sgray md">คลิกหรือลากวางไฟล์ในพื้นที่นี้เพื่ออัปโหลด</p>
+        </div>
+      </div>
+    </div>
+    <p class="sm color-sgray mt-3">
+      รูปแบบไฟล์: .pdf, .docx, .xlsx, .jpg, .jpeg, .png <br>
+      ขนาดไฟล์: ไม่เกิน 10 MB
+    </p>
+  </div>
+
+  <div v-else-if="type == 'special-1'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{ errorText }}</div>
+    </label>
+    <div class="d-flex">
+      <input 
+        :type="'text'" 
+        :name="name" 
+        :placeholder="placeholder" 
+        v-model="value" 
+        @input="(event)=>$emit('input', event.target.value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
+        style="border-radius: .375rem 0 0 .375rem;"
+      />
+      <select 
+        :name="name2" 
+        v-model="value2" 
+        @input2="(event)=>$emit('input2', event.target.value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
+        style="border-radius: 0 .375rem .375rem 0;"
+      >
+        <option v-for="option in options" :value="option.value" 
+        :selected="option.value == value || option.text == value" :key="option.value">
+          {{option.text}}
+        </option>
+      </select>
+      <div v-if="icon" class="icon">
+        <img :src="'/assets/img/icon/'+icon" alt="Image Icon" />
+      </div>
+    </div>
+  </div>
+
   <div v-else class="form-group" :class="classer">
     <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
@@ -114,10 +182,12 @@ export default {
   props: {
     classer: { type: String, default: '' },
     value: { type: [String, Number, Date], default: '' },
+    value2: { type: [String, Number, Date], default: '' },
     label: { type: String, default: 'From Group' },
     errorText: { type: String, default: '' },
     type: { type: String, default: 'text' },
     name: { type: String, default: '' },
+    name2: { type: String, default: '' },
     placeholder: { type: String, default: '' },
     required: { type: Boolean, default: false },
     readonly: { type: Boolean, default: false },
@@ -132,6 +202,6 @@ export default {
       return this.$emit('input', this.value);
     }
   },
-  emits: [ 'input' ]
+  emits: [ 'input', 'input2' ]
 }
 </script>

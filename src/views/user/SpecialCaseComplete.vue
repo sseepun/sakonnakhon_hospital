@@ -107,6 +107,13 @@
 
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
+          <div class="grid xl-40 lg-60 md-80 sm-100 xs-100">
+            <FormGroup 
+              type="file" label="*อัปโหลดเอกสารเพื่อยืนยันตัวตน" name="file"
+              :icon="'upload.svg'"
+            />
+          </div>
+          <div class="sep"></div>
           <div class="grid xl-40 lg-60 md-80 sm-100">
             <div class="d-flex jc-space-between">
               <div class="d-flex ai-center">

@@ -25,8 +25,9 @@
         <div v-if="textInput" class="checkbox checkbox-input">
           <div class="form-group">
             <input 
-              type="text" class="bg-lgray" :placeholder="textInputPlaceholder" 
-              @input="(event)=>$emit('input-text', event.target.value)" 
+              type="text" :class="textInputDisabled ? 'bg-lgray': ''" :placeholder="textInputPlaceholder" 
+              @input="(event)=>$emit('input-text', event.target.value)"
+              :disabled="textInputDisabled"
             />
           </div>
         </div>
@@ -49,6 +50,7 @@ export default {
     value: { type: [String, Array, Number, Date], default: '' },
     textInput: { type: Boolean, default: false },
     textInputPlaceholder: { type: String, default: '' },
+    textInputDisabled: { type: Boolean, default: false }
   },
   emits: [ 'input', 'input-text' ]
 }

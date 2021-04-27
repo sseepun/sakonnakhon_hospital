@@ -1,3 +1,6 @@
+<style scoped>
+.popup-container.lg .popup-box{max-width: 60rem;}
+</style>
 <template>
   <Topnav :userRole="userRole" />
 
@@ -23,8 +26,7 @@
             </div>
             <div class="btns show-mobile">
               <Button 
-                text="แบบฟอร์มขอยืม" classer="btn-color-01 btn-sm" :append="true" icon="chev-down-white.svg" 
-                @clicked="isOpenedOptions = !isOpenedOptions"
+                text="แบบฟอร์มขอยืม" classer="btn-color-01 btn-sm" href="/user/slide-add"
               />
             </div>
           </div>
@@ -73,16 +75,137 @@
       </div>
     </div>
   </section>
+   <!-- Alert Popup -->
+  <div class="popup-container lg" :class="{ 'active': isModalOpen }">
+    <div class="wrapper">
+    <div class="close-filter" @click="isModalOpen = !isModalOpen"></div>
+    <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box">
+        <div class="header">
+            <div class="btns mt-0">
+            <a href="javascript:" class="btn btn-close" @click="isModalOpen = !isModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+            </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
+              </div>
+              <div class="btns hide-mobile">
+                <Button 
+                  text="ไม่อนุมัติการยืม"
+                  classer="btn-color-06 mr-3" :prepend="true" icon="cross-white.svg" 
+                  @click="() => {
+                    approve = 'ไม่อนุมัติ';
+                    confirmAlert = !confirmAlert;
+                    isModalOpen = !isModalOpen;
+                  }"
+                />
+                <Button 
+                  type="submit" text="อนุมัติการยืม"
+                  classer="btn-color-01" :prepend="true" icon="check-white.svg" 
+                  @click="() => {
+                    approve = 'อนุมัติ';
+                    confirmAlert = !confirmAlert;
+                    isModalOpen = !isModalOpen;
+                  }"
+                />
+              </div>
+              <div class="btns ws-nowrap show-mobile">
+                <Button text="ไม่อนุมัติ" classer="btn-color-06 btn-sm mr-1" />
+                <Button type="submit" text="อนุมัติ" classer="btn-color-01 btn-sm" />
+              </div>
+            </div>
+        </div>
+        <div class="body pt-4 pb-5">
+          <div class="grids">
 
-  <PopupOptions 
-    :isOpenedOptions="isOpenedOptions" 
-    @clicked="isOpenedOptions = !isOpenedOptions"
-    :options="[
-      { text: 'ลงทะเบียนส่งตรวจเซลล์วิทยา', icon: 'plus.svg', href: '/user/case-cytology-add' },
-      { text: 'ลงทะเบียนส่งตรวจชิ้นเนื้อ', icon: 'plus.svg', href: '/user/case-biopsy-add' }
-    ]"
-  />
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="ชื่อแพทย์ผู้รักษา" value="นพ. นันทวัน หอมประเสริฐสุข" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
+            </div>
+            
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
+            </div>
+            <div class="grid lg-25 md-2-3">
+              <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
+            </div>
 
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
+            </div>
+            <div class="grid lg-50 md-1-3">
+              <FormGroup type="plain" label="หมายเหตุ" value="Congue dictum urna tortor ipsum nisi velit urna." />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="ชื่อผู้ป่วย" value="นาย อานนท์ สงศามณีวัล" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เลขที่สไลด์" value="S20-0001" />
+            </div>
+            <div class="grid lg-50 md-1-3">
+              <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
+            </div>
+
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
+            </div>
+          </div>
+        </div>
+        </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- Alert Popup -->
+  <div class="popup-container" :class="{ 'active': confirmAlert }">
+    <div class="wrapper">
+      <div class="close-filter" @click="confirmAlert = !confirmAlert"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onSubmitProfile">
+        <div class="popup-box">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="confirmAlert = !confirmAlert">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ยืนยันการ{{ approve }}</h6>
+              </div>
+              <div class="btns">
+                <Button 
+                  text="ยืนยัน"
+                  :classer="approve == 'อนุมัติ' ? 'btn-color-01 hide-mobile': 'btn-color-06 hide-mobile'" 
+                />
+                <Button 
+                  text="ยืนยัน"
+                  :classer="approve == 'อนุมัติ' ? 'btn-color-01 btn-sm show-mobile' : 'btn-color-06 btn-sm show-mobile'"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="body pt-4 pb-5">
+            <p class="color-gray">หมายเหตุ</p>
+            <p class="mt-2">
+              คุณกำลัง{{ approve }}การยืมสไลด์/พาราฟินบล็อก ที่มีเลขที่สไลด์ S20-0001 กรุณากดปุ่มยืนยัน เพื่อ{{ approve }} การยืมดังกล่าว
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   <Topnav :userRole="userRole" :isBottom="true" />
 </template>
 
@@ -103,7 +226,9 @@ export default {
   data() {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
-      isOpenedOptions: false,
+      isModalOpen: false,
+      confirmAlert: false,
+      approve: '',
       columns1: [
         { key: 'slide_no', text: 'เลขที่สไลด์ / พาราฟินบล็อค' },
         { key: 'name', text: 'ชื่อ นามสกุล ผู้ยืม' },
@@ -172,8 +297,8 @@ export default {
           }
           :
           {
-            type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '/user/slide-approve',
-            iconPrepend: 'checkout.svg'
+            type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '#',
+            iconPrepend: 'checkout.svg', clickFn: () => {this.isModalOpen = !this.isModalOpen}
           } 
       });
      
@@ -304,6 +429,11 @@ export default {
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault();
+    }
   }
 }
 </script>

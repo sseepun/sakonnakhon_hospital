@@ -191,14 +191,14 @@
             <div class="grid xl-30 sm-100">
               <CheckboxSet 
                 label="*เกี่ยวกับคดี" name="is_case"
-                @input="dataset.iscase = $event"
+                @input="dataset.isCase = $event"
                 :options="[
                   { value: 1, text: 'มีคดี' },
                   { value: 2, text: 'ไม่มีคดี' }
                 ]"
-                :value="dataset.iscase"
-                :errorText="isValidated && !dataset.iscase? 'กรุณาระบุ': ''" 
-                :classer="isValidated && !dataset.iscase? 'error': ''"
+                :value="dataset.isCase"
+                :errorText="isValidated && !dataset.isCase? 'กรุณาระบุ': ''" 
+                :classer="isValidated && !dataset.isCase? 'error': ''"
                 :textInput="true"
                 :textInputPlaceholder="'ขับรถโดยประมาท'"
               />
@@ -213,6 +213,7 @@
                 ]"
                 :textInput="true"
                 :textInputPlaceholder="'โปรดระบุ'"
+                :textInputDisabled="dataset.disease != 1"
               />
             </div>
             <div class="grid xl-30 sm-100">

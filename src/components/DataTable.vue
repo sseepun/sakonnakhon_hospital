@@ -99,6 +99,7 @@
                 <a v-if="row[col.key].type == 'link'" 
                   class="d-flex ai-center" :class="row[col.key].classer" 
                   :href="row[col.key].href"
+                  @click="row[col.key].clickFn"
                 >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                   <img v-if="row[col.key].iconPrepend" class="icon prepend"

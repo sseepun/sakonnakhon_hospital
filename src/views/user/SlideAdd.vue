@@ -131,6 +131,15 @@
                 type="text" label="หมายเหตุ" name="note" placeholder="รายละเอียดเพิ่มเติม"
               />
             </div>
+
+            <div class="sep"></div>
+            
+            <div class="grid xl-1-3 md-2-3 sm-100 xs-100">
+              <FormGroup 
+                type="file" label="*อัปโหลดเอกสารเพื่อยืนยันตัวตน" name="file"
+                :icon="'upload.svg'"
+              />
+            </div>
           </div>
         </div>
       </form>
