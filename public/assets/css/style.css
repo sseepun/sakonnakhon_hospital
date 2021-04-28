@@ -152,6 +152,11 @@ p, .p{font-size:1rem;} p.sm, .p.sm{font-size:.875rem;}
 }
 .btn.btn-color-09:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
 .btn.btn-color-09:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+.btn.btn-color-10, .btn.btn-color-10:focus{
+    color:#BC4A4A; background:#ffffff; border-color:#BC4A4A;
+}
+.btn.btn-color-10:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-10:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
 .btn > .icon-append, .btn > .icon-prepend{
     display:inline-block; height:1.5rem; width:auto; margin:-.5rem -.25rem 0 .5rem;
     transform:translateY(.375rem);

@@ -1,3 +1,15 @@
+<style scoped>
+  .btn-chev { display:flex; cursor:pointer; filter: grayscale(100%);}
+  .btn-chev.disabled{ filter: grayscale(100%); opacity: .75; pointer-events: none;}
+  .chev-wrappers {display: block; width: 1.75rem; }
+  .btn-chev img {width: 1.75rem; height: auto; }
+  .btn-chev:hover, .btn-chev:focus{ filter: grayscale(0); }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  img.icon.lg { height: 1.5rem;}
+</style>
 <template>
 
   <!-- Table Options -->
@@ -156,6 +168,33 @@
                   <div v-else>
                     <span class="dot inactive"></span> Inactive
                   </div>
+                </div>
+
+                <div v-else-if="row[col.key].type == 'input'">
+                  <div class="d-flex ai-center">
+                    <input
+                      type="number" class="mr-1" ref="counter"
+                      :value="row[col.key].value"
+                      :min="row[col.key].min" 
+                      :max="row[col.key].max" 
+                      :step="row[col.key].step"
+                    />
+                    <div class="chev-wrappers">
+                      <a class="btn-chev" @click="addCounter(row[col.key].step, $event)">
+                        <img src="/assets/img/icon/caret-up.svg" alt="Image Icon" />
+                      </a>
+                      <a class="btn-chev" @click="removeCounter(row[col.key].step, $event)">
+                        <img src="/assets/img/icon/caret-down.svg" alt="Image Icon" />
+                      </a>
+                    </div>
+                  </div>
+                    
+                </div>
+
+                <div v-else-if="row[col.key].type == 'icon'">
+                  <a href="#">
+                    <img class="icon lg" :src="'/assets/img/icon/'+row[col.key].icon" alt="Image Icon" />
+                  </a>
                 </div>
 
                 <div v-else class="d-flex ai-center" :class="row[col.key].classer" 
@@ -447,7 +486,38 @@ export default {
         this.clearEditing();
         return this.$emit('row-edit', data);
       }
-    }
+    },
+
+    addCounter(step, event){
+      var counter = this.$refs.counter;
+      var btn = event.target.parentNode;
+      var parent = btn.parentNode;
+      if(parent.children[1].classList.contains('disabled')){
+        parent.children[1].classList.remove('disabled');
+      }
+      let val = Number(counter.value),
+          max = Number(counter.max);
+      var result = val + step > max ? max: val + step;
+      if (result == max){
+        btn.classList.add('disabled');
+      }
+      counter.value = result;
+    },
+    removeCounter(step, event){
+      var counter = this.$refs.counter;
+      var btn = event.target.parentNode;
+      var parent = btn.parentNode;
+      if(parent.children[0].classList.contains('disabled')){
+        parent.children[0].classList.remove('disabled');
+      }
+      let val = Number(counter.value),
+          min = Number(counter.min);
+      var result = val - step < min ? min: val - step;
+      if (result == min){
+        btn.classList.add('disabled');
+      }
+      counter.value = result;
+    },
   },
   created() {
     this.toggleGroup(-1);
@@ -455,6 +525,6 @@ export default {
       this.doOrder(this.orders[0].key);
     }
   },
-  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit' ]
+  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'inputChange' ]
 }
 </script>
