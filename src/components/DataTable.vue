@@ -111,7 +111,7 @@
                 <a v-if="row[col.key].type == 'link'" 
                   class="d-flex ai-center" :class="row[col.key].classer" 
                   :href="row[col.key].href"
-                  @click="row[col.key].clickFn"
+                  @click="()=> $emit('click-info')"
                 >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                   <img v-if="row[col.key].iconPrepend" class="icon prepend"
@@ -525,6 +525,6 @@ export default {
       this.doOrder(this.orders[0].key);
     }
   },
-  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'inputChange' ]
+  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'click-info' ]
 }
 </script>

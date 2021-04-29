@@ -1,9 +1,10 @@
 <style scoped>
   .total-cart{
-    display:inline-block; text-align:center; position:absolute; right:-1.75rem; 
+    display:inline-block; text-align:center; position:absolute;
     font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
     background-color:#BC4A4A; color:#ffffff;
   }
+.popup-container.lg .popup-box{max-width: 60rem;}
 </style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
@@ -56,13 +57,14 @@
         <div class="tab-contents" data-aos="fade-up" data-aos-delay="150">
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 0 }">
-            <DataTable 
+            <DataTable
               :columns="columns1" :rows="rows1" 
               :search="[ 'code', 'name', 'product', 'type', 'date' ]" 
               :orders="[
                 { key: 'date-desc', text: 'วันที่นำเข้า (ใหม่สุด)' },
                 { key: 'date-asc', text: 'วันที่นำเข้า (เก่าสุด)' },
               ]"
+              @click-info="infoModalOpen=!infoModalOpen"
             />
           </div>
           
@@ -257,7 +259,7 @@
             </div>
             <div class="header-wrapper">
               <div class="text-container">
-                <h6 class="h3">ตระกร้าสินค้า
+                <h6 class="h3">ตะกร้าสินค้า
                   <span class="total-cart">
                     {{ rows5.length }}
                   </span>
@@ -305,6 +307,88 @@
     </div>
   </div>
 
+  <!-- Info Modal -->
+  <div class="popup-container lg" :class="{ 'active': infoModalOpen }">
+    <div class="wrapper">
+    <div class="close-filter" @click="infoModalOpen = !infoModalOpen"></div>
+    <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
+      <div class="popup-box">
+        <div class="header">
+            <div class="btns mt-0">
+            <a href="javascript:" class="btn btn-close" @click="infoModalOpen = !infoModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+            </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">รายละเอียดสินค้า</h6>
+              </div>
+              <div class="btns">
+                  <Button 
+                    text="ลบ"
+                    classer="btn-color-06 hide-mobile mr-3" :prepend="true" icon="delete-white.svg" 
+                  />
+                  <Button 
+                    text="ลบ"
+                    classer="btn-color-06 btn-sm show-mobile mr-1"
+                  />
+
+                  <Button 
+                    text="แก้ไข" type="submit"
+                    classer="btn-color-01 hide-mobile mr-3" :prepend="true" icon="edit-white.svg" 
+                  />
+                  <Button 
+                    text="แก้ไข"
+                    classer="btn-color-01 btn-sm show-mobile mr-1"
+                  />
+              </div>
+            </div>
+        </div>
+        <div class="body pt-4 pb-5">
+          <div class="grids">
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เลขที่จัดซื้อ/จัดจ้าง" value="56200849" />
+            </div>
+            <div class="grid lg-50 md-1-3">
+              <FormGroup type="plain" label="ชื่ออุปกรณ์" value="ALLIS Intestinal Forceps, 4x5 Teeth 15 Cm." />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="วันที่นำเข้า" value="12/12/2563" />
+            </div>
+
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="ประเภท" value="อุปกรณ์ทางการแพทย์" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="ยี่ห้อ" value="Heal Force" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="บาร์โค้ด" value="16508537592841500" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="จำนวน" value="12 ชิ้น" />
+            </div>
+
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="บริษัท" value="บริษัท" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="Sale name" value="ณรงค์ฤทธิ์ พรมบุรี" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="เบอร์ติดต่อ" value="098-074-2870" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <FormGroup type="plain" label="อีเมล" value="narongrit.prom@gmail.com" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
@@ -327,6 +411,7 @@ export default {
       isValidated: false,
       addModalOpen: false,
       cartModalOpen: false,
+      infoModalOpen: false,
       dataset: {
         code: '',
         product: '',
@@ -424,7 +509,7 @@ export default {
           type: 'text', text: 'เครื่องมือแพทยทั่วไป'
         },
         product: { 
-          type: 'text', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา'
+          type: 'link', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา'
         },
         in_stock: { 
           type: 'text', text: '1' 

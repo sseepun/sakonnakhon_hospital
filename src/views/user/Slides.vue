@@ -40,12 +40,13 @@
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 0 }">
             <DataTable 
-              :columns="columns1" :rows="rows1" 
+              :columns="columns1" :rows="rows1"
               :search="[ 'slide_no', 'slide_type', 'date_borrow', 'name', 'agency', 'phone' ]" 
               :orders="[
                 { key: 'sent_date-desc', text: 'วันเวลาที่ยืม (ใหม่สุด)' },
                 { key: 'sent_date-asc', text: 'วันเวลาที่ยืม (เก่าสุด)' },
               ]"
+              @click-info="isModalOpen=!isModalOpen"
             />
           </div>
           
@@ -291,15 +292,15 @@ export default {
         phone: { 
           type: 'text', text: '02-22312398', 
         },
-        status: this.userRole == 'User' ? 
+        status: this.userRole == 'User' ?
           {
             type: 'tag', text: 'เสร็จสิ้น'
           }
           :
           {
             type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '#',
-            iconPrepend: 'checkout.svg', clickFn: () => {this.isModalOpen = !this.isModalOpen}
-          } 
+            iconPrepend: 'checkout.svg'
+          }
       });
      
       this.rows2.push({
