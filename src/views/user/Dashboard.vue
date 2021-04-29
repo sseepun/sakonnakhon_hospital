@@ -25,7 +25,7 @@
           <SpecialCard01 href="/user/slides" icon="lab-04.svg" text="Block/Slide" />
         </div>
         <div class="grid lg-1-3">
-          <SpecialCard01 href="/" icon="lab-05.svg" text="แบบสำรวจความพึงพอใจ" />
+          <SpecialCard01 href="/user/inventory" icon="lab-05.svg" text="แบบสำรวจความพึงพอใจ" />
         </div>
       </div>
     </div>

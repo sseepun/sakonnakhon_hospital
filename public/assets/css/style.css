@@ -374,6 +374,7 @@ fieldset{padding:0; margin:0; border:0;}
     display:block; position:relative; width:100%; max-width:38rem; overflow:hidden;
     margin:0 auto; background:#ffffff; border-radius:1rem;
 }
+.popup-container .popup-box.xl{max-width:60rem;}
 .popup-container .popup-box .btn-close{color:#6e6e6e;}
 .popup-container .popup-box .btn-close:hover{color:#BC4A4A;}
 .popup-container .popup-box > .header{

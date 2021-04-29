@@ -34,6 +34,8 @@
       <a href="/user/slide-add" target="_blank">/user/slide-add</a> <br>
       <a href="/user/slide-approve" target="_blank">/user/slide-approve</a> <br>
       <a href="/user/slide-return" target="_blank">/user/slide-return</a> <br>
+      <br>
+      <a href="/user/inventory" target="_blank">/user/inventory</a> <br>
     </div>
   </div>
 
