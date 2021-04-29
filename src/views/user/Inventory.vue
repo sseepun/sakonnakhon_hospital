@@ -1,3 +1,10 @@
+<style scoped>
+  .total-cart{
+    display:inline-block; text-align:center; position:absolute; right:-1.75rem; 
+    font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
+    background-color:#BC4A4A; color:#ffffff;
+  }
+</style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
 
@@ -17,24 +24,26 @@
             </div>
             <div class="btns hide-mobile">
               <Button 
-                href="/user/case-biopsy-add" text="ตระกร้าสินค้า" 
-                classer="btn-color-09 mr-3" :prepend="true" icon="shopping-bag-white.svg" 
+                text="ตะกร้าสินค้า" 
+                classer="btn-color-09 mr-3" :prepend="true" icon="shopping-bag-white.svg"
+                :cart="rows5.length"
+                @clicked="cartModalOpen = !cartModalOpen"
               />
               <Button 
                 text="เพิ่มสินค้าใหม่" 
                 classer="btn-color-01"
-                @clicked="isModalOpen = !isModalOpen"
+                @clicked="addModalOpen = !addModalOpen"
               />
             </div>
             <div class="btns ws-nowrap show-mobile">
               <Button 
                 text="" classer="btn-color-09 btn-sm bcolor-white mr-1" href="/user/inventory-add"
-                :prepend="true" icon="shopping-bag-white.svg" 
+                :prepend="true" icon="shopping-bag-white.svg" :cart="rows5.length"
               />
               <Button 
                 text="" classer="btn-color-09 btn-sm bcolor-white"
                 :prepend="true" icon="vdots.svg"
-                @clicked="isModalOpen = !isModalOpen"
+                @clicked="addModalOpen = !addModalOpen"
               />
             </div>
           </div>
@@ -95,8 +104,8 @@
     </div>
   </section>
 
-  <!-- Alert Popup -->
-  <div class="popup-container" :class="{ 'active': isModalOpen }">
+  <!-- Add Modal -->
+  <div class="popup-container" :class="{ 'active': addModalOpen }">
     <div class="wrapper">
       <div class="close-filter" @click="isModalOpen = !isModalOpen"></div>
       <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
@@ -233,6 +242,69 @@
     </div>
   </div>
 
+  <!-- Cart Modal -->
+  <div class="popup-container" :class="{ 'active': cartModalOpen }">
+    <div class="wrapper">
+    <div class="close-filter" @click="cartModalOpen = !cartModalOpen"></div>
+    <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
+      <div class="popup-box">
+        <div class="header">
+            <div class="btns mt-0">
+            <a href="javascript:" class="btn btn-close" @click="cartModalOpen = !cartModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+            </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ตระกร้าสินค้า
+                  <span class="total-cart">
+                    {{ rows5.length }}
+                  </span>
+                </h6>
+              </div>
+              <div class="btns">
+                  <Button 
+                    text="ยืมสินค้า" type="submit"
+                    classer="btn-color-01 hide-mobile mr-3" :prepend="true" icon="check-white.svg" 
+                  />
+                  <Button 
+                    text="ยืม"
+                    classer="btn-color-01 btn-sm show-mobile mr-1"
+                  />
+
+                  <Button 
+                    text="เบิกสินค้า" type="submit"
+                    classer="btn-color-09 hide-mobile mr-3" :prepend="true" icon="product.svg" 
+                  />
+                  <Button 
+                    text="เบิก"
+                    classer="btn-color-09 btn-sm show-mobile mr-1"
+                  />
+
+                  <Button 
+                    text="ล้างตะกร้า" type="submit"
+                    classer="btn-color-10 hide-mobile" :prepend="true" icon="delete.svg" 
+                  />
+                  <Button 
+                    text="ล้าง"
+                    classer="btn-color-10 btn-sm show-mobile mr-1"
+                  />
+              </div>
+            </div>
+        </div>
+        <div class="body pt-4 pb-5">
+          <DataTable 
+            :rows="rows5"
+            :columns="columns5"
+            :withOptions="false"
+          />
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
@@ -253,7 +325,8 @@ export default {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 4,
       isValidated: false,
-      isModalOpen: false,
+      addModalOpen: false,
+      cartModalOpen: false,
       dataset: {
         code: '',
         product: '',
@@ -311,7 +384,31 @@ export default {
         { key: 'end_date', text: 'วันที่คืน' },
         { key: 'duration', text: 'จำนวนเวลาทั้งหมด' }
       ],
-      rows4: []
+      rows4: [],
+
+      columns5: [
+        { key: 'code', text: 'รหัส' },
+        { key: 'type', text: 'ประเภท' },
+        { key: 'name', text: 'ชื่อสินค้า' },
+        { key: 'in_stock', text: 'คงเหลือ' },
+        { key: 'unit', text: 'หน่วย' },
+        { key: 'ea', text: 'ความต้องการ' },
+        { key: 'option', text: '' },
+      ],
+
+      rows5: [
+        {
+          code: { text: 'DX-52260985'},
+          type: { text: 'เครื่องมือแพทยทั่วไป'},
+          name: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...'},
+          in_stock: { text: '50'},
+          unit: { text: 'ถุง'},
+          ea: { type:'input', value: 15, min: 1, max:50, step: 1 },
+          option: {
+            type:'icon', icon: 'delete.svg'
+          }
+        }
+      ]
     }
   },
   created() {
