@@ -12,6 +12,7 @@
       <a href="/user/dashboard" target="_blank">/user/dashboard</a> <br>
       <br>
       <a href="/user/cases" target="_blank">/user/cases</a> <br>
+      <a href="/user/cells" target="_blank">/user/cells</a> <br>
       <a href="/user/case-biopsy-add" target="_blank">/user/case-biopsy-add</a> <br>
       <a href="/user/case-biopsy-custom-add" target="_blank">[validation] /user/case-biopsy-custom-add</a> <br>
       <a href="/user/case-biopsy-complete" target="_blank">/user/case-biopsy-complete</a> <br>

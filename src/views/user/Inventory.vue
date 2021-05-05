@@ -38,8 +38,9 @@
             </div>
             <div class="btns ws-nowrap show-mobile">
               <Button 
-                text="" classer="btn-color-09 btn-sm bcolor-white mr-1" href="/user/inventory-add"
+                text="" classer="btn-color-09 btn-sm bcolor-white mr-1"
                 :prepend="true" icon="shopping-bag-white.svg" :cart="rows5.length"
+                @clicked="cartModalOpen = !cartModalOpen"
               />
               <Button 
                 text="" classer="btn-color-09 btn-sm bcolor-white"
@@ -109,12 +110,12 @@
   <!-- Add Modal -->
   <div class="popup-container" :class="{ 'active': addModalOpen }">
     <div class="wrapper">
-      <div class="close-filter" @click="isModalOpen = !isModalOpen"></div>
+      <div class="close-filter" @click="addModalOpen = !addModalOpen"></div>
       <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
           <div class="popup-box xl">
             <div class="header">
                 <div class="btns mt-0">
-                <a href="javascript:" class="btn btn-close" @click="isModalOpen = !isModalOpen">
+                <a href="javascript:" class="btn btn-close" @click="addModalOpen = !addModalOpen">
                     <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                     ปิดหน้าต่าง
                 </a>
@@ -328,6 +329,10 @@
                   <Button 
                     text="ลบ"
                     classer="btn-color-06 hide-mobile mr-3" :prepend="true" icon="delete-white.svg" 
+                    @click="() => {
+                      deleteModalOpen=!deleteModalOpen
+                      infoModalOpen = !infoModalOpen
+                    }"
                   />
                   <Button 
                     text="ลบ"
@@ -389,6 +394,43 @@
     </div>
   </div>
 
+  <!-- Delete Modal -->
+  <div class="popup-container" :class="{ 'active': deleteModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="deleteModalOpen = !deleteModalOpen"></div>
+      <form action="/" method="GET" class="w-full"  @submit="(e) => e.preventDefault()">
+        <div class="popup-box">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="deleteModalOpen = !deleteModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ยกเลิก
+              </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ยืนยันการลบสินค้า</h6>
+              </div>
+              <div class="btns">
+                <Button type="submit" text="ยืนยัน" classer="btn-color-06" :prepend="true" icon="check-white.svg" />
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid sm-100">
+                <FormGroup
+                  label="หมายเหตุ" type="textarea" name="note"
+                  placeholder="กรุณาระบุหมายเหตุของการลบสินค้า" 
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
@@ -412,6 +454,7 @@ export default {
       addModalOpen: false,
       cartModalOpen: false,
       infoModalOpen: false,
+      deleteModalOpen: false,
       dataset: {
         code: '',
         product: '',

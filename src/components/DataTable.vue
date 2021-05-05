@@ -9,6 +9,8 @@
     margin: 0;
   }
   img.icon.lg { height: 1.5rem;}
+
+  tr.row-selected{ background-color: #ECFDF5;}
 </style>
 <template>
 
@@ -95,6 +97,7 @@
       <table class="table-section">
         <thead>
           <tr>
+            <th v-if="rowSelect"></th>
             <th v-for="col in columns" :key="col.key">
               {{col.text}}
             </th>
@@ -103,9 +106,16 @@
         <tbody v-if="selfRows.length">
 
           <tr v-for="(row, index) in selfRows" :key="index">
-
             <!-- Row Data -->
             <template v-if="index != editingIndex">
+              <!-- Newly added by Ton -->
+              <td v-if="rowSelect">
+                <input 
+                  type="checkbox" v-model="rowSelected" :value="{ data: row, index: index }"
+                  @input="selectRow($event)"
+                />
+              </td>
+
               <td v-for="col in columns" :key="col.key" :class="col.classer">
 
                 <a v-if="row[col.key].type == 'link'" 
@@ -169,7 +179,8 @@
                     <span class="dot inactive"></span> Inactive
                   </div>
                 </div>
-
+                
+                <!-- Newly added by Ton: used in Inventory component -->
                 <div v-else-if="row[col.key].type == 'input'">
                   <div class="d-flex ai-center">
                     <input
@@ -308,6 +319,7 @@ export default {
     columns: { type: Array, default: [] },
     rows: { type: Array, default: [] },
     withOptions: { type: Boolean, default: true },
+    rowSelect: { type: Boolean, default: false },
     page: { type: Number, default: 1 },
     pp: { type: Number, default: 10 },
     search: { type: Array, default: [] },
@@ -336,7 +348,10 @@ export default {
 
       editing: false,
       editingIndex: null,
-      editData: {}
+      editData: {},
+
+      // Newly added by Ton
+      rowSelected: []
     }
   },
   methods: {
@@ -487,7 +502,7 @@ export default {
         return this.$emit('row-edit', data);
       }
     },
-
+    // Newly added by Ton
     addCounter(step, event){
       var counter = this.$refs.counter;
       var btn = event.target.parentNode;
@@ -518,6 +533,15 @@ export default {
       }
       counter.value = result;
     },
+    selectRow(e){
+      var that = e.target,
+          row = that.parentNode.parentNode;
+      if(that.checked){
+        row.classList.add('row-selected');
+      }else{
+        row.classList.remove('row-selected');
+      }
+    }
   },
   created() {
     this.toggleGroup(-1);

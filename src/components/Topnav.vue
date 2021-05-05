@@ -31,7 +31,7 @@
           </a>
           <div class="dropdown">
             <div class="submenu">
-              <a href="/user/cases">
+              <a href="/user/cells">
                 <div class="icon">
                   <img src="/assets/img/icon/sun.svg" alt="Image Icon" />
                 </div>
