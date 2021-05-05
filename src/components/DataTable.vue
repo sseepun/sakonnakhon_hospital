@@ -105,14 +105,13 @@
         </thead>
         <tbody v-if="selfRows.length">
 
-          <tr v-for="(row, index) in selfRows" :key="index">
+          <tr v-for="(row, index) in selfRows" :key="index" :class="checkRowSelected(row.id) ? 'row-selected': ''">
             <!-- Row Data -->
             <template v-if="index != editingIndex">
               <!-- Newly added by Ton -->
               <td v-if="rowSelect">
                 <input 
-                  type="checkbox" v-model="rowSelected" :value="{ data: row, index: index }"
-                  @input="selectRow($event)"
+                  type="checkbox" v-model="rowSelected" :value="{ data: row, index: row.id }"
                 />
               </td>
 
@@ -533,14 +532,14 @@ export default {
       }
       counter.value = result;
     },
-    selectRow(e){
-      var that = e.target,
-          row = that.parentNode.parentNode;
-      if(that.checked){
-        row.classList.add('row-selected');
-      }else{
-        row.classList.remove('row-selected');
-      }
+    checkRowSelected(rowId){
+      var isSelected = false;
+      this.rowSelected.forEach(function(d){
+        if(d.index == rowId){
+          isSelected = true;
+        }
+      })
+      return isSelected;
     }
   },
   created() {
