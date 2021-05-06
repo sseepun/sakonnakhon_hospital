@@ -97,7 +97,6 @@ const routes = [
     component: () => import('../views/user/CaseResultRead.vue')
   },
 
-
   // User - Special Cases
   {
     path: '/user/special-case-add',
@@ -114,7 +113,6 @@ const routes = [
     name: 'UserSpecialCaseHistoryePage',
     component: () => import('../views/user/SpecialCaseHistory.vue')
   },
-
 
   // User - Slides
   {

@@ -1,17 +1,3 @@
-<style scoped>
-  .btn-chev { display:flex; cursor:pointer; filter: grayscale(100%);}
-  .btn-chev.disabled{ filter: grayscale(100%); opacity: .75; pointer-events: none;}
-  .chev-wrappers {display: block; width: 1.75rem; }
-  .btn-chev img {width: 1.75rem; height: auto; }
-  .btn-chev:hover, .btn-chev:focus{ filter: grayscale(0); }
-  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  img.icon.lg { height: 1.5rem;}
-
-  tr.row-selected{ background-color: #ECFDF5;}
-</style>
 <template>
 
   <!-- Table Options -->
@@ -103,16 +89,24 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="selfRows.length">
+        <tbody v-if="selfRows.length || allowAdd">
 
-          <tr v-for="(row, index) in selfRows" :key="index" :class="rowSelect && checkRowSelected(row.id) ? 'row-selected': ''">
+          <tr 
+            v-for="(row, index) in selfRows" :key="index" 
+            :class="rowSelect && checkRowSelected(row.id) ? 'row-selected': ''" 
+          >
             <!-- Row Data -->
             <template v-if="index != editingIndex">
-              <!-- Newly added by Ton -->
+              
               <td v-if="rowSelect">
-                <input 
-                  type="checkbox" v-model="rowSelected" :value="{ data: row, index: row.id }"
-                />
+                <div class="checkbox">
+                  <input 
+                    type="checkbox" v-model="rowSelected" :value="row.id" 
+                    :id="'datatable_'+randomId+'_'+index" :checked="checkRowSelected(row.id)" 
+                    @change="(event)=>$emit('check-click', rowSelected)"
+                  />
+                  <label :for="'datatable_'+randomId+'_'+index"></label>
+                </div>
               </td>
 
               <td v-for="col in columns" :key="col.key" :class="col.classer">
@@ -203,7 +197,7 @@
                 </div>
 
                 <div v-else-if="row[col.key].type == 'icon'">
-                  <a href="#">
+                  <a href="javascript:">
                     <img class="icon lg" :src="'/assets/img/icon/'+row[col.key].icon" alt="Image Icon" />
                   </a>
                 </div>
@@ -247,7 +241,7 @@
                 <button type="submit" class="btn-add-confirm">
                   <img src="/assets/img/icon/check-green-line.svg" alt="Image Icon" />
                 </button>
-                <a class="btn-add-close" href="#" @click="toggleEditing(null, null, null)">
+                <a class="btn-add-close" href="javascript:" @click="toggleEditing(null, null, null)">
                   <img src="/assets/img/icon/close-red.svg" alt="Image Icon" />
                 </a>
               </td>
@@ -258,7 +252,7 @@
           <!-- Row Add -->
           <tr v-if="allowAdd && !adding && Object.keys(addOptions).length">
             <td :colspan="columns.length" class="td-input-text">
-              <a class="btn-add color-01" href="#" @click="toggleAdding()">
+              <a class="btn-add color-01" href="javascript:" @click="toggleAdding()">
                 <div class="icon">
                   <img src="/assets/img/icon/plus.svg" alt="Image Icon" />
                 </div>
@@ -292,7 +286,7 @@
               <button type="submit" class="btn-add-confirm">
                 <img src="/assets/img/icon/check-green-line.svg" alt="Image Icon" />
               </button>
-              <a class="btn-add-close" href="#" @click="toggleAdding()">
+              <a class="btn-add-close" href="javascript:" @click="toggleAdding()">
                 <img src="/assets/img/icon/close-red.svg" alt="Image Icon" />
               </a>
             </td>
@@ -350,7 +344,6 @@ export default {
       editingIndex: null,
       editData: {},
 
-      // Newly added by Ton
       rowSelected: []
     }
   },
@@ -502,7 +495,7 @@ export default {
         return this.$emit('row-edit', data);
       }
     },
-    // Newly added by Ton
+    
     addCounter(step, event){
       var counter = this.$refs.counter;
       var btn = event.target.parentNode;
@@ -533,16 +526,9 @@ export default {
       }
       counter.value = result;
     },
+
     checkRowSelected(rowId){
-      var isSelected = false;
-      if(this.rowSelected){
-        this.rowSelected.forEach(function(d){
-          if(d.index == rowId){
-            isSelected = true;
-          }
-        });
-      }
-      return isSelected;
+      return this.rowSelected.indexOf(rowId) > -1;
     }
   },
   created() {
@@ -551,6 +537,10 @@ export default {
       this.doOrder(this.orders[0].key);
     }
   },
-  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'link-click' ]
+  emits: [ 
+    'click-edit', 'click-delete', 
+    'row-add', 'row-edit', 
+    'link-click', 'check-click'
+  ]
 }
 </script>

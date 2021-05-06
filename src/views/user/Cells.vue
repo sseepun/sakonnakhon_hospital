@@ -55,11 +55,12 @@
             <DataTable 
               :columns="columns2" :rows="rows2" 
               :search="[ 'sent_date', 'an', 'hn', 'name', 'card_type' ]" 
-              :rowSelect="true"
+              :rowSelect="true" 
               :orders="[
                 { key: 'sent_date-desc', text: 'วันเวลาที่รับบริการ (ใหม่สุด)' },
                 { key: 'sent_date-asc', text: 'วันเวลาที่รับบริการ (เก่าสุด)' }
-              ]"
+              ]" 
+              @check-click="selectedRow2($event)"
             />
           </div>
           
@@ -178,7 +179,6 @@ export default {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
 
     for(var i=0; i<7; i++){
-
       this.rows1.push({
         sent_date: {
           type: 'text', text: '07/11/2563, 08:53'
@@ -208,7 +208,6 @@ export default {
           type: 'tag', text: 'รอรับเข้าบริการ'
         }
       });
-
       this.rows1.push({
         sent_date: {
           type: 'text', text: '12/11/2563, 09:12'
@@ -240,7 +239,7 @@ export default {
       });
      
       this.rows2.push({
-        id: i+7,
+        id: i*2,
         sent_date: {
           type: 'text', text: '12/11/2563, 09:12'
         },
@@ -270,7 +269,7 @@ export default {
         }
       });
       this.rows2.push({
-        id: i,
+        id: i*2+1,
         sent_date: {
           type: 'text', text: '12/11/2563, 12:11'
         },
@@ -326,7 +325,6 @@ export default {
           type: 'text', text: 'นายเตธนันท์ วงศ์ปรีชาโชค',
         },
       });
-
       this.rows3.push({
         sent_date: {
           type: 'text', text: '13/11/2563, 09:34'
@@ -386,6 +384,11 @@ export default {
       });
     }
 
+  },
+  methods: {
+    selectedRow2(value) {
+      console.log(value)
+    }
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }

@@ -182,16 +182,19 @@ table.table-section .wrap-xl{max-width:16rem; min-width:10rem;}
 table.table-section .wrap-lg{max-width:13rem; min-width:10rem;}
 table.table-section .wrap-md{max-width:11rem; min-width:9rem;}
 table.table-section .wrap-sm{max-width:9rem; min-width:6rem;}
+table.table-section .wrap-xs{max-width:6rem; min-width:4rem;}
 table.table-section .wrap > div > div,
 table.table-section .wrap-2xl > div > div,
 table.table-section .wrap-xl > div > div,
 table.table-section .wrap-lg > div > div,
 table.table-section .wrap-md > div > div,
-table.table-section .wrap-sm > div > div{width:100%; text-overflow:ellipsis; overflow:hidden;}
+table.table-section .wrap-sm > div > div,
+table.table-section .wrap-xs > div > div{width:100%; text-overflow:ellipsis; overflow:hidden;}
 
 table.table-section .icon{
     display:block; height:.5625rem; width:auto; transform:translateY(-.0625rem);
 }
+table.table-section .icon.lg{height:1.5rem;}
 table.table-section .icon.prepend{margin:0 0 0 .4375rem;}
 table.table-section span.h{background:#FFF511;}
 
@@ -228,6 +231,33 @@ table.table-section .btn-add-confirm img,
 table.table-section .btn-add-close img{
     display:inline-block; height:1.5rem; width:auto; margin:.3125rem auto;
 }
+table.table-section input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
+
+table.table-section tr.row-selected{background:#ECFDF5;}
+
+table.table-section .checkbox{
+    position:relative; display:block; padding:0; margin:0 auto; cursor:pointer;
+}
+table.table-section .checkbox > input{
+    position:absolute!important; opacity:0!important; cursor:pointer;
+}
+table.table-section .checkbox > label{
+    display:block; width:.875rem; height:.875rem; cursor:pointer;
+}
+table.table-section .checkbox > input:checked + label{background:#ECFDF5; border-color:#047857;}
+table.table-section .checkbox > label::before, table.table-section .checkbox > label::after{
+    content:''; position:absolute; top:0; left:0; width:.75rem; height:.75rem;
+    border-radius:0; border:1px solid transparent; cursor:pointer;
+    transition:border-color .25s, opacity .25s, background .25s;
+}
+table.table-section .checkbox > label::before{background:#ffffff; border-color:#6e6e6e;}
+table.table-section .checkbox > input:checked + label::before{border-color:#047857;}
+table.table-section .checkbox > label::after{
+    background:url('../img/icon/check-green-square.svg') center/calc(140% + 2px) no-repeat;
+    opacity:0;
+}
+table.table-section .checkbox > input:checked + label::after{opacity:1;}
 
 
 /* Tab Container */

@@ -49,7 +49,7 @@
 
               />
             </div>
-            <div class="grid lg-15 md-1-3 xs-75">
+            <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
                 type="text" label="*เลขที่หนังสือ" name="book_no" placeholder="0192872" 
                 :value="dataset.bookNo" @input="dataset.bookNo = $event" 
@@ -57,7 +57,7 @@
                 :classer="isValidated && !dataset.bookNo? 'error': ''" 
               />
             </div>
-            <div class="grid lg-15 md-1-3 xs-75">
+            <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
                 type="datepicker" label="*วันที่หนังสือ" name="book_date" placeholder="01/01/2564"
                 :value="dataset.bookDate" @input="dataset.bookDate = $event" 
@@ -66,7 +66,7 @@
                 :classer="isValidated && !dataset.bookDate? 'error': ''" 
               />
             </div>
-            <div class="grid lg-25 md-1-3">
+            <div class="grid xl-25 lg-25 md-1-3">
               <FormGroup 
                 type="text" label="*เจ้าหน้าที่ผู้นำส่ง" name="staff_name" placeholder="ณรงค์ฤทธิ์ พรมบุรี"
                 :value="dataset.staffName" @input="dataset.staffName = $event" 
@@ -74,7 +74,7 @@
                 :classer="isValidated && !dataset.staffName? 'error': ''" 
               />
             </div>
-            <div class="grid lg-15 md-1-3 xs-75">
+            <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
                 type="text" label="เบอร์โทรติดต่อ" name="staff_phone" placeholder="0980742870"
                 :value="dataset.staffPhone" @input="dataset.staffPhone = $event" 
@@ -82,34 +82,37 @@
                 :classer="isValidated && !dataset.staffPhone? 'error': ''" 
               />
             </div>
-            <div class="grid lg-30 md-1-3">
+            <div class="grid xl-30 lg-25 md-1-3">
               <FormGroup type="text" label="หมายเหตุ" name="note" placeholder="กรุณากรอก" />
             </div>
-            <div class="grid lg-15 md-1-3 xs-75">
+            <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
-                type="text" label="*จำนวนราย" name="total_case" placeholder="2"
+                type="number" label="*จำนวนราย" name="total_case" placeholder="2" 
+                :min="0" :step="1" 
                 :value="dataset.totalCase" @input="dataset.totalCase = $event" 
                 :errorText="isValidated && !dataset.totalCase? 'กรุณาระบุ': ''" 
                 :classer="isValidated && !dataset.totalCase? 'error': ''" 
               />
             </div>
-            <div class="grid lg-15 md-1-3 xs-75">
+            <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
-                type="text" label="*จำนวน Block" name="total_block" placeholder="8"
+                type="number" label="*จำนวน Block" name="total_block" placeholder="8" 
+                :min="0" :step="1" 
                 :value="dataset.totalBlock" @input="dataset.totalBlock = $event" 
                 :errorText="isValidated && !dataset.totalBlock? 'กรุณาระบุ': ''" 
                 :classer="isValidated && !dataset.totalBlock? 'error': ''" 
               />
             </div>
-             <div class="grid lg-15 md-1-3 xs-75">
+             <div class="grid xl-15 lg-25 md-1-3 xs-75">
               <FormGroup 
-                type="text" label="*จำนวน Slide" name="total_slide" placeholder="16"
+                type="number" label="*จำนวน Slide" name="total_slide" placeholder="16" 
+                :min="0" :step="1" 
                 :value="dataset.totalSlide" @input="dataset.totalSlide = $event" 
                 :errorText="isValidated && !dataset.totalSlide? 'กรุณาระบุ': ''" 
                 :classer="isValidated && !dataset.totalSlide? 'error': ''" 
               />
             </div>
-            <div class="grid lg-25 md-40 sm-100">
+            <div class="grid xl-25 lg-30 md-50 sm-2-3">
               <FormGroup 
                 type="select" label="*ส่ง Lab" name="sent_lab" 
                 :options="[
@@ -120,8 +123,7 @@
                 :classer="isValidated && !dataset.lab? 'error': ''" 
               />
             </div>
-            
-            <div class="grid lg-30 md-40 sm-100 xs-75">
+            <div class="grid xl-30 lg-40 md-50 sm-2-3 xs-75">
               <FormGroup 
                 type="datepicker" label="*กำหนดวันที่รายงานผล (Due Date)"
                 name="date" placeholder="12/12/2563" wrapperClass="append"
@@ -133,43 +135,58 @@
             </div>
           </div>
         </div>
-        <div data-aos="fade-up" data-aos-delay="0">
-          <div class="section-px border-bottom">
+        
+        <div class="mt-3 mb-3" data-aos="fade-up" data-aos-delay="0">
+          <div class="section-px">
             <h6 class="h5">รายการส่งตรวจ</h6>
           </div>
-          <div class="mt-3">
-             <DataTable 
-              :columns="columns1" :rows="rows1" 
-              :withOptions="false"
+          <div class="mt-3 border-top bcolor-lgray">
+            <DataTable 
+              :rows="row" :key="row.length"
+              :columns="[
+                { key: 'prefix', text: 'คำนำหน้า'},
+                { key: 'name', text: '*ชื่อ นามสกุล', },
+                { key: 'hn', text: '*HN' },
+                { key: 'card_type', text: '*สิทธิการรักษา' },
+                { key: 'block_no', text: '*Block No.' },
+                { key: 'immuno', text: 'ลงรายการย้อม Immuno', classer: 'wrap-xs' },
+                { key: 'histo', text: 'ลงรายการย้อม Histo', classer: 'wrap-xs' },
+                { key: 'note', text: 'Note', classer: 'wrap-xs' },
+                { key: 'options', text: '' },
+              ]" 
+              :withOptions="false" 
+              :allowAdd="true" allowAddText="เพิ่มรายการส่งตรวจ"
               :addOptions="{
                 prefix: {
-                  type: 'select', required: true, value: 0,
-                  options: [ { value: 0, text: 'นาย'}, { value: 1, text: 'นาง'}, { value: 2, text: 'นางสาว'}  ]
+                  type: 'select', value: 1, required: true,
+                  options: [ { value: 1, text: 'นาย' }, { value: 2, text: 'นาง' }, { value: 3, text: 'นางสาว' } ]
                 },
-                name: { type: 'text' },
-                hn: { type: 'text' },
+                name: { type: 'text', value: '', placeholder: 'ชื่อ นามสกุล', required: true },
+                hn: { type: 'text', value: '', placeholder: '123456', required: true },
                 card_type: {
-                  type: 'select', required: true, value: 0,
-                  options: [ { value: 0, text: 'ประกันสังคม'}  ]
+                  type: 'select', value: 1, required: true,
+                  options: [ { value: 1, text: 'ประกันสังคม' } ]
                 },
-                block_no: { type: 'text' },
-                immuno: { type: 'text', placeholder: 'เลือกรายการย้อม'},
+                block_no: { type: 'text', value: '', placeholder: '00', required: true },
+                immuno: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
                 histo: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
-                note: { type: 'text', value: '', placeholder: 'เพิ่มเติม' },
+                note: { type: 'text', value: '', placeholder: 'เพิ่มเติม...' },
               }"
-              @click-delete="onListDelete($event)"
+              @row-add="onRowAdd($event)" 
+              @click-delete="onRowDeleting($event)" 
             />
           </div>
         </div>
+        
       </form>
     </div>
   </section>
 
-  <!-- Popup list -->
+  <!-- Popup Delete -->
   <div class="popup-container" :class="{ 'active': listPopupOpened }">
     <div class="wrapper">
       <div class="close-filter" @click="listPopupOpened = !listPopupOpened"></div>
-      <form action="/" method="GET" class="w-full"  @submit="onlistDelete">
+      <form action="/" method="GET" class="w-full"  @submit="onRowDelete">
         <div class="popup-box">
           <div class="header">
             <div class="btns mt-0">
@@ -225,67 +242,20 @@ export default {
       dataset: {
         case_type: 1,
         bookNo: '',
-        bookDate: '',
         staffName: '',
-        stafPhone: '',
-        note: '',
-        total_case: null,
-        total_block: null,
-        total_slide: null,
+        totalCase: null,
+        totalBlock: null,
+        totalSlide: null,
         lab: 9,
         selectedDate: ''
       },
-      columns1:[
-        { key: 'prefix', text: 'คำนำหน้า'},
-        { key: 'name', text: '*ชื่อ นามสกุล' },
-        { key: 'hn', text: '*HN' },
-        { key: 'card_type', text: '*สิทธิการรักษา' },
-        { key: 'block_no', text: '*Block No.' },
-        { key: 'immuno', text: 'ลงรายการย้อม Immuno' },
-        { key: 'histo', text: 'ลงรายการย้อม Histo' },
-        { key: 'note', text: 'Note' },
-        { key: 'options', text: '' },
-      ],
-      rows1: []
+
+      row: [],
+      deletingRowId: null
     }
   },
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
-
-    for(var i=0; i<7; i++){
-
-      this.rows1.push({
-        prefix: {
-          text: 'นาย', value: 0
-        },
-        name: { 
-          text: 'สิงโต ภูเขา' 
-        },
-        hn: { 
-          text: '245199'
-        },
-        card_type: {
-          text: 'ประกันสังคม', value: 0
-        },
-        block_no: {
-          text: 'P64-002C',
-        },
-        immuno: {
-          text: '-',
-        },
-        histo: {
-          text: '-',
-        },
-        note: {
-          text: '-',
-        },
-        options: {
-          type: 'options',
-          edit: { type: 'inline', id: 2 },
-          delete: { type: 'emit', id: 2 }
-        }
-      });
-    }
   },
   methods: {
     onSubmit(e) {
@@ -295,6 +265,7 @@ export default {
       var isValid = true;
       Object.keys(that.dataset).forEach(function(k){
         if(!that.dataset[k]){
+          console.log(k)
           isValid = false;
         }
       });
@@ -302,7 +273,31 @@ export default {
         e.preventDefault();
       }
     },
-    onListDelete(e) {
+
+    onRowAdd(value) {
+      this.row.push({
+        prefix: { text: 'นาย', value: value.prefix },
+        name: { text: value.name },
+        hn: { text: value.hn },
+        card_type: { text: 'ประกันสังคม', value: value.card_type },
+        block_no: { text: value.block_no },
+        immuno: { text: value.immuno },
+        histo: { text: value.histo },
+        note: { text: value.note },
+        options: {
+          type: 'options',
+          edit: { type: 'inline', id: this.row.length },
+          delete: { type: 'emit', id: this.row.length }
+        }
+      });
+    },
+    onRowDeleting(rowId) {
+      this.deletingRowId = rowId;
+      this.listPopupOpened = !this.listPopupOpened;
+    },
+    onRowDelete(e) {
+      e.preventDefault();
+      this.deletingRowId = null;
       this.listPopupOpened = !this.listPopupOpened;
     }
   }
