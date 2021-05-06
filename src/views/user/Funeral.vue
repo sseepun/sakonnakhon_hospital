@@ -133,7 +133,6 @@ export default {
         { key: 'death_record', text: 'วันเวลาเสียชีวิต' },
         { key: 'sent_building', text: 'ตึกที่ส่ง' },
         { key: 'status', text: 'สถานะ' },
-        { key: 'view_icon', text: '' },
       ],
       rows3: []
     }
@@ -290,11 +289,7 @@ export default {
         },
         status: {
           type: 'tag', text: 'จำหน่ายแล้ว', classer: 'ss-tag-purple'
-        },
-        view_icon: {
-          type: 'text',
-          iconPrepend: 'checkout.svg'
-        },
+        }
       });
 
       this.rows3.push({
@@ -324,11 +319,7 @@ export default {
         },
         status: {
           type: 'tag', text: 'ทำลายแล้ว', classer: 'ss-tag-danger'
-        },
-         view_icon: {
-          type: 'text',
-          iconPrepend: 'checkout.svg'
-        },
+        }
       });
 
     }

@@ -130,31 +130,31 @@ export default {
 
       this.rows1.push({
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'link', text: '20/11/2563, 14:05',
         },
         staff_name: { 
-          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', 
+          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-complete',
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1200',
+          type: 'link', text: '041550880 ต่อ 1200', href: '/user/special-case-complete',
         },
         note: {
-          type: 'text', text: 'B715/e',
+          type: 'link', text: 'B715/e', href: '/user/special-case-complete',
         },
         total_case: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/special-case-complete',
         },
         total_block: {
-          type: 'text', text: '8',
+          type: 'link', text: '8', href: '/user/special-case-complete',
         },
         total_slide: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/special-case-complete',
         },
         total: {
-          type: 'text', text: '3',
+          type: 'link', text: '3', href: '/user/special-case-complete',
         },
         sent_lab: {
-          type: 'text', text: 'N Health',
+          type: 'link', text: 'N Health', href: '/user/special-case-complete',
         },
         status: {
           type: 'tag', text: 'รอผลตรวจ'
@@ -162,31 +162,31 @@ export default {
       });
       this.rows1.push({
         sent_date: {
-          type: 'text', text: '18/11/2563, 08:44',
+          type: 'link', text: '18/11/2563, 08:44', href: '/user/special-case-complete',
         },
         staff_name: { 
-          type: 'text', text: 'ณรงค์ศักดิ์ พรหมมุณี',
+          type: 'link', text: 'ณรงค์ศักดิ์ พรหมมุณี', href: '/user/special-case-complete',
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1004',
+          type: 'link', text: '041550880 ต่อ 1004', href: '/user/special-case-complete',
         },
         note: {
-          type: 'text', text: 'B715/e',
+          type: 'link', text: 'B715/e', href: '/user/special-case-complete',
         },
         total_case: {
-          type: 'text', text: '1',
+          type: 'link', text: '1', href: '/user/special-case-complete',
         },
         total_block: {
-          type: 'text', text: '12',
+          type: 'link', text: '12', href: '/user/special-case-complete',
         },
         total_slide: {
-          type: 'text', text: '6',
+          type: 'link', text: '6', href: '/user/special-case-complete',
         },
         total: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/special-case-complete',
         },
         sent_lab: {
-          type: 'text', text: 'N Health',
+          type: 'link', text: 'N Health', href: '/user/special-case-complete',
         },
         status: {
           type: 'tag', text: 'รอผลตรวจ'
@@ -195,34 +195,34 @@ export default {
     
       this.rows2.push({
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'link', text: '20/11/2563, 14:05', href: '/user/special-case-history',
         },
         staff_name: { 
-          type: 'text', text: 'นันทวรรณ วิลิศมาหรา',
+          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-history',
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1200',
+          type: 'link', text: '041550880 ต่อ 1200', href: '/user/special-case-history',
         },
         note: {
-          type: 'text', text: 'B715/e',
+          type: 'link', text: 'B715/e', href: '/user/special-case-history',
         },
         total_case: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/special-case-history',
         },
         total_block: {
-          type: 'text', text: '8',
+          type: 'link', text: '8', href: '/user/special-case-history',
         },
         total_slide: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/special-case-history',
         },
         total: {
-          type: 'text', text: '3',
+          type: 'link', text: '3', href: '/user/special-case-history',
         },
         sent_lab: {
-          type: 'text', text: 'N Health',
+          type: 'link', text: 'N Health', href: '/user/special-case-history',
         },
         result:{
-          type: 'text', text: 'รายงานผล.pdf',
+          type: 'link', text: 'รายงานผล.pdf', href: '/user/special-case-history',
           iconPrepend: 'checkout.svg'
         },
         status: {
@@ -231,34 +231,34 @@ export default {
       });
       this.rows2.push({
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'text', text: '20/11/2563, 14:05', href: '/user/special-case-history',
         },
         staff_name: { 
-          type: 'text', text: 'นันทวรรณ วิลิศมาหรา',
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-history',
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1200',
+          type: 'text', text: '041550880 ต่อ 1200', href: '/user/special-case-history',
         },
         note: {
-          type: 'text', text: 'B715/e',
+          type: 'text', text: 'B715/e', href: '/user/special-case-history',
         },
         total_case: {
-          type: 'text', text: '2',
+          type: 'text', text: '2', href: '/user/special-case-history',
         },
         total_block: {
-          type: 'text', text: '8',
+          type: 'text', text: '8', href: '/user/special-case-history',
         },
         total_slide: {
-          type: 'text', text: '2',
+          type: 'text', text: '2', href: '/user/special-case-history',
         },
         total: {
-          type: 'text', text: '3',
+          type: 'text', text: '3', href: '/user/special-case-history',
         },
         sent_lab: {
-          type: 'text', text: 'N Health',
+          type: 'text', text: 'N Health', href: '/user/special-case-history',
         },
         result:{
-          type: 'text', text: '-',
+          type: 'text', text: '-', href: '/user/special-case-history',
         },
         status: {
           type: 'tag', text: 'ถูกยกเลิก'

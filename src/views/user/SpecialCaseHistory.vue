@@ -13,31 +13,10 @@
         </div>
         <div class="header-wrapper">
           <div class="text-container d-flex ai-center">
-            <h6 class="h3">รายละเอียดส่งตรวจพิเศษ/ย้อมพิเศษ/อณูพยาธิวิทยา</h6>
-            | <div class="ss-tag">รอผลตรวจ</div>
-          </div>
-          <div class="btns hide-mobile">
-            <Button 
-              text="แก้ไข" @click="cancelAlert=!cancelAlert"
-              classer="btn-color-06 mr-3" :prepend="true" icon="close-white.svg" 
-            />
-            <Button 
-              type="submit" text="เสร็จสิ้น" 
-              classer="btn-color-01" :prepend="true" icon="check-white.svg" 
-            />
-          </div>
-          <div class="btns ws-nowrap show-mobile">
-            <Button text="แก้ไข" href="#" classer="btn-color-06 btn-sm mr-1" />
-            <Button type="submit" text="เสร็จสิ้น" classer="btn-color-01 btn-sm" />
+            <h6 class="h3">ประวัติรายการส่งตรวจพิเศษ/ย้อมพิเศษ/อณูพยาธิวิทยา</h6>
+            | <div class="ss-tag">เสร็จสิ้น</div>
           </div>
         </div>
-      </div>
-
-      <div class="stripe stripe-warning section-px" data-aos="fade-up" data-aos-delay="150">
-        <img src="/assets/img/icon/alert-yellow.svg" alt="Image Icon" />
-        <p class="color-11">
-          หมายเหตุ: กรุณาตรวจสอบข้อมูลให้ถูกต้องครบถ้วนก่อนการส่งข้อมูล เพื่อประโยชน์แก่ผู้ป่วยและแพทย์ผู้ทำการรักษา
-        </p>
       </div>
 
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
@@ -113,14 +92,8 @@
       </div>
 
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+        <p class="color-gray mt-5">เอกสารรายงานผล</p>
         <div class="grids">
-          <div class="grid xl-40 lg-60 md-80 sm-100 xs-100">
-            <FormGroup 
-              type="file" label="*อัปโหลดเอกสารเพื่อยืนยันตัวตน" name="file"
-              :icon="'upload.svg'"
-            />
-          </div>
-          <div class="sep"></div>
           <div class="grid xl-40 lg-60 md-80 sm-100">
             <div class="d-flex jc-space-between">
               <div class="d-flex ai-center">
@@ -214,7 +187,7 @@ import SpecialCard02 from '../../components/SpecialCard02';
 import DataTable from '../../components/DataTable';
 
 export default {
-  name: 'SpecialCaseCompletePage',
+  name: 'SpecialCaseHistoryePage',
   components: {
     Topnav,
     SpecialCard02,

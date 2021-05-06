@@ -14,22 +14,34 @@
         <div class="header-wrapper">
           <div class="text-container d-flex ai-center">
             <h6 class="h3">รายละเอียดการดำเนินการศพ</h6>
-            | <div class="ss-tag ss-tag-purple">จำหน่ายแล้ว</div>
+            | <div class="ss-tag ss-tag-warning">รอการทำลาย</div>
           </div>
           <div class="btns hide-mobile">
             <Button 
-              text="พิมพ์ใบส่งตรวจ" href="#" 
-              classer="btn-color-05" :prepend="true" icon="printer-white.svg" 
+              text="พิมพ์ใบจำหน่ายศพ" href="#" 
+              classer="btn-color-03 mr-3" :prepend="true" icon="printer-white.svg" 
+            />
+            <Button 
+              text="บันทึก" href="#" 
+              classer="btn-color-01" :prepend="true" icon="check-white.svg" 
             />
           </div>
           <div class="btns show-mobile">
-            <Button type="submit" text="พิมพ์" classer="btn-color-05 btn-sm" />
+            <Button type="submit" text="พิมพ์" classer="btn-color-03 btn-sm mr-1" />
+            <Button type="submit" text="บันทึก" classer="btn-color-01 btn-sm" />
           </div>
         </div>
       </div>
 
+      <div class="stripe stripe-warning section-px" data-aos="fade-up" data-aos-delay="150">
+        <img src="/assets/img/icon/alert-yellow.svg" alt="Image Icon" />
+        <p class="color-11">
+          หมายเหตุ: กรุณาตรวจสอบข้อมูลให้ถูกต้องครบถ้วนก่อนการส่งข้อมูล เพื่อประโยชน์แก่ผู้ป่วยและแพทย์ผู้ทำการรักษา
+        </p>
+      </div>
+
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
-        <p class="fw-400" style="white-space:nowrap;">ข้อมูลส่งตรวจ</p>
+        <p class="fw-400" style="white-space:nowrap;">ข้อมูลผู้เสียชีวิต</p>
         <p class="color-gray text-right">ID : FI63-01526</p>
       </div>
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
@@ -47,7 +59,7 @@
           <div class="grid xl-15 lg-20 md-1-3">
             <FormGroup type="plain" label="ชื่อ นามสกุล" value="พัชราพร วัฒนาไพศาล" />
           </div>
-          <div class="grid xl-15 lg-20 md-1-3">
+          <div class="grid xl-15 lg-20 md-1-3 xs-50">
             <FormGroup type="plain" label="เพศ" value="หญิง" />
           </div>
            <div class="grid xl-15 lg-20 md-1-3">
@@ -70,7 +82,7 @@
           <div class="grid xl-15 lg-20 md-1-3">
             <FormGroup type="plain" label="สถานะการบริจาคร่างกาย" value="--" />
           </div>
-          <div class="grid xl-25 lg-20 md-1-3">
+          <div class="grid xl-15 lg-20 md-1-3">
             <FormGroup type="plain" label="โรงพยาบาลที่ลงทะเบียน" value="--" />
           </div>
 
@@ -128,48 +140,54 @@
       </div>
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
-          <div class="grid lg-15 md-1-3 xs-50">
-            <FormGroup type="plain" label="ใบเสร็จเล่มที่" value="089005" />
+          <div class="grid lg-20 md-1-3 xs-50">
+            <FormGroup type="text" label="ใบเสร็จเล่มที่" value="089005" />
           </div>
-          <div class="grid lg-15 md-1-3 xs-50">
-            <FormGroup type="plain" label="เลขที่" value="​408" />
+          <div class="grid lg-20 md-1-3 xs-50">
+            <FormGroup type="text" label="เลขที่" value="​408" />
           </div>
-          <div class="grid lg-15 md-1-3 xs-50">
-            <FormGroup type="plain" label="วันที่รับศพเข้าสถานเก็บศพ" value="01/11/2564" />
+          <div class="grid lg-20 md-1-3 xs-50">
+            <FormGroup type="datepicker" label="*วันที่รับศพเข้าสถานเก็บศพ" placeholder="01/11/2564" />
           </div>
-           <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="ชื่อเจ้าหน้าที่ตำรวจ" value="รทอ. ณรงค์ฤทธิ์ พรมบุรี" />
+           <div class="grid lg-20 md-1-3">
+            <FormGroup type="text" label="*ชื่อเจ้าหน้าที่ตำรวจ" value="พอ. จริงใจ แสนเท่" />
           </div>
-          <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="การจัดการศพ" value="จำหน่ายศพทันที" />
+          <div class="grid sm-100">
+            <CheckboxSet 
+                label="การจัดการศพ" :value="4" :name="'radio_1'"
+                :options="[
+                  { value: 1, text: 'จำหน่ายศพทันที' },
+                  { value: 2, text: 'รอจำหน่าย' },
+                  { value: 3, text: 'เก็บรักษา' },
+                  { value: 4, text: 'รอการทำลาย' }
+                ]"
+              />
           </div>
         </div>
       </div>
 
 
       <div class="d-flex jc-space-between stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
-        <p class="fw-400" style="white-space:nowrap;">จำหน่ายศพ</p>
-        <p class="color-gray text-right">เลขที่รับศพ : B20-0001</p>
+        <p class="fw-400" style="white-space:nowrap;">ทำลายศพ</p>
       </div>
       <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
-          <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="ชื่อผู้รับศพ" value="เยาวเรศ พรมบุรี" />
+          <div class="grid lg-30 md-1-3">
+            <FormGroup type="text" label="รายละเอียดการทำลาย" value="รายละเอียดเพิ่มเติม" />
           </div>
-          <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="ความสัมพันธ์กับผู้เสียชีวิต" value="มารดา" />
+          <div class="grid lg-20 md-1-3">
+            <FormGroup type="datepicker" label="วันที่ทำลาย" placeholder="01/12/2563" />
           </div>
-          <div class="grid lg-15 md-1-3 xs-50">
-            <FormGroup type="plain" label="เลขที่บัตรประชาชน" value="1-5004-88045-10-7" />
+          <div class="grid lg-20 md-1-3 xs-50">
+            <FormGroup type="text" label="เวลาทำลาย" value="12:40" />
           </div>
-           <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="เบอร์โทรติดต่อ" value="098-074-2870" />
-          </div>
-          <div class="grid lg-15 md-1-3">
-            <FormGroup type="plain" label="วันเวลาที่รับศพ" value="01/12/2563" />
-          </div>
-          <div class="grid lg-25 md-1-3">
-            <FormGroup type="plain" label="ชื่อผู้จำหน่ายศพ" value="สมิหลา ณ สกลนคร" />
+           <div class="grid lg-20 md-1-3">
+            <CheckboxSet 
+                label="การจัดการศพ" :value="1"
+                :options="[
+                  { value: 1, text: 'ทำลายศพเสร็จสิ้น' },
+                ]"
+              />
           </div>
         </div>
       </div>
@@ -185,7 +203,7 @@ import SpecialCard02 from '../../components/SpecialCard02';
 import DataTable from '../../components/DataTable';
 
 export default {
-  name: 'FuneralCompletePage',
+  name: 'FuneralComplete2Page',
   components: {
     Topnav,
     SpecialCard02,

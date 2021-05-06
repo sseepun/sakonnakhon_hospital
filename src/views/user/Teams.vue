@@ -1,3 +1,6 @@
+<style scoped>
+.popup-container.lg .popup-box {max-width: 60rem;}
+</style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
 
@@ -17,14 +20,15 @@
             </div>
             <div class="btns hide-mobile">
               <Button 
-                href="/user/case-biopsy-add" text="ลงชื่อเข้าทำงาน" 
-                classer="btn-color-01" :prepend="true" icon="exit-white.svg" 
+                text="ลงชื่อเข้าทำงาน" 
+                classer="btn-color-01" :prepend="true" icon="exit-white.svg"
+                @click="() => checkInModalOpen = !checkInModalOpen"
               />
             </div>
             <div class="btns show-mobile">
               <Button 
-                text="ลงทะเบียน" classer="btn-color-01 btn-sm" :append="true" icon="chev-down-white.svg" 
-                @clicked="isOpenedOptions = !isOpenedOptions"
+                text="ลงชื่อเข้า" classer="btn-color-01 btn-sm"
+                @clicked="checkInModalOpen = !checkInModalOpen"
               />
             </div>
           </div>
@@ -74,21 +78,48 @@
     </div>
   </section>
 
-  <PopupOptions 
-    :isOpenedOptions="isOpenedOptions" 
-    @clicked="isOpenedOptions = !isOpenedOptions"
-    :options="[
-      { text: 'ลงทะเบียนส่งตรวจเซลล์วิทยา', icon: 'plus.svg', href: '/user/case-cytology-add' },
-      { text: 'ลงทะเบียนส่งตรวจชิ้นเนื้อ', icon: 'plus.svg', href: '/user/case-biopsy-add' }
-    ]"
-  />
+
+  <!-- Check in Popup -->
+  <div class="popup-container lg" :class="{ 'active': checkInModalOpen }">
+    <div class="wrapper">
+    <div class="close-filter" @click="checkInModalOpen = !checkInModalOpen"></div>
+    <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box">
+        <div class="header">
+            <div class="btns mt-0">
+            <a href="javascript:" class="btn btn-close" @click="checkInModalOpen = !checkInModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+            </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ลงชื่อเข้าทำงาน</h6>
+              </div>
+              <div class="btns hide-mobile">
+                <Button 
+                  type="submit" text="ลงชื่อเข้าทำงาน"
+                  classer="btn-color-01" :prepend="true" icon="check-white.svg" 
+                />
+              </div>
+              <div class="btns ws-nowrap show-mobile">
+                <Button type="submit" text="ลงชื่อเข้า" classer="btn-color-01 btn-sm" />
+              </div>
+            </div>
+        </div>
+        <div class="body pt-4 pb-5">
+          
+        </div>
+        </div>
+    </form>
+    </div>
+  </div>
 
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
 <script>
 import Topnav from '../../components/Topnav';
-import PopupOptions from '../../components/PopupOptions';
 import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
 
@@ -96,7 +127,6 @@ export default {
   name: 'UserTeamsPage',
   components: {
     Topnav,
-    PopupOptions,
     Tabs01,
     DataTable
   },
@@ -104,7 +134,7 @@ export default {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 3,
-      isOpenedOptions: false,
+      checkInModalOpen: false,
 
       columns1: [
         { key: 'code', text: 'รหัสพนักงาน' },

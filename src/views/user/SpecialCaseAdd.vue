@@ -157,12 +157,47 @@
                 histo: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
                 note: { type: 'text', value: '', placeholder: 'เพิ่มเติม' },
               }"
+              @click-delete="onListDelete($event)"
             />
           </div>
         </div>
       </form>
     </div>
   </section>
+
+  <!-- Popup list -->
+  <div class="popup-container" :class="{ 'active': listPopupOpened }">
+    <div class="wrapper">
+      <div class="close-filter" @click="listPopupOpened = !listPopupOpened"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onlistDelete">
+        <div class="popup-box">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="listPopupOpened = !listPopupOpened">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ยืนยันการลบ</h6>
+              </div>
+              <div class="btns">
+                <Button text="ยกเลิก" classer="btn-color-03 mr-1" @click="listPopupOpened = !listPopupOpened" />
+                <Button type="submit" text="ลบ" classer="btn-color-06" />
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <p class="color-gray">หมายเหตุ</p>
+            <p class="mt-2">
+              คุณต้องการที่จะลบข้อมูลนี้ ใช่หรือไม่ ? หากลบแล้ว รายการนี้จะไม่สามารถกู้คืนได้
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <Topnav :userRole="userRole" :isBottom="true" />
 </template>
@@ -186,6 +221,7 @@ export default {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
 
       isValidated: false,
+      listPopupOpened: false,
       dataset: {
         case_type: 1,
         bookNo: '',
@@ -265,6 +301,9 @@ export default {
       if(!isValid){
         e.preventDefault();
       }
+    },
+    onListDelete(e) {
+      this.listPopupOpened = !this.listPopupOpened;
     }
   }
 }

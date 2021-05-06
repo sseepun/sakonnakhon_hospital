@@ -105,7 +105,7 @@
         </thead>
         <tbody v-if="selfRows.length">
 
-          <tr v-for="(row, index) in selfRows" :key="index" :class="checkRowSelected(row.id) ? 'row-selected': ''">
+          <tr v-for="(row, index) in selfRows" :key="index" :class="rowSelect && checkRowSelected(row.id) ? 'row-selected': ''">
             <!-- Row Data -->
             <template v-if="index != editingIndex">
               <!-- Newly added by Ton -->
@@ -120,7 +120,7 @@
                 <a v-if="row[col.key].type == 'link'" 
                   class="d-flex ai-center" :class="row[col.key].classer" 
                   :href="row[col.key].href"
-                  @click="()=> $emit('click-info')"
+                  @click="row[col.key].clickFn"
                 >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                   <img v-if="row[col.key].iconPrepend" class="icon prepend"
@@ -130,6 +130,7 @@
 
                 <div v-else-if="row[col.key].type == 'tag'" 
                   class="ss-tag" :class="row[col.key].classer"
+                  @click="row[col.key].clickFn"
                 >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                 </div>
@@ -534,11 +535,13 @@ export default {
     },
     checkRowSelected(rowId){
       var isSelected = false;
-      this.rowSelected.forEach(function(d){
-        if(d.index == rowId){
-          isSelected = true;
-        }
-      })
+      if(this.rowSelected){
+        this.rowSelected.forEach(function(d){
+          if(d.index == rowId){
+            isSelected = true;
+          }
+        });
+      }
       return isSelected;
     }
   },
@@ -548,6 +551,6 @@ export default {
       this.doOrder(this.orders[0].key);
     }
   },
-  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'click-info' ]
+  emits: [ 'click-edit', 'click-delete', 'row-add', 'row-edit', 'add-input', 'link-click' ]
 }
 </script>

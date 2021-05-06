@@ -26,6 +26,7 @@
       <a href="/user/special-cases" target="_blank">/user/special-cases</a> <br>
       <a href="/user/special-case-add" target="_blank">/user/special-case-add</a> <br>
       <a href="/user/special-case-complete" target="_blank">/user/special-case-complete</a> <br>
+      <a href="/user/special-case-history" target="_blank">/user/special-case-history</a> <br>
       <br>
       <a href="/user/funeral" target="_blank">/user/funeral</a> <br>
       <a href="/user/funeral-add" target="_blank">/user/funeral-add</a> <br>

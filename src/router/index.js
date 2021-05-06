@@ -109,6 +109,12 @@ const routes = [
     name: 'UserSpecialCaseCompletePage',
     component: () => import('../views/user/SpecialCaseComplete.vue')
   },
+  {
+    path: '/user/special-case-history',
+    name: 'UserSpecialCaseHistoryePage',
+    component: () => import('../views/user/SpecialCaseHistory.vue')
+  },
+
 
   // User - Slides
   {
@@ -137,6 +143,11 @@ const routes = [
     path: '/user/funeral-complete',
     name: 'UserFuneralCompletePage',
     component: () => import('../views/user/FuneralComplete.vue')
+  },
+  {
+    path: '/user/funeral-complete-2',
+    name: 'UserFuneralComplete2Page',
+    component: () => import('../views/user/FuneralComplete2.vue')
   },
 
   // User - Team Pages
