@@ -1,5 +1,6 @@
 <style scoped>
 .popup-container.lg .popup-box {max-width: 60rem;}
+.check-all, .chcek-all > * { display: inline-block; }
 </style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
@@ -97,17 +98,58 @@
                 <h6 class="h3">ลงชื่อเข้าทำงาน</h6>
               </div>
               <div class="btns hide-mobile">
+                <div class="check-all mr-4">
+                  <input 
+                    type="checkbox" class="mr-2" name="select_all" 
+                    @change="selectAll=!selectAll"
+                  />
+                  <label for="select_all">เลือกทั้งหมด</label>
+                </div>
                 <Button 
                   type="submit" text="ลงชื่อเข้าทำงาน"
                   classer="btn-color-01" :prepend="true" icon="check-white.svg" 
                 />
               </div>
               <div class="btns ws-nowrap show-mobile">
+                <div class="check-all mr-3">  
+                  <input 
+                    type="checkbox" class="mr-2" name="select_all"
+                    @change="selectAll=!selectAll"
+                    :checked="selectAll"
+                  />
+                  <label for="select_all">เลือกทั้งหมด</label>
+                </div>
                 <Button type="submit" text="ลงชื่อเข้า" classer="btn-color-01 btn-sm" />
               </div>
             </div>
         </div>
         <div class="body pt-4 pb-5">
+          <div class="grids">
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-03.svg" text="Embedding" :isSelected="selectAll"  />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-06.svg" text="Section" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-07.svg" text="ย้อมสี" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-02.svg" text="พิมพ์ Gross" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-08.svg" text="Screening" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-09.svg" text="แปลผล" :isSelected="selectAll" />
+            </div>
+            <div class="grid lg-25 md-1-3">
+              <SpecialCard04 icon="lab-10.svg" text="รายงานผล" :isSelected="selectAll" />
+            </div>
+          </div>
           
         </div>
         </div>
@@ -122,20 +164,22 @@
 import Topnav from '../../components/Topnav';
 import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
+import SpecialCard04 from '../../components/SpecialCard04';
 
 export default {
   name: 'UserTeamsPage',
   components: {
     Topnav,
     Tabs01,
-    DataTable
+    DataTable,
+    SpecialCard04
   },
   data() {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 3,
       checkInModalOpen: false,
-
+      selectAll: false,
       columns1: [
         { key: 'code', text: 'รหัสพนักงาน' },
         { key: 'name', text: 'ชื่อ นามสกุล' },
