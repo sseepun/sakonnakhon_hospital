@@ -110,8 +110,13 @@ const routes = [
   },
   {
     path: '/user/special-case-history',
-    name: 'UserSpecialCaseHistoryePage',
+    name: 'UserSpecialCaseHistoryPage',
     component: () => import('../views/user/SpecialCaseHistory.vue')
+  },
+  {
+    path: '/user/special-case-rejected',
+    name: 'UserSpecialCaseRejectedPage',
+    component: () => import('../views/user/SpecialCaseRejected.vue')
   },
 
   // User - Slides

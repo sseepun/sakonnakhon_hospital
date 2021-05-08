@@ -39,7 +39,7 @@
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
         <p class="fw-400">ข้อมูลผู้ป่วย</p>
       </div>
-      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+      <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
         <form action="/" method="GET" @submit="onSubmit">
           <div class="grids">
             <div class="grid xl-60 sm-100">

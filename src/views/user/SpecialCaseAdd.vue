@@ -7,7 +7,7 @@
 
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
-            <a href="/user/cases" class="btn color-gray h-color-01">
+            <a href="/user/special-cases" class="btn color-gray h-color-01">
               <img class="icon-prepend xs" src="/assets/img/icon/chev-left.svg" alt="Image Icon" />
               ย้อนกลับ
             </a>
@@ -35,7 +35,7 @@
           </p>
         </div>
 
-        <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+        <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
           <div class="grids">
             <div class="grid sm-100">
               <CheckboxSet 
@@ -136,12 +136,13 @@
           </div>
         </div>
         
-        <div class="mt-3 mb-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="mt-3" data-aos="fade-up" data-aos-delay="0">
           <div class="section-px">
             <h6 class="h5">รายการส่งตรวจ</h6>
           </div>
           <div class="mt-3 border-top bcolor-lgray">
             <DataTable 
+              classer="space-bottom"
               :rows="row" :key="row.length"
               :columns="[
                 { key: 'prefix', text: 'คำนำหน้า'},
@@ -149,8 +150,8 @@
                 { key: 'hn', text: '*HN' },
                 { key: 'card_type', text: '*สิทธิการรักษา' },
                 { key: 'block_no', text: '*Block No.' },
-                { key: 'immuno', text: 'ลงรายการย้อม Immuno', classer: 'wrap-xs' },
-                { key: 'histo', text: 'ลงรายการย้อม Histo', classer: 'wrap-xs' },
+                { key: 'immuno', text: 'ลงรายการย้อม Immuno', classer: 'new-line' },
+                { key: 'histo', text: 'ลงรายการย้อม Histo', classer: 'new-line' },
                 { key: 'note', text: 'Note', classer: 'wrap-xs' },
                 { key: 'options', text: '' },
               ]" 
@@ -158,18 +159,31 @@
               :allowAdd="true" allowAddText="เพิ่มรายการส่งตรวจ"
               :addOptions="{
                 prefix: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'นาย' }, { value: 2, text: 'นาง' }, { value: 3, text: 'นางสาว' } ]
+                  type: 'select', value: 'นาย', required: true,
+                  options: [ 
+                    { value: 'นาย', text: 'นาย' }, 
+                    { value: 'นาง', text: 'นาง' }, 
+                    { value: 'นางสาว', text: 'นางสาว' } 
+                  ]
                 },
                 name: { type: 'text', value: '', placeholder: 'ชื่อ นามสกุล', required: true },
                 hn: { type: 'text', value: '', placeholder: '123456', required: true },
                 card_type: {
-                  type: 'select', value: 1, required: true,
-                  options: [ { value: 1, text: 'ประกันสังคม' } ]
+                  type: 'select', value: 'ประกันสังคม', required: true,
+                  options: [ { value: 'ประกันสังคม', text: 'ประกันสังคม' } ]
                 },
                 block_no: { type: 'text', value: '', placeholder: '00', required: true },
-                immuno: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
-                histo: { type: 'text', value: '', placeholder: 'เลือกรายการย้อม' },
+                immuno: { 
+                  type: 'multiselect', value: null, placeholder: 'เลือกรายการย้อม',
+                  options: [ 
+                    'ACT', 'ACTH', 'AFP', 'ALK-1', 'ALK-p80', 'Amyoid A',
+                    'B2-Microglobulin', 'B-Catenin', 'Bcl-2', 'Bcl-6', 'Ber-EP 4'
+                  ] 
+                },
+                histo: { 
+                  type: 'multiselect', value: null, placeholder: 'เลือกรายการย้อม',
+                  options: [ 'H&E', 'Deep', 'Recut' ] 
+                },
                 note: { type: 'text', value: '', placeholder: 'เพิ่มเติม...' },
               }"
               @row-add="onRowAdd($event)" 
@@ -276,13 +290,13 @@ export default {
 
     onRowAdd(value) {
       this.row.push({
-        prefix: { text: 'นาย', value: value.prefix },
+        prefix: { text: value.prefix, value: value.prefix },
         name: { text: value.name },
         hn: { text: value.hn },
-        card_type: { text: 'ประกันสังคม', value: value.card_type },
+        card_type: { text: value.card_type, value: value.card_type },
         block_no: { text: value.block_no },
-        immuno: { text: value.immuno },
-        histo: { text: value.histo },
+        immuno: { text: value.immuno, value: value.immuno },
+        histo: { text: value.histo, value: value.histo },
         note: { text: value.note },
         options: {
           type: 'options',

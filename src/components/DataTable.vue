@@ -79,7 +79,7 @@
 
   <!-- Table -->
   <form action="/" method="GET" @submit="onSubmit">
-    <div class="table-wrapper">
+    <div class="table-wrapper" :class="classer">
       <table class="table-section">
         <thead>
           <tr>
@@ -113,18 +113,25 @@
 
                 <a v-if="row[col.key].type == 'link'" 
                   class="d-flex ai-center" :class="row[col.key].classer" 
-                  :href="row[col.key].href"
-                  @click="row[col.key].clickFn"
+                  :href="row[col.key].href" 
+                  @click="row[col.key].clickFn" 
                 >
-                  <div v-html="highlight(col.key, row[col.key].text)"></div>
-                  <img v-if="row[col.key].iconPrepend" class="icon prepend"
+                  <img 
+                    v-if="row[col.key].iconPrepend" 
+                    class="icon prepend" :class="row[col.key].iconClasser" 
                     :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
+                  />
+                  <div v-html="highlight(col.key, row[col.key].text)"></div>
+                  <img 
+                    v-if="row[col.key].iconAppend" 
+                    class="icon append" :class="row[col.key].iconClasser" 
+                    :src="'/assets/img/icon/'+row[col.key].iconAppend" alt="Image Icon" 
                   />
                 </a>
 
                 <div v-else-if="row[col.key].type == 'tag'" 
-                  class="ss-tag" :class="row[col.key].classer"
-                  @click="row[col.key].clickFn"
+                  class="ss-tag" :class="row[col.key].classer" 
+                  @click="row[col.key].clickFn" 
                 >
                   <div v-html="highlight(col.key, row[col.key].text)"></div>
                 </div>
@@ -205,9 +212,24 @@
                 <div v-else class="d-flex ai-center" :class="row[col.key].classer" 
                   :title="row[col.key].text"
                 >
-                  <div v-html="highlight(col.key, row[col.key].text)"></div>
-                  <img v-if="row[col.key].iconPrepend" class="icon prepend"
+                  <img 
+                    v-if="row[col.key].iconPrepend" 
+                    class="icon prepend" :class="row[col.key].iconClasser" 
                     :src="'/assets/img/icon/'+row[col.key].iconPrepend" alt="Image Icon" 
+                  />
+                  <div 
+                    v-if="row[col.key].value" 
+                    v-html="highlight(col.key, row[col.key].value)"
+                  ></div>
+                  <div 
+                    v-else-if="row[col.key].text" 
+                    v-html="highlight(col.key, row[col.key].text)"
+                  ></div>
+                  <div v-else>-</div>
+                  <img 
+                    v-if="row[col.key].iconAppend" 
+                    class="icon append" :class="row[col.key].iconClasser" 
+                    :src="'/assets/img/icon/'+row[col.key].iconAppend" alt="Image Icon" 
                   />
                 </div>
                 
@@ -223,18 +245,28 @@
                     :placeholder="add.placeholder" :required="add.required" 
                     :minlength="add.minlength" :maxlength="add.maxlength" 
                     :min="add.min" :max="add.max" :step="add.step" 
-                    @input="addData[key] = $event.target.value" 
+                    @input="editData[key] = $event.target.value" 
                   />
                 </div>
                 <div v-else-if="add.type == 'select'">
                   <select 
                     class="xs w-full" :required="add.required" v-model="row[key].value" 
-                    @input="addData[key] = $event.target.value" 
+                    @input="editData[key] = $event.target.value" 
                   >
                     <option v-for="(op, i) in add.options" :key="i" :value="op.value">
                       {{op.text}}
                     </option>
                   </select>
+                </div>
+                <div v-else-if="add.type == 'multiselect'">
+                  <div class="xs w-full">
+                    <Multiselect 
+                      :required="add.required" :placeholder="add.placeholder" 
+                      v-model="row[key].value" :options="add.options" 
+                      :searchable="true" mode="tags" :createTag="false" 
+                      @change="(value)=>editData[key] = value"
+                    />
+                  </div>
                 </div>
               </td>
               <td class="td-input text-right">
@@ -281,6 +313,16 @@
                   </option>
                 </select>
               </div>
+              <div v-else-if="add.type == 'multiselect'">
+                <div class="xs w-full">
+                  <Multiselect 
+                    :required="add.required" :placeholder="add.placeholder" 
+                    v-model="add.value" :options="add.options" 
+                    :searchable="true" mode="tags" :createTag="false" 
+                    @change="(value)=>addData[key] = value"
+                  />
+                </div>
+              </div>
             </td>
             <td class="td-input text-right">
               <button type="submit" class="btn-add-confirm">
@@ -307,9 +349,15 @@
 </template>
 
 <script>
+import Multiselect from '@vueform/multiselect';
+
 export default {
   name: 'DataTable',
+  components: [
+    Multiselect
+  ],
   props: {
+    classer: { type: String, default: '' },
     columns: { type: Array, default: [] },
     rows: { type: Array, default: [] },
     withOptions: { type: Boolean, default: true },
@@ -448,6 +496,10 @@ export default {
       }
     },
 
+    clearAdding() {
+      this.adding = false;
+      this.addData = {};
+    },
     toggleAdding() {
       var that = this;
       that.clearEditing();
@@ -467,16 +519,23 @@ export default {
     },
     toggleEditing(index, id, row) {
       var that = this;
-      that.adding = false;
+      that.clearAdding();
       that.editing = !that.editing;
       that.editingIndex = index;
-      if(!id || !row){
+      if((!id && id!==0) || !row){
         that.editData = {};
       }else{
         that.editData = { id: id };
         Object.keys(that.addOptions).forEach(function(key){
           if(['text', 'select'].indexOf(that.addOptions[key].type) > -1){
             that.editData[key] = row[key].value? row[key].value: row[key].text;
+          }else if(['multiselect'].indexOf(that.addOptions[key].type) > -1){
+            that.editData[key] = null;
+            if(row[key].value){
+              that.editData[key] = row[key].value;
+            }else if(row[key].text){
+              that.editData[key] = row[key].text;
+            }
           }
         });
       }
@@ -487,10 +546,11 @@ export default {
       if(this.adding){
         var data = Object.assign({}, this.addData);
         this.toggleAdding();
-        this.clearEditing();
+        this.clearAdding();
         return this.$emit('row-add', data);
       }else if(this.editing){
         var data = Object.assign({}, this.editData);
+        this.toggleEditing();
         this.clearEditing();
         return this.$emit('row-edit', data);
       }

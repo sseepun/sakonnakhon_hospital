@@ -130,7 +130,7 @@ export default {
 
       this.rows1.push({
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05',
+          text: '20/11/2563, 14:05',
         },
         staff_name: { 
           type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-complete',
@@ -162,7 +162,7 @@ export default {
       });
       this.rows1.push({
         sent_date: {
-          type: 'link', text: '18/11/2563, 08:44', href: '/user/special-case-complete',
+          text: '18/11/2563, 08:44'
         },
         staff_name: { 
           type: 'link', text: 'ณรงค์ศักดิ์ พรหมมุณี', href: '/user/special-case-complete',
@@ -195,7 +195,7 @@ export default {
     
       this.rows2.push({
         sent_date: {
-          type: 'link', text: '20/11/2563, 14:05', href: '/user/special-case-history',
+          text: '20/11/2563, 14:05'
         },
         staff_name: { 
           type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-history',
@@ -223,7 +223,7 @@ export default {
         },
         result:{
           type: 'link', text: 'รายงานผล.pdf', href: '/user/special-case-history',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'เสร็จสิ้น'
@@ -231,39 +231,40 @@ export default {
       });
       this.rows2.push({
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05', href: '/user/special-case-history',
+          text: '20/11/2563, 14:05'
         },
         staff_name: { 
-          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-history',
+          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/special-case-rejected',
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1200', href: '/user/special-case-history',
+          type: 'text', text: '041550880 ต่อ 1200', href: '/user/special-case-rejected',
         },
         note: {
-          type: 'text', text: 'B715/e', href: '/user/special-case-history',
+          type: 'text', text: 'B715/e', href: '/user/special-case-rejected',
         },
         total_case: {
-          type: 'text', text: '2', href: '/user/special-case-history',
+          type: 'text', text: '2', href: '/user/special-case-rejected',
         },
         total_block: {
-          type: 'text', text: '8', href: '/user/special-case-history',
+          type: 'text', text: '8', href: '/user/special-case-rejected',
         },
         total_slide: {
-          type: 'text', text: '2', href: '/user/special-case-history',
+          type: 'text', text: '2', href: '/user/special-case-rejected',
         },
         total: {
-          type: 'text', text: '3', href: '/user/special-case-history',
+          type: 'text', text: '3', href: '/user/special-case-rejected',
         },
         sent_lab: {
-          type: 'text', text: 'N Health', href: '/user/special-case-history',
+          type: 'text', text: 'N Health', href: '/user/special-case-rejected',
         },
         result:{
-          type: 'text', text: '-', href: '/user/special-case-history',
+          type: 'text', text: '-', href: '/user/special-case-rejected',
         },
         status: {
-          type: 'tag', text: 'ถูกยกเลิก'
+          type: 'tag', text: 'ถูกยกเลิก', classer: 'ss-tag-danger'
         }
       });
+    
     }
 
   },

@@ -7,7 +7,7 @@
 
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
-            <a href="/user/cases" class="btn color-gray h-color-01">
+            <a href="/user/slides" class="btn color-gray h-color-01">
               <img class="icon-prepend xs" src="/assets/img/icon/chev-left.svg" alt="Image Icon" />
               ย้อนกลับ
             </a>
@@ -35,7 +35,7 @@
           </p>
         </div>
 
-        <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+        <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
           <div class="grids">
            
             <div class="grid lg-1-3 md-1-3">
@@ -131,14 +131,41 @@
                 type="text" label="หมายเหตุ" name="note" placeholder="รายละเอียดเพิ่มเติม"
               />
             </div>
-
             <div class="sep"></div>
             
             <div class="grid xl-1-3 md-2-3 sm-100 xs-100">
               <FormGroup 
-                type="file" label="*อัปโหลดเอกสารเพื่อยืนยันตัวตน" name="file"
+                type="file" name="file" label="*อัปโหลดเอกสารเพื่อยืนยันตัวตน" 
+                desc="กรุณาแนบไฟล์ บัตรประจำตัวประชาชน หรือ หนังสือมอบฉันทะ เพื่อความสะดวกในการตรวจสอบและยืมสไลด์"
                 :icon="'upload.svg'"
               />
+
+              <div v-if="files.length" class="grids">
+                <div v-for="(file, j) in files" :key="j" class="grid sm-100">
+                  <div class="d-flex jc-space-between">
+                    <div class="d-flex ai-center">
+                      <img class="mr-3" src="/assets/img/icon/clip.svg" alt="Image Icon" />
+                      {{file.name}}
+                    </div>
+                    <div class="d-flex ai-center">
+                      <a class="mr-3" ratget="_blank" :href="file.path">
+                        <img src="/assets/img/icon/download.svg" alt="Image Icon" />
+                      </a>
+                      <a href="javascript:" @click="removeFile(file.id)">
+                        <img src="/assets/img/icon/delete.svg" alt="Image Icon" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div v-else class="grids">
+                <div class="grid sm-100">
+                  <p class="color-15">
+                    ไม่มีเอกสารรายงานผล
+                  </p>
+                </div>
+              </div> -->
+
             </div>
           </div>
         </div>
@@ -178,6 +205,23 @@ export default {
         slideNo: '',
         sentType: 1
       },
+      files: [
+        {
+          id: 1,
+          name: 'รายงานผล รพ.สกลนคร 28/10/2563.pdf',
+          path: '#'
+        },
+        {
+          id: 2,
+          name: 'รายงานผล รพ.สกลนคร 29/10/2563.pdf',
+          path: '#'
+        },
+        {
+          id: 3,
+          name: 'รายงานผล รพ.สกลนคร 30/10/2563.pdf',
+          path: '#'
+        }
+      ]
     }
   },
   created() {

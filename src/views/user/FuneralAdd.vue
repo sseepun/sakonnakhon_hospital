@@ -7,7 +7,7 @@
       <form action="/user/funeral-complete" method="GET">
         <div class="section-header" data-aos="fade-up" data-aos-delay="0">
           <div class="btns mt-0">
-            <a href="/user/cases" class="btn color-gray h-color-01">
+            <a href="/user/funeral" class="btn color-gray h-color-01">
               <img class="icon-prepend xs" src="/assets/img/icon/chev-left.svg" alt="Image Icon" />
               ย้อนกลับ
             </a>
@@ -39,7 +39,7 @@
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
         <p class="fw-400">ข้อมูลผู้เสียชีวิต</p>
       </div>
-      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+      <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
         <form action="/" method="GET" @submit="onSubmit">
           <div class="grids">
             <div class="grid xl-60 sm-100 mt-0">
@@ -120,7 +120,7 @@
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
         <p class="fw-400">ข้อมูลแพทย์</p>
       </div>
-      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+      <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
         <form action="/" method="POST" @submit="onSubmit2">
           <div class="grids">
             <div class="grid lg-30 md-50">
@@ -296,7 +296,6 @@
 <script>
 import Topnav from '../../components/Topnav';
 import CheckboxSet from '../../components/CheckboxSet';
-
 
 export default {
   name: 'FuneralAddPage',

@@ -179,7 +179,7 @@ export default {
         },
         card: {
           type: 'link', text: 'S21-00001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'รอรับเข้าบริการ'
@@ -209,7 +209,7 @@ export default {
         },
         card: {
           type: 'link', text: 'CG21-00001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'รอรับเข้าบริการ'
@@ -240,7 +240,7 @@ export default {
         },
         card: {
           type: 'link', text: 'S64-0001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'รับเข้าระบบ', classer: 'ss-tag-warning'
@@ -270,7 +270,7 @@ export default {
         },
         card: {
           type: 'link', text: 'CG21-00001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'รอรับเข้าบริการ'
@@ -301,11 +301,11 @@ export default {
         },
         card: {
           type: 'link', text: 'CG21-00001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         report: {
           type: 'link', text: '1088052-S64-0001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         }
       });
       this.rows3.push({
@@ -332,11 +332,11 @@ export default {
         },
         card: {
           type: 'link', text: 'CG21-00001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
         report: {
           type: 'link', text: '1088052-S64-0001', href: '#',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         }
       });
     }

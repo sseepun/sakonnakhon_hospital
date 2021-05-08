@@ -1,8 +1,3 @@
-<style scoped>
-  .file-container {position:relative; min-height: 7.75rem; margin-top: 1rem; }
-  .file-container input[type="file"] { cursor: pointer; position: absolute; height:100%; opacity:0; }
-  .file-container .dropzone { position:absolute; z-index:-1; top:0; height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; border: 1px dashed #c8c8c8;}
-</style>
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
@@ -93,22 +88,25 @@
     <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
-    <p class="sm color-sgray">กรุณาแนบไฟล์ บัตรประจำตัวประชาชน หรือ หนังสือมอบฉันทะ เพื่อความสะดวกในการตรวจสอบและยืมสไลด์</p>
-    <div class="file-container w-full">
+    <p v-if="desc" class="sm color-sgray">{{desc}}</p>
+    <div class="file-container w-full mt-2" :class="{ 'focused': isFocused }">
       <input 
-        :type="type"
-        :name="name"
+        :type="type" :name="name" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false" 
+        :readonly="readonly? true: false" 
+        :disabled="disabled? true: false" 
       />
       <div class="dropzone">
         <div class="d-flex ai-center jc-center">
           <div v-if="icon" class="icon">
             <img :src="'/assets/img/icon/'+icon" class=" mr-3" alt="Image Icon" />
           </div>
-          <p class="color-sgray md">คลิกหรือลากวางไฟล์ในพื้นที่นี้เพื่ออัปโหลด</p>
+          <p class="color-gray md">คลิกหรือลากวางไฟล์ในพื้นที่นี้เพื่ออัปโหลด</p>
         </div>
       </div>
     </div>
-    <p class="sm color-sgray mt-3">
+    <p class="sm color-sgray mt-2">
       รูปแบบไฟล์: .pdf, .docx, .xlsx, .jpg, .jpeg, .png <br>
       ขนาดไฟล์: ไม่เกิน 10 MB
     </p>
@@ -184,6 +182,7 @@ export default {
     value: { type: [String, Number, Date], default: '' },
     value2: { type: [String, Number, Date], default: '' },
     label: { type: String, default: 'From Group' },
+    desc: { type: String, default: '' },
     errorText: { type: String, default: '' },
     type: { type: String, default: 'text' },
     name: { type: String, default: '' },

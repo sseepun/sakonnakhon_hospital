@@ -32,7 +32,7 @@
           </div>
         </div>
 
-        <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+        <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
           <div class="grids">
 
             <div class="grid lg-25 md-1-3">

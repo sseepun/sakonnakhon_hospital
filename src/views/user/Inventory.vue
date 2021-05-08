@@ -4,7 +4,6 @@
     font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
     background-color:#BC4A4A; color:#ffffff;
   }
-.popup-container.lg .popup-box{max-width: 60rem;}
 </style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
@@ -309,88 +308,87 @@
   </div>
 
   <!-- Info Modal -->
-  <div class="popup-container lg" :class="{ 'active': infoModalOpen }">
+  <div class="popup-container" :class="{ 'active': infoModalOpen }">
     <div class="wrapper">
-    <div class="close-filter" @click="infoModalOpen = !infoModalOpen"></div>
-    <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
-      <div class="popup-box">
-        <div class="header">
-            <div class="btns mt-0">
-            <a href="javascript:" class="btn btn-close" @click="infoModalOpen = !infoModalOpen">
+      <div class="close-filter" @click="infoModalOpen = !infoModalOpen"></div>
+      <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+              <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="infoModalOpen = !infoModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ปิดหน้าต่าง
-            </a>
-            </div>
-            <div class="header-wrapper">
-              <div class="text-container">
-                <h6 class="h3">รายละเอียดสินค้า</h6>
+              </a>
               </div>
-              <div class="btns">
+              <div class="header-wrapper">
+                <div class="text-container">
+                  <h6 class="h3">รายละเอียดสินค้า</h6>
+                </div>
+                <div class="btns hide-mobile">
                   <Button 
-                    text="ลบ"
-                    classer="btn-color-06 hide-mobile mr-3" :prepend="true" icon="delete-white.svg" 
+                    text="ลบ" classer="btn-color-06 mr-3" 
+                    :prepend="true" icon="delete-white.svg" 
                     @click="() => {
                       deleteModalOpen=!deleteModalOpen
                       infoModalOpen = !infoModalOpen
                     }"
                   />
                   <Button 
-                    text="ลบ"
-                    classer="btn-color-06 btn-sm show-mobile mr-1"
+                    text="แก้ไข" type="submit" classer="btn-color-01" 
+                    :prepend="true" icon="edit-white.svg" 
                   />
-
+                </div>
+                <div class="btns show-mobile">
                   <Button 
-                    text="แก้ไข" type="submit"
-                    classer="btn-color-01 hide-mobile mr-3" :prepend="true" icon="edit-white.svg" 
+                    text="ลบ" classer="btn-color-06 btn-sm mr-1"
                   />
                   <Button 
-                    text="แก้ไข"
-                    classer="btn-color-01 btn-sm show-mobile mr-1"
+                    text="แก้ไข" classer="btn-color-01 btn-sm"
                   />
+                </div>
               </div>
-            </div>
-        </div>
-        <div class="body pt-4 pb-5">
-          <div class="grids">
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เลขที่จัดซื้อ/จัดจ้าง" value="56200849" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="ชื่ออุปกรณ์" value="ALLIS Intestinal Forceps, 4x5 Teeth 15 Cm." />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่นำเข้า" value="12/12/2563" />
-            </div>
+          </div>
+          <div class="body pt-4 pb-5">
+            <div class="grids">
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เลขที่จัดซื้อ/จัดจ้าง" value="56200849" />
+              </div>
+              <div class="grid lg-50 md-1-3">
+                <FormGroup type="plain" label="ชื่ออุปกรณ์" value="ALLIS Intestinal Forceps, 4x5 Teeth 15 Cm." />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่นำเข้า" value="12/12/2563" />
+              </div>
 
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ประเภท" value="อุปกรณ์ทางการแพทย์" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ยี่ห้อ" value="Heal Force" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="บาร์โค้ด" value="16508537592841500" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="จำนวน" value="12 ชิ้น" />
-            </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ประเภท" value="อุปกรณ์ทางการแพทย์" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ยี่ห้อ" value="Heal Force" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="บาร์โค้ด" value="16508537592841500" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="จำนวน" value="12 ชิ้น" />
+              </div>
 
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="บริษัท" value="บริษัท" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="Sale name" value="ณรงค์ฤทธิ์ พรมบุรี" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เบอร์ติดต่อ" value="098-074-2870" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="อีเมล" value="narongrit.prom@gmail.com" />
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="บริษัท" value="บริษัท" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="Sale name" value="ณรงค์ฤทธิ์ พรมบุรี" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เบอร์ติดต่อ" value="098-074-2870" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="อีเมล" value="narongrit.prom@gmail.com" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
     </div>
   </div>
 
@@ -450,11 +448,13 @@ export default {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 4,
-      isValidated: false,
+
       addModalOpen: false,
       cartModalOpen: false,
       infoModalOpen: false,
       deleteModalOpen: false,
+
+      isValidated: false,
       dataset: {
         code: '',
         product: '',
@@ -568,7 +568,7 @@ export default {
         },
         status: {
           type: 'text', text: 'เพิ่มใส่ตระกร้า', classer: 'color-01',
-          iconPrepend: 'shopping-bag-white.svg'
+          iconPrepend: 'shopping-bag-white.svg', iconClasser: 'lg'
         },
       });
 
@@ -593,7 +593,7 @@ export default {
         },
         option: {
           type: 'link', text: 'คืนสินค้า', href: '#', classer: 'color-01',
-          iconPrepend: 'previous-outline.svg'
+          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg'
         },
       });
 
@@ -618,7 +618,7 @@ export default {
         },
         option: {
           type: 'link', text: 'คืนสินค้า', href: '#', classer: 'color-01',
-          iconPrepend: 'previous-outline.svg'
+          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg'
         },
       });
 

@@ -14,7 +14,7 @@
       <a href="/user/cases" target="_blank">/user/cases</a> <br>
       <a href="/user/cells" target="_blank">/user/cells</a> <br>
       <a href="/user/case-biopsy-add" target="_blank">/user/case-biopsy-add</a> <br>
-      <a href="/user/case-biopsy-custom-add" target="_blank">[validation] /user/case-biopsy-custom-add</a> <br>
+      <a href="/user/case-biopsy-custom-add" target="_blank">[VALIDATION] /user/case-biopsy-custom-add</a> <br>
       <a href="/user/case-biopsy-complete" target="_blank">/user/case-biopsy-complete</a> <br>
       <a href="/user/case-cytology-add" target="_blank">/user/case-cytology-add</a> <br>
       <a href="/user/case-cytology-custom-add" target="_blank">/user/case-cytology-custom-add</a> <br>
@@ -24,18 +24,22 @@
       <a href="/user/case-result-read" target="_blank">/user/case-result-read</a> <br>
       <br>
       <a href="/user/special-cases" target="_blank">/user/special-cases</a> <br>
-      <a href="/user/special-case-add" target="_blank">/user/special-case-add</a> <br>
+      <a href="/user/special-case-add" target="_blank">[VALIDATION] /user/special-case-add</a> <br>
       <a href="/user/special-case-complete" target="_blank">/user/special-case-complete</a> <br>
       <a href="/user/special-case-history" target="_blank">/user/special-case-history</a> <br>
+      <a href="/user/special-case-rejected" target="_blank">/user/special-case-rejected</a> <br>
       <br>
       <a href="/user/funeral" target="_blank">/user/funeral</a> <br>
-      <a href="/user/funeral-add" target="_blank">/user/funeral-add</a> <br>
+      <a href="/user/funeral-add" target="_blank">[VALIDATION] /user/funeral-add</a> <br>
       <a href="/user/funeral-complete" target="_blank">/user/funeral-complete</a> <br>
+      <a href="/user/funeral-complete-2" target="_blank">/user/funeral-complete-2</a> <br>
       <br>
       <a href="/user/slides" target="_blank">/user/slides</a> <br>
-      <a href="/user/slide-add" target="_blank">/user/slide-add</a> <br>
+      <a href="/user/slide-add" target="_blank">[VALIDATION] /user/slide-add</a> <br>
       <a href="/user/slide-approve" target="_blank">/user/slide-approve</a> <br>
       <a href="/user/slide-return" target="_blank">/user/slide-return</a> <br>
+      <br>
+      <a href="/user/teams" target="_blank">/user/teams</a> <br>
       <br>
       <a href="/user/inventory" target="_blank">/user/inventory</a> <br>
     </div>

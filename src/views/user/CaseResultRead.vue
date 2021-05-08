@@ -12,9 +12,12 @@
           </a>
         </div>
         <div class="header-wrapper">
-          <div class="text-container d-flex ai-center">
-            <h6 class="h3">ประวัติการวินิจฉัย</h6>
-            | <div class="ss-tag">ด่วน</div>
+          <div class="text-container">
+            <span class="h3">
+              ประวัติการวินิจฉัย
+            </span>
+            <span class="ss-sep hide-mobile"></span>
+            <span class="ss-tag">ด่วน</span>
           </div>
         </div>
       </div>
@@ -22,7 +25,7 @@
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
         <p class="fw-400">ข้อมูลผู้ป่วย</p>
       </div>
-      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+      <div class="section-px section-py-grid pos-relative" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
 
           <div class="grid lg-20 md-1-3">
@@ -74,12 +77,12 @@
         </div>
       </div>
 
-      <div class="stripe section-px border-bottom bcolor-fgray" data-aos="fade-up" data-aos-delay="0">
+      <div class="stripe section-px border-bottom bcolor-fgray mt-2" data-aos="fade-up" data-aos-delay="0">
         <p class="fw-400">
           สิ่งตรวจ 
         </p>
       </div>
-      <div class="section-px section-py-grid pos-relative" style="z-index:1;" data-aos="fade-up" data-aos-delay="150">
+      <div class="section-px section-py-grid pos-relative" data-aos="fade-up" data-aos-delay="0">
         <div class="grids">
 
           <div class="grid lg-40 md-1-3">
@@ -105,34 +108,29 @@
           <div class="grid lg-20 md-1-3">
             <FormGroup type="plain" label="Color" value="Yellow" />
           </div>
-        </div>
-      </div>
-      <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="0">
-        <div class="grids">
           <div class="grid sm-100">
             <FormGroup type="plain" label="Site (ตำแหน่ง)" value="Right" />
           </div>
         </div>
       </div>
 
-      <div class="stripe section-px border-bottom bcolor-fgray" data-aos="fade-up" data-aos-delay="0">
+      <div class="stripe section-px border-bottom bcolor-fgray mt-2" data-aos="fade-up" data-aos-delay="0">
         <p class="fw-400">การวินิจฉัย</p>
       </div>
-
-
-
-
       <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="0">
         <div class="header-wrapper mt-5">
-          <div class="text-container d-flex ai-center">
-            <h6 class="p text-md fw-400">Step 5 รายงานผล</h6>
-            | <div class="ss-tag">P63-1</div>
+          <div class="text-container">
+            <span class="h3">
+              Step 5 รายงานผล
+            </span>
+            <span class="ss-sep hide-mobile"></span>
+            <span class="ss-tag">P63-1</span>
           </div>
         </div>
         <div class="mt-5">
           <h6 class="p text-md">Cytopathology Report</h6>
           <p class="color-gray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
-          <div class="sep bg-sgray mt-4"></div>
+          <div class="border-bottom bg-sgray mt-4"></div>
           <div class="grids">
             <div class="grid lg-20 md-1-3 sm">
               <FormGroup type="plain" label="ชื่อ นามสกุล" value="ณรงค์ฤทธิ์ พรมบุรี" />
@@ -165,7 +163,6 @@
               <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
             </div>
           </div>
-
           <div class="sep bg-sgray mt-4"></div>
           
           <div class="grids">
@@ -212,7 +209,6 @@
                       Eget accumsan dis nisl.
                     </p>
                   </div>
-
 
                   <div class="grid sm-100">
                     <p class="color-gray">ICD-O</p>
@@ -283,9 +279,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.sep{
-  height:1px; width: 100%; 
-}
-</style>

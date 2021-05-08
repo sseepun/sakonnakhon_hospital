@@ -46,9 +46,9 @@
               :groups="{
                 filter: 'sent_to',
                 options: [
-                  { text: 'เซลล์วิทยา', value: 0, checked: true },
-                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
-                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                  { text: 'เซลล์วิทยา', value: 'เซลล์วิทยา', checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 'ส่งตรวจพิเศษ', checked: true }
                 ]
               }"
             />
@@ -67,14 +67,13 @@
               :groups="{
                 filter: 'sent_to',
                 options: [
-                  { text: 'เซลล์วิทยา', value: 0, checked: true },
-                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
-                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                  { text: 'เซลล์วิทยา', value: 'เซลล์วิทยา', checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 'ส่งตรวจพิเศษ', checked: true }
                 ]
               }"
             />
           </div>
-
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 2 }">
             <DataTable 
@@ -89,9 +88,9 @@
               :groups="{
                 filter: 'sent_to',
                 options: [
-                  { text: 'เซลล์วิทยา', value: 0, checked: true },
-                  { text: 'ชิ้นเนื้อ', value: 1, checked: true },
-                  { text: 'ส่งตรวจพิเศษ', value: 2, checked: true }
+                  { text: 'เซลล์วิทยา', value: 'เซลล์วิทยา', checked: true },
+                  { text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', checked: true },
+                  { text: 'ส่งตรวจพิเศษ', value: 'ส่งตรวจพิเศษ', checked: true }
                 ]
               }"
             />
@@ -201,242 +200,238 @@ export default {
 
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01', value: 0
+          type: 'text', text: 'เซลล์วิทยา', value: 'เซลล์วิทยา', classer: 'color-01'
         },
         case_id: { 
-          type: 'text', text: 'FI63-12911',
+          type: 'link', text: 'FI63-12911', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1088052',
+          type: 'link', text: '1088052', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text', text: 'สงกรานต์ สุขุมมณีวงศ์', 
+          type: 'link', text: 'สงกรานต์ สุขุมมณีวงศ์', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '64 ปี',
+          type: 'link', text: '64 ปี', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-31891',
+          type: 'link', text: 'P63-31891', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'link', text: '20/11/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '04/12/2563, 12:34',
+          type: 'link', text: '04/12/2563, 12:34', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
+          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '/user/case-result-read'
         },
         card: {
           type: 'link', text: 'R-202001-0001', href: '/user/case-result-read',
-          iconPrepend: 'checkout.svg'
+          iconAppend: 'checkout.svg'
         },
       });
-
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
+          type: 'text', text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'text', text: 'FI63-07821',
+          type: 'link', text: 'FI63-07821', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1068055',
+          type: 'link', text: '1068055', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
+          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '23 ปี',
+          type: 'link', text: '23 ปี', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-21341',
+          type: 'link', text: 'P63-21341', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/12/2563, 14:05',
+          type: 'link', text: '20/12/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '24/12/2563, 12:34',
+          type: 'link', text: '24/12/2563, 12:34', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
+          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '/user/case-result-read'
         },
         card: {
-          type: 'link', text: 'R-202001-0002', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'R-202001-0002', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
       });
-
       this.rows1.push({
         sent_to: { 
-          type: 'text', text: 'ส่งตรวจพิเศษ', classer: 'color-12', value: 2
+          type: 'text', text: 'ส่งตรวจพิเศษ', value: 'ส่งตรวจพิเศษ', classer: 'color-12'
         },
         case_id: { 
-          type: 'text', text: 'EX63-12911',
+          type: 'link', text: 'EX63-12911', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1009630',
+          type: 'link', text: '1009630', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text',  text: 'อิบรอฮีม หลังยาหน่าย', 
+          type: 'link',  text: 'อิบรอฮีม หลังยาหน่าย', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '-',
+          type: 'link', text: '-', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-98721',
+          type: 'link', text: 'P63-98721', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'link', text: '20/11/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '04/12/2563, 12:34',
+          type: 'link', text: '04/12/2563, 12:34', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'บริษัท N Health',
+          type: 'link', text: 'บริษัท N Health', href: '/user/case-result-read'
         },
         card: {
-          type: 'link', text: 'R-202001-0003', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'R-202001-0003', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
       });
 
       this.rows2.push({
         sent_to: { 
-          type: 'text', text: 'เซลล์วิทยา', classer: 'color-01', value: 0
+          type: 'text', text: 'เซลล์วิทยา', value: 'เซลล์วิทยา', classer: 'color-01'
         },
         case_id: { 
-          type: 'text', text: 'FI63-12911',
+          type: 'link', text: 'FI63-12911', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1088052',
+          type: 'link', text: '1088052', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text', text: 'สงกรานต์ สุขุมมณีวงศ์', 
+          type: 'link', text: 'สงกรานต์ สุขุมมณีวงศ์', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '64 ปี',
+          type: 'link', text: '64 ปี', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-31891',
+          type: 'link', text: 'P63-31891', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'link', text: '20/11/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '04/12/2563, 12:34',
+          type: 'link', text: '04/12/2563, 12:34', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
+          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '/user/case-result-read'
         },
         card: {
-          type: 'link', text: 'R-202001-0001', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'R-202001-0001', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
       });
-
       this.rows2.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
+          type: 'text', text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'text', text: 'FI63-07821',
+          type: 'link', text: 'FI63-07821', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1068055',
+          type: 'link', text: '1068055', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
+          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '23 ปี',
+          type: 'link', text: '23 ปี', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-21341',
+          type: 'link', text: 'P63-21341', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/12/2563, 14:05',
+          type: 'link', text: '20/12/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '24/12/2563, 12:34',
+          type: 'link', text: '24/12/2563, 12:34', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
+          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '/user/case-result-read'
         },
         card: {
-          type: 'link', text: 'R-202001-0002', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'R-202001-0002', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
       });
-      
       this.rows3.push({
         sent_to: { 
-          type: 'text', text: 'ชิ้นเนื้อ', classer: 'color-11', value: 1
+          type: 'text', text: 'ชิ้นเนื้อ', value: 'ชิ้นเนื้อ', classer: 'color-11'
         },
         case_id: { 
-          type: 'text', text: 'FI63-07821',
+          type: 'link', text: 'FI63-07821', href: '/user/case-result-read'
         },
         hn: { 
-          type: 'text', text: '1068055',
+          type: 'link', text: '1068055', href: '/user/case-result-read'
         },
         name: { 
-          type: 'text', text: 'ภานุวัฒน์ ลาแม', 
+          type: 'link', text: 'ภานุวัฒน์ ลาแม', href: '/user/case-result-read'
         },
         age: { 
-          type: 'text', text: '23 ปี',
+          type: 'link', text: '23 ปี', href: '/user/case-result-read'
         },
         block_ex: { 
-          type: 'text', text: 'P63-21341',
+          type: 'link', text: 'P63-21341', href: '/user/case-result-read'
         },
         sent_date: {
-          type: 'text', text: '20/12/2563, 14:05',
+          type: 'link', text: '20/12/2563, 14:05', href: '/user/case-result-read'
         },
         result_date: {
-          type: 'text', text: '24/12/2563, 12:34',
+          type: 'link', text: '24/12/2563, 12:34', href: '/user/case-result-read'
         },
         trials: {
-          type: 'text', text: '3',
+          type: 'link', text: '3', href: '/user/case-result-read'
         },
         provider: { 
-          type: 'text', text: 'นพ. ศุภณัฐ คังคะมณี',
+          type: 'link', text: 'นพ. ศุภณัฐ คังคะมณี', href: '/user/case-result-read'
         },
         card: {
-          type: 'link', text: 'R-202001-0002', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'R-202001-0002', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
       });
       
       this.rows4.push({
        sent_date: {
-          type: 'text', text: '20/11/2563, 14:05',
+          type: 'text', text: '20/11/2563, 14:05'
         },
         staff_name: { 
-          type: 'text', text: 'นันทวรรณ วิลิศมาหรา', 
+          type: 'link', text: 'นันทวรรณ วิลิศมาหรา', href: '/user/case-result-read'
         },
         staff_phone: { 
-          type: 'text', text: '041550880 ต่อ 1200',
+          type: 'link', text: '041550880 ต่อ 1200', href: '/user/case-result-read'
         },
         note: {
-          type: 'text', text: 'B715/e',
+          type: 'link', text: 'B715/e', href: '/user/case-result-read'
         },
         total_case: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/case-result-read'
         },
         total_block: {
-          type: 'text', text: '8',
+          type: 'link', text: '8', href: '/user/case-result-read'
         },
         total_slide: {
-          type: 'text', text: '2',
+          type: 'link', text: '2', href: '/user/case-result-read'
         },
         total: {
-          type: 'text', text: '3',
+          type: 'link', text: '3', href: '/user/case-result-read'
         },
         sent_lab: {
-          type: 'text', text: 'N Health',
+          type: 'link', text: 'N Health', href: '/user/case-result-read'
         },
         result:{
-          type: 'link', text: 'รายงานผล.pdf', href: '#',
-          iconPrepend: 'checkout.svg'
+          type: 'link', text: 'รายงานผล.pdf', href: '/user/case-result-read',
+          iconAppend: 'checkout.svg'
         },
         status: {
           type: 'tag', text: 'เสร็จสิ้น'

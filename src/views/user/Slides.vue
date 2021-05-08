@@ -1,6 +1,3 @@
-<style scoped>
-.popup-container.lg .popup-box{max-width: 60rem;}
-</style>
 <template>
   <Topnav :userRole="userRole" />
 
@@ -21,7 +18,7 @@
             <div class="btns hide-mobile">
               <Button 
                 href="/user/slide-add" text="แบบฟอร์มขอยืมไสลด์ / พาราฟินบล็อค" 
-                classer="btn-color-01 mr-3" :prepend="true" icon="plus-white.svg" 
+                classer="btn-color-01" :prepend="true" icon="plus-white.svg" 
               />
             </div>
             <div class="btns show-mobile">
@@ -76,52 +73,51 @@
     </div>
   </section>
 
-   <!-- Alert Popup -->
-  <div class="popup-container lg" :class="{ 'active': isModalOpen }">
+  <!-- Alert Popup -->
+  <div class="popup-container" :class="{ 'active': isModalOpen }">
     <div class="wrapper">
     <div class="close-filter" @click="isModalOpen = !isModalOpen"></div>
     <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box">
+      <div class="popup-box xl">
         <div class="header">
-            <div class="btns mt-0">
+          <div class="btns mt-0">
             <a href="javascript:" class="btn btn-close" @click="isModalOpen = !isModalOpen">
-                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+              <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+              ปิดหน้าต่าง
             </a>
+          </div>
+          <div class="header-wrapper">
+            <div class="text-container">
+              <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
             </div>
-            <div class="header-wrapper">
-              <div class="text-container">
-                <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
-              </div>
-              <div class="btns hide-mobile">
-                <Button 
-                  text="ไม่อนุมัติการยืม"
-                  classer="btn-color-06 mr-3" :prepend="true" icon="cross-white.svg" 
-                  @click="() => {
-                    approve = 'ไม่อนุมัติ';
-                    confirmAlert = !confirmAlert;
-                    isModalOpen = !isModalOpen;
-                  }"
-                />
-                <Button 
-                  type="submit" text="อนุมัติการยืม"
-                  classer="btn-color-01" :prepend="true" icon="check-white.svg" 
-                  @click="() => {
-                    approve = 'อนุมัติ';
-                    confirmAlert = !confirmAlert;
-                    isModalOpen = !isModalOpen;
-                  }"
-                />
-              </div>
-              <div class="btns ws-nowrap show-mobile">
-                <Button text="ไม่อนุมัติ" classer="btn-color-06 btn-sm mr-1" />
-                <Button type="submit" text="อนุมัติ" classer="btn-color-01 btn-sm" />
-              </div>
+            <div class="btns hide-mobile">
+              <Button 
+                text="ไม่อนุมัติการยืม"
+                classer="btn-color-06 mr-2" :prepend="true" icon="cross-white.svg" 
+                @click="() => {
+                  approve = 'ไม่อนุมัติ';
+                  confirmAlert = !confirmAlert;
+                  isModalOpen = !isModalOpen;
+                }"
+              />
+              <Button 
+                type="submit" text="อนุมัติการยืม"
+                classer="btn-color-01" :prepend="true" icon="check-white.svg" 
+                @click="() => {
+                  approve = 'อนุมัติ';
+                  confirmAlert = !confirmAlert;
+                  isModalOpen = !isModalOpen;
+                }"
+              />
             </div>
+            <div class="btns ws-nowrap show-mobile">
+              <Button text="ไม่อนุมัติ" classer="btn-color-06 btn-sm mr-1" />
+              <Button type="submit" text="อนุมัติ" classer="btn-color-01 btn-sm" />
+            </div>
+          </div>
         </div>
-        <div class="body pt-4 pb-5">
+        <div class="body pb-5">
           <div class="grids">
-
             <div class="grid lg-25 md-1-3">
               <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
             </div>
@@ -131,14 +127,12 @@
             <div class="grid lg-25 md-1-3">
               <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
             </div>
-            
             <div class="grid lg-25 md-1-3">
               <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
             </div>
             <div class="grid lg-25 md-2-3">
               <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
             </div>
-
             <div class="grid lg-25 md-1-3">
               <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
             </div>
@@ -154,7 +148,6 @@
             <div class="grid lg-50 md-1-3">
               <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
             </div>
-
             <div class="grid lg-25 md-1-3">
               <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
             </div>
@@ -163,7 +156,7 @@
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </form>
     </div>
   </div>
@@ -187,11 +180,11 @@
               </div>
               <div class="btns">
                 <Button 
-                  text="ยืนยัน"
+                  text="ยืนยัน" @click="confirmAlert = !confirmAlert" 
                   :classer="approve == 'อนุมัติ' ? 'btn-color-01 hide-mobile': 'btn-color-06 hide-mobile'" 
                 />
                 <Button 
-                  text="ยืนยัน"
+                  text="ยืนยัน" @click="confirmAlert = !confirmAlert" 
                   :classer="approve == 'อนุมัติ' ? 'btn-color-01 btn-sm show-mobile' : 'btn-color-06 btn-sm show-mobile'"
                 />
               </div>
@@ -209,17 +202,17 @@
   </div>
 
   <!-- Return Popup -->
-  <div class="popup-container lg" :class="{ 'active': isModalOpen2 }">
+  <div class="popup-container" :class="{ 'active': isModalOpen2 }">
     <div class="wrapper">
-    <div class="close-filter" @click="isModalOpen2 = !isModalOpen2"></div>
-    <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box">
-        <div class="header">
+      <div class="close-filter" @click="isModalOpen2 = !isModalOpen2"></div>
+      <form action="/user/slides" method="GET" class="w-full">
+        <div class="popup-box xl">
+          <div class="header">
             <div class="btns mt-0">
-            <a href="javascript:" class="btn btn-close" @click="isModalOpen2 = !isModalOpen2">
+              <a href="javascript:" class="btn btn-close" @click="isModalOpen2 = !isModalOpen2">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ปิดหน้าต่าง
-            </a>
+              </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
@@ -227,7 +220,7 @@
               </div>
               <div class="btns hide-mobile">
                 <Button 
-                  href="/user/slides" text="คืนสไลด์"
+                  type="submit" text="คืนสไลด์"
                   classer="btn-color-01" :prepend="true" icon="circle-arrow-up-white.svg" 
                 />
               </div>
@@ -235,185 +228,189 @@
                 <Button href="/user/slides" text="คืนสไลด์" classer="btn-color-01 btn-sm" />
               </div>
             </div>
-        </div>
-        <div class="body pt-4 pb-5">
-          <div class="grids">
+          </div>
+          <div class="body-wrapper">
 
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อแพทย์ผู้รักษา" value="นพ. นันทวัน หอมประเสริฐสุข" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
+            <div class="body">
+              <div class="grids">
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อแพทย์ผู้รักษา" value="นพ. นันทวัน หอมประเสริฐสุข" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
+                </div>
+                <div class="grid lg-25 md-2-3">
+                  <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
+                </div>
+                <div class="grid lg-50 md-1-3">
+                  <FormGroup type="plain" label="หมายเหตุ" value="Congue dictum urna tortor ipsum nisi velit urna." />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อผู้ป่วย" value="นาย อานนท์ สงศามณีวัล" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="เลขที่สไลด์" value="S20-0001" />
+                </div>
+                <div class="grid lg-50 md-1-3">
+                  <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อผู้อนุมัติ" value="นพ. นันทวัน หอมประเสริฐสุข" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="วันที่เวลา อนุมัติ" value="23/12/2563, 12:23" />
+                </div>
+              </div>
             </div>
             
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
+            <div class="stripe section-px border-bottom bcolor-fgray">
+              <p class="fw-400">คืนสไลด์</p>
             </div>
-            <div class="grid lg-25 md-2-3">
-              <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
+            <div class="body">
+              <div class="grids pb-4">
+                <div class="grid lg-25 md-1-3 xs-2-3">
+                  <FormGroup 
+                    type="text" label="*ชื่อผู้คืนสไลด์" placeholder="นายใจดี แสนสุข" 
+                    name="name" :required="true" 
+                  />
+                </div>
+                <div class="grid lg-25 md-1-3 xs-2-3">
+                  <FormGroup 
+                    type="text" label="*เบอร์โทร" placeholder="012-3456789" 
+                    name="phone" :required="true" 
+                  />
+                </div>
+                <div class="grid lg-50 md-1-3">
+                  <FormGroup 
+                    type="select" label="*หน่วยงาน" name="department" 
+                    :options="[
+                      { value: 0, text: 'พยาธิวิทยา' },
+                    ]"
+                    :value="0"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="หมายเหตุ" value="Congue dictum urna tortor ipsum nisi velit urna." />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้ป่วย" value="นาย อานนท์ สงศามณีวัล" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เลขที่สไลด์" value="S20-0001" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้อนุมัติ" value="นพ. นันทวัน หอมประเสริฐสุข" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลา อนุมัติ" value="23/12/2563, 12:23" />
-            </div>
-          </div>
-          <div class="stripe section-px border-bottom bcolor-fgray mt-4">
-            <p class="fw-400">คืนสไลด์</p>
-          </div>
-
-          <div class="grids pb-5">
-
-            <div class="grid lg-25 md-1-3 xs-2-3">
-              <FormGroup 
-                type="text" label="*ชื่อผู้คืนสไลด์" placeholder="นายใจดี แสนสุข"
-              />
-            </div>
-            <div class="grid lg-25 md-1-3 xs-2-3">
-              <FormGroup 
-                type="text" label="*เบอร์โทร" placeholder="012-3456789"
-              />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup 
-                type="select" label="*หน่วยงาน" name="department" 
-                :options="[
-                  { value: 0, text: 'พยาธิวิทยา' },
-                ]"
-                :value="0"
-              />
-            </div>
           </div>
         </div>
-        </div>
-    </form>
+      </form>
     </div>
   </div>
 
   <!-- Info Popup -->
-  <div class="popup-container lg" :class="{ 'active': isModalOpen3 }">
+  <div class="popup-container" :class="{ 'active': isModalOpen3 }">
     <div class="wrapper">
-    <div class="close-filter" @click="isModalOpen3 = !isModalOpen3"></div>
-    <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box">
-        <div class="header">
+      <div class="close-filter" @click="isModalOpen3 = !isModalOpen3"></div>
+      <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
             <div class="btns mt-0">
-            <a href="javascript:" class="btn btn-close" @click="isModalOpen3 = !isModalOpen3">
+              <a href="javascript:" class="btn btn-close" @click="isModalOpen3 = !isModalOpen3">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
                 ปิดหน้าต่าง
-            </a>
-            </div>
-            <div class="header-wrapper">
-              <div class="text-container">
-                <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
+              </a>
+              </div>
+              <div class="header-wrapper">
+                <div class="text-container">
+                  <h6 class="h3">รายละเอียดการยืมสไลด์ / พาราฟินบล็อค</h6>
+                </div>
+              </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อแพทย์ผู้รักษา" value="นพ. นันทวัน หอมประเสริฐสุข" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
+              </div>
+              
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
+              </div>
+              <div class="grid lg-25 md-2-3">
+                <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
+              </div>
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
+              </div>
+              <div class="grid lg-50 md-1-3">
+                <FormGroup type="plain" label="หมายเหตุ" value="Congue dictum urna tortor ipsum nisi velit urna." />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ป่วย" value="นาย อานนท์ สงศามณีวัล" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เลขที่สไลด์" value="S20-0001" />
+              </div>
+              <div class="grid lg-50 md-1-3">
+                <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
+              </div>
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
+              </div>
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้อนุมัติ" value="นพ. นันทวัน หอมประเสริฐสุข" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่เวลา อนุมัติ" value="23/12/2563, 12:23" />
+              </div>
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้คืนสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เบอร์โทร" value="061-2125229" />
+              </div>
+              <div class="grid lg-50 md-1-3">
+                <FormGroup type="plain" label="หน่วยงาน" value="Venenatis pellentesque." />
+              </div>
+
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้รับสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่เวลาคืน" value="23/12/2563, 12:23" />
               </div>
             </div>
-        </div>
-        <div class="body pt-4 pb-5">
-          <div class="grids">
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เลขที่การยืม" value="202101" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อแพทย์ผู้รักษา" value="นพ. นันทวัน หอมประเสริฐสุข" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="กลุ่มงาน" value="Lectus scelerisque." />
-            </div>
-            
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เบอร์โทร" value="02-2345667" />
-            </div>
-            <div class="grid lg-25 md-2-3">
-              <FormGroup type="plain" label="ประเภทสไลด์" value="Leo arcu posuere." />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เพื่อการ" value="ส่งรักษาต่อ" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="หมายเหตุ" value="Congue dictum urna tortor ipsum nisi velit urna." />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้ป่วย" value="นาย อานนท์ สงศามณีวัล" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เลขที่สไลด์" value="S20-0001" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="ประเภทการขนส่ง" value="Malesuada." />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้ยืมสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลายืม" value="23/12/2563, 12:23" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้อนุมัติ" value="นพ. นันทวัน หอมประเสริฐสุข" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลา อนุมัติ" value="23/12/2563, 12:23" />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้คืนสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="เบอร์โทร" value="061-2125229" />
-            </div>
-            <div class="grid lg-50 md-1-3">
-              <FormGroup type="plain" label="หน่วยงาน" value="Venenatis pellentesque." />
-            </div>
-
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="ชื่อผู้รับสไลด์" value="นาย เตธนันท์ วงศ์ปรีชาโชติ" />
-            </div>
-            <div class="grid lg-25 md-1-3">
-              <FormGroup type="plain" label="วันที่เวลาคืน" value="23/12/2563, 12:23" />
-            </div>
           </div>
-        </div>
-        </div>
-    </form>
+          </div>
+      </form>
     </div>
   </div>
+
   <Topnav :userRole="userRole" :isBottom="true" />
 </template>
 
@@ -434,11 +431,13 @@ export default {
   data() {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
+
       isModalOpen: false,
       isModalOpen2: false,
       isModalOpen3: false,
       confirmAlert: false,
       approve: '',
+
       columns1: [
         { key: 'slide_no', text: 'เลขที่สไลด์ / พาราฟินบล็อค' },
         { key: 'name', text: 'ชื่อ นามสกุล ผู้ยืม' },
@@ -502,14 +501,14 @@ export default {
         phone: { 
           type: 'text', text: '02-22312398', 
         },
-        status: this.userRole == 'User' ?
-          {
+        status: this.userRole == 'User'
+          ? {
             type: 'tag', text: 'เสร็จสิ้น'
           }
-          :
-          {
+          : {
             type: 'link', text: 'อนุมัติการยืม', classer: 'color-01', href: '#',
-            iconPrepend: 'circle-arrow-down.svg', clickFn: () => this.isModalOpen = !this.isModalOpen
+            iconPrepend: 'circle-arrow-down.svg', iconClasser: 'lg',
+            clickFn: () => this.isModalOpen = !this.isModalOpen
           }
       });
      
@@ -543,7 +542,8 @@ export default {
         },
         status: { 
           type: 'link', text: 'คืนสไลด์', classer: 'color-01', href: '#',
-          iconPrepend: 'circle-arrow-up.svg', clickFn: () => this.isModalOpen2 = !this.isModalOpen2
+          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg',
+          clickFn: () => this.isModalOpen2 = !this.isModalOpen2
         },
       });
       this.rows2.push({
@@ -576,7 +576,7 @@ export default {
         },
         status: { 
           type: 'link', text: 'คืนสไลด์', classer: 'color-01', href: '#',
-          iconPrepend: 'circle-arrow-up.svg'
+          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg'
         },
       });
 
@@ -606,7 +606,8 @@ export default {
           type: 'text', text: '23/12/2563, 12:23', 
         },
         status: { 
-          type: 'tag', text: 'ดำเนินการเสร็จสิ้น', clickFn: () => this.isModalOpen3 = !this.isModalOpen3
+          type: 'tag', text: 'ดำเนินการเสร็จสิ้น', 
+          clickFn: () => this.isModalOpen3 = !this.isModalOpen3
         },
       });
       this.rows3.push({
@@ -635,9 +636,11 @@ export default {
           type: 'text', text: '-', 
         },
         status: { 
-          type: 'tag', text: 'ไม่อนุมัติการยืม', classer: 'ss-tag-danger', clickFn: () => this.isModalOpen3 = !this.isModalOpen3
+          type: 'tag', text: 'ไม่อนุมัติการยืม', classer: 'ss-tag-danger', 
+          clickFn: () => this.isModalOpen3 = !this.isModalOpen3
         },
       });
+    
     }
   },
   props: {

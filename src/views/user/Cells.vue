@@ -379,7 +379,7 @@ export default {
         },
         option: {
           type: 'link', href: '#', text: 'แก้ไข', classer: 'color-01',
-          iconPrepend: 'edit.svg'
+          iconPrepend: 'edit.svg', iconClasser: 'lg'
         }
       });
     }

@@ -1,6 +1,3 @@
-<style scoped>
-.popup-container.lg .popup-box {max-width: 60rem;}
-</style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
 
@@ -80,17 +77,17 @@
 
 
   <!-- Check in Popup -->
-  <div class="popup-container lg" :class="{ 'active': checkInModalOpen }">
+  <div class="popup-container" :class="{ 'active': checkInModalOpen }">
     <div class="wrapper">
-    <div class="close-filter" @click="checkInModalOpen = !checkInModalOpen"></div>
-    <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box">
-        <div class="header">
+      <div class="close-filter" @click="checkInModalOpen = !checkInModalOpen"></div>
+      <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
+          <div class="popup-box xl">
+          <div class="header">
             <div class="btns mt-0">
-            <a href="javascript:" class="btn btn-close" @click="checkInModalOpen = !checkInModalOpen">
-                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
-            </a>
+              <a href="javascript:" class="btn btn-close" @click="checkInModalOpen = !checkInModalOpen">
+                  <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                  ปิดหน้าต่าง
+              </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container">
@@ -106,12 +103,14 @@
                 <Button type="submit" text="ลงชื่อเข้า" classer="btn-color-01 btn-sm" />
               </div>
             </div>
+          </div>
+          <div class="body">
+
+
+            
+          </div>
         </div>
-        <div class="body pt-4 pb-5">
-          
-        </div>
-        </div>
-    </form>
+      </form>
     </div>
   </div>
 
@@ -138,7 +137,7 @@ export default {
 
       columns1: [
         { key: 'code', text: 'รหัสพนักงาน' },
-        { key: 'name', text: 'ชื่อ นามสกุล' },
+        { key: 'name', text: 'ชื่อ นามสกุล', classer: 'w-full' },
         { key: 'role', text: 'ตำแหน่งงาน' },
         { key: 'in', text: 'เวลาเข้า' },
         { key: 'out', text: 'เวลาออก' },
@@ -151,7 +150,7 @@ export default {
       columns2: [
         { key: 'date', text: 'วันที่' },
         { key: 'code', text: 'รหัสพนักงาน' },
-        { key: 'name', text: 'ชื่อ นามสกุล' },
+        { key: 'name', text: 'ชื่อ นามสกุล', classer: 'w-full' },
         { key: 'in', text: 'เวลาเข้า' },
         { key: 'out', text: 'เวลาออก' },
         { key: 'total', text: 'เวลาออก' },
@@ -164,7 +163,7 @@ export default {
       columns3: [
         { key: 'date', text: 'วันที่' },
         { key: 'code', text: 'รหัสพนักงาน' },
-        { key: 'name', text: 'ชื่อ นามสกุล' },
+        { key: 'name', text: 'ชื่อ นามสกุล', classer: 'w-full' },
         { key: 'in', text: 'เวลาเข้า' },
         { key: 'out', text: 'เวลาออก' },
         { key: 'total', text: 'เวลาออก' },
@@ -206,7 +205,6 @@ export default {
           type: 'text', text: ''
         },
       });
-
       this.rows1.push({
         code: { 
           type: 'text', text: '24069004'
@@ -231,10 +229,9 @@ export default {
         },
         signOut: {
           type: 'link', text: 'ลงชื่อออกจากงาน', href: '#', classer: 'color-danger',
-          iconPrepend: 'exit.svg'
+          iconPrepend: 'exit.svg', iconClasser: 'lg'
         },
       });
-
 
       this.rows2.push({
         date: { 
@@ -263,7 +260,7 @@ export default {
         },
         report: {
           type: 'link', text: 'เพิ่มการร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg'
         },
       });
       this.rows2.push({
@@ -293,7 +290,7 @@ export default {
         },
         report: {
           type: 'link', text: 'การร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg'
         },
       });
 
@@ -324,9 +321,10 @@ export default {
         },
         report: {
           type: 'link', text: 'เพิ่มการร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg'
         },
       });
+    
     }
 
   },
