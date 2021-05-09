@@ -332,6 +332,25 @@ fieldset{padding:0; margin:0; border:0;}
     background:url('../img/icon/check-green-square.svg') center/calc(140% + 2px) no-repeat;
 }
 
+/* Checkbox Single */
+.checkbox-single{position:relative; display:block; padding:0; margin:0 auto; cursor:pointer;}
+.checkbox-single > input{
+    position:absolute!important; opacity:0!important; cursor:pointer; margin:0;
+}
+.checkbox-single > label{display:block; cursor:pointer; padding:0 0 0 .875rem;}
+.checkbox-single > label::before, .checkbox-single > label::after{
+    content:''; position:absolute; top:calc(50% - .5rem); left:0; width:.75rem; height:.75rem;
+    border-radius:0; border:1px solid transparent; cursor:pointer;
+    transition:border-color .25s, opacity .25s, background .25s;
+}
+.checkbox-single > label::before{background:#ffffff; border-color:#6e6e6e;}
+.checkbox-single > input:checked + label::before{border-color:#047857;}
+.checkbox-single > label::after{
+    background:url('../img/icon/check-green-square.svg') center/calc(140% + 2px) no-repeat;
+    opacity:0;
+}
+.checkbox-single > input:checked + label::after{opacity:1;}
+
 
 /* Hamburger */
 .hamburger{cursor:pointer;}
@@ -596,6 +615,23 @@ fieldset{padding:0; margin:0; border:0;}
     .ss-card-03.sm{padding:1.25rem 1.25rem 2.5rem 1.25rem;}
 }
 
+/* Special Card 04 */
+.ss-card-04{
+    width:100%; border-radius:.75rem; background:#F8F8F8; display:flex;
+    justify-content:center; transition:background .25s;
+}
+.ss-card-04.selected{background:#ECFDF5;}
+.ss-card-04 .checkbox-single{display:flex; align-items:center;}
+.ss-card-04 .checkbox-single > label{width:100%; padding:1.75rem 0 1.75rem 1.5rem;}
+.ss-card-04 .checkbox-single > label > .wrapper{
+    display:flex; align-items:center; justify-content:center;
+}
+.ss-card-04 .checkbox-single > label .icon{width:2.5rem; height:2.5rem; margin:0 0 0 .5rem;}
+.ss-card-04 .checkbox-single > label .icon img{
+    display:block; width:auto; max-width:100%; height:auto; max-height:100%;
+    margin:0 auto;
+}
+
 
 /* Special Image */
 .ss-img{display:block; position:relative; width:100%; padding:66% 0 0 0; overflow:hidden;}
@@ -658,6 +694,8 @@ fieldset{padding:0; margin:0; border:0;}
 .ss-tag.ss-tag-danger{background:#F8CCE5;}
 .ss-tag.ss-tag-info{background:#CCE5FB;}
 .ss-tag.ss-tag-purple{background:#E1D3F7;}
+.ss-tag.ss-tag-orange{background:#FEDFCB;}
+.ss-tag.ss-tag-brown{background:#E8D6CC;}
 
 
 /* Stripe */

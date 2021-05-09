@@ -82,7 +82,7 @@
   <div class="popup-container" :class="{ 'active': checkInModalOpen }">
     <div class="wrapper">
       <div class="close-filter" @click="checkInModalOpen = !checkInModalOpen"></div>
-      <form action="/user/slides" method="GET" class="w-full" @submit="onSubmit">
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
         <div class="popup-box xl">
           <div class="header">
             <div class="btns mt-0">
@@ -91,33 +91,24 @@
                 ปิดหน้าต่าง
               </a>
             </div>
-            <div class="header-wrapper">
-              <div class="text-container">
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
                 <h6 class="h3">ลงชื่อเข้าทำงาน</h6>
               </div>
-              <div class="btns hide-mobile">
-                <div class="check-all mr-4">
-                  <input 
-                    type="checkbox" class="mr-2" name="select_all" 
-                    @change="selectAll=!selectAll"
-                  />
-                  <label for="select_all">เลือกทั้งหมด</label>
+              <div class="d-flex ai-center">
+                <div class="checkbox-single mr-3">
+                  <input type="checkbox" id="select_all" @change="selectAll =! selectAll" />
+                  <label for="select_all">
+                    <span class="pl-2 ws-nowrap">เลือกทั้งหมด</span>
+                  </label>
                 </div>
                 <Button 
                   type="submit" text="ลงชื่อเข้าทำงาน"
-                  classer="btn-color-01" :prepend="true" icon="check-white.svg" 
+                  classer="btn-color-01 hide-mobile" :prepend="true" icon="check-white.svg" 
                 />
-              </div>
-              <div class="btns ws-nowrap show-mobile">
-                <div class="check-all mr-3">  
-                  <input 
-                    type="checkbox" class="mr-2" name="select_all"
-                    @change="selectAll=!selectAll"
-                    :checked="selectAll"
-                  />
-                  <label for="select_all">เลือกทั้งหมด</label>
-                </div>
-                <Button type="submit" text="ลงชื่อเข้า" classer="btn-color-01 btn-sm" />
+                <Button 
+                  type="submit" text="ลงชื่อเข้า" classer="btn-sm btn-color-01 show-mobile"
+                />
               </div>
             </div>
           </div>
@@ -174,9 +165,11 @@ export default {
   data() {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
+      
       topnavActiveIndex: 3,
       checkInModalOpen: false,
       selectAll: false,
+      
       columns1: [
         { key: 'code', text: 'รหัสพนักงาน' },
         { key: 'name', text: 'ชื่อ นามสกุล', classer: 'w-full' },
