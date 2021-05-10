@@ -3,7 +3,7 @@
     <div class="checkbox-single">
       <input 
         type="checkbox" :name="name" :id="'card04_'+randomId"
-        :checked="isSelected" @change="isSelected =! isSelected"
+        :checked="isSelected" @change="isSelected = !isSelected"
       />
       <label :for="'card04_'+randomId">
         <div class="wrapper">

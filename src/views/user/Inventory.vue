@@ -4,6 +4,8 @@
     font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
     background-color:#BC4A4A; color:#ffffff;
   }
+  #tooltip { background: #fff; opacity:1; padding: .5rem; }
+  #tooltip.hide{ opacity:0; }
 </style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
@@ -64,7 +66,6 @@
                 { key: 'date-desc', text: 'วันที่นำเข้า (ใหม่สุด)' },
                 { key: 'date-asc', text: 'วันที่นำเข้า (เก่าสุด)' },
               ]"
-              @click-info="infoModalOpen=!infoModalOpen"
             />
           </div>
           
@@ -269,19 +270,35 @@
                   <Button 
                     text="ยืมสินค้า" type="submit"
                     classer="btn-color-01 hide-mobile mr-3" :prepend="true" icon="check-white.svg" 
+                    @click="() => {
+                      cartModalOpen = !cartModalOpen;
+                      confirmModalOpen = !confirmModalOpen;
+                    }"
                   />
                   <Button 
                     text="ยืม"
                     classer="btn-color-01 btn-sm show-mobile mr-1"
+                    @click="() => {
+                      cartModalOpen = !cartModalOpen;
+                      confirmModalOpen = !confirmModalOpen;
+                    }"
                   />
 
                   <Button 
                     text="เบิกสินค้า" type="submit"
                     classer="btn-color-09 hide-mobile mr-3" :prepend="true" icon="product.svg" 
+                    @click="() => {
+                      cartModalOpen = !cartModalOpen;
+                      confirmModalOpen = !confirmModalOpen;
+                    }"
                   />
                   <Button 
                     text="เบิก"
                     classer="btn-color-09 btn-sm show-mobile mr-1"
+                    @click="() => {
+                      cartModalOpen = !cartModalOpen;
+                      confirmModalOpen = !confirmModalOpen;
+                    }"
                   />
 
                   <Button 
@@ -392,6 +409,117 @@
     </div>
   </div>
 
+  <!-- Report Popup -->
+  <div class="popup-container" :class="{ 'active': reportModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="reportModalOpen = !reportModalOpen"></div>
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="reportModalOpen = !reportModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
+                <span class="h3">
+                  รายละเอียดรายการขอยืม
+                </span>
+                <span class="ss-sep hide-mobile"></span>
+                <span class="ss-tag ss-tag-warning">กำลังยืม</span>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เลขที่การยืม" value="EDS-20206050" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ยืม" value="กฤตย์ จีรพัฒนานุวงศ์" />
+              </div>
+              <div class="grid lg-25 md-1-3 xs-50">
+                <FormGroup type="plain" label="รายการยืม" value="5 รายการ" />
+              </div>
+              <div class="grid lg-25 md-1-3 xs-50">
+                <FormGroup type="plain" label="วันเวลายืม" value="20/12/2563, 10:56" />
+              </div>
+            </div>
+          </div>
+          <DataTable 
+            :withOptions="false"
+            :rows="reportData"
+            :columns="[
+              { key: 'code', text: 'รหัส'},
+              { key: 'type', text: 'ประเภท'},
+              { key: 'product', text: 'ชื่อสินค้า'},
+              { key: 'rent', text: 'จำนวนยืม'},
+              { key: 'unit', text: 'หน่วย'},
+            ]"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+   <!-- Confirm Modal -->
+  <div class="popup-container" :class="{ 'active': confirmModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="confirmModalOpen = !confirmModalOpen"></div>
+      <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+              <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="confirmModalOpen = !confirmModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+              </div>
+              <div class="header-wrapper">
+                <div class="text-container">
+                  <h6 class="h3">รายละเอียดรายการขอยืม</h6>
+                </div>
+                <div class="btns hide-mobile">
+                  <Button 
+                    text="ยืนยัน" type="submit" classer="btn-color-01" 
+                    :prepend="true" icon="check-white.svg" @click="(e) => {
+                      e.preventDefault()
+                      confirmModalOpen = !confirmModalOpen;  
+                    }"
+                  />
+                </div>
+                <div class="btns show-mobile">
+                  <Button 
+                    text="ยืนยัน" classer="btn-color-01 btn-sm"
+                    @click="(e) => {
+                      e.preventDefault()
+                      confirmModalOpen = !confirmModalOpen;  
+                    }"
+                  />
+                </div>
+              </div>
+          </div>
+          <div class="body pt-4 pb-5">
+            <DataTable
+              :withOptions="false"
+              :columns="[
+                { key: 'code', text: 'รหัส' },
+                { key: 'type', text: 'ประเภท' },
+                { key: 'product', text: 'ชื่ออุปกรณ์' },
+                { key: 'rent', text: 'จำนวน' },
+                { key: 'unit', text: '' },
+              ]"
+              :rows="orderData" 
+              :rowSelect="true" 
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Delete Modal -->
   <div class="popup-container" :class="{ 'active': deleteModalOpen }">
     <div class="wrapper">
@@ -429,6 +557,67 @@
     </div>
   </div>
 
+  <!-- History Popup -->
+  <div class="popup-container" :class="{ 'active': historyModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="historyModalOpen = !historyModalOpen"></div>
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="historyModalOpen = !historyModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
+                <h6 class="h3">รายละเอียดประวัติคำขอ</h6>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-20 md-1-3">
+                <FormGroup type="plain" label="เลขที่การยืม" value="EDS-20206050" />
+              </div>
+              <div class="grid lg-20 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ยืม" value="กฤตย์ จีรพัฒนานุวงศ์" />
+              </div>
+              <div class="grid lg-20 md-1-3 xs-50">
+                <FormGroup type="plain" label="รายการยืม" value="5 รายการ" />
+              </div>
+              <div class="grid lg-20 md-1-3 xs-50">
+                <FormGroup type="plain" label="วันเวลายืม" value="20/12/2563, 10:56" />
+              </div>
+              <div class="grid lg-20 md-1-3 xs-50">
+                <FormGroup type="plain" label="วันเวลาคืน" value="22/12/2563, 10:56" />
+              </div>
+            </div>
+          </div>
+          <DataTable 
+            :withOptions="false"
+            :rows="historyData"
+            :columns="[
+              { key: 'code', text: 'รหัส'},
+              { key: 'type', text: 'ประเภท'},
+              { key: 'product', text: 'ชื่อสินค้า'},
+              { key: 'rent', text: 'จำนวนยืม'},
+              { key: 'return', text: 'จำนวนคืน'},
+              { key: 'unit', text: 'หน่วย'},
+              { key: 'defect', text: 'ชำรุด'},
+              { key: 'note', text: 'หมายเหตุ'},
+            ]"
+          />
+          <div id="tooltip" :class="showInfo ? '': 'hide'">
+            <p class="fw-400">รายละเอียดการชำรุด</p>
+            <p class="color-sgray">ถุงให้อาหารขาด</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
 
@@ -436,6 +625,7 @@
 import Topnav from '../../components/Topnav';
 import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
+import { createPopper } from '@popperjs/core';
 
 export default {
   name: 'UserInventoryPage',
@@ -453,6 +643,113 @@ export default {
       cartModalOpen: false,
       infoModalOpen: false,
       deleteModalOpen: false,
+      confirmModalOpen: false,
+      reportModalOpen: false,
+      historyModalOpen: false,
+      showInfo: false,
+
+
+      orderData: [
+        {
+          id: 1,
+          code: { text: 'DX-52260985' },
+          type: { text: 'เครื่องมือแพทยทั่วไป' },
+          product: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...' },
+          rent: { text: '15' },
+          unit: { text: 'ถุง', classer: 'color-sgray' }
+        },
+        {
+          id: 2,
+          code: { text: 'SA-16609880' },
+          type: { text: 'เครื่องมือแพทยทั่วไป' },
+          product: { text: 'เครื่องมือสแตนเลส' },
+          rent: { text: '1' },
+          unit: { text: 'ชุด', classer: 'color-sgray' }
+        }
+      ],
+
+      reportData: [
+        {
+          code: { text: 'DX-52260985' },
+          type: { text: 'เครื่องมือแพทยทั่วไป' },
+          product: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...' },
+          rent: { text: '15' },
+          unit: { text: 'ถุง', classer: 'color-sgray' }
+        },
+        {
+          code: { text: 'SA-16609880' },
+          type: { text: 'เครื่องมือสแตนเลส' },
+          product: { text: 'ถาดล้างแผล 2 หลุม DRESSING TRAY' },
+          rent: { text: '1' },
+          unit: { text: 'ชุด', classer: 'color-sgray' }
+        },
+        {
+          code: { text: 'TB-00509874' },
+          type: { text: 'เครื่องวัดอุณหภูมิ' },
+          product: { text: 'HETAIDA Non-Contact Body IR เครื่องวัดอุณหภูมิอินฟราเรด' },
+          rent: { text: '5' },
+          unit: { text: 'ชิ้น', classer: 'color-sgray' }
+        },
+        {
+          code: { text: 'ST-06196980' },
+          type: { text: 'หูฟังแพทย์' },
+          product: { text: 'STETHOSCOPE 3M รุ่น CLASSIC II PEDIATRIC' },
+          rent: { text: '1' },
+          unit: { text: 'ชิ้น', classer: 'color-sgray' }
+        }
+      ],
+
+      historyData: [
+        {
+          code: { text: 'DX-52260985' },
+          type: { text: 'เครื่องมือแพทยทั่วไป' },
+          product: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...' },
+          rent: { text: '15' },
+          return: { text: '14' },
+          unit: { text: 'ถุง', classer: 'color-sgray' },
+          defect: { 
+            text: '1', iconAppend: 'information.svg', iconClasser: 'lg show-info',
+            iconOverAppend: (e) => {
+              this.showInfo = !this.showInfo;
+            },
+            iconLeaveAppend: () => {
+              this.showInfo = !this.showInfo;
+            }
+          },
+          note: { text: '' },
+        },
+        {
+          code: { text: 'SA-16609880' },
+          type: { text: 'เครื่องมือสแตนเลส' },
+          product: { text: 'ถาดล้างแผล 2 หลุม DRESSING TRAY' },
+          rent: { text: '1' },
+          return: { text: '1' },
+          unit: { text: 'ชุด', classer: 'color-sgray' },
+          defect: { text: '-' },
+          note: { text: '' },
+        },
+        {
+          code: { text: 'TB-00509874' },
+          type: { text: 'เครื่องวัดอุณหภูมิ' },
+          product: { text: 'HETAIDA Non-Contact Body IR เครื่องวัดอุณหภูมิอินฟราเรด' },
+          rent: { text: '5' },
+          return: { text: '4' },
+          unit: { text: 'ชิ้น', classer: 'color-sgray' },
+          defect: { text: '-' },
+          note: { text: 'สูญหาย' },
+
+        },
+        {
+          code: { text: 'ST-06196980' },
+          type: { text: 'หูฟังแพทย์' },
+          product: { text: 'STETHOSCOPE 3M รุ่น CLASSIC II PEDIATRIC' },
+          rent: { text: '1' },
+          return: { text: '1' },
+          unit: { text: 'ชิ้น', classer: 'color-sgray' },
+          defect: { text: '-' },
+          note: { text: '-' },
+        }
+      ],
 
       isValidated: false,
       dataset: {
@@ -541,52 +838,63 @@ export default {
   },
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
-
     for(var i=0; i<7; i++){
 
       this.rows1.push({
         code: { 
-          type: 'text', text: 'ES-20247815'
+          type: 'link', text: 'ES-20247815',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         type: { 
-          type: 'text', text: 'เครื่องมือแพทยทั่วไป'
+          type: 'link', text: 'เครื่องมือแพทยทั่วไป',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         product: { 
-          type: 'link', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา'
+          type: 'link', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         in_stock: { 
-          type: 'text', text: '1' 
+          type: 'link', text: '1',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         unit: { 
-          type: 'text', text: 'เครื่อง'
+          type: 'link', text: 'เครื่อง',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         date: {
-          type: 'text', text: '20/12/2563'
+          type: 'link', text: '20/12/2563',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         name: {
-          type: 'text', text: 'สโรชา สูหลงกูล'
+          type: 'link', text: 'สโรชา สูหลงกูล',
+          clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         status: {
-          type: 'text', text: 'เพิ่มใส่ตระกร้า', classer: 'color-01',
+          type: 'text', text: 'เพิ่มใส่ตระกร้า', classer: 'color-01', 
           iconPrepend: 'shopping-bag-white.svg', iconClasser: 'lg'
         },
       });
 
       this.rows2.push({
         code: { 
-          type: 'text', text: 'BR-20206050'
+          type: 'link', text: 'BR-20206050',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         name: { 
-          type: 'text', text: 'กฤตย์ จีรพัฒนานุวงศ์'
+          type: 'link', text: 'กฤตย์ จีรพัฒนานุวงศ์',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         rent: { 
-          type: 'text', text: '5 '
+          type: 'link', text: '5',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         date: { 
-          type: 'text', text: '20/12/2563, 10:56'
+          type: 'link', text: '20/12/2563, 10:56',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         duration: {
-          type: 'text', text: '62 ว. 3 ช.'
+          type: 'link', text: '62 ว. 3 ช.',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         status: {
           type: 'tag', text: 'กำลังยืม', classer: 'ss-tag-warning'
@@ -599,19 +907,24 @@ export default {
 
       this.rows3.push({
         code: { 
-          type: 'text', text: 'BOL-20206050'
+          type: 'link', text: 'BOL-20206050',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         name: { 
-          type: 'text', text: 'กฤตย์ จีรพัฒนานุวงศ์'
+          type: 'link', text: 'กฤตย์ จีรพัฒนานุวงศ์',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         request: { 
-          type: 'text', text: '5'
+          type: 'link', text: '5',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         date: { 
-          type: 'text', text: '20/12/2563, 10:56'
+          type: 'link', text: '20/12/2563, 10:56',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         duration: {
-          type: 'text', text: '20 ว. 23 ช.'
+          type: 'link', text: '20 ว. 23 ช.',
+          clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
         status: {
           type: 'tag', text: 'ขอเบิก', classer: 'ss-tag-warning'
@@ -624,25 +937,32 @@ export default {
 
       this.rows4.push({
         code: { 
-          type: 'text', text: 'EDS-20206049'
+          type: 'link', text: 'EDS-20206049',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         type: { 
-          type: 'text', text: 'ยืมสินค้า'
+          type: 'link', text: 'ยืมสินค้า',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         name: { 
-          type: 'text', text: 'กฤตย์ จีรพัฒนานุวงศ์'
+          type: 'link', text: 'กฤตย์ จีรพัฒนานุวงศ์',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         request: { 
-          type: 'text', text: '3'
+          type: 'link', text: '3',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         start_date: { 
-          type: 'text', text: '16/12/2563, 15:20'
+          type: 'link', text: '16/12/2563, 15:20',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         end_date: {
-          type: 'text', text: '21/12/2563, 10:56'
+          type: 'link', text: '21/12/2563, 10:56',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
         duration: {
-          type: 'text', text: '1 ว. 2 ช. 43 นาที'
+          type: 'link', text: '1 ว. 2 ช. 43 นาที',
+          clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
       });
 
@@ -651,6 +971,15 @@ export default {
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }
+  },
+  mounted() {
+    this.$nextTick(function() {
+      var infoIcon = document.querySelector('.icon.show-info');
+      var tooltip = document.querySelector('#tooltip');
+      createPopper(infoIcon, tooltip, {
+        placement: 'top-end'
+      });
+    });
   },
   methods: {
     onSubmit(e) {

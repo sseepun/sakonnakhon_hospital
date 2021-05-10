@@ -230,6 +230,8 @@
                     v-if="row[col.key].iconAppend" 
                     class="icon append" :class="row[col.key].iconClasser" 
                     :src="'/assets/img/icon/'+row[col.key].iconAppend" alt="Image Icon" 
+                    @mouseover="row[col.key].iconOverAppend"
+                    @mouseleave="row[col.key].iconLeaveAppend"
                   />
                 </div>
                 

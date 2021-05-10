@@ -97,7 +97,7 @@
               </div>
               <div class="d-flex ai-center">
                 <div class="checkbox-single mr-3">
-                  <input type="checkbox" id="select_all" @change="selectAll =! selectAll" />
+                  <input type="checkbox" id="select_all" :checked="selectedAll" @change="toggleSelectAll()" />
                   <label for="select_all">
                     <span class="pl-2 ws-nowrap">เลือกทั้งหมด</span>
                   </label>
@@ -115,28 +115,220 @@
           <div class="body">
             <div class="grids">
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" :isSelected="cardSelected[0]" @change="cardSelected[0] = !cardSelected[0]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-03.svg" text="Embedding" :isSelected="selectAll"  />
+                <SpecialCard04 icon="lab-03.svg" text="Embedding" :isSelected="cardSelected[1]" @change="cardSelected[1] = !cardSelected[1]"/>
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-06.svg" text="Section" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-06.svg" text="Section" :isSelected="cardSelected[2]" @change="cardSelected[2] = !cardSelected[2]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-07.svg" text="ย้อมสี" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-07.svg" text="ย้อมสี" :isSelected="cardSelected[3]" @change="cardSelected[3] = !cardSelected[3]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-02.svg" text="พิมพ์ Gross" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-02.svg" text="พิมพ์ Gross" :isSelected="cardSelected[4]" @change="cardSelected[4] = !cardSelected[4]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-08.svg" text="Screening" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-08.svg" text="Screening" :isSelected="cardSelected[5]" @change="cardSelected[5] = !cardSelected[5]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-09.svg" text="แปลผล" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-09.svg" text="แปลผล" :isSelected="cardSelected[6]" @change="cardSelected[6] = !cardSelected[6]" />
               </div>
               <div class="grid lg-25 md-1-3">
-                <SpecialCard04 icon="lab-10.svg" text="รายงานผล" :isSelected="selectAll" />
+                <SpecialCard04 icon="lab-10.svg" text="รายงานผล" :isSelected="cardSelected[7]" @change="cardSelected[7] = !cardSelected[7]" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Check Out Popup -->
+  <div class="popup-container" :class="{ 'active': checkOutModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="checkOutModalOpen = !checkOutModalOpen"></div>
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="checkOutModalOpen = !checkOutModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
+                <h6 class="h3">ลงชื่อออกจากงาน</h6>
+              </div>
+              <div class="d-flex ai-center">
+                <Button 
+                  type="submit" text="ลงชื่อออกจากงาน"
+                  classer="btn-color-06 hide-mobile" :prepend="true" icon="check-white.svg" 
+                />
+                <Button 
+                  type="submit" text="ลงชื่อออก" classer="btn-sm btn-color-06 show-mobile"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="เวลาออก" value="17:42" />
+              </div>
+            </div>
+
+            <div class="mt-2" style="width:100%; height: .0625rem; background-color: #E1E1E1; position: absolute; left: 0;"></div>
+
+            <div class="grids mt-2">
+              <div class="grid lg-25 md-1-3">
+                <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <SpecialCard04 icon="lab-06.svg" text="Section" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <SpecialCard04 icon="lab-10.svg" text="รายงานผล" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Report Popup -->
+  <div class="popup-container" :class="{ 'active': reportModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="reportModalOpen = !reportModalOpen"></div>
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="reportModalOpen = !reportModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
+                <h6 class="h3">รายการร้องเรียน</h6>
+              </div>
+              <div class="d-flex ai-center">
+                <Button 
+                  text="ร้องเรียนเรื่องใหม่"
+                  classer="btn-color-01 hide-mobile" :prepend="true" icon="plus-white.svg"
+                  @click="() => {
+                    reportModalOpen = !reportModalOpen
+                    addReportPopup = !addReportPopup
+                  }"
+                />
+                <Button 
+                  text="เรื่องใหม่" classer="btn-sm btn-color-01 show-mobile"
+                  @click="() => {
+                    reportModalOpen = !reportModalOpen
+                    addReportPopup = !addReportPopup
+                  }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="เวลาออก" value="17:42" />
+              </div>
+              <div class="grid lg-15 md-1-3">
+                <FormGroup type="plain" label="ภาระงาน" value="1 รายการ" />
+              </div>
+            </div>
+          </div>
+          <DataTable 
+            :withOptions="false"
+            :rows="reportData"
+            :columns="[
+              { key: 'detail', text: 'รายละเอียดข้อผิดพลาด'},
+              { key: 'reporter', text: 'ผู้ร้องเรียน'},
+              { key: 'datetime', text: 'วันเวลา'},
+              { key: 'options', text: '' }
+            ]"
+            :addOptions="{
+              detail: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+              reporter: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+              datetime: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+            }" 
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add report Popup -->
+  <div class="popup-container" :class="{ 'active': addReportPopup }">
+    <div class="wrapper">
+      <div class="close-filter" @click="addReportPopup = !addReportPopup"></div>
+      <form action="/" method="GET" class="w-full"  @submit="onPrefixDelete">
+        <div class="popup-box">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="addReportPopup = !addReportPopup">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ยกเลิก
+              </a>
+            </div>
+            <div class="header-wrapper">
+              <div class="text-container">
+                <h6 class="h3">ร้องเรียนเรื่องใหม่</h6>
+              </div>
+              <div class="btns">
+                <Button type="submit" text="ส่งเรื่อง" classer="btn-color-01 hide-mobile" :prepend="true" icon="send-white.svg" 
+                  @click="(e) => {
+                    e.preventDefault();
+                    addReportPopup = !addReportPopup
+                  }"
+                />
+                <Button type="submit" text="ส่งเรื่อง" classer="btn-sm btn-color-01 show-mobile" 
+                  @click="(e) => {
+                    e.preventDefault();
+                    addReportPopup = !addReportPopup
+                  }"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid sm-100">
+                <FormGroup
+                  label="รายละเอียดข้อผิดพลาด" type="textarea" name="note" :required="true" 
+                  placeholder="กรุณาระบุรายละเอียดข้อผิดพลาด" 
+                />
               </div>
             </div>
           </div>
@@ -168,8 +360,30 @@ export default {
       
       topnavActiveIndex: 3,
       checkInModalOpen: false,
-      selectAll: false,
+      checkOutModalOpen: false,
+      reportModalOpen: false,
+      addReportPopup: false,
+      cardSelected: [ false, false, false, false, false, false, false, false ],
       
+      reportData: [
+        {  
+          detail: {
+            type:'text', text: 'ไม่จัดเก็บอุปกรณ์หลังใช้งานไม่เข้าเรียบร้อย'
+          },
+          reporter: {
+            type:'text', text: 'รศ. ธัญญาวรรณ คำกลาง'
+          },
+          datetime: {
+            type:'text', text: '20/12/2563, 10:56'
+          },
+          options: {
+            type: 'options',
+            edit: { type: 'inline', id: 4 },
+            delete: { type: 'emit', id: 4 }
+          }
+        }
+      ],
+
       columns1: [
         { key: 'code', text: 'รหัสพนักงาน' },
         { key: 'name', text: 'ชื่อ นามสกุล', classer: 'w-full' },
@@ -207,6 +421,16 @@ export default {
         { key: 'report', text: '' },
       ],
       rows3: []
+    }
+  },
+  computed: {
+    selectedAll: function() {
+      for(let i =0; i < this.cardSelected.length; i++){
+        if(!this.cardSelected[i]){
+          return false;
+        }
+      }
+      return true;
     }
   },
   created() {
@@ -264,7 +488,7 @@ export default {
         },
         signOut: {
           type: 'link', text: 'ลงชื่อออกจากงาน', href: '#', classer: 'color-danger',
-          iconPrepend: 'exit.svg', iconClasser: 'lg'
+          iconPrepend: 'exit.svg', iconClasser: 'lg', clickFn: () => this.checkOutModalOpen = !this.checkOutModalOpen
         },
       });
 
@@ -295,7 +519,7 @@ export default {
         },
         report: {
           type: 'link', text: 'เพิ่มการร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg', iconClasser: 'lg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg',  clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
       });
       this.rows2.push({
@@ -325,7 +549,7 @@ export default {
         },
         report: {
           type: 'link', text: 'การร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg', iconClasser: 'lg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg', clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
       });
 
@@ -356,7 +580,7 @@ export default {
         },
         report: {
           type: 'link', text: 'เพิ่มการร้องเรียน', href: '#', classer: 'color-01',
-          iconPrepend: 'comment.svg', iconClasser: 'lg'
+          iconPrepend: 'comment.svg', iconClasser: 'lg',  clickFn: () => this.reportModalOpen = !this.reportModalOpen
         },
       });
     
@@ -365,6 +589,20 @@ export default {
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }
+  },
+  methods: {
+    toggleSelectAll(){
+      if(this.selectedAll){
+        for(let i = 0; i < this.cardSelected.length; i++){
+          this.cardSelected[i] = false;
+        }
+      }
+      else{
+        for(let i = 0; i < this.cardSelected.length; i++){
+          this.cardSelected[i] = true;
+        }
+      }
+    }
   }
 }
 </script>
