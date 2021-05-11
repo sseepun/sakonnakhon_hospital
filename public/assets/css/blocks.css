@@ -258,6 +258,9 @@ table.table-section .checkbox > label::before, table.table-section .checkbox > l
     border-radius:0; border:1px solid transparent; cursor:pointer;
     transition:border-color .25s, opacity .25s, background .25s;
 }
+table.table-section .checkbox > label.round::before, table.table-section .checkbox > label.round::after{
+ border-radius: 50%; width: 1rem; height: 1rem;
+}
 table.table-section .checkbox > label::before{background:#ffffff; border-color:#6e6e6e;}
 table.table-section .checkbox > input:checked + label::before{border-color:#047857;}
 table.table-section .checkbox > label::after{

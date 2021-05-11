@@ -4,7 +4,7 @@
     font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
     background-color:#BC4A4A; color:#ffffff;
   }
-  #tooltip { background: #fff; opacity:1; padding: .5rem; }
+  #tooltip { background: #fff; opacity:1; padding: .75rem; }
   #tooltip.hide{ opacity:0; }
 </style>
 <template>
@@ -609,10 +609,64 @@
               { key: 'note', text: 'หมายเหตุ'},
             ]"
           />
-          <div id="tooltip" :class="showInfo ? '': 'hide'">
+          <div id="tooltip" :class="showInfo ? 'box-shadow': 'box-shadow hide'">
             <p class="fw-400">รายละเอียดการชำรุด</p>
             <p class="color-sgray">ถุงให้อาหารขาด</p>
           </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Return Popup -->
+  <div class="popup-container" :class="{ 'active': returnModalOpen }">
+    <div class="wrapper">
+      <div class="close-filter" @click="returnModalOpen = !returnModalOpen"></div>
+      <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
+            <div class="btns mt-0">
+              <a href="javascript:" class="btn btn-close" @click="returnModalOpen = !returnModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ปิดหน้าต่าง
+              </a>
+            </div>
+            <div class="header-wrapper fw-wrap">
+              <div class="text-container ws-nowrap pr-3">
+                <h6 class="h3">รายละเอียดประวัติคำขอ</h6>
+              </div>
+            </div>
+          </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="เลขที่การยืม" value="EDS-20206049" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="ชื่อผู้ยืม" value="อนุรักษ์ ไทยสงค์" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="รายการยืม" value="3 รายการ" />
+              </div>
+              <div class="grid lg-25 md-1-3">
+                <FormGroup type="plain" label="วันเวลายืม" value="20/12/2563, 10:56" />
+              </div>
+            </div>
+          </div>
+          <DataTable 
+            :withOptions="false"
+            :rows="returnData"
+            :columns="[
+              { key: 'code', text: 'รหัส'},
+              { key: 'type', text: 'ประเภท'},
+              { key: 'product', text: 'ชื่อสินค้า'},
+              { key: 'rent', text: 'จำนวนยืม'},
+              { key: 'return', text: 'จำนวนคืน'},
+              { key: 'left', text: 'คงเหลือ'},
+              { key: 'unit', text: 'หน่วย'},
+              { key: 'defect', text: 'แจ้งชำรุด'},
+            ]"
+          />
         </div>
       </form>
     </div>
@@ -646,8 +700,8 @@ export default {
       confirmModalOpen: false,
       reportModalOpen: false,
       historyModalOpen: false,
+      returnModalOpen: false,
       showInfo: false,
-
 
       orderData: [
         {
@@ -751,6 +805,45 @@ export default {
         }
       ],
 
+      returnData: [
+        {
+          code: { text: 'DX-52260985' },
+          type: { text: 'เครื่องมือแพทยทั่วไป' },
+          product: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...' },
+          rent: { text: '6' },
+          return: { type:'counter', value: 6, min: 0, max: 6, step: 1 },
+          unit: { text: 'ถุง', classer: 'color-sgray' },
+          left: { text: '0' },
+          defect: { 
+            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+          },
+        },
+        {
+          code: { text: 'SA-13759285' },
+          type: { text: 'เครื่องมือสแตนเลส' },
+          product: { text: 'กล่องเครื่องมือ 12" x 8" x 2" พร้อมฝา' },
+          rent: { text: '5' },
+          return: { type:'counter', value: 2, min: 0, max: 5, step: 1 },
+          unit: { text: 'ถุง', classer: 'color-sgray' },
+          left: { text: '3' },
+          defect: { 
+            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+          },
+        },
+        {
+          code: { text: 'SA-16609880' },
+          type: { text: 'เครื่องมือสแตนเลส' },
+          product: { text: 'ถาดล้างแผล 2 หลุม DRESSING TRAY' },
+          rent: { text: '1' },
+          return: { type:'counter', value: 0, min: 0, max: 1, step: 1 },
+          unit: { text: 'ถุง', classer: 'color-sgray' },
+          left: { text: '1' },
+          defect: { 
+            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+          },
+        }
+      ],
+
       isValidated: false,
       dataset: {
         code: '',
@@ -817,7 +910,7 @@ export default {
         { key: 'name', text: 'ชื่อสินค้า' },
         { key: 'in_stock', text: 'คงเหลือ' },
         { key: 'unit', text: 'หน่วย' },
-        { key: 'ea', text: 'ความต้องการ' },
+        { key: 'require', text: 'ความต้องการ' },
         { key: 'option', text: '' },
       ],
 
@@ -828,7 +921,7 @@ export default {
           name: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...'},
           in_stock: { text: '50'},
           unit: { text: 'ถุง'},
-          ea: { type:'input', value: 15, min: 1, max:50, step: 1 },
+          require: { type:'counter', value: 15, min: 1, max:50, step: 1 },
           option: {
             type:'icon', icon: 'delete.svg'
           }
@@ -871,7 +964,8 @@ export default {
         },
         status: {
           type: 'text', text: 'เพิ่มใส่ตระกร้า', classer: 'color-01', 
-          iconPrepend: 'shopping-bag-white.svg', iconClasser: 'lg'
+          iconPrepend: 'shopping-bag-white.svg', iconClasser: 'lg',
+          clickFn: () => this.returnModalOpen = !this.returnModalOpen
         },
       });
 
@@ -901,7 +995,8 @@ export default {
         },
         option: {
           type: 'link', text: 'คืนสินค้า', href: '#', classer: 'color-01',
-          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg'
+          iconPrepend: 'circle-arrow-up.svg', iconClasser: 'lg',
+          clickFn: () => this.returnModalOpen = !this.returnModalOpen
         },
       });
 

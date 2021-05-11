@@ -1,3 +1,19 @@
+<style scoped>
+.date-wrapper{position:relative;}
+.date-wrapper .icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(100%);
+  opacity: .5;
+  transition: filter .25s, opacity .25s;
+}
+</style>
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
@@ -82,6 +98,55 @@
         </div>
       </template>
     </DatePicker>
+  </div>
+
+  <!-- Newly added by Ton -->
+  <div v-else-if="type == 'datepicker-range'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <DatePicker 
+    v-model="value" is-range title-position="left" 
+    :is-required="required? true: false"
+    :attributes="[ { popover: { placement: 'top-start' } } ]"
+    @click="handleInput"
+  >
+    <template v-slot="{ inputValue, inputEvents }">
+      <div class="d-flex jc-start ai-center">
+        <div class="date-wrapper">
+          <input
+            type="text" class="no-bradius"
+            :name="name" 
+            :placeholder="'ใส่วันที่ส่งชิ้นเนื้อ'" 
+            :value="inputValue.start"
+            v-on="inputEvents.start" 
+            @focusin="isFocused = true" @focusout="isFocused = false" 
+          />
+          <div class="icon">
+            <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
+          </div>
+        </div>
+        
+        <div class="d-flex ai-center bcolor-sgray" style="padding: .625rem; border-top: 1.5px solid transparent; border-bottom: 1.5px solid transparent;">
+          <img :src="'/assets/img/icon/arrow-right.svg'" alt="Image Icon" />
+        </div>
+        <div class="date-wrapper">
+          <input
+            type="text" class="no-bradius"
+            :name="name2" 
+            :placeholder="'จนถึงวันที่'" 
+            :value="inputValue.end"
+            v-on="inputEvents.end" 
+            @focusin="isFocused = true" @focusout="isFocused = false" 
+          />
+          <div class="icon">
+            <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
+          </div>
+        </div>
+      </div>
+    </template>
+    </DatePicker>
+    
   </div>
 
   <div v-else-if="type == 'file'" class="form-group" :class="classer">

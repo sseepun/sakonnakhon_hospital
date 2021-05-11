@@ -36,6 +36,11 @@ const routes = [
     component: () => import('../views/user/Cells.vue')
   },
   {
+    path: '/user/cell-complete',
+    name: 'UserCellCompletePage',
+    component: () => import('../views/user/CellComplete.vue')
+  },
+  {
     path: '/user/special-cases',
     name: 'UserSpecialCasesPage',
     component: () => import('../views/user/SpecialCases.vue')

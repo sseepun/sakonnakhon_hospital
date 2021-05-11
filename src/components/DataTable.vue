@@ -1,3 +1,6 @@
+<style scoped>
+  .counter-up.disabled, .counter-down.disabled{ pointer-events: none; filter:grayscale(100%); }
+</style>
 <template>
 
   <!-- Table Options -->
@@ -105,7 +108,7 @@
                     :id="'datatable_'+randomId+'_'+index" :checked="checkRowSelected(row.id)" 
                     @change="(event)=>$emit('check-click', rowSelected)"
                   />
-                  <label :for="'datatable_'+randomId+'_'+index"></label>
+                  <label :class="roundSelect ? 'round': ''" :for="'datatable_'+randomId+'_'+index"></label>
                 </div>
               </td>
 
@@ -182,20 +185,20 @@
                 </div>
                 
                 <!-- Newly added by Ton: used in Inventory component -->
-                <div v-else-if="row[col.key].type == 'input'">
-                  <div class="d-flex ai-center">
+                <div v-else-if="row[col.key].type == 'counter'">
+                  <div class="d-flex ai-center" style="min-width: 6.5rem;">
                     <input
-                      type="number" class="mr-1" ref="counter"
+                      type="text" class="mr-1" :ref="'counter_'+index"
                       :value="row[col.key].value"
                       :min="row[col.key].min" 
                       :max="row[col.key].max" 
                       :step="row[col.key].step"
                     />
                     <div class="chev-wrappers">
-                      <a class="btn-chev" @click="addCounter(row[col.key].step, $event)">
+                      <a class="d-flex counter-up" style="cursor: pointer;" @click="addCounter(index, row[col.key].step, $event)">
                         <img src="/assets/img/icon/caret-up.svg" alt="Image Icon" />
                       </a>
-                      <a class="btn-chev" @click="removeCounter(row[col.key].step, $event)">
+                      <a class="d-flex counter-down" style="cursor: pointer;" @click="removeCounter(index, row[col.key].step, $event)">
                         <img src="/assets/img/icon/caret-down.svg" alt="Image Icon" />
                       </a>
                     </div>
@@ -364,6 +367,7 @@ export default {
     rows: { type: Array, default: [] },
     withOptions: { type: Boolean, default: true },
     rowSelect: { type: Boolean, default: false },
+    roundSelect: { type: Boolean, default: false },
     page: { type: Number, default: 1 },
     pp: { type: Number, default: 10 },
     search: { type: Array, default: [] },
@@ -558,35 +562,47 @@ export default {
       }
     },
     
-    addCounter(step, event){
-      var counter = this.$refs.counter;
+    addCounter(index, step, event){
+      var counter = this.$refs['counter_'+index];
       var btn = event.target.parentNode;
       var parent = btn.parentNode;
       if(parent.children[1].classList.contains('disabled')){
         parent.children[1].classList.remove('disabled');
       }
       let val = Number(counter.value),
+          min = Number(counter.min),
           max = Number(counter.max);
-      var result = val + step > max ? max: val + step;
-      if (result == max){
-        btn.classList.add('disabled');
+      if(val < min){
+        counter.value = min;
+        parent.children[1].classList.add('disabled');
+      }else{
+        var result = val + step > max ? max: val + step;
+        if (result == max){
+          btn.classList.add('disabled');
+        }
+        counter.value = result;
       }
-      counter.value = result;
     },
-    removeCounter(step, event){
-      var counter = this.$refs.counter;
+    removeCounter(index, step, event){
+      var counter = this.$refs['counter_'+index];
       var btn = event.target.parentNode;
       var parent = btn.parentNode;
       if(parent.children[0].classList.contains('disabled')){
         parent.children[0].classList.remove('disabled');
       }
       let val = Number(counter.value),
-          min = Number(counter.min);
-      var result = val - step < min ? min: val - step;
-      if (result == min){
-        btn.classList.add('disabled');
+          min = Number(counter.min),
+          max = Number(counter.max);
+      if(val > max){
+        counter.value = max;
+        parent.children[0].classList.add('disabled');
+      }else{
+        var result = val - step < min ? min: val - step;
+        if (result == min){
+          btn.classList.add('disabled');
+        }
+        counter.value = result;
       }
-      counter.value = result;
     },
 
     checkRowSelected(rowId){
