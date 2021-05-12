@@ -118,6 +118,50 @@
 }
 
 
+/* Step 01 */
+.step-01{width:100%; overflow:hidden;}
+.step-01 > .wrapper{width:100%; transition:transform .25s;}
+.step-01 .inner-wrapper{width:100%; display:flex; justify-content:center;}
+.step-01 .step{position:relative; width:9rem; text-align:center; margin:.4375rem 0;}
+.step-01 .step .icon{
+    position:relative; display:block; width:2.9375rem; height:2.9375rem;
+    border-radius:50%; border:.0625rem solid #c8c8c8; background:#ffffff;
+    margin:0 auto; transition:border-color .25s, background .25s;
+}
+.step-01 .step.current .icon{border-color:#047857; background:#D2F4EE;}
+.step-01 .step.active .icon{border-color:#047857; background:#047857;}
+.step-01 .step .icon img{
+    position:absolute; top:calc(50% - .75rem); left:calc(50% - .75rem);
+    display:block; width:1.5rem; height:1.5rem; filter:grayscale(100%);
+    transition:opacity .25s, filter .25s;
+}
+.step-01 .step.current .icon img{filter:grayscale(0);}
+.step-01 .step.active .icon img{opacity:0;}
+.step-01 .step .icon img.checked{opacity:0;}
+.step-01 .step.active .icon img.checked{opacity:1;}
+.step-01 .step .text-container{margin:.4375rem 0 0 0;}
+.step-01 .step .text-container p{transition:color .25s;}
+.step-01 .step.current .text-container p{font-weight:500;}
+.step-01 .step .text-container h6,
+.step-01 .step.current .text-container p,
+.step-01 .step.active .text-container p{color:#047857;}
+.step-01 .step-sep{
+    display:block; width:calc((100% - 9rem * var(--nstep)) / 4); height:.4375rem;
+    background:#047857; margin:1.6875rem 0 0 0; border-radius:1000em;
+    transition:background .25s;
+}
+.step-01 .step:not(.active) + .step-sep{background:#f1f1f1;}
+@media screen and (max-width:991.98px){
+    .step-01 > .wrapper{
+        transform:translateX(calc(
+            50% - 4.5rem - 960px / var(--nstep) * (var(--istep) - 1)
+        ));
+    }
+    .step-01.completed > .wrapper{transform:translateX(calc(100% - 960px));}
+    .step-01 .inner-wrapper{width:960px;}
+}
+
+
 /* Table Options */
 .table-options{width:100%; display:flex; align-items:center; padding:0 2rem 1rem 2rem;}
 .table-options .options{display:flex; align-items:center;}

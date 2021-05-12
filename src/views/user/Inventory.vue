@@ -1,9 +1,4 @@
 <style scoped>
-  .total-cart{
-    display:inline-block; text-align:center; position:absolute;
-    font-size:1rem; line-height:1.625rem; width:1.5rem; height:1.5rem; border-radius:50%; 
-    background-color:#BC4A4A; color:#ffffff;
-  }
   #tooltip { background: #fff; opacity:1; padding: .75rem; }
   #tooltip.hide{ opacity:0; }
 </style>
@@ -28,24 +23,21 @@
               <Button 
                 text="ตะกร้าสินค้า" 
                 classer="btn-color-09 mr-3" :prepend="true" icon="shopping-bag-white.svg"
-                :cart="rows5.length"
-                @clicked="cartModalOpen = !cartModalOpen"
+                :cart="shoppingBag.length" @clicked="cartModalOpen = !cartModalOpen"
               />
               <Button 
-                text="เพิ่มสินค้าใหม่" 
-                classer="btn-color-01"
+                text="เพิ่มสินค้าใหม่" classer="btn-color-01" 
                 @clicked="addModalOpen = !addModalOpen"
               />
             </div>
             <div class="btns ws-nowrap show-mobile">
               <Button 
-                text="" classer="btn-color-09 btn-sm bcolor-white mr-1"
-                :prepend="true" icon="shopping-bag-white.svg" :cart="rows5.length"
-                @clicked="cartModalOpen = !cartModalOpen"
+                text="" classer="btn-color-09 btn-sm mr-1" 
+                :prepend="true" icon="shopping-bag-white.svg" 
+                :cart="shoppingBag.length" @clicked="cartModalOpen = !cartModalOpen" 
               />
               <Button 
-                text="" classer="btn-color-09 btn-sm bcolor-white"
-                :prepend="true" icon="vdots.svg"
+                text="เพิ่ม" classer="btn-color-01 btn-sm"
                 @clicked="addModalOpen = !addModalOpen"
               />
             </div>
@@ -60,7 +52,8 @@
 
           <div class="tab-content" :class="{ 'active': tabActiveIndex == 0 }">
             <DataTable
-              :columns="columns1" :rows="rows1" 
+              :rows="rows1" 
+              :columns="columns1" 
               :search="[ 'code', 'name', 'product', 'type', 'date' ]" 
               :orders="[
                 { key: 'date-desc', text: 'วันที่นำเข้า (ใหม่สุด)' },
@@ -248,79 +241,78 @@
   <!-- Cart Modal -->
   <div class="popup-container" :class="{ 'active': cartModalOpen }">
     <div class="wrapper">
-    <div class="close-filter" @click="cartModalOpen = !cartModalOpen"></div>
-    <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
-      <div class="popup-box">
-        <div class="header">
+      <div class="close-filter" @click="cartModalOpen = !cartModalOpen"></div>
+      <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
+        <div class="popup-box xl">
+          <div class="header">
             <div class="btns mt-0">
             <a href="javascript:" class="btn btn-close" @click="cartModalOpen = !cartModalOpen">
-                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+              <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+              ปิดหน้าต่าง
             </a>
             </div>
             <div class="header-wrapper">
-              <div class="text-container">
-                <h6 class="h3">ตะกร้าสินค้า
+              <div class="text-container pr-2">
+                <h6 class="h3 ws-no-wrap">
+                  ตะกร้าสินค้า
                   <span class="total-cart">
-                    {{ rows5.length }}
+                    {{ shoppingBag.length }}
                   </span>
                 </h6>
               </div>
-              <div class="btns">
-                  <Button 
-                    text="ยืมสินค้า" type="submit"
-                    classer="btn-color-01 hide-mobile mr-3" :prepend="true" icon="check-white.svg" 
-                    @click="() => {
-                      cartModalOpen = !cartModalOpen;
-                      confirmModalOpen = !confirmModalOpen;
-                    }"
-                  />
-                  <Button 
-                    text="ยืม"
-                    classer="btn-color-01 btn-sm show-mobile mr-1"
-                    @click="() => {
-                      cartModalOpen = !cartModalOpen;
-                      confirmModalOpen = !confirmModalOpen;
-                    }"
-                  />
-
-                  <Button 
-                    text="เบิกสินค้า" type="submit"
-                    classer="btn-color-09 hide-mobile mr-3" :prepend="true" icon="product.svg" 
-                    @click="() => {
-                      cartModalOpen = !cartModalOpen;
-                      confirmModalOpen = !confirmModalOpen;
-                    }"
-                  />
-                  <Button 
-                    text="เบิก"
-                    classer="btn-color-09 btn-sm show-mobile mr-1"
-                    @click="() => {
-                      cartModalOpen = !cartModalOpen;
-                      confirmModalOpen = !confirmModalOpen;
-                    }"
-                  />
-
-                  <Button 
-                    text="ล้างตะกร้า" type="submit"
-                    classer="btn-color-10 hide-mobile" :prepend="true" icon="delete.svg" 
-                  />
-                  <Button 
-                    text="ล้าง"
-                    classer="btn-color-10 btn-sm show-mobile mr-1"
-                  />
+              <div class="btns hide-mobile ws-no-wrap">
+                <Button 
+                  text="ยืมสินค้า" type="submit"
+                  classer="btn-color-01 mr-3" :prepend="true" icon="check-white.svg" 
+                  @click="() => {
+                    cartModalOpen = !cartModalOpen;
+                    confirmModalOpen = !confirmModalOpen;
+                  }"
+                />
+                <Button 
+                  text="เบิกสินค้า" type="submit"
+                  classer="btn-color-09 mr-3" :prepend="true" icon="product.svg" 
+                  @click="() => {
+                    cartModalOpen = !cartModalOpen;
+                    confirmModalOpen = !confirmModalOpen;
+                  }"
+                />
+                <Button 
+                  text="ล้างตะกร้า" type="submit"
+                  classer="btn-color-10 hide-mobile" :prepend="true" icon="delete.svg" 
+                />
+              </div>
+              <div class="btns show-mobile ws-no-wrap">
+                <Button 
+                  text="ยืม" classer="btn-color-01 btn-sm mr-1"
+                  @click="() => {
+                    cartModalOpen = !cartModalOpen;
+                    confirmModalOpen = !confirmModalOpen;
+                  }"
+                />
+                <Button 
+                  text="เบิก" classer="btn-color-09 btn-sm mr-1"
+                  @click="() => {
+                    cartModalOpen = !cartModalOpen;
+                    confirmModalOpen = !confirmModalOpen;
+                  }"
+                />
+                <Button 
+                  text="ล้าง"
+                  classer="btn-color-10 btn-sm"
+                />
               </div>
             </div>
+          </div>
+          <div class="body pl-0 pr-0 pt-4 pb-5">
+            <DataTable 
+              :rows="shoppingBag" :key="shoppingBag.length" 
+              :columns="shoppingBagColumns" 
+              :withOptions="false" 
+            />
+          </div>
         </div>
-        <div class="body pt-4 pb-5">
-          <DataTable 
-            :rows="rows5"
-            :columns="columns5"
-            :withOptions="false"
-          />
-        </div>
-      </div>
-    </form>
+      </form>
     </div>
   </div>
 
@@ -859,6 +851,18 @@ export default {
         phone: '',
         email: ''
       },
+
+      shoppingBag: [],
+      shoppingBagColumns: [
+        { key: 'code', text: 'รหัส' },
+        { key: 'type', text: 'ประเภท' },
+        { key: 'name', text: 'ชื่อสินค้า' },
+        { key: 'in_stock', text: 'คงเหลือ' },
+        { key: 'unit', text: 'หน่วย' },
+        { key: 'require', text: 'ความต้องการ' },
+        { key: 'option', text: '' },
+      ],
+
       columns1: [
         { key: 'code', text: 'รหัส' },
         { key: 'type', text: 'ประเภท' },
@@ -902,70 +906,49 @@ export default {
         { key: 'end_date', text: 'วันที่คืน' },
         { key: 'duration', text: 'จำนวนเวลาทั้งหมด' }
       ],
-      rows4: [],
-
-      columns5: [
-        { key: 'code', text: 'รหัส' },
-        { key: 'type', text: 'ประเภท' },
-        { key: 'name', text: 'ชื่อสินค้า' },
-        { key: 'in_stock', text: 'คงเหลือ' },
-        { key: 'unit', text: 'หน่วย' },
-        { key: 'require', text: 'ความต้องการ' },
-        { key: 'option', text: '' },
-      ],
-
-      rows5: [
-        {
-          code: { text: 'DX-52260985'},
-          type: { text: 'เครื่องมือแพทยทั่วไป'},
-          name: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...'},
-          in_stock: { text: '50'},
-          unit: { text: 'ถุง'},
-          require: { type:'counter', value: 15, min: 1, max:50, step: 1 },
-          option: {
-            type:'icon', icon: 'delete.svg'
-          }
-        }
-      ]
+      rows4: []
+      
     }
   },
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
     for(var i=0; i<7; i++){
+      let temp = i;
 
       this.rows1.push({
         code: { 
-          type: 'link', text: 'ES-20247815',
+          type: 'link', text: 'ES-20247815', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         type: { 
-          type: 'link', text: 'เครื่องมือแพทยทั่วไป',
+          type: 'link', text: 'เครื่องมือแพทยทั่วไป', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         product: { 
-          type: 'link', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา',
+          type: 'link', text: 'เครื่องผลิตออกซิเจน (รุ่น JAY-5) ฟังก์ชั่นพ่นยา', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         in_stock: { 
-          type: 'link', text: '1',
+          type: 'link', text: '1', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         unit: { 
-          type: 'link', text: 'เครื่อง',
+          type: 'link', text: 'เครื่อง', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         date: {
-          type: 'link', text: '20/12/2563',
+          type: 'link', text: '20/12/2563', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         name: {
-          type: 'link', text: 'สโรชา สูหลงกูล',
+          type: 'link', text: 'สโรชา สูหลงกูล', href: 'javascript:',
           clickFn: () => this.infoModalOpen = !this.infoModalOpen
         },
         status: {
-          type: 'text', text: 'เพิ่มใส่ตระกร้า', classer: 'color-01', 
+          type: 'link', text: 'เพิ่มใส่ตะกร้า', classer: 'color-01', 
           iconPrepend: 'shopping-bag-white.svg', iconClasser: 'lg',
-          clickFn: () => this.returnModalOpen = !this.returnModalOpen
+          checked: false, href: 'javascript:',
+          clickFn: () => this.toggleShoppingBag(temp)
         },
       });
 
@@ -1060,9 +1043,7 @@ export default {
           clickFn: () => this.historyModalOpen = !this.historyModalOpen
         },
       });
-
     }
-
   },
   props: {
     tabActiveIndex: { type: Number, default: 0 }
@@ -1077,6 +1058,39 @@ export default {
     });
   },
   methods: {
+
+    toggleShoppingBag(id) {
+      if(this.rows1[id].status.checked){
+        this.rows1[id].status.checked = false;
+        this.rows1[id].status.text = 'เพิ่มใส่ตะกร้า';
+        this.rows1[id].status.iconPrepend = 'shopping-bag-white.svg';
+      }else{
+        this.rows1[id].status.checked = true;
+        this.rows1[id].status.text = 'เพิ่มแล้ว';
+        this.rows1[id].status.iconPrepend = 'shopping-bag-checked.svg';
+      }
+      this.filterShoppingBag();
+    },
+    filterShoppingBag() {
+      var that = this;
+      that.shoppingBag = [];
+      that.rows1.map(function(d){
+        if(d.status.checked){
+          that.shoppingBag.push({
+            code: { text: 'DX-52260985'},
+            type: { text: 'เครื่องมือแพทยทั่วไป'},
+            name: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...'},
+            in_stock: { text: '50'},
+            unit: { text: 'ถุง'},
+            require: { type:'counter', value: 15, min: 1, max:50, step: 1 },
+            option: {
+              type:'icon', icon: 'delete.svg'
+            }
+          });
+        }
+      });
+    },
+
     onSubmit(e) {
       var that = this;
       that.isValidated = true;
@@ -1092,6 +1106,7 @@ export default {
         e.preventDefault();
       }
     }
+
   }
 }
 </script>

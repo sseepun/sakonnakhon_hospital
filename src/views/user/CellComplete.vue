@@ -43,7 +43,6 @@
         </p>
       </div>
 
-
       <div class="stripe section-px border-bottom bcolor-fgray mt-4" data-aos="fade-up" data-aos-delay="150">
         <p class="fw-400">ข้อมูลผู้ป่วย</p>
       </div>
@@ -152,11 +151,34 @@
         }" 
       />
 
-
+      <div class="tab-container mt-5 mb-5">
+        <div @click="stepActiveIndex = stepActiveIndex+1">
+          <Step01 :activeIndex="stepActiveIndex" />
+        </div>
+        <div class="tab-contents">
+          <div class="tab-content" :class="stepActiveIndex == 1? 'active': ''">
+            Step 1
+          </div>
+          <div class="tab-content" :class="stepActiveIndex == 2? 'active': ''">
+            Step 2
+          </div>
+          <div class="tab-content" :class="stepActiveIndex == 3? 'active': ''">
+            Step 3
+          </div>
+          <div class="tab-content" :class="stepActiveIndex == 4? 'active': ''">
+            Step 4
+          </div>
+          <div class="tab-content" :class="stepActiveIndex == 5? 'active': ''">
+            Step 5
+          </div>
+          <div class="tab-content" :class="stepActiveIndex > 5? 'active': ''">
+            Complete
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
-  
 
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>
@@ -165,19 +187,21 @@
 import Topnav from '../../components/Topnav';
 import SpecialCard02 from '../../components/SpecialCard02';
 import DataTable from '../../components/DataTable';
-
+import Step01 from '../../components/Step01';
 
 export default {
   name: 'CellCompletePage',
   components: {
     Topnav,
     SpecialCard02,
-    DataTable
+    DataTable,
+    Step01
   },
   data() {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 1,
+      stepActiveIndex: 1,
       serviceData: [],
     }
   },

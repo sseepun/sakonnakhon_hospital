@@ -1,6 +1,3 @@
-<style scoped>
-.cart{ display:inline-block; line-height: 1.625rem; width:1.5rem; height: 1.5rem; border-radius: 50%; background-color: #BC4A4A; color: #fff; }
-</style>
 <template>
   <button v-if="type" 
     :type="type" class="btn btn-action" :class="classer"
