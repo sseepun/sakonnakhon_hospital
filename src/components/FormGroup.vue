@@ -62,6 +62,43 @@
     </div>
   </div>
 
+  <div v-else-if="type === 'multi-select'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <div :class="wrapperClass">
+      <Multiselect 
+        :name="name" 
+        :placeholder="placeholder" 
+        v-model="value" :options="options" 
+        :searchable="true" mode="tags" :createTag="false" 
+        @change="(value)=>$emit('input', value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
+      />
+    </div>
+  </div>
+  <div v-else-if="type === 'search-select'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <div :class="wrapperClass">
+      <Multiselect 
+        :name="name" 
+        :placeholder="placeholder" 
+        v-model="value" :options="options" 
+        :searchable="true" 
+        @change="(value)=>$emit('input', value)" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false"
+        :readonly="readonly? true: false"
+        :disabled="disabled? true: false"
+      />
+    </div>
+  </div>
+
   <div v-else-if="type == 'plain'" class="form-group" :class="classer">
     <label v-if="label" class="p color-gray">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
@@ -100,17 +137,16 @@
     </DatePicker>
   </div>
 
-  <!-- Newly added by Ton -->
   <div v-else-if="type == 'datepicker-range'" class="form-group" :class="classer">
     <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <DatePicker 
-    v-model="value" is-range title-position="left" 
-    :is-required="required? true: false"
-    :attributes="[ { popover: { placement: 'top-start' } } ]"
-    @click="handleInput"
-  >
+      v-model="value" is-range title-position="left" 
+      :is-required="required? true: false"
+      :attributes="[ { popover: { placement: 'top-start' } } ]"
+      @click="handleInput"
+    >
     <template v-slot="{ inputValue, inputEvents }">
       <div class="d-flex jc-start ai-center">
         <div class="date-wrapper">
@@ -122,7 +158,7 @@
             v-on="inputEvents.start" 
             @focusin="isFocused = true" @focusout="isFocused = false" 
           />
-          <div class="icon">
+          <div class="icon hide-mobile">
             <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
           </div>
         </div>
@@ -139,7 +175,7 @@
             v-on="inputEvents.end" 
             @focusin="isFocused = true" @focusout="isFocused = false" 
           />
-          <div class="icon">
+          <div class="icon hide-mobile">
             <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
           </div>
         </div>
@@ -175,6 +211,35 @@
       รูปแบบไฟล์: .pdf, .docx, .xlsx, .jpg, .jpeg, .png <br>
       ขนาดไฟล์: ไม่เกิน 10 MB
     </p>
+  </div>
+  <div v-else-if="type == 'file-02'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <div class="file-container w-full" :class="{ 'focused': isFocused }">
+      <input 
+        type="file" :name="name" 
+        @focusin="isFocused = true" @focusout="isFocused = false" 
+        :required="required? true: false" 
+        :readonly="readonly? true: false" 
+        :disabled="disabled? true: false" 
+      />
+      <div class="dropzone file-02">
+        <div class="d-flex ai-center jc-center">
+          <div v-if="icon" class="icon">
+            <img :src="'/assets/img/icon/'+icon" class=" mr-3" alt="Image Icon" />
+          </div>
+          <div>
+            <p class="color-gray md">
+              คลิกหรือลากวางไฟล์ในพื้นที่นี้เพื่ออัปโหลด
+            </p>
+            <p class="sm color-15 text-center">
+              รูปแบบไฟล์: JPG, JPEG, PNG 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div v-else-if="type == 'special-1'" class="form-group" :class="classer">
@@ -276,8 +341,13 @@
 </template>
 
 <script>
+import Multiselect from '@vueform/multiselect';
+
 export default {
   name: 'FormGroup',
+  components: [
+    Multiselect
+  ],
   props: {
     classer: { type: String, default: '' },
     value: { type: [String, Number, Date], default: '' },

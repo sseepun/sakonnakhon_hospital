@@ -13,7 +13,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 1</h6>
-            <p>ยืนยันการรับงาน</p>
+            <p>ตัดชิ้นเนื้อ</p>
           </div>
         </div>
           
@@ -25,7 +25,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 2</h6>
-            <p>กำลังไปรับสินค้า</p>
+            <p>เตรียมสไลด์</p>
           </div>
         </div>
 

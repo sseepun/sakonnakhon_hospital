@@ -106,7 +106,6 @@
     />
   </div>
 
-
   <!-- Assign work Popup -->
   <div class="popup-container" :class="{ 'active': assignModalOpen }">
     <div class="wrapper">
@@ -135,23 +134,27 @@
               </div>
             </div>
           </div>
-          <div class="d-flex jc-space-between" style="padding: 0 2rem; margin-top: 1.5rem; margin-bottom: .5rem;">
-            <p class="fw-400">รายการที่เลือก</p>
-            <p class="fw-400 color-01">ทั้งหมด 3 รายการ</p>
-          </div>
-          <DataTable 
-            :withOptions="false"
-            :rows="rows5"
-            :columns="columns5"
-          />
-          <div style="padding: 0 2rem; margin-top: 1.5rem; margin-bottom: .5rem;">
-            <p class="fw-400">มอบหมายงาน</p>
-          </div>
-          <DataTable 
+          <div class="body-wrapper">
+            <div class="body pt-4 pb-4">
+              <div class="d-flex jc-space-between">
+                <p class="fw-400">รายการที่เลือก</p>
+                <p class="fw-400 color-01">ทั้งหมด 3 รายการ</p>
+              </div>
+            </div>
+            <DataTable 
+              :withOptions="false"
+              :rows="rows5"
+              :columns="columns5"
+            />
+            <div class="body pt-4 pb-4">
+              <p class="fw-400">มอบหมายงาน</p>
+            </div>
+            <DataTable 
               :columns="columns6" :rows="rows6" 
               :rowSelect="true" :roundSelect="true"
               :withOptions="false"
             />
+          </div>
         </div>
       </form>
     </div>
@@ -185,36 +188,37 @@
               </div>
             </div>
           </div>
-          <div class="d-flex jc-space-between" style="padding: 0 2rem; margin-top: 1.5rem; margin-bottom: .5rem;">
-            <p class="fw-400">รายการที่เลือก</p>
-            <p class="fw-400 color-01">ทั้งหมด 3 รายการ</p>
-          </div>
-          <DataTable 
-            :withOptions="false"
-            :rows="rows5"
-            :columns="columns5"
-          />
-          <div style="padding: 0 2rem; margin-top: 1.5rem; margin-bottom: .5rem;">
-            <p class="fw-400">แบบฟอร์มนำส่งชิ้นเนื้อหรือเซลล์วิทยา</p>
-          </div>
-          <div style="padding: 0 2rem 2rem 2rem;">
-            <div class="grids">
-              <div class="grid lg-40 sm-100">
-                <FormGroup 
-                  type="datepicker-range" label="*วันที่ส่งชิ้นเนื้อหรือเซลล์วิทยา" 
-                  :name="'start_date'" :name2="'end_date'" 
-                  :required="true" placeholder="01/01/2564"
-                />
-
+          <div class="body-wrapper">
+            <div class="body pt-4 pb-4">
+              <div class="d-flex jc-space-between">
+                <p class="fw-400">รายการที่เลือก</p>
+                <p class="fw-400 color-01">ทั้งหมด 3 รายการ</p>
               </div>
-              <div class="grid lg-60 sm-70">
-                <FormGroup 
-                  type="select" label="*ส่ง Lab" name="sent_lab" 
-                  :options="[
-                    { value: 1, text: '9 :  บริษัท N Health' },
-                  ]" 
-                  :value="1"
-                />
+            </div>
+            <DataTable 
+              :withOptions="false"
+              :rows="rows5"
+              :columns="columns5"
+            />
+            <div class="body mt-6">
+              <p class="fw-400">แบบฟอร์มนำส่งชิ้นเนื้อหรือเซลล์วิทยา</p>
+              <div class="grids">
+                <div class="grid lg-50 sm-100">
+                  <FormGroup 
+                    type="datepicker-range" label="*วันที่ส่งชิ้นเนื้อหรือเซลล์วิทยา" 
+                    :name="'start_date'" :name2="'end_date'" 
+                    :required="true" placeholder="01/01/2564"
+                  />
+                </div>
+                <div class="grid lg-50 sm-70">
+                  <FormGroup 
+                    type="select" label="*ส่ง Lab" name="sent_lab" 
+                    :options="[
+                      { value: 1, text: '9 :  บริษัท N Health' },
+                    ]" 
+                    :value="1"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -222,7 +226,6 @@
       </form>
     </div>
   </div>
-
 
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" :isBottom="true" />
 </template>

@@ -141,9 +141,7 @@
 .step-01 .step.active .icon img.checked{opacity:1;}
 .step-01 .step .text-container{margin:.4375rem 0 0 0;}
 .step-01 .step .text-container p{transition:color .25s;}
-.step-01 .step.current .text-container p{font-weight:500;}
 .step-01 .step .text-container h6,
-.step-01 .step.current .text-container p,
 .step-01 .step.active .text-container p{color:#047857;}
 .step-01 .step-sep{
     display:block; width:calc((100% - 9rem * var(--nstep)) / 4); height:.4375rem;

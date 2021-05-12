@@ -156,34 +156,55 @@
           การวินิจฉัย
         </p>
       </div>
-      <div class="tab-container mt-5 mb-5" data-aos="fade-up" data-aos-delay="0">
+      <div class="tab-container mt-5" data-aos="fade-up" data-aos-delay="0">
         <div class="section-px">
           <Step01 :activeIndex="stepActiveIndex" />
         </div>
-        <div class="tab-contents border-bottom bcolor-fgray pb-6 mt-6 mb-6">
+        <div class="tab-contents pt-6 pb-6">
 
           <div class="tab-content" :class="stepActiveIndex == 1? 'active': ''">
-            <div class="section-px">
+            <div class="section-px border-bottom bcolor-fgray pb-6">
               <div class="p fw-400">
-                Step 1
+                Step 1 ตัดชิ้นเนื้อ
                 <span class="ss-sep sm hide-mobile"></span>
                 <span class="ss-tag color-01">CG20-00001</span>
               </div>
               <div class="grids">
                 <div v-for="(bag, index) in bags" :key="index"
-                  class="grid xl-40 lg-50 md-2-3 sm-90"
+                  class="grid xl-50 lg-70 md-90 sm-80"
                 >
-                  <SpecialCard02 
-                    :itemIndex="index" :name="'bag_'+index" 
+                  <SpecialCard05 
+                    :itemIndex="index" :name="'bag_'+index" leading="P63-1" 
                     :value="bag.value" @input="bag.value = $event" 
                     :valueCount="bag.valueCount" @input-count="bagTotalChange(index, $event)" 
                     @input-delete="deleteBagSection($event)"
                   />
                 </div>
-                <div class="grid xl-40 lg-50 md-2-3 sm-90">
-                  <SpecialCard02 type="Add" @input-add="addBagSection()" />
+                <div class="grid xl-50 lg-70 md-90 sm-80">
+                  <SpecialCard05 type="Add" @input-add="addBagSection()" />
                 </div>
               </div>
+            </div>
+            <div class="section-px pt-6">
+              <div class="bradius-2 border bcolor-fgray ovf-hidden">
+                <div class="bg-14 border-bottom bcolor-fgray p-4 pt-2 pb-2">
+                  <p class="fw-400">สรุปรวมตามถุง</p>
+                </div>
+                <div class="p-4 pt-2">
+                  <div class="gallery-grids">
+                    <div v-for="(bag, index) in bags" :key="index"
+                      class="grid xl-25 lg-1-3 md-50 sm-70"
+                    >
+                      <SpecialCard05 
+                        :itemIndex="index" type="Complete" leading="P63-1" 
+                        :value="bag.value" :valueCount="bag.valueCount" 
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section-px">
               <div class="btns text-right">
                 <Button 
                   text="พิมพ์สติ๊กเกอร์" href="#" 
@@ -200,31 +221,47 @@
           <div class="tab-content" :class="stepActiveIndex == 2? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 2
+                Step 2 เตรียมสไลด์
                 <span class="ss-sep sm hide-mobile"></span>
                 <span class="ss-tag color-01">CG20-00001</span>
               </div>
-              <div class="grids">
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Specimen Type" placeholder="บรรยาย..." />
-                </div>
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Location" placeholder="บรรยาย..." />
-                </div>
+              <div class="grids" style="padding-bottom:4rem;">
                 <div class="grid md-50">
                   <FormGroup type="textarea" label="Diagnosis" placeholder="บรรยาย..." />
+                </div>
+                <div class="grid md-50">
+                  <FormGroup type="textarea" label="Gross Description" placeholder="บรรยาย..." />
                 </div>
                 <div class="grid md-50">
                   <FormGroup type="textarea" label="Microscopic Description" placeholder="บรรยาย..." />
                 </div>
                 <div class="grid md-50">
-                  <FormGroup type="textarea" label="Category" placeholder="บรรยาย..." />
+                  <FormGroup 
+                    type="file-02" name="file" label="Microscopie Picture" :icon="'upload.svg'"
+                  />
                 </div>
                 <div class="grid md-50">
                   <FormGroup 
-                    type="file" name="file" label="Microscopie Picture" 
-                    :icon="'upload.svg'"
+                    type="search-select" label="ICD-O" :value="[]" 
+                    placeholder="เลือก Term" 
+                    :options="[
+                      'MORPHOLOGY',
+                      'Neoplasms, NOS',
+                      'Neoplasm, benign',
+                      'Tumor, benign',
+                      'Unclassified tumor, benign',
+                      'Neoplasm, uncertain whether benign or malignant',
+                      'Tumor embolus',
+                      'Tumor, metastatic',
+                      'Tumor, secondary',
+                      'Tumor cells, benign',
+                      'Tumor cells, uncertain whether benign or malignant',
+                      'Tumor cells, NOS'
+                    ]"
                   />
+                </div>
+                <div class="grid md-50">
+                  <FormGroup type="text" label="ICDO3.2" value="-" />
                 </div>
               </div>
               <div class="btns text-right">
@@ -654,7 +691,7 @@
 
 <script>
 import Topnav from '../../components/Topnav';
-import SpecialCard02 from '../../components/SpecialCard02';
+import SpecialCard05 from '../../components/SpecialCard05';
 import DataTable from '../../components/DataTable';
 import Step01 from '../../components/Step01';
 
@@ -662,7 +699,7 @@ export default {
   name: 'CellDiagnosePage',
   components: {
     Topnav,
-    SpecialCard02,
+    SpecialCard05,
     DataTable,
     Step01
   },
