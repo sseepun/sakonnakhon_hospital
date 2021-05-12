@@ -21,6 +21,7 @@
       <br>
       <a href="/user/cells" target="_blank">/user/cells</a> <br>
       <a href="/user/cell-complete" target="_blank">/user/cell-complete</a> <br>
+      <a href="/user/cell-diagnose" target="_blank">/user/cell-diagnose</a> <br>
       <br>
       <a href="/user/case-results" target="_blank">/user/case-results</a> <br>
       <a href="/user/case-result-read" target="_blank">/user/case-result-read</a> <br>

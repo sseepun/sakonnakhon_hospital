@@ -41,6 +41,11 @@ const routes = [
     component: () => import('../views/user/CellComplete.vue')
   },
   {
+    path: '/user/cell-diagnose',
+    name: 'UserCellDiagnosePage',
+    component: () => import('../views/user/CellDiagnose.vue')
+  },
+  {
     path: '/user/special-cases',
     name: 'UserSpecialCasesPage',
     component: () => import('../views/user/SpecialCases.vue')

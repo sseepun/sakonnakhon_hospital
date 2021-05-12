@@ -215,6 +215,42 @@
     </div>
   </div>
 
+  <div v-else-if="type == 'text-select'" class="form-group" :class="classer">
+    <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
+      {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
+    </label>
+    <div class="grids">
+      <div class="grid lg-30 md-1-3 sm-50 xs-75 mt-0">        
+        <input
+          type="text" 
+          :name="name" 
+          :placeholder="placeholder" 
+          v-model="value" 
+          @input="(event)=>$emit('input', event.target.value)" 
+          @focusin="isFocused = true" @focusout="isFocused = false" 
+          :required="required? true: false"
+          :readonly="readonly? true: false"
+          :disabled="disabled? true: false"
+        />
+      </div>
+      <div class="grid lg-70 md-2-3 sm-50 mt-0">
+        <div class="checkbox-set">
+          <div v-for="(option, index) in selectOptions" :key="index" class="checkbox">
+            <input
+              type="radio"
+              :name="name2" :id="name2+'_'+index" :value="option.value"
+              :required="required? true: false" 
+              @change="(event)=>$emit('input', event.target.value)"
+            />
+            <label :for="name2+'_'+index">
+              {{option.text}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div v-else class="form-group" :class="classer">
     <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
@@ -259,7 +295,9 @@ export default {
     options: { type: Array, default: [] },
     wrapperClass: { type: String, default: '' },
     icon: { type: String, default: '' },
-    isFocused: { type: Boolean, default: false }
+    isFocused: { type: Boolean, default: false },
+    selectOptions: { type: Array, default: [] },
+    selectInput: { type: Boolean, default: false}
   },
   methods: {
     handleInput() {
