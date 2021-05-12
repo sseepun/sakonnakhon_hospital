@@ -697,6 +697,8 @@ fieldset{padding:0; margin:0; border:0;}
     content:''; position:absolute; top:-.75rem; bottom:-.75rem; width:1.5px;
     background:#C8C8C8;
 }
+.ss-sep.sm{margin:0 1rem;}
+.ss-sep.sm::before{top:-1.125rem; bottom:-.4375rem;}
 
 
 /* Special Tag */

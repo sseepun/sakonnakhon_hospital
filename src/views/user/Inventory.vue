@@ -1,6 +1,6 @@
 <style scoped>
-  #tooltip { background: #fff; opacity:1; padding: .75rem; }
-  #tooltip.hide{ opacity:0; }
+  #tooltip{background:#ffffff; opacity:1; padding:.75rem;}
+  #tooltip.hide{opacity:0;}
 </style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
@@ -23,7 +23,7 @@
               <Button 
                 text="ตะกร้าสินค้า" 
                 classer="btn-color-09 mr-3" :prepend="true" icon="shopping-bag-white.svg"
-                :cart="shoppingBag.length" @clicked="cartModalOpen = !cartModalOpen"
+                :cart="shoppingBag.length" @clicked="cartModalOpen = !cartModalOpen" 
               />
               <Button 
                 text="เพิ่มสินค้าใหม่" classer="btn-color-01" 
@@ -278,8 +278,9 @@
                   }"
                 />
                 <Button 
-                  text="ล้างตะกร้า" type="submit"
+                  text="ล้างตะกร้า" href="javascript:"
                   classer="btn-color-10 hide-mobile" :prepend="true" icon="delete.svg" 
+                  @click="() => clearShoppingBag()"
                 />
               </div>
               <div class="btns show-mobile ws-no-wrap">
@@ -1071,20 +1072,35 @@ export default {
       }
       this.filterShoppingBag();
     },
+    removeShoppingBag(id) {
+      this.rows1[id].status.checked = false;
+      this.rows1[id].status.text = 'เพิ่มใส่ตะกร้า';
+      this.rows1[id].status.iconPrepend = 'shopping-bag-white.svg';
+      this.filterShoppingBag();
+    },
+    clearShoppingBag() {
+      var that = this;
+      that.rows1.map(function(d, i){
+        that.removeShoppingBag(i);
+      });
+      that.filterShoppingBag();
+    },
     filterShoppingBag() {
       var that = this;
       that.shoppingBag = [];
-      that.rows1.map(function(d){
+      that.rows1.map(function(d, i){
         if(d.status.checked){
           that.shoppingBag.push({
+            id: i,
             code: { text: 'DX-52260985'},
             type: { text: 'เครื่องมือแพทยทั่วไป'},
             name: { text: 'ถุงให้อาหารผู้ป่วยทางสายยาง ทำให้ปราศจากเชื้อด้วยเอทธิลีนออก...'},
             in_stock: { text: '50'},
             unit: { text: 'ถุง'},
-            require: { type:'counter', value: 15, min: 1, max:50, step: 1 },
+            require: { type: 'counter', value: 1, min: 1, max:50, step: 1 },
             option: {
-              type:'icon', icon: 'delete.svg'
+              type:'icon', icon: 'delete.svg',
+              clickFn: () => that.removeShoppingBag(i)
             }
           });
         }

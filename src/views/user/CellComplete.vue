@@ -97,7 +97,7 @@
           เจ้าหน้าที่เซลล์วิทยา
         </p>
       </div>
-      <div class="section-px section-py-grid border-bottom bcolor-fgray" data-aos="fade-up" data-aos-delay="0">
+      <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="0">
         <div class="grids">
           <div class="grid xl-20 lg-1-3 sm-100">
             <CheckboxSet 
@@ -122,54 +122,31 @@
         </div>
       </div>
 
-      <DataTable 
-        :rows="serviceData" 
-        :columns="[
-          { key: 'id', text: 'ID' },
-          { key: 'service', text: 'รายการบริการ' },
-          { key: 'time', text: 'เวลา' },
-          { key: 'amount', text: 'จำนวน' },
-          { key: 'discount', text: 'ส่วนลด' },
-          { key: 'price', text: 'ราคาต่อหน่วย' },
-          { key: 'total_price', text: 'ราคารวม' },
-          { key: 'options', text: '' }
-        ]"
-        :allowAdd="true" allowAddText="เพิ่มรายการบริการ" 
-        :addOptions="{
-          id: { type: 'text', value: '', placeholder: '00000', required: true },
-          service: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
-          time: { type: 'text', value: '', placeholder: '13:32', required: true },
-          amount: { type: 'text', value: '', placeholder: '00', required: true },
-          discount: { type: 'text', value: '', placeholder: '00', required: true },
-          price: { type: 'text', value: '', placeholder: '00', required: true },
-          total_price: { type: 'text', value: '', placeholder: '00', required: true },
-        }" 
-      />
-
-      <div class="tab-container mt-5 mb-5">
-        <div @click="stepActiveIndex = stepActiveIndex+1">
-          <Step01 :activeIndex="stepActiveIndex" />
-        </div>
-        <div class="tab-contents">
-          <div class="tab-content" :class="stepActiveIndex == 1? 'active': ''">
-            Step 1
-          </div>
-          <div class="tab-content" :class="stepActiveIndex == 2? 'active': ''">
-            Step 2
-          </div>
-          <div class="tab-content" :class="stepActiveIndex == 3? 'active': ''">
-            Step 3
-          </div>
-          <div class="tab-content" :class="stepActiveIndex == 4? 'active': ''">
-            Step 4
-          </div>
-          <div class="tab-content" :class="stepActiveIndex == 5? 'active': ''">
-            Step 5
-          </div>
-          <div class="tab-content" :class="stepActiveIndex > 5? 'active': ''">
-            Complete
-          </div>
-        </div>
+      <div class="mb-5" data-aos="fade-up" data-aos-delay="0">
+        <DataTable 
+          :rows="serviceData" 
+          :columns="[
+            { key: 'id', text: 'ID' },
+            { key: 'service', text: 'รายการบริการ' },
+            { key: 'time', text: 'เวลา' },
+            { key: 'amount', text: 'จำนวน' },
+            { key: 'discount', text: 'ส่วนลด' },
+            { key: 'price', text: 'ราคาต่อหน่วย' },
+            { key: 'total_price', text: 'ราคารวม' },
+            { key: 'options', text: '' }
+          ]" 
+          :withOptions="false" 
+          :allowAdd="true" allowAddText="เพิ่มรายการบริการ" 
+          :addOptions="{
+            id: { type: 'text', value: '', placeholder: '00000', required: true },
+            service: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+            time: { type: 'text', value: '', placeholder: '13:32', required: true },
+            amount: { type: 'text', value: '', placeholder: '00', required: true },
+            discount: { type: 'text', value: '', placeholder: '00', required: true },
+            price: { type: 'text', value: '', placeholder: '00', required: true },
+            total_price: { type: 'text', value: '', placeholder: '00', required: true },
+          }" 
+        />
       </div>
 
     </div>
@@ -196,7 +173,6 @@ export default {
     return {
       userRole: 'Super User', /* User, Staff พยาธิวิทยา, Staff งานศพ, Admin */
       topnavActiveIndex: 1,
-      stepActiveIndex: 1,
       serviceData: [],
     }
   },

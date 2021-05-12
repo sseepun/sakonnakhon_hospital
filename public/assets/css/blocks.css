@@ -313,6 +313,12 @@ table.table-section .checkbox > label::after{
 }
 table.table-section .checkbox > input:checked + label::after{opacity:1;}
 
+table.table-section .counter-up, 
+table.table-section .counter-down{cursor:pointer; transition:opacity .25s, filter .25s;}
+table.table-section .counter-up.disabled, table.table-section .counter-down.disabled{
+  pointer-events:none; filter:grayscale(100%); opacity:.7;
+}
+
 
 /* Tab Container */
 .tab-container{position:relative; display:block; width:100%;}

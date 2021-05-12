@@ -1,6 +1,3 @@
-<style scoped>
-  .counter-up.disabled, .counter-down.disabled{ pointer-events: none; filter:grayscale(100%); }
-</style>
 <template>
 
   <!-- Table Options -->
@@ -186,7 +183,7 @@
                 
                 <!-- Newly added by Ton: used in Inventory component -->
                 <div v-else-if="row[col.key].type == 'counter'">
-                  <div class="d-flex ai-center" style="min-width: 6.5rem;">
+                  <div class="d-flex ai-center" style="min-width:6.5rem;">
                     <input
                       type="text" class="mr-1" :ref="'counter_'+index"
                       :value="row[col.key].value"
@@ -195,10 +192,16 @@
                       :step="row[col.key].step"
                     />
                     <div class="chev-wrappers">
-                      <a class="d-flex counter-up" style="cursor: pointer;" @click="addCounter(index, row[col.key].step, $event)">
+                      <a 
+                        class="d-flex counter-up" :class="row[col.key].value >= row[col.key].max? 'disabled': ''" 
+                        @click="row[col.key].value += 1"
+                      >
                         <img src="/assets/img/icon/caret-up.svg" alt="Image Icon" />
                       </a>
-                      <a class="d-flex counter-down" style="cursor: pointer;" @click="removeCounter(index, row[col.key].step, $event)">
+                      <a 
+                        class="d-flex counter-down" :class="row[col.key].value <= row[col.key].min? 'disabled': ''" 
+                        @click="row[col.key].value -= 1"
+                      >
                         <img src="/assets/img/icon/caret-down.svg" alt="Image Icon" />
                       </a>
                     </div>
@@ -207,7 +210,7 @@
                 </div>
 
                 <div v-else-if="row[col.key].type == 'icon'">
-                  <a href="javascript:">
+                  <a href="javascript:" @click="row[col.key].clickFn">
                     <img class="icon lg" :src="'/assets/img/icon/'+row[col.key].icon" alt="Image Icon" />
                   </a>
                 </div>
@@ -559,49 +562,6 @@ export default {
         this.toggleEditing();
         this.clearEditing();
         return this.$emit('row-edit', data);
-      }
-    },
-    
-    addCounter(index, step, event){
-      var counter = this.$refs['counter_'+index];
-      var btn = event.target.parentNode;
-      var parent = btn.parentNode;
-      if(parent.children[1].classList.contains('disabled')){
-        parent.children[1].classList.remove('disabled');
-      }
-      let val = Number(counter.value),
-          min = Number(counter.min),
-          max = Number(counter.max);
-      if(val < min){
-        counter.value = min;
-        parent.children[1].classList.add('disabled');
-      }else{
-        var result = val + step > max ? max: val + step;
-        if (result == max){
-          btn.classList.add('disabled');
-        }
-        counter.value = result;
-      }
-    },
-    removeCounter(index, step, event){
-      var counter = this.$refs['counter_'+index];
-      var btn = event.target.parentNode;
-      var parent = btn.parentNode;
-      if(parent.children[0].classList.contains('disabled')){
-        parent.children[0].classList.remove('disabled');
-      }
-      let val = Number(counter.value),
-          min = Number(counter.min),
-          max = Number(counter.max);
-      if(val > max){
-        counter.value = max;
-        parent.children[0].classList.add('disabled');
-      }else{
-        var result = val - step < min ? min: val - step;
-        if (result == min){
-          btn.classList.add('disabled');
-        }
-        counter.value = result;
       }
     },
 

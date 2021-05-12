@@ -156,18 +156,19 @@
           การวินิจฉัย
         </p>
       </div>
-      <div class="tab-container mt-5 mb-5">
-        <div>
+      <div class="tab-container mt-5 mb-5" data-aos="fade-up" data-aos-delay="0">
+        <div class="section-px">
           <Step01 :activeIndex="stepActiveIndex" />
         </div>
-        <div class="tab-contents">
-          <div class="tab-content section-full" :class="stepActiveIndex == 1? 'active': ''">
-            <div class="section-px section-py-grid mt-5">
-              <span class="p fw-400">
+        <div class="tab-contents border-bottom bcolor-fgray pb-6 mt-6 mb-6">
+
+          <div class="tab-content" :class="stepActiveIndex == 1? 'active': ''">
+            <div class="section-px">
+              <div class="p fw-400">
                 Step 1
-              </span>
-              <span class="ss-sep hide-mobile"></span>
-              <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-sep sm hide-mobile"></span>
+                <span class="ss-tag color-01">CG20-00001</span>
+              </div>
               <div class="grids">
                 <div v-for="(bag, index) in bags" :key="index"
                   class="grid xl-40 lg-50 md-2-3 sm-90"
@@ -183,7 +184,7 @@
                   <SpecialCard02 type="Add" @input-add="addBagSection()" />
                 </div>
               </div>
-              <div class="section-header btns text-right">
+              <div class="btns text-right">
                 <Button 
                   text="พิมพ์สติ๊กเกอร์" href="#" 
                   classer="btn-color-09 mr-3  hide-mobile" :prepend="true" icon="printer.svg" 
@@ -195,13 +196,14 @@
               </div>
             </div>
           </div>
+
           <div class="tab-content" :class="stepActiveIndex == 2? 'active': ''">
-            <div class="section-px section-py-grid mt-5">
-              <span class="p fw-400">
+            <div class="section-px">
+              <div class="p fw-400">
                 Step 2
-              </span>
-              <span class="ss-sep hide-mobile"></span>
-              <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-sep sm hide-mobile"></span>
+                <span class="ss-tag color-01">CG20-00001</span>
+              </div>
               <div class="grids">
                 <div class="grid md-50">
                   <FormGroup type="textarea" label="Specimen Type" placeholder="บรรยาย..." />
@@ -237,13 +239,14 @@
               </div>
             </div>
           </div>
+
           <div class="tab-content" :class="stepActiveIndex == 3? 'active': ''">
-            <div class="section-px section-py-grid mt-5">
-              <span class="p fw-400">
+            <div class="section-px">
+              <div class="p fw-400">
                 Step 3 Screening
-              </span>
-              <span class="ss-sep hide-mobile"></span>
-              <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-sep sm hide-mobile"></span>
+                <span class="ss-tag color-01">CG20-00001</span>
+              </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
                 <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
@@ -280,7 +283,6 @@
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
-              
               <div class="grids">
                 <div class="grid lg-60 sm-100 mt-0">
                   <div class="grids">
@@ -384,8 +386,7 @@
 
                 </div>
               </div>
-
-              <div class="section-header btns text-right">
+              <div class="btns text-right">
                 <Button 
                   text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
                   classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
@@ -397,13 +398,14 @@
               </div>
             </div>
           </div>
+
           <div class="tab-content" :class="stepActiveIndex == 4? 'active': ''">
-            <div class="section-px section-py-grid mt-5">
-              <span class="p fw-400">
+            <div class="section-px">
+              <div class="p fw-400">
                 Step 4 แปลผล
-              </span>
-              <span class="ss-sep hide-mobile"></span>
-              <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-sep sm hide-mobile"></span>
+                <span class="ss-tag color-01">CG20-00001</span>
+              </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
                 <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
@@ -440,7 +442,6 @@
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
-
               <div class="grids">
                 <div class="grid md-50">
                   <FormGroup type="textarea" label="Specimen Type" 
@@ -474,9 +475,7 @@
                   />
                 </div>
               </div>
-              
-
-              <div class="section-header btns text-right">
+              <div class="btns text-right">
                 <Button 
                   text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
                   classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
@@ -488,13 +487,14 @@
               </div>
             </div>
           </div>
+
           <div class="tab-content" :class="stepActiveIndex == 5? 'active': ''">
-            <div class="section-px section-py-grid mt-5">
-              <span class="p fw-400">
+            <div class="section-px">
+              <div class="p fw-400">
                 Step 5 รายงาน
-              </span>
-              <span class="ss-sep hide-mobile"></span>
-              <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-sep sm hide-mobile"></span>
+                <span class="ss-tag color-01">CG20-00001</span>
+              </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
                 <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
@@ -531,7 +531,6 @@
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
-              
               <div class="grids">
                 <div class="grid lg-60 sm-100 mt-0">
                   <div class="grids">
@@ -635,8 +634,7 @@
 
                 </div>
               </div>
-
-              <div class="section-header btns text-right">
+              <div class="btns text-right">
                 <Button 
                   text="ออก  Report" href="#"
                   classer="btn-color-01" :prepend="true" icon="arrow-up-right.svg" 
@@ -644,6 +642,7 @@
               </div>
             </div>
           </div>
+          
         </div>
       </div>
 
