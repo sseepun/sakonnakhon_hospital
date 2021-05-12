@@ -46,8 +46,21 @@
       <a href="/user/inventory" target="_blank">/user/inventory</a> <br>
     </div>
   </div>
-
+  
   <div class="pl-6 pb-6">
+    <h6 class="h3 fw-600">PDF</h6>
+    <div>
+      <a href="/pdf/pathology-request-form" target="_blank">/pdf/pathology-request-form</a> <br>
+      <a href="/pdf/pathology-report-form" target="_blank">/pdf/pathology-report-form</a> <br>
+      <a href="/pdf/cytology-request-form" target="_blank">/pdf/cytology-request-form</a> <br>
+      <a href="/pdf/cytology-report-form" target="_blank">/pdf/cytology-report-form</a> <br>
+      <a href="/pdf/report-sent-form" target="_blank">/pdf/report-sent-form</a> <br>
+      <a href="/pdf/tag-form" target="_blank">/pdf/tag-form</a> <br>
+      <a href="/pdf/funeral-form" target="_blank">/pdf/funeral-form</a> <br>
+    </div>
+  </div>
+
+  <!-- <div class="pl-6 pb-6">
     <h6 class="h3 fw-600">Admin Pages</h6>
     <div>
       <a href="/admin" target="_blank">/admin</a> <br>
@@ -61,7 +74,7 @@
       <a href="/admin/survey-settings" target="_blank">/admin/survey-settings</a> <br>
       <a href="/admin/records" target="_blank">/admin/records</a> <br>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

@@ -25,38 +25,13 @@ const routes = [
     name: 'UserDashboardPage',
     component: () => import('../views/user/Dashboard.vue')
   },
+  
+  // User - Biopsy Pages
   {
     path: '/user/cases',
     name: 'UserCasesPage',
     component: () => import('../views/user/Cases.vue')
   },
-  {
-    path: '/user/cells',
-    name: 'UserCellsPage',
-    component: () => import('../views/user/Cells.vue')
-  },
-  {
-    path: '/user/cell-complete',
-    name: 'UserCellCompletePage',
-    component: () => import('../views/user/CellComplete.vue')
-  },
-  {
-    path: '/user/special-cases',
-    name: 'UserSpecialCasesPage',
-    component: () => import('../views/user/SpecialCases.vue')
-  },
-  {
-    path: '/user/slides',
-    name: 'UserSlidesPage',
-    component: () => import('../views/user/Slides.vue')
-  },
-  {
-    path: '/user/funeral',
-    name: 'UserFuneralPage',
-    component: () => import('../views/user/Funeral.vue')
-  },
-  
-  // User - Biopsy Pages
   {
     path: '/user/case-biopsy-add',
     name: 'UserCaseBiopsyAddPage',
@@ -102,7 +77,24 @@ const routes = [
     component: () => import('../views/user/CaseResultRead.vue')
   },
 
+  // User - Cell Pages
+  {
+    path: '/user/cells',
+    name: 'UserCellsPage',
+    component: () => import('../views/user/Cells.vue')
+  },
+  {
+    path: '/user/cell-complete',
+    name: 'UserCellCompletePage',
+    component: () => import('../views/user/CellComplete.vue')
+  },
+
   // User - Special Cases
+  {
+    path: '/user/special-cases',
+    name: 'UserSpecialCasesPage',
+    component: () => import('../views/user/SpecialCases.vue')
+  },
   {
     path: '/user/special-case-add',
     name: 'UserSpecialCaseAddPage',
@@ -126,6 +118,11 @@ const routes = [
 
   // User - Slides
   {
+    path: '/user/slides',
+    name: 'UserSlidesPage',
+    component: () => import('../views/user/Slides.vue')
+  },
+  {
     path: '/user/slide-add',
     name: 'UserSlideAddPage',
     component: () => import('../views/user/SlideAdd.vue')
@@ -142,6 +139,11 @@ const routes = [
   },
 
   // User - Funeral
+  {
+    path: '/user/funeral',
+    name: 'UserFuneralPage',
+    component: () => import('../views/user/Funeral.vue')
+  },
   {
     path: '/user/funeral-add',
     name: 'UserFuneralAddPage',
@@ -170,6 +172,44 @@ const routes = [
     path: '/user/inventory',
     name: 'UserInventoryPage',
     component: () => import('../views/user/Inventory.vue')
+  },
+
+
+  // PDF Pages
+  {
+    path: '/pdf/pathology-request-form',
+    name: 'PdfPathologyRequestFormPage',
+    component: () => import('../views/pdf/PathologyRequestForm.vue')
+  },
+  {
+    path: '/pdf/pathology-report-form',
+    name: 'PdfPathologyReportFormPage',
+    component: () => import('../views/pdf/PathologyReportForm.vue')
+  },
+  {
+    path: '/pdf/cytology-request-form',
+    name: 'PdfCytologyRequestFormPage',
+    component: () => import('../views/pdf/CytologyRequestForm.vue')
+  },
+  {
+    path: '/pdf/cytology-report-form',
+    name: 'PdfCytologyReportFormPage',
+    component: () => import('../views/pdf/CytologyReportForm.vue')
+  },
+  {
+    path: '/pdf/report-sent-form',
+    name: 'PdfReportSentFormPage',
+    component: () => import('../views/pdf/ReportSentForm.vue')
+  },
+  {
+    path: '/pdf/tag-form',
+    name: 'PdfTagFormPage',
+    component: () => import('../views/pdf/TagForm.vue')
+  },
+  {
+    path: '/pdf/funeral-form',
+    name: 'PdfFuneralFormPage',
+    component: () => import('../views/pdf/FuneralForm.vue')
   },
 
 

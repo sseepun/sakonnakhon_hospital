@@ -26,3 +26,22 @@
     font-family:'IBM Plex Thai'; font-weight:600; font-style:normal;
     src:url('./IBMPlexSansThai/IBMPlexSansThai-Bold.ttf') format('truetype');
 }
+
+
+/* THSarabunNew */
+/* @font-face{
+    font-family:'THSarabunNew'; font-weight:300; font-style:normal;
+    src:url('./THSarabunNew/THSarabunNew.ttf') format('truetype');
+}
+@font-face{
+    font-family:'THSarabunNew'; font-weight:300; font-style:italic;
+    src:url('./THSarabunNew/THSarabunNew_Italic.ttf') format('truetype');
+}
+@font-face{
+    font-family:'THSarabunNew'; font-weight:600; font-style:normal;
+    src:url('./THSarabunNew/THSarabunNew_Bold.ttf') format('truetype');
+}
+@font-face{
+    font-family:'THSarabunNew'; font-weight:600; font-style:italic;
+    src:url('./THSarabunNew/THSarabunNew_BoldItalic.ttf') format('truetype');
+} */
