@@ -21,17 +21,12 @@
           </div>
           <div class="btns hide-mobile">
             <Button 
-              text="แก้ไข" href="/user/case-cytology-custom-add" 
-              classer="btn-color-03 mr-3" :prepend="true" icon="edit-white.svg" 
-            />
-            <Button 
-              text="พิมพ์ใบส่งตรวจ" href="#" 
-              classer="btn-color-04" :prepend="true" icon="printer-black.svg" 
+              text="บันทึกแบบฟอร์ม" href="#" 
+              classer="btn-color-01" :prepend="true" icon="check-white.svg" 
             />
           </div>
           <div class="btns ws-nowrap show-mobile">
-            <Button text="แก้ไข" href="#" classer="btn-color-03 btn-sm mr-1" />
-            <Button text="พิมพ์" href="#" classer="btn-color-04 btn-sm" />
+            <Button text="บันทึก" href="#" classer="btn-color-01 btn-sm" />
           </div>
         </div>
       </div>
