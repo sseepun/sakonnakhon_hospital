@@ -23,7 +23,6 @@
             <span v-else-if="stepActiveIndex == 4" class="ss-tag">แปลผล</span>
             <span v-else-if="stepActiveIndex == 5" class="ss-tag ss-tag-info">รายงานผล</span>
             <span v-else class="ss-tag ss-tag-warning">รอวินิจฉัย</span>
-            
           </div>
         </div>
       </div>
@@ -239,10 +238,35 @@
                   <FormGroup 
                     type="file-02" name="file" label="Microscopie Picture" :icon="'upload.svg'"
                   />
+                  <div v-if="dataset.files.length" class="gallery-grids">
+                    <div v-for="(file, j) in dataset.files" :key="j" class="grid sm-100">
+                      <div class="d-flex jc-space-between">
+                        <div class="d-flex ai-center">
+                          <img class="mr-3" src="/assets/img/icon/clip.svg" alt="Image Icon" />
+                          {{file.name}}
+                        </div>
+                        <div class="d-flex ai-center">
+                          <a class="mr-3" target="_blank" :href="file.path">
+                            <img src="/assets/img/icon/download.svg" alt="Image Icon" />
+                          </a>
+                          <a href="javascript:" @click="removeFile(file.id)">
+                            <img src="/assets/img/icon/delete.svg" alt="Image Icon" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div v-else class="grids">
+                    <div class="grid sm-100">
+                      <p class="color-15">
+                        ไม่มีเอกสารรายงานผล
+                      </p>
+                    </div>
+                  </div> -->
                 </div>
                 <div class="grid md-50">
                   <FormGroup 
-                    type="search-select" label="ICD-O" :value="[]" 
+                    type="search-select" label="ICD-O" :value="dataset.icd" 
                     placeholder="เลือก Term" 
                     :options="[
                       'MORPHOLOGY',
@@ -257,11 +281,15 @@
                       'Tumor cells, benign',
                       'Tumor cells, uncertain whether benign or malignant',
                       'Tumor cells, NOS'
-                    ]"
+                    ]" 
+                    @input="(event) => dataset.icd = event"
                   />
                 </div>
                 <div class="grid md-50">
-                  <FormGroup type="text" label="ICDO3.2" value="-" />
+                  <FormGroup 
+                    type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                    @input="(event) => dataset.icd0 = event"
+                  />
                 </div>
               </div>
               <div class="btns text-right">
@@ -280,238 +308,406 @@
           <div class="tab-content" :class="stepActiveIndex == 3? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 3 Screening
+                Step 3 อ่านผล
                 <span class="ss-sep sm hide-mobile"></span>
                 <span class="ss-tag color-01">CG20-00001</span>
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
-                <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
+                <p class="color-sgray mt-2">
+                  Department of Anatomical Pathnology, Sakon Nakhon Hospital
+                </p>
               </div>
               <div class="grids pb-5 border-bottom bcolor-sgray">
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="ชื่อ นามสกุล" value="ณรงค์ฤทธิ์ พรมบุรี" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="HN" value="ผู้ป่วยนอก (IPD)" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="Surgical Number" value="P63-1" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="วันเกิด" value="04/11/2540" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="อายุ" value="23" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="เพศ" value="หญิง" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="แพทย์ผู้ส่งตรวจ" value="พญ. สุพิภัทฎิพร มานะ" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่ผ่าตัด" value="04/11/2563" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="พยาธิแพทย์" value="นายเตธนันท์ วงศ์ปรีชาโชค" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
-              <div class="grids">
-                <div class="grid lg-60 sm-100 mt-0">
-                  <div class="grids">
-                    <div class="grid sm-100">
-                        <p class="color-gray">Specimen</p>
+
+              <div v-if="!editModeStep3">
+                <div class="grids">
+                  <div class="grid sm-100">
+                    <div class="btns text-right mt-0">
+                      <Button 
+                        text="แก้ไข" @click="editModeStep3 = !editModeStep3" 
+                        classer="btn-color-04 btn-sm" :prepend="true" icon="edit-gray.svg" 
+                      />
+                    </div>
+                  </div>
+                  <div class="grid lg-60 sm-100 mt-0">
+                    <div class="grids">
+                      <div class="grid sm-100">
+                        <p class="color-gray">Diagnosis</p>
                         <p class="color-black mt-2">
                           Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
                         </p>
                       </div>
-
                       <div class="grid sm-100">
-                        <p class="color-gray">Site</p>
+                        <p class="color-gray">Gross Description</p>
                         <p class="color-black mt-2">
                           Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
                         </p>
                       </div>
-
                       <div class="grid sm-100">
-                        <p class="color-gray">Specimen adequacy</p>
+                        <p class="color-gray">Microscopic Description</p>
                         <p class="color-black mt-2">
                           Cras aliquam ac nulla magna dui, purus in id. Turpis ac odio nunc, odio. Eget vitae amet.
                         </p>
                       </div>
-
                       <div class="grid sm-100">
-                        <p class="color-gray">Diagnosis</p>
-                        <p class="color-black mt-2">
-                          Dignissim bibendum eget fusce neque, dictum et ullamcorper. Tincidunt et lacinia lacus facilisis tincidunt vel tellus pellentesque sed. Ut arcu, facilisis praesent consectetur pulvinar duis tellus felis. Tellus diam cras ultrices ornare malesuada. Pellentesque a diam nullam bibendum dictumst nunc, ipsum urna. Feugiat sollicitudin neque arcu sed sed nulla. Eget varius suspendisse elit sed.
+                        <p class="color-gray">ICD-0</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd}}
                         </p>
+                        <p v-else class="color-black mt-2">-</p>
                       </div>
-
                       <div class="grid sm-100">
-                        <p class="color-gray">Cytology description</p>
-                        <p class="color-black mt-2">
-                          Malesuada nec morbi aenean diam lacus. Integer cursus ut eleifend in mattis placerat amet, id. Sed odio dolor, lacus semper urna, mauris. Ultrices aliquam augue et nisl, malesuada pellentesque. Convallis aliquam euismod quis vel.
+                        <p class="color-gray">ICDO3.2</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd0}}
                         </p>
+                        <p v-else class="color-black mt-2">-</p>
                       </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Category</p>
-                        <p class="color-black mt-2">
-                          Eget accumsan dis nisl.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">ICD-O</p>
-                        <p class="color-black mt-2">
-                          Hac sapien felis duis volutpat. In ac volutpat amet massa in porttitor nunc.
-                        </p>
-                      </div>
-
-                  </div>
-                
-                </div>
-
-                <div class="grid lg-40 sm-100 mt-0">
-                  <!-- Todo -->
-                  <div class="grids">
-                    <div class="grid sm-100">
-                      <p class="color-gray">Microscopie Picture</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="grid lg-100 sm-100">
-                  <p class="color-01">Electrically Signed by</p>
-                  <p class="color-black mt-3">นายเตธนันท์ วงศ์ปรีชาโชติ (Pathologist)</p>
-                </div>
-
-                <div class="grid sm-100 mt-0">
-                  <div class="grids">
-                    <div class="grid lg-1-3 sm-100">
-                      <p class="color-01">Consult/Double check</p>
-                      <p class="color-black mt-3">นพ. นันทวัน หอมประเสริฐสุข (Cytotechnologist)</p>
-                    </div>
-                    <div class="grid lg-20 sm-50">
-                      <FormGroup 
-                        type="select" label="สถานะ" name="status" 
-                        :options="[
-                          { value: 1, text: 'รอ Consult ตรวจสอบ' },
-                          { value: 2, text: 'ส่ง Consult' },
-                          { value: 3, text: 'Complete' }
-                        ]"
-                        :value="1"
-                      />
-                    </div>
-                    <div class="grid lg-20 sm-50">
-                      <FormGroup 
-                        type="datepicker" label="วันที่รายงานผล" 
-                        name="date" placeholder="04/11/2563" wrapperClass="append"
-                        :append="true" icon="calendar.svg" 
-                      />
-                    </div>
-                    <div class="grid lg-20 sm-50">
-                      <FormGroup 
-                        type="text" label="เวลา" name="time" placeholder="12:02:12"
-                      />
                     </div>
                   </div>
 
+                  <div class="grid lg-40 sm-100">
+                    <p class="color-gray">Microscopie Picture</p>
+                    <div v-if="dataset.files.length" class="gallery-grids">
+                      <div 
+                        v-for="(file, j) in dataset.files" :key="j" 
+                        class="grid xl-1-3 lg-50 md-1-3 xs-50"
+                      >
+                        <a class="ss-img square bradius-2" target="_blank" :href="file.path">
+                          <div class="img-bg" :style="'background-image:url(\''+file.path+'\');'"></div>
+                        </a>
+                      </div>
+                    </div>
+                    <p v-else class="color-sgray mt-2">
+                      ไม่มีรูปภาพรายงานผล
+                    </p>
+                  </div>
+                  
+                  <div class="grid sm-100">
+                    <p class="color-01">Electrically Signed by</p>
+                    <p class="color-black mt-3">นายเตธนันท์ วงศ์ปรีชาโชติ (Pathologist)</p>
+                  </div>
+                  <div class="grid sm-100 mt-0">
+                    <div class="grids">
+                      <div class="grid lg-1-3 sm-100">
+                        <FormGroup 
+                          type="select" label="Consult/Double check" name="doctor" 
+                          :options="[
+                            { value: 1, text: 'นพ. นันทวัน หอมประเสริฐสุข (Cytotechnologist)' }
+                          ]"
+                          :value="1"
+                        />
+                      </div>
+                      <div class="grid lg-20 sm-50">
+                        <FormGroup 
+                          type="select" label="สถานะ" name="status" 
+                          :options="[
+                            { value: 1, text: 'รอ Consult ตรวจสอบ' },
+                            { value: 2, text: 'ส่ง Consult' },
+                            { value: 3, text: 'Complete' }
+                          ]"
+                          :value="1"
+                        />
+                      </div>
+                      <div class="grid lg-20 sm-50">
+                        <FormGroup 
+                          type="datepicker" label="วันที่รายงานผล" 
+                          name="date" placeholder="04/11/2563" wrapperClass="append"
+                          :append="true" icon="calendar.svg" 
+                        />
+                      </div>
+                      <div class="grid lg-20 sm-50">
+                        <FormGroup 
+                          type="text" label="เวลา" name="time" placeholder="12:02:12"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="btns text-right">
+                  <Button 
+                    text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
+                    classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
+                  />
+                  <Button 
+                    text="ขั้นตอนต่อไป" @click="stepActiveIndex=stepActiveIndex+1"
+                    classer="btn-color-01" :prepend="true" icon="arrow-right-white.svg" 
+                  />
                 </div>
               </div>
-              <div class="btns text-right">
-                <Button 
-                  text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
-                  classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
-                />
-                <Button 
-                  text="ขั้นตอนต่อไป" @click="stepActiveIndex=stepActiveIndex+1"
-                  classer="btn-color-01" :prepend="true" icon="arrow-right-white.svg" 
-                />
+              <div v-else>
+                <div class="grids" style="padding-bottom:9rem;">
+                  <div class="grid sm-100">
+                    <div class="btns text-right mt-0">
+                      <Button 
+                        text="บันทึก" @click="editModeStep3 = !editModeStep3" 
+                        classer="btn-color-01 btn-sm" :prepend="true" icon="check-white.svg" 
+                      />
+                    </div>
+                  </div>
+                  <div class="grid lg-50 sm-100">
+                    <FormGroup 
+                      type="textarea" label="Diagnosis" :rows="8" 
+                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                    />
+                  </div>
+                  <div class="grid lg-50 sm-100">
+                    <FormGroup 
+                      type="textarea" label="Gross Description" :rows="8" 
+                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                    />
+                  </div>
+                  <div class="grid lg-50 sm-100">
+                    <FormGroup 
+                      type="textarea" label="Microscopic Description" :rows="8" 
+                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                    />
+                  </div>
+
+                  <!-- Image Gallery -->
+                  <div class="grid lg-50 sm-100">
+                    <div class="d-flex jc-space-between color-gray">
+                      <p>Microscopie Picture</p>
+                      <p>{{dataset.files.length}}/10</p>
+                    </div>
+                    <div class="gallery-grids">
+                      <div 
+                        v-for="(file, j) in dataset.files" :key="j" 
+                        class="grid sm-1-3 xs-1-3 mt-0"
+                      >
+                        <div v-if="j < 3" class="ss-img square bradius-2">
+                          <div class="img-bg" :style="'background-image:url(\''+file.path+'\');'"></div>
+                          <div v-if="j < 2 || (j==2 && dataset.files.length==3)" class="hover-container op-100">
+                            <Button 
+                              text="ลบ" @click="removeFile(file.id)" 
+                              classer="btn-color-12 btn-sm"
+                            />
+                          </div>
+                          <div v-else class="hover-container op-100">
+                            <h3 class="fw-600 color-white">
+                              {{dataset.files.length - 2}}+
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div v-for="j in [3, 2, 1]" :key="j" class="grid sm-1-3 xs-1-3 mt-0">
+                        <div 
+                          v-if="j - dataset.files.length > 0"
+                          class="ss-img square bradius-2 bg-sgray"
+                        >
+                          <div class="hover-container op-100">
+                            <Button 
+                              type="Button File" text="เพิ่มรูปภาพ" classer="btn-color-11 btn-sm" 
+                              @input-file="event => addFile(event)" 
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid lg-50 sm-100">
+                    <FormGroup 
+                      type="search-select" label="ICD-O" :value="dataset.icd" 
+                      placeholder="เลือก Term" 
+                      :options="[
+                        'MORPHOLOGY',
+                        'Neoplasms, NOS',
+                        'Neoplasm, benign',
+                        'Tumor, benign',
+                        'Unclassified tumor, benign',
+                        'Neoplasm, uncertain whether benign or malignant',
+                        'Tumor embolus',
+                        'Tumor, metastatic',
+                        'Tumor, secondary',
+                        'Tumor cells, benign',
+                        'Tumor cells, uncertain whether benign or malignant',
+                        'Tumor cells, NOS'
+                      ]" 
+                      @input="(event) => dataset.icd = event"
+                    />
+                  </div>
+                  <div class="grid lg-50 sm-100">
+                    <FormGroup 
+                      type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                      @input="(event) => dataset.icd0 = event"
+                    />
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
 
           <div class="tab-content" :class="stepActiveIndex == 4? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 4 แปลผล
+                Step 4 Consult / Double check
                 <span class="ss-sep sm hide-mobile"></span>
                 <span class="ss-tag color-01">CG20-00001</span>
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
-                <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
+                <p class="color-sgray mt-2">
+                  Department of Anatomical Pathnology, Sakon Nakhon Hospital
+                </p>
               </div>
               <div class="grids pb-5 border-bottom bcolor-sgray">
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="ชื่อ นามสกุล" value="ณรงค์ฤทธิ์ พรมบุรี" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="HN" value="ผู้ป่วยนอก (IPD)" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="Surgical Number" value="P63-1" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="วันเกิด" value="04/11/2540" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="อายุ" value="23" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="เพศ" value="หญิง" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="แพทย์ผู้ส่งตรวจ" value="พญ. สุพิภัทฎิพร มานะ" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่ผ่าตัด" value="04/11/2563" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="พยาธิแพทย์" value="นายเตธนันท์ วงศ์ปรีชาโชค" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
-              <div class="grids">
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Specimen Type" 
-                    value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                  />
-                </div>
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Location"
-                    value="Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean. " 
-                  />
-                </div>
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Diagnosis"
-                    value="Cras aliquam ac nulla magna dui, purus in id. Turpis ac odio nunc, odio. Eget vitae amet." 
-                  />
-                </div>
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Microscopic Description"
-                    value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                  />
-                </div>
-                <div class="grid md-50">
-                  <FormGroup type="textarea" label="Category"
-                    value="Malesuada nec morbi aenean diam lacus. Integer cursus ut eleifend in mattis placerat amet, id. Sed odio dolor, lacus semper urna, mauris. Ultrices aliquam augue et nisl, malesuada pellentesque. Convallis aliquam euismod quis vel." 
-                  />
-                </div>
-                <div class="grid md-50">
+
+              <div class="grids" style="padding-bottom:5rem;">
+                <div class="grid lg-50 sm-100">
                   <FormGroup 
-                    type="file" name="file" label="Microscopie Picture" 
-                    :icon="'upload.svg'"
+                    type="textarea" label="Diagnosis" :rows="8" 
+                    value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                  />
+                </div>
+                <div class="grid lg-50 sm-100">
+                  <FormGroup 
+                    type="textarea" label="Gross Description" :rows="8" 
+                    value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                  />
+                </div>
+                <div class="grid lg-50 sm-100">
+                  <FormGroup 
+                    type="textarea" label="Microscopic Description" :rows="8" 
+                    value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
+                  />
+                </div>
+                
+                <!-- Image Gallery -->
+                <div class="grid lg-50 sm-100">
+                  <div class="d-flex jc-space-between color-gray">
+                    <p>Microscopie Picture</p>
+                    <p>{{dataset.files.length}}/10</p>
+                  </div>
+                  <div class="gallery-grids">
+                    <div 
+                      v-for="(file, j) in dataset.files" :key="j" 
+                      class="grid sm-1-3 xs-1-3 mt-0"
+                    >
+                      <div v-if="j < 3" class="ss-img square bradius-2">
+                        <div class="img-bg" :style="'background-image:url(\''+file.path+'\');'"></div>
+                        <div v-if="j < 2 || (j==2 && dataset.files.length==3)" class="hover-container op-100">
+                          <Button 
+                            text="ลบ" @click="removeFile(file.id)" 
+                            classer="btn-color-12 btn-sm"
+                          />
+                        </div>
+                        <div v-else class="hover-container op-100">
+                          <h3 class="fw-600 color-white">
+                            {{dataset.files.length - 2}}+
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div v-for="j in [3, 2, 1]" :key="j" class="grid sm-1-3 xs-1-3 mt-0">
+                      <div 
+                        v-if="j - dataset.files.length > 0"
+                        class="ss-img square bradius-2 bg-sgray"
+                      >
+                        <div class="hover-container op-100">
+                          <Button 
+                            type="Button File" text="เพิ่มรูปภาพ" classer="btn-color-11 btn-sm" 
+                            @input-file="event => addFile(event)" 
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="grid lg-50 sm-100">
+                  <FormGroup 
+                    type="search-select" label="ICD-O" :value="dataset.icd" 
+                    placeholder="เลือก Term" 
+                    :options="[
+                      'MORPHOLOGY',
+                      'Neoplasms, NOS',
+                      'Neoplasm, benign',
+                      'Tumor, benign',
+                      'Unclassified tumor, benign',
+                      'Neoplasm, uncertain whether benign or malignant',
+                      'Tumor embolus',
+                      'Tumor, metastatic',
+                      'Tumor, secondary',
+                      'Tumor cells, benign',
+                      'Tumor cells, uncertain whether benign or malignant',
+                      'Tumor cells, NOS'
+                    ]" 
+                    @input="(event) => dataset.icd = event"
+                  />
+                </div>
+                <div class="grid lg-50 sm-100">
+                  <FormGroup 
+                    type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                    @input="(event) => dataset.icd0 = event"
                   />
                 </div>
               </div>
+
               <div class="btns text-right">
                 <Button 
                   text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
@@ -534,37 +730,39 @@
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
-                <p class="color-sgray">Department of Anatomical Pathnology, Sakon Nakhon Hospital</p>
+                <p class="color-sgray mt-2">
+                  Department of Anatomical Pathnology, Sakon Nakhon Hospital
+                </p>
               </div>
               <div class="grids pb-5 border-bottom bcolor-sgray">
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="ชื่อ นามสกุล" value="ณรงค์ฤทธิ์ พรมบุรี" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="HN" value="ผู้ป่วยนอก (IPD)" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="Surgical Number" value="P63-1" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="วันเกิด" value="04/11/2540" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="อายุ" value="23" />
                 </div>
-                <div class="grid lg-60 md-1-3">
+                <div class="grid xl-60 lg-50 md-1-3">
                   <FormGroup type="plain" label="เพศ" value="หญิง" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="แพทย์ผู้ส่งตรวจ" value="พญ. สุพิภัทฎิพร มานะ" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่ผ่าตัด" value="04/11/2563" />
                 </div>
-                <div class="grid lg-20 md-1-3">
+                <div class="grid xl-20 lg-25 md-1-3">
                   <FormGroup type="plain" label="พยาธิแพทย์" value="นายเตธนันท์ วงศ์ปรีชาโชค" />
                 </div>
-                <div class="grid lg-80 md-1-3">
+                <div class="grid xl-80 lg-75 md-1-3">
                   <FormGroup type="plain" label="วันที่รับชิ้นเนื้อ" value="04/11/2563" />
                 </div>
               </div>
@@ -572,108 +770,88 @@
                 <div class="grid lg-60 sm-100 mt-0">
                   <div class="grids">
                     <div class="grid sm-100">
-                        <p class="color-gray">Specimen</p>
-                        <p class="color-black mt-2">
-                          Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Site</p>
-                        <p class="color-black mt-2">
-                          Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Specimen adequacy</p>
-                        <p class="color-black mt-2">
-                          Cras aliquam ac nulla magna dui, purus in id. Turpis ac odio nunc, odio. Eget vitae amet.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Diagnosis</p>
-                        <p class="color-black mt-2">
-                          Dignissim bibendum eget fusce neque, dictum et ullamcorper. Tincidunt et lacinia lacus facilisis tincidunt vel tellus pellentesque sed. Ut arcu, facilisis praesent consectetur pulvinar duis tellus felis. Tellus diam cras ultrices ornare malesuada. Pellentesque a diam nullam bibendum dictumst nunc, ipsum urna. Feugiat sollicitudin neque arcu sed sed nulla. Eget varius suspendisse elit sed.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Cytology description</p>
-                        <p class="color-black mt-2">
-                          Malesuada nec morbi aenean diam lacus. Integer cursus ut eleifend in mattis placerat amet, id. Sed odio dolor, lacus semper urna, mauris. Ultrices aliquam augue et nisl, malesuada pellentesque. Convallis aliquam euismod quis vel.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">Category</p>
-                        <p class="color-black mt-2">
-                          Eget accumsan dis nisl.
-                        </p>
-                      </div>
-
-                      <div class="grid sm-100">
-                        <p class="color-gray">ICD-O</p>
-                        <p class="color-black mt-2">
-                          Hac sapien felis duis volutpat. In ac volutpat amet massa in porttitor nunc.
-                        </p>
-                      </div>
-
-                  </div>
-                
-                </div>
-
-                <div class="grid lg-40 sm-100 mt-0">
-                  <!-- Todo -->
-                  <div class="grids">
+                      <p class="color-gray">Diagnosis</p>
+                      <p class="color-black mt-2">
+                        Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
+                      </p>
+                    </div>
                     <div class="grid sm-100">
-                      <p class="color-gray">Microscopie Picture</p>
+                      <p class="color-gray">Gross Description</p>
+                      <p class="color-black mt-2">
+                        Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
+                      </p>
+                    </div>
+                    <div class="grid sm-100">
+                      <p class="color-gray">Microscopic Description</p>
+                      <p class="color-black mt-2">
+                        Cras aliquam ac nulla magna dui, purus in id. Turpis ac odio nunc, odio. Eget vitae amet.
+                      </p>
+                    </div>
+                    <div class="grid sm-100">
+                      <p class="color-gray">ICD-0</p>
+                      <p v-if="dataset.icd" class="color-black mt-2">
+                        {{dataset.icd}}
+                      </p>
+                      <p v-else class="color-black mt-2">-</p>
+                    </div>
+                    <div class="grid sm-100">
+                      <p class="color-gray">ICDO3.2</p>
+                      <p v-if="dataset.icd" class="color-black mt-2">
+                        {{dataset.icd0}}
+                      </p>
+                      <p v-else class="color-black mt-2">-</p>
                     </div>
                   </div>
                 </div>
+
+                <div class="grid lg-40 sm-100">
+                  <p class="color-gray">Microscopie Picture</p>
+                  <div v-if="dataset.files.length" class="gallery-grids">
+                    <div 
+                      v-for="(file, j) in dataset.files" :key="j" 
+                      class="grid xl-1-3 lg-50 md-1-3 xs-50"
+                    >
+                      <a class="ss-img square bradius-2" target="_blank" :href="file.path">
+                        <div class="img-bg" :style="'background-image:url(\''+file.path+'\');'"></div>
+                      </a>
+                    </div>
+                  </div>
+                  <p v-else class="color-sgray mt-2">
+                    ไม่มีรูปภาพรายงานผล
+                  </p>
+                </div>
                 
-                <div class="grid lg-100 sm-100">
+                <div class="grid sm-100">
                   <p class="color-01">Electrically Signed by</p>
                   <p class="color-black mt-3">นายเตธนันท์ วงศ์ปรีชาโชติ (Pathologist)</p>
                 </div>
-
                 <div class="grid sm-100 mt-0">
                   <div class="grids">
                     <div class="grid lg-1-3 sm-100">
-                      <p class="color-01">Consult/Double check</p>
-                      <p class="color-black mt-3">นพ. นันทวัน หอมประเสริฐสุข (Cytotechnologist)</p>
-                    </div>
-                    <div class="grid lg-20 sm-50">
                       <FormGroup 
-                        type="select" label="สถานะ" name="status" 
-                        :options="[
-                          { value: 1, text: 'รอ Consult ตรวจสอบ' },
-                          { value: 2, text: 'ส่ง Consult' },
-                          { value: 3, text: 'Complete' }
-                        ]"
-                        :value="1"
+                        type="plain" label="Consult/Double check" 
+                        value="นพ. นันทวัน หอมประเสริฐสุข (Cytotechnologist)" 
                       />
                     </div>
                     <div class="grid lg-20 sm-50">
-                      <FormGroup 
-                        type="datepicker" label="วันที่รายงานผล" 
-                        name="date" value="04/11/2563" wrapperClass="append"
-                        :append="true" icon="calendar.svg" 
-                      />
+                      <FormGroup type="plain" label="สถานะ" value="รอ Consult ตรวจสอบ" />
                     </div>
                     <div class="grid lg-20 sm-50">
-                      <FormGroup 
-                        type="text" label="เวลา" name="time" value="12:02:12"
-                      />
+                      <FormGroup type="plain" label="วันที่รายงานผล" value="04/11/2563" />
+                    </div>
+                    <div class="grid lg-20 sm-50">
+                      <FormGroup type="plain" label="เวลา" value="12:02:12" />
                     </div>
                   </div>
-
                 </div>
               </div>
               <div class="btns text-right">
                 <Button 
-                  text="ออก  Report" href="#"
+                  text="กลับ" @click="stepActiveIndex=stepActiveIndex-1"
+                  classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
+                />
+                <Button 
+                  text="ออก Report" href="/user/cell-complete"
                   classer="btn-color-01" :prepend="true" icon="arrow-up-right.svg" 
                 />
               </div>
@@ -709,8 +887,35 @@ export default {
       topnavActiveIndex: 1,
       stepActiveIndex: 1,
       serviceData: [],
+
+      editModeStep3: false,
+
       dataset: {
-        color: null
+        color: null,
+        files: [
+          {
+            id: 1,
+            name: 'รายงานผล รพ.สกลนคร 28/10/2563.pdf',
+            path: '/assets/img/content/03.jpg'
+          },
+          {
+            id: 2,
+            name: 'รายงานผล รพ.สกลนคร 29/10/2563.pdf',
+            path: '/assets/img/content/04.jpg'
+          },
+          {
+            id: 3,
+            name: 'รายงานผล รพ.สกลนคร 30/10/2563.pdf',
+            path: '/assets/img/content/05.jpg'
+          },
+          {
+            id: 4,
+            name: 'รายงานผล รพ.สกลนคร 30/10/2563.pdf',
+            path: '/assets/img/content/06.jpg'
+          }
+        ],
+        icd: '',
+        icd0: ''
       },
       bags: [
         { value: '', valueCount: null }
@@ -738,6 +943,18 @@ export default {
     );
   },
   methods: {
+    addFile(file) {
+      this.dataset.files.push({
+        id: this.dataset.files.length,
+        name: 'รายงานผล รพ.สกลนคร 28/10/2563.pdf',
+        path: '/assets/img/content/03.jpg'
+      });
+    },
+    removeFile(id) {
+      this.dataset.files = this.dataset.files.filter(function(file){
+        return file.id != id;
+      });
+    },
     addBagSection() {
       this.bags.push({ value: '', valueCount: null });
       return true;

@@ -148,7 +148,7 @@
                       {{file.name}}
                     </div>
                     <div class="d-flex ai-center">
-                      <a class="mr-3" ratget="_blank" :href="file.path">
+                      <a class="mr-3" target="_blank" :href="file.path">
                         <img src="/assets/img/icon/download.svg" alt="Image Icon" />
                       </a>
                       <a href="javascript:" @click="removeFile(file.id)">
@@ -228,6 +228,11 @@ export default {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
   },
   methods: {
+    removeFile(id) {
+      this.files = this.files.filter(function(file){
+        return file.id != id;
+      });
+    },
     onSubmit(e) {
       var that = this;
       that.isValidated = true;

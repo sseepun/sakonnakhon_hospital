@@ -37,7 +37,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 3</h6>
-            <p>รับสินค้าแล้ว</p>
+            <p>อ่านผล</p>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 4</h6>
-            <p>กำลังจัดส่งสินค้า</p>
+            <p>Consult / Double check</p>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 5</h6>
-            <p>จัดส่งสินค้าแล้ว</p>
+            <p>รายงาน</p>
           </div>
         </div>
         

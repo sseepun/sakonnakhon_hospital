@@ -1,19 +1,3 @@
-<style scoped>
-.date-wrapper{position:relative;}
-.date-wrapper .icon {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: grayscale(100%);
-  opacity: .5;
-  transition: filter .25s, opacity .25s;
-}
-</style>
 <template>
 
   <div v-if="type === 'textarea'" class="form-group" :class="classer">
@@ -21,8 +5,8 @@
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
     <div :class="wrapperClass">
-      <textarea rows="5"
-        :name="name" 
+      <textarea 
+        :name="name" :rows="rows" 
         :placeholder="placeholder" 
         v-model="value" 
         @input="(event)=>$emit('input', event.target.value)" 
@@ -148,7 +132,7 @@
       @click="handleInput"
     >
     <template v-slot="{ inputValue, inputEvents }">
-      <div class="d-flex jc-start ai-center">
+      <div class="date-range-container">
         <div class="date-wrapper">
           <input
             type="text" class="no-bradius"
@@ -192,7 +176,8 @@
     <p v-if="desc" class="sm color-sgray">{{desc}}</p>
     <div class="file-container w-full mt-2" :class="{ 'focused': isFocused }">
       <input 
-        :type="type" :name="name" 
+        :type="type" :name="name" accept="image/*" 
+        @change="(event)=>$emit('input-file', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false" 
         :readonly="readonly? true: false" 
@@ -216,15 +201,16 @@
     <label v-if="label" class="p color-gray" :class="{ 'focused': isFocused }">
       {{label}} <div v-if="errorText" class="error">{{errorText}}</div>
     </label>
-    <div class="file-container w-full" :class="{ 'focused': isFocused }">
+    <div class="file-container file-02 w-full" :class="{ 'focused': isFocused }">
       <input 
-        type="file" :name="name" 
+        type="file" :name="name" accept="image/*" 
+        @change="(event)=>$emit('input-file', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false" 
         :readonly="readonly? true: false" 
         :disabled="disabled? true: false" 
       />
-      <div class="dropzone file-02">
+      <div class="dropzone">
         <div class="d-flex ai-center jc-center">
           <div v-if="icon" class="icon">
             <img :src="'/assets/img/icon/'+icon" class=" mr-3" alt="Image Icon" />
@@ -367,13 +353,14 @@ export default {
     icon: { type: String, default: '' },
     isFocused: { type: Boolean, default: false },
     selectOptions: { type: Array, default: [] },
-    selectInput: { type: Boolean, default: false}
+    selectInput: { type: Boolean, default: false},
+    rows: { type: Number, default: 5}
   },
   methods: {
     handleInput() {
       return this.$emit('input', this.value);
     }
   },
-  emits: [ 'input', 'input2' ]
+  emits: [ 'input', 'input2', 'input-file' ]
 }
 </script>
