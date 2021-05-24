@@ -107,31 +107,33 @@
           <div class="grid lg-80 md-2-3">
             <CheckboxSet 
               label="Fixation" name="fixation" 
-              :value="1" 
+              type="checkbox" :value="[ 1 ]" 
               :options="[
                 { value: 1, text: 'Alcohol' },
                 { value: 2, text: 'Air-dried' },
               ]"
             />
           </div>
-          <div class="grid lg-20 md-1-3 xs-75">
+          <div class="grid lg-20 md-1-3 sm-100">
             <FormGroup type="text" label="จำนวน Containers" placeholder="ระบุจำนวน" />
           </div>
-          <div class="grid lg-80 sm-100">
-            <FormGroup
-            :type="'text-select'" :name2="'fluid'"
-            label="Fluid (ml)" placeholder="ระบุจำนวน"
-            :selectOptions="[
-            { value: 1, text: 'Clear' },
-            { value: 2, text: 'Turbid' },
-            ]"  
-          />
-
+          <div class="grid lg-20 md-1-3 md-50 xs-50">
+            <FormGroup type="text" label="Fluid (ml)" placeholder="ระบุจำนวน" />
+          </div>
+          <div class="grid lg-60 md-1-3 md-50 xs-50">
+            <CheckboxSet 
+              label="&nbsp;" name="fluid" 
+              type="checkbox" :value="[ 1 ]" 
+              :options="[
+                { value: 1, text: 'Clear' },
+                { value: 2, text: 'Turbid' },
+              ]"
+            />
           </div>
           <div class="grid sm-100">
             <CheckboxSet 
               label="*Color" name="color" 
-              :value="dataset.color" 
+              type="checkbox" :value="dataset.colors" 
               :options="[
                 { value: 1, text: 'Bloody' },
                 { value: 2, text: 'Yellow' },
@@ -141,10 +143,10 @@
                 { value: 6, text: 'Brown-black' },
                 { value: 7, text: 'อื่นๆ' },
               ]"
-              @input="dataset.color = $event"
-              :textInput="true"
-              :textInputPlaceholder="'โปรดระบุ'"
-              :textInputDisabled="dataset.color != 7"
+              @input="dataset.colors = $event" 
+              :textInput="true" 
+              textInputPlaceholder="โปรดระบุ" 
+              :textInputDisabled="dataset.colors.indexOf('7') == -1" 
             />
           </div>
         </div>
@@ -891,7 +893,7 @@ export default {
       editModeStep3: false,
 
       dataset: {
-        color: null,
+        colors: [],
         files: [
           {
             id: 1,

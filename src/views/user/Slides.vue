@@ -83,7 +83,7 @@
           <div class="btns mt-0">
             <a href="javascript:" class="btn btn-close" @click="isModalOpen = !isModalOpen">
               <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-              ปิดหน้าต่าง
+              ยกเลิก
             </a>
           </div>
           <div class="header-wrapper">
@@ -171,7 +171,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="confirmAlert = !confirmAlert">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
@@ -211,7 +211,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="isModalOpen2 = !isModalOpen2">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
@@ -323,7 +323,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="isModalOpen3 = !isModalOpen3">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
               </div>
               <div class="header-wrapper">

@@ -3,7 +3,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
 
   <div style="padding:20px; background:#e4e4e4;">
-    <div style="width:900px; height:1273px; padding:50px 40px; margin:0 auto; background:#ffffff;">
+    <div ref="pdfPage" style="transform-origin:top left; width:900px; height:1273px; padding:50px 40px; margin:0 auto; background:#ffffff;">
 
       <table style="width:100%; border-spacing:0; border:1px solid #000000;">
         <tbody>
@@ -321,6 +321,22 @@
 
 <script>
 export default {
-  name: 'PdfCytologyRequestFormPage'
+  name: 'PdfCytologyRequestFormPage',
+  mounted() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.onResize);
+  },
+  methods: {
+    onResize() {
+      if(window.innerWidth > 940){
+        this.$refs.pdfPage.style.transform = 'scale(1)';
+      }else{
+        this.$refs.pdfPage.style.transform = 'scale('+((window.innerWidth-40)/900)+')';
+      }
+    }
+  }
 }
 </script>

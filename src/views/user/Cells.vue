@@ -27,11 +27,11 @@
             </div>
             <div class="btns show-mobile">
               <Button 
-                text="ส่งออกภายนอก" @click="exportModalOpen = !exportModalOpen" 
+                text="ส่งออก" @click="exportModalOpen = !exportModalOpen" 
                 :class="rowCount ? 'btn-color-07 btn-sm mr-1': 'btn-color-03 mr-1 btn-sm disabled'"
               />
               <Button 
-                text="มอบหมายงาน" @click="assignModalOpen = !assignModalOpen" 
+                text="มอบหมาย" @click="assignModalOpen = !assignModalOpen" 
                 :class="rowCount ? 'btn-color-01 btn-sm': 'btn-color-03 btn-sm disabled'"
               />
             </div>
@@ -111,12 +111,12 @@
     <div class="wrapper">
       <div class="close-filter" @click="assignModalOpen = !assignModalOpen"></div>
       <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box xl">
+        <div class="popup-box xxl">
           <div class="header">
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="assignModalOpen = !assignModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -165,12 +165,12 @@
     <div class="wrapper">
       <div class="close-filter" @click="exportModalOpen = !exportModalOpen"></div>
       <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box xl">
+        <div class="popup-box xxl">
           <div class="header">
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="exportModalOpen = !exportModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">

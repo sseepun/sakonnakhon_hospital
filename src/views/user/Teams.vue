@@ -1,6 +1,3 @@
-<style scoped>
-  .check-all, .chcek-all > * { display: inline-block; }
-</style>
 <template>
   <Topnav :userRole="userRole" :activeIndex="topnavActiveIndex" />
 
@@ -88,7 +85,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="checkInModalOpen = !checkInModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -96,8 +93,11 @@
                 <h6 class="h3">ลงชื่อเข้าทำงาน</h6>
               </div>
               <div class="d-flex ai-center">
-                <div class="checkbox-single mr-3">
-                  <input type="checkbox" id="select_all" :checked="selectedAll" @change="toggleSelectAll()" />
+                <div class="checkbox-single hide-mobile mr-3">
+                  <input 
+                    type="checkbox" id="select_all" :checked="selectedAll" 
+                    @change="toggleSelectAll()" 
+                  />
                   <label for="select_all">
                     <span class="pl-2 ws-nowrap">เลือกทั้งหมด</span>
                   </label>
@@ -113,29 +113,42 @@
             </div>
           </div>
           <div class="body">
-            <div class="grids">
-              <div class="grid lg-25 md-1-3">
+            <div class="d-flex jc-end w-full">
+              <div class="w-auto show-mobile pt-4">
+                <div class="checkbox-single">
+                  <input 
+                    type="checkbox" id="select_all_m" :checked="selectedAll" 
+                    @change="toggleSelectAll()" 
+                  />
+                  <label for="select_all_m">
+                    <span class="pl-2 ws-nowrap">เลือกทั้งหมด</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="grids" style="--gs:1rem;">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" :isSelected="cardSelected[0]" @change="cardSelected[0] = !cardSelected[0]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-03.svg" text="Embedding" :isSelected="cardSelected[1]" @change="cardSelected[1] = !cardSelected[1]"/>
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-06.svg" text="Section" :isSelected="cardSelected[2]" @change="cardSelected[2] = !cardSelected[2]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-07.svg" text="ย้อมสี" :isSelected="cardSelected[3]" @change="cardSelected[3] = !cardSelected[3]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-02.svg" text="พิมพ์ Gross" :isSelected="cardSelected[4]" @change="cardSelected[4] = !cardSelected[4]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-08.svg" text="Screening" :isSelected="cardSelected[5]" @change="cardSelected[5] = !cardSelected[5]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-09.svg" text="แปลผล" :isSelected="cardSelected[6]" @change="cardSelected[6] = !cardSelected[6]" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-10.svg" text="รายงานผล" :isSelected="cardSelected[7]" @change="cardSelected[7] = !cardSelected[7]" />
               </div>
             </div>
@@ -155,7 +168,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="checkOutModalOpen = !checkOutModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -173,35 +186,35 @@
               </div>
             </div>
           </div>
-          <div class="body">
-            <div class="grids">
-              <div class="grid lg-25 md-1-3">
-                <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
-              </div>
-              <div class="grid lg-25 md-1-3">
-                <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="เวลาออก" value="17:42" />
+          <div class="body-wrapper pb-6">
+            <div class="body">
+              <div class="grids">
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
+                </div>
+                <div class="grid lg-15 md-1-3">
+                  <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
+                </div>
+                <div class="grid lg-15 md-1-3 xs-50">
+                  <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
+                </div>
+                <div class="grid lg-15 md-1-3 xs-50">
+                  <FormGroup type="plain" label="เวลาออก" value="17:42" />
+                </div>
               </div>
             </div>
-
-            <div class="mt-2" style="width:100%; height: .0625rem; background-color: #E1E1E1; position: absolute; left: 0;"></div>
-
-            <div class="grids mt-2">
-              <div class="grid lg-25 md-1-3">
+            <div class="border-top bcolor-fgray pb-2"></div>
+            <div class="grids" style="--gs:1rem;">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-04.svg" text="เตรียมสไลด์" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-06.svg" text="Section" />
               </div>
-              <div class="grid lg-25 md-1-3">
+              <div class="grid lg-25 md-1-3 xs-50">
                 <SpecialCard04 icon="lab-10.svg" text="รายงานผล" />
               </div>
             </div>
@@ -221,7 +234,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="reportModalOpen = !reportModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -247,49 +260,51 @@
               </div>
             </div>
           </div>
-          <div class="body">
-            <div class="grids">
-              <div class="grid lg-25 md-1-3">
-                <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
-              </div>
-              <div class="grid lg-25 md-1-3">
-                <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="เวลาออก" value="17:42" />
-              </div>
-              <div class="grid lg-15 md-1-3">
-                <FormGroup type="plain" label="ภาระงาน" value="1 รายการ" />
+          <div class="body-wrapper">
+            <div class="body">
+              <div class="grids">
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="วันที่" value="วันจันทร์ที่ 21 ธันวาคม 2563" />
+                </div>
+                <div class="grid lg-25 md-1-3">
+                  <FormGroup type="plain" label="ชื่อ นามสกุล" value="นพ. สงกรานต์ สุขุมมณีวงศ์" />
+                </div>
+                <div class="grid lg-15 md-1-3">
+                  <FormGroup type="plain" label="รหัสพนักงาน" value="20247815" />
+                </div>
+                <div class="grid lg-15 md-1-3 xs-50">
+                  <FormGroup type="plain" label="เวลาเข้า" value="07:42" />
+                </div>
+                <div class="grid lg-15 md-1-3 xs-50">
+                  <FormGroup type="plain" label="เวลาออก" value="17:42" />
+                </div>
+                <div class="grid lg-15 md-1-3">
+                  <FormGroup type="plain" label="ภาระงาน" value="1 รายการ" />
+                </div>
               </div>
             </div>
+            <DataTable 
+              :withOptions="false"
+              :rows="reportData"
+              :columns="[
+                { key: 'detail', text: 'รายละเอียดข้อผิดพลาด'},
+                { key: 'reporter', text: 'ผู้ร้องเรียน'},
+                { key: 'datetime', text: 'วันเวลา'},
+                { key: 'options', text: '' }
+              ]"
+              :addOptions="{
+                detail: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+                reporter: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+                datetime: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
+              }" 
+            />
           </div>
-          <DataTable 
-            :withOptions="false"
-            :rows="reportData"
-            :columns="[
-              { key: 'detail', text: 'รายละเอียดข้อผิดพลาด'},
-              { key: 'reporter', text: 'ผู้ร้องเรียน'},
-              { key: 'datetime', text: 'วันเวลา'},
-              { key: 'options', text: '' }
-            ]"
-            :addOptions="{
-              detail: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
-              reporter: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
-              datetime: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
-            }" 
-          />
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Add report Popup -->
+  <!-- Add Report Popup -->
   <div class="popup-container" :class="{ 'active': addReportPopup }">
     <div class="wrapper">
       <div class="close-filter" @click="addReportPopup = !addReportPopup"></div>
@@ -488,7 +503,8 @@ export default {
         },
         signOut: {
           type: 'link', text: 'ลงชื่อออกจากงาน', href: '#', classer: 'color-danger',
-          iconPrepend: 'exit.svg', iconClasser: 'lg', clickFn: () => this.checkOutModalOpen = !this.checkOutModalOpen
+          iconPrepend: 'exit.svg', iconClasser: 'lg', 
+          clickFn: () => this.checkOutModalOpen = !this.checkOutModalOpen
         },
       });
 

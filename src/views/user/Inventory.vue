@@ -107,131 +107,131 @@
       <form action="/user/inventory" method="GET" class="w-full" @submit="onSubmit">
         <div class="popup-box xl">
           <div class="header">
-              <div class="btns mt-0">
+            <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="addModalOpen = !addModalOpen">
-                  <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                  ปิดหน้าต่าง
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ยกเลิก
               </a>
-              </div>
-              <div class="header-wrapper">
+            </div>
+            <div class="header-wrapper">
               <div class="text-container">
                 <h6 class="h3">เพิ่มสินค้าใหม่</h6>
               </div>
               <div class="btns">
-                  <Button 
-                    text="บันทึก" type="submit"
-                    classer="btn-color-01 hide-mobile" :prepend="true" icon="check-white.svg" 
-                  />
-                  <Button 
-                    text="บันทึก"
-                    classer="btn-color-01 btn-sm show-mobile"
-                  />
+                <Button 
+                  text="บันทึก" type="submit"
+                  classer="btn-color-01 hide-mobile" :prepend="true" icon="check-white.svg" 
+                />
+                <Button 
+                  text="บันทึก"
+                  classer="btn-color-01 btn-sm show-mobile"
+                />
               </div>
-              </div>
+            </div>
           </div>
-          <div class="body pt-2 pb-4 mb-4">
-              <div class="grids">
-                  <div class="grid lg-25 xs-75">
-                      <FormGroup 
-                        type="text" label="เลขที่จัดซื้อจัดจ้าง" name="add_code" placeholder="123456789" 
-                        :value="dataset.code" @input="dataset.code = $event" 
-                        :errorText="isValidated && !dataset.code? 'กรุณาระบุ': ''" 
-                        :classer="isValidated && !dataset.code? 'error': ''" 
-                      />
-                  </div>
-                  <div class="grid lg-50">
-                      <FormGroup 
-                        type="text" label="ชื่ออุปกรณ์" name="add_product" placeholder="ALLIS Intestinal Forceps, 4x5 Teeth 15 Cm." 
-                        :value="dataset.product" @input="dataset.product = $event" 
-                        :errorText="isValidated && !dataset.product? 'กรุณาระบุ': ''" 
-                        :classer="isValidated && !dataset.product? 'error': ''" 
-                      />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="datepicker" label="วันที่นำเข้า" name="add_date" placeholder="01/01/2564" 
-                      :value="dataset.addDate" @input="dataset.addDate = $event" 
-                      :errorText="isValidated && !dataset.addDate? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.addDate? 'error': ''" 
-                    />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="select" label="ประเภท" name="add_type"
-                      :options="[
-                        { value: 1, text: 'อุปกรณ์ทางการแพทย์' },
-                        { value: 2, text: 'เครื่องมือแพทย์ที่ต้องได้รับอนุญาต' },
-                        { value: 3, text: 'เครื่องมือแพทย์ที่ต้องแจ้งรายการละเอียด' },
-                        { value: 4, text: 'เครื่องมือแพทยทั่วไป' }
-                      ]"
-                      :value="dataset.type" @input="dataset.type = $event" 
-                      :errorText="isValidated && !dataset.type? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.type? 'error': ''" 
-                    />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                      <FormGroup 
-                        type="text" label="ยี่ห้อ" name="add_brand" placeholder="ALLIS Intestinal Forceps" 
-                        :value="dataset.brand" @input="dataset.brand = $event" 
-                        :errorText="isValidated && !dataset.brand? 'กรุณาระบุ': ''" 
-                        :classer="isValidated && !dataset.brand? 'error': ''" 
-                      />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                      <FormGroup 
-                        type="text" label="บาร์โค้ด" name="add_barcode" placeholder="16508537592841500" 
-                        :value="dataset.barcode" @input="dataset.barcode = $event" 
-                        :errorText="isValidated && !dataset.barcode? 'กรุณาระบุ': ''" 
-                        :classer="isValidated && !dataset.barcode? 'error': ''" 
-                      />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="special-1" label="จำนวน" 
-                      :name="'add_count'" :name2="'add_unit'" :placeholder="'24'"
-                      :value="dataset.count" @input="dataset.count = $event" 
-                      :value2="dataset.unit" @input2="dataset.unit = $event" 
-                      :errorText="isValidated && !dataset.count? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.count? 'error': ''"
-                      :options="[
-                        { value: 1, text: 'ชิ้น' },
-                        { value: 2, text: 'หน่วย' },
-                      ]"
-                    />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="text" label="บริษัท" name="add_company" placeholder="ALLIS" 
-                      :value="dataset.company" @input="dataset.company = $event" 
-                      :errorText="isValidated && !dataset.company? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.company? 'error': ''" 
-                    />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="text" label="Sale name" name="add_sale_name" placeholder="สมิหลา ณ สกลนคร" 
-                      :value="dataset.saleName" @input="dataset.saleName = $event" 
-                      :errorText="isValidated && !dataset.saleName? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.saleName? 'error': ''" 
-                    />
-                  </div>
-                  <div class="grid lg-25 xs-75">
-                    <FormGroup 
-                      type="text" label="เบอร์ติดต่อ" name="add_phone" placeholder="098-074-2870" 
-                      :value="dataset.phone" @input="dataset.phone = $event" 
-                      :errorText="isValidated && !dataset.phone? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.phone? 'error': ''" 
-                    />
-                  </div>
-                  <div class="grid lg-25">
-                    <FormGroup 
-                      type="text" label="อีเมล" name="add_email" placeholder="098-074-2870" 
-                      :value="dataset.email" @input="dataset.email = $event" 
-                      :errorText="isValidated && !dataset.email? 'กรุณาระบุ': ''" 
-                      :classer="isValidated && !dataset.email? 'error': ''" 
-                    />
-                  </div>
+          <div class="body">
+            <div class="grids">
+              <div class="grid lg-25 xs-75">
+                  <FormGroup 
+                    type="text" label="เลขที่จัดซื้อ/จัดจ้าง" name="add_code" placeholder="123456789" 
+                    :value="dataset.code" @input="dataset.code = $event" 
+                    :errorText="isValidated && !dataset.code? 'กรุณาระบุ': ''" 
+                    :classer="isValidated && !dataset.code? 'error': ''" 
+                  />
               </div>
+              <div class="grid lg-50">
+                  <FormGroup 
+                    type="text" label="ชื่ออุปกรณ์" name="add_product" placeholder="ALLIS Intestinal Forceps, 4x5 Teeth 15 Cm." 
+                    :value="dataset.product" @input="dataset.product = $event" 
+                    :errorText="isValidated && !dataset.product? 'กรุณาระบุ': ''" 
+                    :classer="isValidated && !dataset.product? 'error': ''" 
+                  />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="datepicker" label="วันที่นำเข้า" name="add_date" placeholder="01/01/2564" 
+                  :value="dataset.addDate" @input="dataset.addDate = $event" 
+                  :errorText="isValidated && !dataset.addDate? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.addDate? 'error': ''" 
+                />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="select" label="ประเภท" name="add_type"
+                  :options="[
+                    { value: 1, text: 'อุปกรณ์ทางการแพทย์' },
+                    { value: 2, text: 'เครื่องมือแพทย์ที่ต้องได้รับอนุญาต' },
+                    { value: 3, text: 'เครื่องมือแพทย์ที่ต้องแจ้งรายการละเอียด' },
+                    { value: 4, text: 'เครื่องมือแพทยทั่วไป' }
+                  ]"
+                  :value="dataset.type" @input="dataset.type = $event" 
+                  :errorText="isValidated && !dataset.type? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.type? 'error': ''" 
+                />
+              </div>
+              <div class="grid lg-25 xs-75">
+                  <FormGroup 
+                    type="text" label="ยี่ห้อ" name="add_brand" placeholder="ALLIS Intestinal Forceps" 
+                    :value="dataset.brand" @input="dataset.brand = $event" 
+                    :errorText="isValidated && !dataset.brand? 'กรุณาระบุ': ''" 
+                    :classer="isValidated && !dataset.brand? 'error': ''" 
+                  />
+              </div>
+              <div class="grid lg-25 xs-75">
+                  <FormGroup 
+                    type="text" label="บาร์โค้ด" name="add_barcode" placeholder="16508537592841500" 
+                    :value="dataset.barcode" @input="dataset.barcode = $event" 
+                    :errorText="isValidated && !dataset.barcode? 'กรุณาระบุ': ''" 
+                    :classer="isValidated && !dataset.barcode? 'error': ''" 
+                  />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="special-1" label="จำนวน" 
+                  :name="'add_count'" :name2="'add_unit'" :placeholder="'24'"
+                  :value="dataset.count" @input="dataset.count = $event" 
+                  :value2="dataset.unit" @input2="dataset.unit = $event" 
+                  :errorText="isValidated && !dataset.count? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.count? 'error': ''"
+                  :options="[
+                    { value: 1, text: 'ชิ้น' },
+                    { value: 2, text: 'หน่วย' },
+                  ]"
+                />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="text" label="บริษัท" name="add_company" placeholder="ALLIS" 
+                  :value="dataset.company" @input="dataset.company = $event" 
+                  :errorText="isValidated && !dataset.company? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.company? 'error': ''" 
+                />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="text" label="Sale name" name="add_sale_name" placeholder="สมิหลา ณ สกลนคร" 
+                  :value="dataset.saleName" @input="dataset.saleName = $event" 
+                  :errorText="isValidated && !dataset.saleName? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.saleName? 'error': ''" 
+                />
+              </div>
+              <div class="grid lg-25 xs-75">
+                <FormGroup 
+                  type="text" label="เบอร์ติดต่อ" name="add_phone" placeholder="098-074-2870" 
+                  :value="dataset.phone" @input="dataset.phone = $event" 
+                  :errorText="isValidated && !dataset.phone? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.phone? 'error': ''" 
+                />
+              </div>
+              <div class="grid lg-25">
+                <FormGroup 
+                  type="text" label="อีเมล" name="add_email" placeholder="098-074-2870" 
+                  :value="dataset.email" @input="dataset.email = $event" 
+                  :errorText="isValidated && !dataset.email? 'กรุณาระบุ': ''" 
+                  :classer="isValidated && !dataset.email? 'error': ''" 
+                />
+              </div>
+            </div>
           </div>
         </div>
       </form>
@@ -246,10 +246,10 @@
         <div class="popup-box xl">
           <div class="header">
             <div class="btns mt-0">
-            <a href="javascript:" class="btn btn-close" @click="cartModalOpen = !cartModalOpen">
-              <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-              ปิดหน้าต่าง
-            </a>
+              <a href="javascript:" class="btn btn-close" @click="cartModalOpen = !cartModalOpen">
+                <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
+                ยกเลิก
+              </a>
             </div>
             <div class="header-wrapper">
               <div class="text-container pr-2">
@@ -305,7 +305,7 @@
               </div>
             </div>
           </div>
-          <div class="body pl-0 pr-0 pt-4 pb-5">
+          <div class="body-wrapper">
             <DataTable 
               :rows="shoppingBag" :key="shoppingBag.length" 
               :columns="shoppingBagColumns" 
@@ -327,7 +327,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="infoModalOpen = !infoModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
@@ -358,7 +358,7 @@
               </div>
             </div>
           </div>
-          <div class="body pt-4 pb-5">
+          <div class="body">
             <div class="grids">
               <div class="grid lg-25 md-1-3">
                 <FormGroup type="plain" label="เลขที่จัดซื้อ/จัดจ้าง" value="56200849" />
@@ -412,7 +412,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="reportModalOpen = !reportModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -469,7 +469,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="confirmModalOpen = !confirmModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
@@ -496,13 +496,13 @@
               </div>
             </div>
           </div>
-          <div class="body pt-4 pb-5">
+          <div class="body-wrapper">
             <DataTable
               :withOptions="false"
               :columns="[
                 { key: 'code', text: 'รหัส' },
                 { key: 'type', text: 'ประเภท' },
-                { key: 'product', text: 'ชื่ออุปกรณ์' },
+                { key: 'product', text: 'ชื่ออุปกรณ์', classer: 'wrap-xl' },
                 { key: 'rent', text: 'จำนวน' },
                 { key: 'unit', text: '' },
               ]"
@@ -562,7 +562,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="historyModalOpen = !historyModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
@@ -572,7 +572,7 @@
             </div>
           </div>
           <div class="body-wrapper">
-            <div class="body pt-4 pb-4">
+            <div class="body">
               <div class="grids">
                 <div class="grid lg-20 md-1-3">
                   <FormGroup type="plain" label="เลขที่การยืม" value="EDS-20206050" />
@@ -597,7 +597,7 @@
               :columns="[
                 { key: 'code', text: 'รหัส'},
                 { key: 'type', text: 'ประเภท'},
-                { key: 'product', text: 'ชื่อสินค้า'},
+                { key: 'product', text: 'ชื่อสินค้า', classer: 'wrap-xl' },
                 { key: 'rent', text: 'จำนวนยืม'},
                 { key: 'return', text: 'จำนวนคืน'},
                 { key: 'unit', text: 'หน่วย'},
@@ -620,22 +620,35 @@
     <div class="wrapper">
       <div class="close-filter" @click="returnModalOpen = !returnModalOpen"></div>
       <form action="/user/teams" method="GET" class="w-full" @submit="onSubmit">
-        <div class="popup-box xl">
+        <div class="popup-box xxl">
           <div class="header">
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="returnModalOpen = !returnModalOpen">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper fw-wrap">
               <div class="text-container ws-nowrap pr-3">
-                <h6 class="h3">รายละเอียดประวัติคำขอ</h6>
+                <h6 class="h3">การคืนสินค้าที่ยืม</h6>
+              </div>
+              <div class="btns hide-mobile">
+                <Button 
+                  text="คืนสินค้า" type="submit"
+                  classer="btn-color-01" :prepend="true" icon="circle-arrow-up-white.svg" 
+                  @click="returnModalOpen = !returnModalOpen" 
+                />
+              </div>
+              <div class="btns show-mobile">
+                <Button 
+                  text="คืนสินค้า" classer="btn-color-01 btn-sm"
+                  @click="returnModalOpen = !returnModalOpen" 
+                />
               </div>
             </div>
           </div>
           <div class="body-wrapper">
-            <div class="body pb-4">
+            <div class="body">
               <div class="grids">
                 <div class="grid lg-25 md-1-3">
                   <FormGroup type="plain" label="เลขที่การยืม" value="EDS-20206049" />
@@ -657,12 +670,12 @@
               :columns="[
                 { key: 'code', text: 'รหัส'},
                 { key: 'type', text: 'ประเภท'},
-                { key: 'product', text: 'ชื่อสินค้า'},
+                { key: 'product', text: 'ชื่อสินค้า', classer: 'wrap-md' },
                 { key: 'rent', text: 'จำนวนยืม'},
                 { key: 'return', text: 'จำนวนคืน'},
                 { key: 'left', text: 'คงเหลือ'},
                 { key: 'unit', text: 'หน่วย'},
-                { key: 'defect', text: 'แจ้งชำรุด'},
+                { key: 'defect', text: ''},
               ]"
             />
           </div>
@@ -814,7 +827,8 @@ export default {
           unit: { text: 'ถุง', classer: 'color-sgray' },
           left: { text: '0' },
           defect: { 
-            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+            text: 'แจ้งชำรุด', classer:'color-01', 
+            iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
           },
         },
         {
@@ -826,7 +840,8 @@ export default {
           unit: { text: 'ถุง', classer: 'color-sgray' },
           left: { text: '3' },
           defect: { 
-            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+            text: 'แจ้งชำรุด', classer:'color-01', 
+            iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
           },
         },
         {
@@ -838,7 +853,8 @@ export default {
           unit: { text: 'ถุง', classer: 'color-sgray' },
           left: { text: '1' },
           defect: { 
-            text: 'แจ้งชำรุด', classer:'color-01', iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
+            text: 'แจ้งชำรุด', classer:'color-01', 
+            iconAppend: 'fragile.svg', iconClasser: 'lg show-info',
           },
         }
       ],
@@ -863,7 +879,7 @@ export default {
       shoppingBagColumns: [
         { key: 'code', text: 'รหัส' },
         { key: 'type', text: 'ประเภท' },
-        { key: 'name', text: 'ชื่อสินค้า' },
+        { key: 'name', text: 'ชื่อสินค้า', classer: 'wrap-xl' },
         { key: 'in_stock', text: 'คงเหลือ' },
         { key: 'unit', text: 'หน่วย' },
         { key: 'require', text: 'ความต้องการ' },

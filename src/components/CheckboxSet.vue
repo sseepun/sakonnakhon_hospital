@@ -10,7 +10,7 @@
             :name="name" :id="name+'_'+index" :value="option.value"
             :required="required? true: false" 
             :checked="value.indexOf(option.value)>-1? true: false" 
-            @change="(event)=>$emit('input', event.target.value)"
+            @change="(event)=>checkboxChange(event.target.value)"
           />
           <input v-else :type="type" 
             :name="name" :id="name+'_'+index" :value="option.value"
@@ -51,6 +51,23 @@ export default {
     textInput: { type: Boolean, default: false },
     textInputPlaceholder: { type: String, default: '' },
     textInputDisabled: { type: Boolean, default: false }
+  },
+  data() {
+    return {
+      selfValue: this.value
+    }
+  },
+  methods: {
+    checkboxChange(value) {
+      if(this.selfValue.indexOf(value) > -1){
+        this.selfValue = this.selfValue.filter(function(d){
+          return d != value;
+        });
+      }else{
+        this.selfValue.push(value);
+      }
+      return this.$emit('input', this.selfValue);
+    }
   },
   emits: [ 'input', 'input-text' ]
 }

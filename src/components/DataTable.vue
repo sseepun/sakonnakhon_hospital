@@ -183,7 +183,7 @@
                 
                 <!-- Newly added by Ton: used in Inventory component -->
                 <div v-else-if="row[col.key].type == 'counter'">
-                  <div class="d-flex ai-center" style="min-width:6.5rem;">
+                  <div class="d-flex ai-center" style="min-width:6rem;">
                     <input
                       type="text" class="mr-1" :ref="'counter_'+index"
                       :value="row[col.key].value"

@@ -258,7 +258,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="notFoundAlert = !notFoundAlert">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">
@@ -280,7 +280,7 @@
           <div class="body pt-4 pb-5">
             <p class="color-gray">หมายเหตุ</p>
             <p class="mt-2">
-              หมายเลขประจำตัวผู้ป่วยที่คุณค้นหาอาจจะ ไม่ถูกต้อง คุณสามารถ “ปิดหน้าต่าง” 
+              หมายเลขประจำตัวผู้ป่วยที่คุณค้นหาอาจจะ ไม่ถูกต้อง คุณสามารถ “ยกเลิก” 
               เพื่อระบุหมายเลขประจำตัวผู้ป่วยใหม่อีกครั้ง หรือ ผู้ป่วยที่คุณต้องการหา อาจจะ ไม่มีข้อมูลในระบบ 
               คุณสามารถเพิ่มข้อมูลผู้ป่วยใหม่ โดยการคลิกที่ปุ่ม “เพิ่มข้อมูล”
             </p>

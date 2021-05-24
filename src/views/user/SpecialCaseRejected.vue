@@ -140,7 +140,7 @@
             <div class="btns mt-0">
               <a href="javascript:" class="btn btn-close" @click="cancelAlert = !cancelAlert">
                 <img class="icon-prepend xs" src="/assets/img/icon/close.svg" alt="Image Icon" />
-                ปิดหน้าต่าง
+                ยกเลิก
               </a>
             </div>
             <div class="header-wrapper">

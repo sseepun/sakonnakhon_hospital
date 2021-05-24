@@ -17,7 +17,7 @@
               ประวัติการวินิจฉัย
             </span>
             <span class="ss-sep hide-mobile"></span>
-            <span class="ss-tag">ด่วน</span>
+            <span class="ss-tag sm ss-tag-red">ด่วน</span>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@
             <span class="h3">
               Step 5 รายงานผล
             </span>
-            <span class="ss-sep hide-mobile"></span>
+            <span class="ss-sep top hide-mobile"></span>
             <span class="ss-tag">P63-1</span>
           </div>
         </div>
