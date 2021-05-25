@@ -198,6 +198,12 @@ p, .p{font-size:1rem;} p.sm, .p.sm{font-size:.875rem;}
 .btn.btn-color-12:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
 .btn.btn-color-12:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
 
+.btn.btn-color-13, .btn.btn-color-13:focus{
+    color:#acacac; background:#ffffff; border-color:#acacac;
+}
+.btn.btn-color-13:hover{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.05);}
+.btn.btn-color-13:active{box-shadow:inset 0 0 0 100rem rgba(0,0,0,.10);}
+
 
 /* Inputs */
 input[type=text], input[type=email], input[type=password], input[type=date], input[type=tel],
@@ -207,7 +213,7 @@ input[type=number], input[type=phone], input[type=submit], input[type=file], sel
     line-height:1.5; background:#ffffff; color:#212121; width:100%; 
     outline:none!important; transition:border-color .25s, color .25s;
 }
-select{padding:.5625rem .875rem .4375rem .875rem;}
+select{padding:.6875rem .875rem .5625rem .875rem;}
 input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus, 
 input[type=tel]:focus, input[type=number]:focus, input[type=phone]:focus, input[type=submit]:focus, 
 input[type=file]:focus, select:focus, textarea:focus{border-color:#047857!important;}
@@ -293,6 +299,15 @@ select:disabled, textarea:disabled{
     border-radius:.375rem; transition:border-color .25s;
 }
 .form-group .file-container.focused .dropzone{border-color:#047857;}
+
+/* Input Wrapper Adaptive  */
+@media screen and (min-width:992px){
+    .form-group.textarea-adaptive{height:100%;}
+    .form-group.textarea-adaptive label + *{height:calc(100% - 1.5rem);}
+    .form-group.textarea-adaptive textarea{
+        display:block; width:100%; height:100%; min-height:100%; max-height:100%;
+    }
+}
 
 
 /* Label & Error */
@@ -894,6 +909,8 @@ fieldset{padding:0; margin:0; border:0;}
 .ws-nowrap{white-space:nowrap!important;}
 .ws-normal{white-space:normal!important;}
 .no-br > br{display:none;}
+
+.cursor-pointer{cursor:pointer;}
 
 .no-border{border:0!important;}
 .no-border-bottom{border-bottom:0!important;}

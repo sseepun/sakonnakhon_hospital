@@ -142,7 +142,7 @@
 .step-01 .step .icon img.checked{opacity:0;}
 .step-01 .step.active .icon img.checked{opacity:1;}
 .step-01 .step .text-container{margin:.4375rem 0 0 0;}
-.step-01 .step .text-container p{transition:color .25s;}
+.step-01 .step .text-container p{white-space:nowrap; transition:color .25s;}
 .step-01 .step .text-container h6,
 .step-01 .step.active .text-container p{color:#047857;}
 .step-01 .step-sep{
@@ -317,6 +317,27 @@ table.table-section .counter-up,
 table.table-section .counter-down{cursor:pointer; transition:opacity .25s, filter .25s;}
 table.table-section .counter-up.disabled, table.table-section .counter-down.disabled{
   pointer-events:none; filter:grayscale(100%); opacity:.7;
+}
+
+@media screen and (max-width:991.98px){
+    table.table-section th, table.table-section td{padding:.875rem;}
+    table.table-section th:first-child,
+    table.table-section td:first-child{padding-left:1.5rem;}
+    table.table-section th:last-child,
+    table.table-section td:last-child{padding-right:1.5rem;}
+}
+@media screen and (max-width:767.98px){
+    table.table-section th, table.table-section td{padding:.75rem;}
+    table.table-section th:first-child,
+    table.table-section td:first-child{padding-left:1.25rem;}
+    table.table-section th:last-child,
+    table.table-section td:last-child{padding-right:1.25rem;}
+}
+@media screen and (max-width:575.98px){
+    table.table-section th:first-child,
+    table.table-section td:first-child{padding-left:1rem;}
+    table.table-section th:last-child,
+    table.table-section td:last-child{padding-right:1rem;}
 }
 
 

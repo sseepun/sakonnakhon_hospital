@@ -14,7 +14,7 @@
         <div class="header-wrapper">
           <div class="text-container pr-2">
             <span class="h3">
-              วินิจฉัยเซลล์
+              วินิจฉัยชิ้นเนื้อ
             </span>
             <span class="ss-sep hide-mobile"></span>
             <span v-if="stepActiveIndex == 1" class="ss-tag">เตรียมสไลด์</span>
@@ -42,7 +42,7 @@
       <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="150">
         <div class="grids">
           <div class="grid lg-20 md-1-3">
-            <FormGroup type="plain" label="รหัสใบส่งตรวจ" value="CG20-00001" />
+            <FormGroup type="plain" label="รหัสใบส่งตรวจ" value="S20-00001" />
           </div>
           <div class="grid lg-20 md-1-3 xs-50">
             <FormGroup type="plain" label="HN" value="1088052" />
@@ -161,16 +161,19 @@
       </div>
       <div class="tab-container mt-5" data-aos="fade-up" data-aos-delay="0">
         <div class="section-px">
-          <Step01 :activeIndex="stepActiveIndex" />
+          <Step01 
+            :activeIndex="stepActiveIndex" 
+            :texts="[ 'ตัดชิ้นเนื้อ', 'เตรียมสไลด์', 'อ่านผล', 'Consult / Double check', 'รายงาน' ]"
+          />
         </div>
         <div class="tab-contents pt-6 pb-6">
 
           <div class="tab-content" :class="stepActiveIndex == 1? 'active': ''">
             <div class="section-px border-bottom bcolor-fgray pb-6">
               <div class="p fw-400">
-                Step 1 เตรียมสไลด์
+                Step 1 ตัดชิ้นเนื้อ
                 <span class="ss-sep sm hide-mobile"></span>
-                <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-tag color-01">S20-00001</span>
               </div>
               <div class="grids">
                 <div v-for="(bag, index) in bags" :key="index"
@@ -224,21 +227,11 @@
           <div class="tab-content" :class="stepActiveIndex == 2? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 2 ย้อมสี
+                Step 2 เตรียมสไลด์
                 <span class="ss-sep sm hide-mobile"></span>
-                <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-tag color-01">S20-00001</span>
               </div>
               <div class="grids">
-                <div class="grid md-50 sm-100">
-                  <FormGroup 
-                    type="textarea" label="Specimen Type" placeholder="บรรยาย..." 
-                  />
-                </div>
-                <div class="grid md-50 sm-100">
-                  <FormGroup 
-                    type="textarea" label="Location" placeholder="บรรยาย..." 
-                  />
-                </div>
                 <div class="grid md-50 sm-100">
                   <FormGroup 
                     type="textarea" label="Diagnosis" placeholder="บรรยาย..." 
@@ -246,12 +239,12 @@
                 </div>
                 <div class="grid md-50 sm-100">
                   <FormGroup 
-                    type="textarea" label="Microscopic Description" placeholder="บรรยาย..." 
+                    type="textarea" label="Gross Description" placeholder="บรรยาย..." 
                   />
                 </div>
                 <div class="grid md-50 sm-100">
                   <FormGroup 
-                    type="textarea" label="Category" 
+                    type="textarea" label="Microscopic Description" 
                     classer="textarea-adaptive" placeholder="บรรยาย..." 
                   />
                 </div>
@@ -268,6 +261,34 @@
                     @click-popup="isActivePopup = !isActivePopup" 
                   />
                 </div>
+                <div class="grid md-50">
+                  <FormGroup 
+                    type="search-select" label="ICD-O" :value="dataset.icd" 
+                    placeholder="เลือก Term" 
+                    :options="[
+                      'MORPHOLOGY',
+                      'Neoplasms, NOS',
+                      'Neoplasm, benign',
+                      'Tumor, benign',
+                      'Unclassified tumor, benign',
+                      'Neoplasm, uncertain whether benign or malignant',
+                      'Tumor embolus',
+                      'Tumor, metastatic',
+                      'Tumor, secondary',
+                      'Tumor cells, benign',
+                      'Tumor cells, uncertain whether benign or malignant',
+                      'Tumor cells, NOS'
+                    ]" 
+                    @input="(event) => dataset.icd = event"
+                  />
+                </div>
+                <div class="grid md-50">
+                  <FormGroup 
+                    type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                    @input="(event) => dataset.icd0 = event"
+                  />
+                </div>
+                <div class="grid sm-100" style="height:8remrem;"></div>
               </div>
               <div class="btns text-right">
                 <Button 
@@ -285,9 +306,9 @@
           <div class="tab-content" :class="stepActiveIndex == 3? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 3 Screening
+                Step 3 อ่านผล
                 <span class="ss-sep sm hide-mobile"></span>
-                <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-tag color-01">S20-00001</span>
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
@@ -341,21 +362,15 @@
                   <div class="grid lg-60 sm-100 mt-0">
                     <div class="grids">
                       <div class="grid sm-100">
-                        <p class="color-gray">Specimen Type</p>
-                        <p class="color-black mt-2">
-                          Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
-                        </p>
-                      </div>
-                      <div class="grid sm-100">
-                        <p class="color-gray">Location</p>
-                        <p class="color-black mt-2">
-                          Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
-                        </p>
-                      </div>
-                      <div class="grid sm-100">
                         <p class="color-gray">Diagnosis</p>
                         <p class="color-black mt-2">
                           Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
+                        </p>
+                      </div>
+                      <div class="grid sm-100">
+                        <p class="color-gray">Gross Description</p>
+                        <p class="color-black mt-2">
+                          Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
                         </p>
                       </div>
                       <div class="grid sm-100">
@@ -365,10 +380,18 @@
                         </p>
                       </div>
                       <div class="grid sm-100">
-                        <p class="color-gray">Category</p>
-                        <p class="color-black mt-2">
-                          Eget accumsan dis nisl.
+                        <p class="color-gray">ICD-0</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd}}
                         </p>
+                        <p v-else class="color-black mt-2">-</p>
+                      </div>
+                      <div class="grid sm-100">
+                        <p class="color-gray">ICDO3.2</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd0}}
+                        </p>
+                        <p v-else class="color-black mt-2">-</p>
                       </div>
                     </div>
                   </div>
@@ -454,31 +477,19 @@
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Specimen Type" 
-                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                    />
-                  </div>
-                  <div class="grid md-50 sm-100">
-                    <FormGroup 
-                      type="textarea" label="Location" 
-                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                    />
-                  </div>
-                  <div class="grid md-50 sm-100">
-                    <FormGroup 
                       type="textarea" label="Diagnosis" 
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Microscopic Description" 
+                      type="textarea" label="Gross Description" 
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Category" classer="textarea-adaptive"
+                      type="textarea" label="Microscopic Description" classer="textarea-adaptive"
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
@@ -495,6 +506,34 @@
                       @click-popup="isActivePopup = !isActivePopup" 
                     />
                   </div>
+                  <div class="grid md-50 sm-100">
+                    <FormGroup 
+                      type="search-select" label="ICD-O" :value="dataset.icd" 
+                      placeholder="เลือก Term" 
+                      :options="[
+                        'MORPHOLOGY',
+                        'Neoplasms, NOS',
+                        'Neoplasm, benign',
+                        'Tumor, benign',
+                        'Unclassified tumor, benign',
+                        'Neoplasm, uncertain whether benign or malignant',
+                        'Tumor embolus',
+                        'Tumor, metastatic',
+                        'Tumor, secondary',
+                        'Tumor cells, benign',
+                        'Tumor cells, uncertain whether benign or malignant',
+                        'Tumor cells, NOS'
+                      ]" 
+                      @input="(event) => dataset.icd = event"
+                    />
+                  </div>
+                  <div class="grid md-50 sm-100">
+                    <FormGroup 
+                      type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                      @input="(event) => dataset.icd0 = event"
+                    />
+                  </div>
+                  <div class="grid sm-100" style="height:8rem;"></div>
                 </div>
               </div>
             </div>
@@ -503,9 +542,9 @@
           <div class="tab-content" :class="stepActiveIndex == 4? 'active': ''">
             <div class="section-px">
               <div class="p fw-400">
-                Step 4 แปลผล
+                Step 4 Consult / Double check
                 <span class="ss-sep sm hide-mobile"></span>
-                <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-tag color-01">S20-00001</span>
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
@@ -559,21 +598,15 @@
                   <div class="grid lg-60 sm-100 mt-0">
                     <div class="grids">
                       <div class="grid sm-100">
-                        <p class="color-gray">Specimen Type</p>
-                        <p class="color-black mt-2">
-                          Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
-                        </p>
-                      </div>
-                      <div class="grid sm-100">
-                        <p class="color-gray">Location</p>
-                        <p class="color-black mt-2">
-                          Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
-                        </p>
-                      </div>
-                      <div class="grid sm-100">
                         <p class="color-gray">Diagnosis</p>
                         <p class="color-black mt-2">
                           Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
+                        </p>
+                      </div>
+                      <div class="grid sm-100">
+                        <p class="color-gray">Gross Description</p>
+                        <p class="color-black mt-2">
+                          Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
                         </p>
                       </div>
                       <div class="grid sm-100">
@@ -583,10 +616,18 @@
                         </p>
                       </div>
                       <div class="grid sm-100">
-                        <p class="color-gray">Category</p>
-                        <p class="color-black mt-2">
-                          Eget accumsan dis nisl.
+                        <p class="color-gray">ICD-0</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd}}
                         </p>
+                        <p v-else class="color-black mt-2">-</p>
+                      </div>
+                      <div class="grid sm-100">
+                        <p class="color-gray">ICDO3.2</p>
+                        <p v-if="dataset.icd" class="color-black mt-2">
+                          {{dataset.icd0}}
+                        </p>
+                        <p v-else class="color-black mt-2">-</p>
                       </div>
                     </div>
                   </div>
@@ -669,31 +710,19 @@
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Specimen Type" 
-                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                    />
-                  </div>
-                  <div class="grid md-50 sm-100">
-                    <FormGroup 
-                      type="textarea" label="Location" 
-                      value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
-                    />
-                  </div>
-                  <div class="grid md-50 sm-100">
-                    <FormGroup 
                       type="textarea" label="Diagnosis" 
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Microscopic Description" 
+                      type="textarea" label="Gross Description" 
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
                   <div class="grid md-50 sm-100">
                     <FormGroup 
-                      type="textarea" label="Category" classer="textarea-adaptive"
+                      type="textarea" label="Microscopic Description" classer="textarea-adaptive"
                       value="Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent." 
                     />
                   </div>
@@ -710,6 +739,34 @@
                       @click-popup="isActivePopup = !isActivePopup" 
                     />
                   </div>
+                  <div class="grid md-50 sm-100">
+                    <FormGroup 
+                      type="search-select" label="ICD-O" :value="dataset.icd" 
+                      placeholder="เลือก Term" 
+                      :options="[
+                        'MORPHOLOGY',
+                        'Neoplasms, NOS',
+                        'Neoplasm, benign',
+                        'Tumor, benign',
+                        'Unclassified tumor, benign',
+                        'Neoplasm, uncertain whether benign or malignant',
+                        'Tumor embolus',
+                        'Tumor, metastatic',
+                        'Tumor, secondary',
+                        'Tumor cells, benign',
+                        'Tumor cells, uncertain whether benign or malignant',
+                        'Tumor cells, NOS'
+                      ]" 
+                      @input="(event) => dataset.icd = event"
+                    />
+                  </div>
+                  <div class="grid md-50 sm-100">
+                    <FormGroup 
+                      type="text" label="ICDO3.2" :value="dataset.icd0" :disabled="!dataset.icd" 
+                      @input="(event) => dataset.icd0 = event"
+                    />
+                  </div>
+                  <div class="grid sm-100" style="height:8rem;"></div>
                 </div>
               </div>
             </div>
@@ -720,7 +777,7 @@
               <div class="p fw-400">
                 Step 5 รายงาน
                 <span class="ss-sep sm hide-mobile"></span>
-                <span class="ss-tag color-01">CG20-00001</span>
+                <span class="ss-tag color-01">S20-00001</span>
               </div>
               <div class="pt-5 pb-5 border-bottom bcolor-sgray">
                 <p>Cytopathology Report</p>
@@ -765,21 +822,15 @@
                 <div class="grid lg-60 sm-100 mt-0">
                   <div class="grids">
                     <div class="grid sm-100">
-                      <p class="color-gray">Specimen Type</p>
-                      <p class="color-black mt-2">
-                        Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
-                      </p>
-                    </div>
-                    <div class="grid sm-100">
-                      <p class="color-gray">Location</p>
-                      <p class="color-black mt-2">
-                        Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
-                      </p>
-                    </div>
-                    <div class="grid sm-100">
                       <p class="color-gray">Diagnosis</p>
                       <p class="color-black mt-2">
                         Est integer dignissim turpis in dui. Morbi et sed quis ac ornare vitae. Vitae amet, aliquam lacus aliquam hac ornare. Habitasse ante pellentesque et vitae ut quam lobortis in. Morbi quam amet, volutpat neque praesent.
+                      </p>
+                    </div>
+                    <div class="grid sm-100">
+                      <p class="color-gray">Gross Description</p>
+                      <p class="color-black mt-2">
+                        Potenti hac fringilla enim non malesuada cras senectus tristique arcu. Lorem volutpat, nec, faucibus tincidunt neque porttitor sagittis. Purus venenatis congue dui scelerisque amet aenean.
                       </p>
                     </div>
                     <div class="grid sm-100">
@@ -789,10 +840,18 @@
                       </p>
                     </div>
                     <div class="grid sm-100">
-                      <p class="color-gray">Category</p>
-                      <p class="color-black mt-2">
-                        Eget accumsan dis nisl.
+                      <p class="color-gray">ICD-0</p>
+                      <p v-if="dataset.icd" class="color-black mt-2">
+                        {{dataset.icd}}
                       </p>
+                      <p v-else class="color-black mt-2">-</p>
+                    </div>
+                    <div class="grid sm-100">
+                      <p class="color-gray">ICDO3.2</p>
+                      <p v-if="dataset.icd" class="color-black mt-2">
+                        {{dataset.icd0}}
+                      </p>
+                      <p v-else class="color-black mt-2">-</p>
                     </div>
                   </div>
                 </div>
@@ -844,7 +903,7 @@
                   classer="btn-color-09 mr-3" :prepend="true" icon="arrow-left-green.svg" 
                 />
                 <Button 
-                  text="ออก Report" href="/user/cell-complete"
+                  text="ออก Report" href="/user/tissue-complete"
                   classer="btn-color-01" :prepend="true" icon="arrow-up-right.svg" 
                 />
               </div>
@@ -877,7 +936,7 @@ import ImageGallery from '../../components/ImageGallery';
 import ImageGalleryPopup from '../../components/ImageGalleryPopup';
 
 export default {
-  name: 'CellDiagnosePage',
+  name: 'UserTissueDiagnosePage',
   components: {
     Topnav,
     SpecialCard05,

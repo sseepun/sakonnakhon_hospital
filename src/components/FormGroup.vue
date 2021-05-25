@@ -131,42 +131,40 @@
       :attributes="[ { popover: { placement: 'top-start' } } ]"
       @click="handleInput"
     >
-    <template v-slot="{ inputValue, inputEvents }">
-      <div class="date-range-container">
-        <div class="date-wrapper">
-          <input
-            type="text" class="no-bradius"
-            :name="name" 
-            :placeholder="'ใส่วันที่ส่งชิ้นเนื้อ'" 
-            :value="inputValue.start"
-            v-on="inputEvents.start" 
-            @focusin="isFocused = true" @focusout="isFocused = false" 
-          />
-          <div class="icon hide-mobile">
-            <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
+      <template v-slot="{ inputValue, inputEvents }">
+        <div class="d-flex">
+          <div class="append">
+            <input
+              type="text" style="border-radius:.375rem 0 0 .375rem;" 
+              :name="name" 
+              :placeholder="'ใส่วันที่ส่งชิ้นเนื้อ'" 
+              :value="inputValue.start"
+              v-on="inputEvents.start" 
+              @focusin="isFocused = true" @focusout="isFocused = false" 
+            />
+            <div class="icon hide-mobile">
+              <img src="/assets/img/icon/calendar.svg" alt="Image Icon" />
+            </div>
+          </div>
+          <div class="d-flex ai-center border-top border-bottom bcolor-sgray" style="padding:.625rem;">
+            <img src="/assets/img/icon/arrow-right.svg" alt="Image Icon" />
+          </div>
+          <div class="append">
+            <input
+              type="text" style="border-radius:0 .375rem .375rem 0;" 
+              :name="name2" 
+              :placeholder="'จนถึงวันที่'" 
+              :value="inputValue.end"
+              v-on="inputEvents.end" 
+              @focusin="isFocused = true" @focusout="isFocused = false" 
+            />
+            <div class="icon hide-mobile">
+              <img src="/assets/img/icon/calendar.svg" alt="Image Icon" />
+            </div>
           </div>
         </div>
-        
-        <div class="d-flex ai-center bcolor-sgray" style="padding: .625rem; border-top: 1.5px solid transparent; border-bottom: 1.5px solid transparent;">
-          <img :src="'/assets/img/icon/arrow-right.svg'" alt="Image Icon" />
-        </div>
-        <div class="date-wrapper">
-          <input
-            type="text" class="no-bradius"
-            :name="name2" 
-            :placeholder="'จนถึงวันที่'" 
-            :value="inputValue.end"
-            v-on="inputEvents.end" 
-            @focusin="isFocused = true" @focusout="isFocused = false" 
-          />
-          <div class="icon hide-mobile">
-            <img :src="'/assets/img/icon/calendar.svg'" alt="Image Icon" />
-          </div>
-        </div>
-      </div>
-    </template>
+      </template>
     </DatePicker>
-    
   </div>
 
   <div v-else-if="type == 'file'" class="form-group" :class="classer">

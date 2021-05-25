@@ -13,7 +13,7 @@
           </div>
           <div class="header-wrapper">
             <div class="text-container">
-              <h6 class="h3">งานเซลล์วิทยา</h6>
+              <h6 class="h3">งานชิ้นเนื้อ</h6>
             </div>
             <div v-if="tabActiveIndex == 1" class="btns hide-mobile">
               <Button 
@@ -237,7 +237,7 @@ import Tabs01 from '../../components/Tabs01';
 import DataTable from '../../components/DataTable';
 
 export default {
-  name: 'UserCellsPage',
+  name: 'UserTissuesPage',
   components: {
     Topnav,
     PopupOptions,
@@ -389,7 +389,7 @@ export default {
       this.rows1.push({
         sent_date: {
           type: 'link', text: '07/11/2563, 08:53',
-          href: '/user/cell-complete'
+          href: '/user/tissue-complete'
         },
         hn: { 
           type: 'text', text: '1085526'
@@ -419,7 +419,7 @@ export default {
       this.rows1.push({
         sent_date: {
           type: 'link', text: '12/11/2563, 09:12',
-          href: '/user/cell-complete'
+          href: '/user/tissue-complete'
         },
         hn: { 
           type: 'text', text: '1074122'
@@ -511,7 +511,7 @@ export default {
       this.rows3.push({
         sent_date: {
           type: 'link', text: '12/11/2563, 12:11',
-          href: '/user/cell-diagnose'
+          href: '/user/tissue-diagnose'
         },
         case_id: { 
           type: 'text', text: 'S20-0002'
@@ -538,7 +538,7 @@ export default {
       this.rows3.push({
         sent_date: {
           type: 'link', text: '13/11/2563, 09:34',
-          href: '/user/cell-diagnose'
+          href: '/user/tissue-diagnose'
         },
         case_id: { 
           type: 'text', text: 'S20-0003'

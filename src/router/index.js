@@ -84,14 +84,26 @@ const routes = [
     component: () => import('../views/user/Cells.vue')
   },
   {
+    path: '/user/cell-diagnose',
+    name: 'UserCellDiagnosePage',
+    component: () => import('../views/user/CellDiagnose.vue')
+  },
+  {
     path: '/user/cell-complete',
     name: 'UserCellCompletePage',
     component: () => import('../views/user/CellComplete.vue')
   },
+
+  // User - Tissue Pages
   {
-    path: '/user/cell-diagnose',
-    name: 'UserCellDiagnosePage',
-    component: () => import('../views/user/CellDiagnose.vue')
+    path: '/user/tissues',
+    name: 'UserTissuesPage',
+    component: () => import('../views/user/Tissues.vue')
+  },
+  {
+    path: '/user/tissue-diagnose',
+    name: 'UserTissueDiagnosePage',
+    component: () => import('../views/user/TissueDiagnose.vue')
   },
 
   // User - Special Cases

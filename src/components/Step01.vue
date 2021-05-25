@@ -13,7 +13,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 1</h6>
-            <p>ตัดชิ้นเนื้อ</p>
+            <p>{{texts[0]}}</p>
           </div>
         </div>
           
@@ -25,7 +25,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 2</h6>
-            <p>เตรียมสไลด์</p>
+            <p>{{texts[1]}}</p>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 3</h6>
-            <p>อ่านผล</p>
+            <p>{{texts[2]}}</p>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 4</h6>
-            <p>Consult / Double check</p>
+            <p>{{texts[3]}}</p>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
           </div>
           <div class="text-container">
             <h6 class="p sm">Step 5</h6>
-            <p>รายงาน</p>
+            <p>{{texts[4]}}</p>
           </div>
         </div>
         
@@ -75,7 +75,8 @@ export default {
   name: 'Step01',
   props: {
     stepNum: { type: Number, default: 5 },
-    activeIndex: { type: Number, default: 1 }
+    activeIndex: { type: Number, default: 1 },
+    texts: { type: Array, default: [ 'เตรียมสไลด์', 'ย้อมสี', 'Screening', 'แปลผล', 'รายงาน' ] }
   }
 }
 </script>

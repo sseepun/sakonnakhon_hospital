@@ -1,4 +1,5 @@
 <template>
+
   <div class="pl-6 pt-6 pb-6">
     <h6 class="h3 fw-600">Authentication Pages</h6>
     <div>
@@ -20,8 +21,12 @@
       <a href="/user/case-cytology-complete" target="_blank">/user/case-cytology-complete</a> <br>
       <br>
       <a href="/user/cells" target="_blank">/user/cells</a> <br>
-      <a href="/user/cell-complete" target="_blank">/user/cell-complete</a> <br>
       <a href="/user/cell-diagnose" target="_blank">/user/cell-diagnose</a> <br>
+      <a href="/user/cell-complete" target="_blank">/user/cell-complete</a> <br>
+      <br>
+      <a href="/user/tissues" target="_blank">/user/tissues</a> <br>
+      <a href="/user/tissue-diagnose" target="_blank">/user/tissue-diagnose</a> <br>
+      <a href="/user/tissue-complete" target="_blank">/user/tissue-complete</a> <br>
       <br>
       <a href="/user/case-results" target="_blank">/user/case-results</a> <br>
       <a href="/user/case-result-read" target="_blank">/user/case-result-read</a> <br>
@@ -61,21 +66,6 @@
     </div>
   </div>
 
-  <!-- <div class="pl-6 pb-6">
-    <h6 class="h3 fw-600">Admin Pages</h6>
-    <div>
-      <a href="/admin" target="_blank">/admin</a> <br>
-      <a href="/admin/users" target="_blank">/admin/users</a> <br>
-      <a href="/admin/user-add" target="_blank">/admin/user-add</a> <br>
-      <a href="/admin/user-edit" target="_blank">/admin/user-edit</a> <br>
-      <a href="/admin/data-settings" target="_blank">/admin/data-settings</a> <br>
-      <a href="/admin/case-types" target="_blank">/admin/case-types</a> <br>
-      <a href="/admin/slide-settings" target="_blank">/admin/slide-settings</a> <br>
-      <a href="/admin/products" target="_blank">/admin/products</a> <br>
-      <a href="/admin/survey-settings" target="_blank">/admin/survey-settings</a> <br>
-      <a href="/admin/records" target="_blank">/admin/records</a> <br>
-    </div>
-  </div> -->
 </template>
 
 <script>
