@@ -147,7 +147,7 @@
                     :classer="isValidated && !dataset.product? 'error': ''" 
                   />
               </div>
-              <div class="grid lg-25 xs-75">
+              <div class="grid lg-25 xs-75 ovf-visible">
                 <FormGroup 
                   type="datepicker" label="วันที่นำเข้า" name="add_date" placeholder="01/01/2564" 
                   :value="dataset.addDate" @input="dataset.addDate = $event" 

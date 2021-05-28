@@ -105,6 +105,11 @@ const routes = [
     name: 'UserTissueDiagnosePage',
     component: () => import('../views/user/TissueDiagnose.vue')
   },
+  {
+    path: '/user/tissue-complete',
+    name: 'UserTissueCompletePage',
+    component: () => import('../views/user/TissueComplete.vue')
+  },
 
   // User - Special Cases
   {

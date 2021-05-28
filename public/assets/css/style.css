@@ -272,7 +272,8 @@ select:disabled, textarea:disabled{
 .form-group .append.xs textarea{padding-right:2.375rem!important;}
 
 .form-group .plain-text{width:100%; padding:.8125rem 0 .6875rem 0;}
-.form-group .plain-text, .form-group .plain-text *{color:#212121!important;}
+.form-group .plain-text, 
+.form-group .plain-text *{color:#212121!important; text-decoration:none!important;}
 
 .form-group .fit-wrapper{width:100%; display:flex; align-items:center;}
 .form-group .fit-wrapper > span{margin:0 .5rem;}
@@ -311,7 +312,9 @@ select:disabled, textarea:disabled{
 
 
 /* Label & Error */
-.form-group > label{display:flex; justify-content:space-between; transition:color .25s;}
+.form-group > label{
+    width:100%; display:flex; justify-content:space-between; transition:color .25s;
+}
 .form-group > label.focused{color:#047857!important;}
 .error{color:#BC4A4A; transition:all .25s;}
 .form-group.error > label{color:#BC4A4A!important;}
@@ -319,7 +322,7 @@ select:disabled, textarea:disabled{
 .form-group.error input, .form-group.error select, 
 .form-group.error textarea{border-color:#BC4A4A!important;}
 @media screen and (max-width:575.98px){
-    .form-group > label{width:100%; flex-wrap:wrap; white-space:nowrap;}
+    .form-group > label{flex-wrap:wrap; white-space:nowrap;}
     .form-group.error > label > .error{width:100%; margin:0;}
 }
 

@@ -52,6 +52,9 @@ nav.topnav .option > a > .num{
     line-height:1.125rem; font-size:.5625rem; font-weight:600; text-align:center;
     border-radius:50%; background:#D84E4E; color:#ffffff;
 }
+nav.topnav .option > a .name{
+    max-width:100%; overflow:hidden; white-space:nowrap; text-overflow: ellipsis;
+}
 
 nav.topnav .dropdown{
     position:absolute; top:calc(100% + .5rem); right:0; background:#ffffff;

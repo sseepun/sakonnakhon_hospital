@@ -94,7 +94,7 @@
 
       <div class="stripe section-px border-bottom bcolor-fgray" data-aos="fade-up" data-aos-delay="0">
         <p class="fw-400">
-          เจ้าหน้าที่เซลล์วิทยา
+          เจ้าหน้าที่ตรวจเนื้อเยื่อ
         </p>
       </div>
       <div class="section-px section-py-grid" data-aos="fade-up" data-aos-delay="0">
@@ -162,7 +162,7 @@ import DataTable from '../../components/DataTable';
 import Step01 from '../../components/Step01';
 
 export default {
-  name: 'CellCompletePage',
+  name: 'UserTissueCompletePage',
   components: {
     Topnav,
     SpecialCard02,

@@ -132,25 +132,6 @@
               ]"
             />
           </div>
-          <div class="grid sm-100">
-            <CheckboxSet 
-              label="*Color" name="color" 
-              type="checkbox" :value="dataset.colors" 
-              :options="[
-                { value: 1, text: 'Bloody' },
-                { value: 2, text: 'Yellow' },
-                { value: 3, text: 'Green/ Green-yellow' },
-                { value: 4, text: 'Mucous' },
-                { value: 5, text: 'Brown' },
-                { value: 6, text: 'Brown-black' },
-                { value: 7, text: 'อื่นๆ' },
-              ]"
-              @input="dataset.colors = $event" 
-              :textInput="true" 
-              textInputPlaceholder="โปรดระบุ" 
-              :textInputDisabled="dataset.colors.indexOf('7') == -1" 
-            />
-          </div>
         </div>
       </div>
 

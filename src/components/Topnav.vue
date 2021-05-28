@@ -75,7 +75,7 @@
 
       </div>
       <div v-if="!isBottom" class="options">
-        <div class="option show-mobile">
+        <div class="option d-none">
           <a href="#">
             <img src="/assets/img/icon/bell.svg" alt="Image Icon" />
             <div v-if="alert" class="num">{{alert}}</div>
@@ -83,9 +83,9 @@
         </div>
         <div class="option">
           <a href="javascript:">
-            <div class="img-bg show-mobile" :style="'background-image:url(\''+profile+'\');'"></div>
-            <div class="info text-right hide-mobile">
-              <p class="lh-sm">{{prefix}}{{firstname}} {{lastname}}</p>
+            <div class="img-bg d-none" :style="'background-image:url(\''+profile+'\');'"></div>
+            <div class="info text-right">
+              <p class="name lh-sm">{{prefix}}{{firstname}} {{lastname}}</p>
               <p class="sm lh-xs">{{department}}</p>
             </div>
           </a>

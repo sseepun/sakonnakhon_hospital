@@ -129,7 +129,7 @@
       v-model="value" is-range title-position="left" 
       :is-required="required? true: false"
       :attributes="[ { popover: { placement: 'top-start' } } ]"
-      @click="handleInput"
+      @click="handleInput" 
     >
       <template v-slot="{ inputValue, inputEvents }">
         <div class="d-flex">

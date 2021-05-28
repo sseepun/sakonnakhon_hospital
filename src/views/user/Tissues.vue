@@ -25,7 +25,7 @@
                 :class="rowCount ? 'btn-color-01': 'btn-color-03 disabled'" :prepend="true" icon="user-check-white.svg" 
               />
             </div>
-            <div class="btns show-mobile">
+            <div v-if="tabActiveIndex == 1" class="btns show-mobile">
               <Button 
                 text="ส่งออก" @click="exportModalOpen = !exportModalOpen" 
                 :class="rowCount ? 'btn-color-07 btn-sm mr-1': 'btn-color-03 mr-1 btn-sm disabled'"
@@ -200,7 +200,7 @@
               :rows="rows5"
               :columns="columns5"
             />
-            <div class="body mt-6">
+            <div class="body ovf-visible mt-6">
               <p class="fw-400">แบบฟอร์มนำส่งชิ้นเนื้อหรือเซลล์วิทยา</p>
               <div class="grids">
                 <div class="grid lg-50 sm-70">
