@@ -326,6 +326,8 @@ select:disabled, textarea:disabled{
     .form-group.error > label > .error{width:100%; margin:0;}
 }
 
+.form-group.label-block > label{display:block!important; white-space:nowrap!important;}
+
 
 /* Checkbox Set */
 fieldset{padding:0; margin:0; border:0;}

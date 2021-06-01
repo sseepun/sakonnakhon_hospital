@@ -56,6 +56,19 @@
   <div class="pl-6 pb-6">
     <h6 class="h3 fw-600">PDF</h6>
     <div>
+      <a href="/assets/pdf/pathology-request-form.pdf" target="_blank">/pdf/pathology-request-form</a> <br>
+      <a href="/assets/pdf/pathology-report-form.pdf" target="_blank">/pdf/pathology-report-form</a> <br>
+      <a href="/assets/pdf/cytology-request-form.pdf" target="_blank">/pdf/cytology-request-form</a> <br>
+      <a href="/assets/pdf/cytology-report-form.pdf" target="_blank">/pdf/cytology-report-form</a> <br>
+      <a href="/assets/pdf/report-sent-form.pdf" target="_blank">/pdf/report-sent-form</a> <br>
+      <a href="/assets/pdf/tag-form.pdf" target="_blank">/pdf/tag-form</a> <br>
+      <a href="/assets/pdf/funeral-form.pdf" target="_blank">/pdf/funeral-form</a> <br>
+    </div>
+  </div>
+  
+  <div class="pl-6 pb-6">
+    <h6 class="h3 fw-600">PDF Template</h6>
+    <div>
       <a href="/pdf/pathology-request-form" target="_blank">/pdf/pathology-request-form</a> <br>
       <a href="/pdf/pathology-report-form" target="_blank">/pdf/pathology-report-form</a> <br>
       <a href="/pdf/cytology-request-form" target="_blank">/pdf/cytology-request-form</a> <br>
