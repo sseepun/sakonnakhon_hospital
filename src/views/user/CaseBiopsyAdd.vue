@@ -299,6 +299,7 @@ export default {
     bagTotalChange(index, val) {
       this.bagTotal += Number(val) - this.bags[index].valueCount;
       this.bags[index].valueCount = Number(val);
+      console.log(this.bags)
       return true;
     },
     deleteBagSection(index){

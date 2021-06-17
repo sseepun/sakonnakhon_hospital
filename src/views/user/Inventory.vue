@@ -182,10 +182,7 @@
                     type="text" label="บาร์โค้ด" name="add_barcode" placeholder="16508537592841500" 
                     :value="dataset.barcode" @input="dataset.barcode = $event" 
                     :errorText="isValidated && !dataset.barcode? 'กรุณาระบุ': ''" 
-                    :classer="{
-                      'label-block': true,
-                      'error': isValidated && !dataset.barcode
-                    }" 
+                    :classer="isValidated && !dataset.barcode? 'error': ''" 
                   />
               </div>
               <div class="grid lg-25 xs-75">

@@ -241,17 +241,17 @@
         :required="required? true: false"
         :readonly="readonly? true: false"
         :disabled="disabled? true: false"
-        style="border-radius: .375rem 0 0 .375rem;"
+        style="border-radius:.375rem 0 0 .375rem;"
       />
       <select 
         :name="name2" 
         v-model="value2" 
-        @input2="(event)=>$emit('input2', event.target.value)" 
+        @input="(event)=>$emit('input2', event.target.value)" 
         @focusin="isFocused = true" @focusout="isFocused = false" 
         :required="required? true: false"
         :readonly="readonly? true: false"
         :disabled="disabled? true: false"
-        style="border-radius: 0 .375rem .375rem 0;"
+        style="border-radius:0 .375rem .375rem 0;"
       >
         <option v-for="option in options" :value="option.value" 
         :selected="option.value == value || option.text == value" :key="option.value">
