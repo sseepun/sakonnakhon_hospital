@@ -56,3 +56,7 @@
 }
 .xs > .multiselect .multiselect-clear:after, 
 .xs > .multiselect .multiselect-clear:before{top:.5rem; left:.5rem;}
+.xs .is-single .multiselect-search input,
+.xs > .multiselect .multiselect-placeholder,
+.xs .multiselect-single-label{padding:.1875rem .6875rem .0625rem .6875rem;}
+.xs .multiselect-options{right:unset; min-width:100%;}

@@ -319,6 +319,8 @@ table.table-section .counter-up.disabled, table.table-section .counter-down.disa
   pointer-events:none; filter:grayscale(100%); opacity:.7;
 }
 
+.table-wrapper.valign-top table.table-section tr.row-add > td{vertical-align:top;}
+
 @media screen and (max-width:991.98px){
     table.table-section th, table.table-section td{padding:.875rem;}
     table.table-section th:first-child,

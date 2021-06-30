@@ -99,13 +99,21 @@
             <template v-if="index != editingIndex">
               
               <td v-if="rowSelect">
-                <div class="checkbox">
+                <div v-if="!roundSelect" class="checkbox">
                   <input 
                     type="checkbox" v-model="rowSelected" :value="row.id" 
                     :id="'datatable_'+randomId+'_'+index" :checked="checkRowSelected(row.id)" 
                     @change="(event)=>$emit('check-click', rowSelected)"
                   />
-                  <label :class="roundSelect ? 'round': ''" :for="'datatable_'+randomId+'_'+index"></label>
+                  <label :for="'datatable_'+randomId+'_'+index"></label>
+                </div>
+                <div v-else class="checkbox">
+                  <input 
+                    type="radio" :value="row.id" :name="'datatable_'+randomId" 
+                    :id="'datatable_'+randomId+'_'+index" 
+                    @change="(event)=>radioRowSelected(row.id)"
+                  />
+                  <label class="round" :for="'datatable_'+randomId+'_'+index"></label>
                 </div>
               </td>
 
@@ -276,6 +284,17 @@
                     />
                   </div>
                 </div>
+                <div v-else-if="add.type == 'searchselect'">
+                  <div class="xs w-full">
+                    <Multiselect 
+                      :required="add.required" :placeholder="add.placeholder" 
+                      v-model="row[key].text" :options="add.options" 
+                      :searchable="true" :createTag="false" 
+                      noResultsText="ไม่พบข้อมูล" 
+                      @change="(value)=>editData[key] = value" 
+                    />
+                  </div>
+                </div>
               </td>
               <td class="td-input text-right">
                 <button type="submit" class="btn-add-confirm">
@@ -290,8 +309,8 @@
           </tr>
 
           <!-- Row Add -->
-          <tr v-if="allowAdd && !adding && Object.keys(addOptions).length">
-            <td :colspan="columns.length" class="td-input-text">
+          <tr v-if="(allowAdd && !adding && Object.keys(addOptions).length) && !totalRows">
+            <td :colspan="rowAddColSpan()" class="td-input-text">
               <a class="btn-add color-01" href="javascript:" @click="toggleAdding()">
                 <div class="icon">
                   <img src="/assets/img/icon/plus.svg" alt="Image Icon" />
@@ -300,7 +319,26 @@
               </a>
             </td>
           </tr>
-          <tr v-else-if="allowAdd && adding && Object.keys(addOptions).length">
+          <tr v-if="(allowAdd && !adding && Object.keys(addOptions).length) && totalRows">
+            <td :colspan="rowAddColSpan()" class="td-input-text">
+              <a class="btn-add color-01" href="javascript:" @click="toggleAdding()">
+                <div class="icon">
+                  <img src="/assets/img/icon/plus.svg" alt="Image Icon" />
+                </div>
+                {{allowAddText}}
+              </a>
+            </td>
+            <td v-for="(totalRow, key) in totalRows" :key="key" class="td-input-text">
+              <div v-if="totalRow.text">
+                <p class="sm color-gray">{{totalRow.text}}</p>
+              </div>
+              <div v-else class="d-inline-block p sm color-gray bg-lgray p-2 pt-1 pb-1 bradius-2">
+                <span class="color-01 fw-500">{{calculateTotal(key)}}</span> {{totalRow.unit}}
+              </div>
+            </td>
+            <td v-if="rowAddColSpanLeft()" :colspan="rowAddColSpanLeft()"></td>
+          </tr>
+          <tr v-else-if="allowAdd && adding && Object.keys(addOptions).length" class="row-add">
             <td v-for="(add, key) in addOptions" :key="key" class="td-input">
               <div v-if="add.type == 'text' || add.type == 'number'">
                 <input
@@ -328,6 +366,17 @@
                     v-model="add.value" :options="add.options" 
                     :searchable="true" mode="tags" :createTag="false" 
                     @change="(value)=>addData[key] = value"
+                  />
+                </div>
+              </div>
+              <div v-else-if="add.type == 'searchselect'" style="padding-bottom:10rem;">
+                <div class="xs w-full">
+                  <Multiselect 
+                    :required="add.required" :placeholder="add.placeholder" 
+                    v-model="add.value" :options="add.options" 
+                    :searchable="true" :createTag="false" 
+                    noResultsText="ไม่พบข้อมูล" 
+                    @change="(value)=>addData[key] = value" 
                   />
                 </div>
               </div>
@@ -381,6 +430,7 @@ export default {
     addOptions: { type: Object, default: {} },
     allowDownload: { type: Boolean, default: false },
     downloadUrl: { type: String, default: '' },
+    totalRows: { type: Object, default: {} },
   },
   data() {
     return {
@@ -567,7 +617,40 @@ export default {
 
     checkRowSelected(rowId){
       return this.rowSelected.indexOf(rowId) > -1;
+    },
+    radioRowSelected(rowId){
+      this.rowSelected = [ rowId ];
+      return this.$emit('check-click', rowId);
+    },
+
+    rowAddColSpan(){
+      if(this.totalRows){
+        return this.columns.map(function(d){ return d.key; }).indexOf(Object.keys(this.totalRows)[0]);
+      }else{
+        return this.columns.length;
+      }
+    },
+    rowAddColSpanLeft(){
+      if(this.totalRows){
+        var keys = Object.keys(this.totalRows);
+        return this.columns.length 
+          - this.columns.map(function(d){ return d.key; }).indexOf(keys[0])
+          - keys.length;
+      }else{
+        return 0;
+      }
+    },
+    calculateTotal(key){
+      var total = 0;
+      this.rows.forEach(function(d){
+        if(d[key]){
+          if(d[key].value) total += parseFloat(d[key].value);
+          else if(d[key].text) total += parseFloat(d[key].text);
+        }
+      });
+      return total;
     }
+
   },
   created() {
     this.toggleGroup(-1);

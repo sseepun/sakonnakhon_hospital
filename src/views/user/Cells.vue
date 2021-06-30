@@ -598,7 +598,6 @@ export default {
   },
   methods: {
     selectedRow2(value) {
-      console.log(value)
       this.rowCount = value.length;
     }
   },

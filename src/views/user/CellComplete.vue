@@ -122,8 +122,9 @@
         </div>
       </div>
 
-      <div class="mb-5" data-aos="fade-up" data-aos-delay="0">
+      <div data-aos="fade-up" data-aos-delay="0">
         <DataTable 
+          :key="serviceData.length" classer="valign-top" 
           :rows="serviceData" 
           :columns="[
             { key: 'id', text: 'ID' },
@@ -138,14 +139,23 @@
           :withOptions="false" 
           :allowAdd="true" allowAddText="เพิ่มรายการบริการ" 
           :addOptions="{
-            id: { type: 'text', value: '', placeholder: '00000', required: true },
+            id: { 
+              type: 'searchselect', value: '', placeholder: '00000', required: true,
+              options: [ '30501', '38010', '38401', '38402', '38403', '38404' ]
+            },
             service: { type: 'text', value: '', placeholder: 'กรุณากรอก', required: true },
             time: { type: 'text', value: '', placeholder: '13:32', required: true },
-            amount: { type: 'text', value: '', placeholder: '00', required: true },
-            discount: { type: 'text', value: '', placeholder: '00', required: true },
-            price: { type: 'text', value: '', placeholder: '00', required: true },
-            total_price: { type: 'text', value: '', placeholder: '00', required: true },
+            amount: { type: 'number', value: '', placeholder: '00', required: true },
+            discount: { type: 'number', value: '', placeholder: '00', required: true },
+            price: { type: 'number', value: '', placeholder: '00', required: true },
+            total_price: { type: 'number', value: '', placeholder: '00', required: true },
           }" 
+          :totalRows="{
+            discount: { text: 'ราคาต่อหมวด' },
+            price: { unit: 'บาท' },
+            total_price: { unit: 'บาท' }
+          }" 
+          @row-add="($event)=>serviceDataAdd($event)" 
         />
       </div>
 
@@ -180,7 +190,7 @@ export default {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
     this.serviceData.push(
       {
-        id: { text: '00001' },
+        id: { text: '30501' },
         service: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาว 2 ซม. แต่ไม่เกิน 5 ซม.' },
         time: { text: '12:22' },
         amount: { text: '12' },
@@ -194,6 +204,24 @@ export default {
         }
       }
     );
+  },
+  methods: {
+    serviceDataAdd(data) {
+      this.serviceData.push({
+        id: { text: data.id },
+        service: { text: data.service },
+        time: { text: data.time },
+        amount: { text: data.amount },
+        discount: { text: data.discount },
+        price: { text: data.price },
+        total_price: { text: data.total_price },
+        options: {
+          type: 'options',
+          edit: { type: 'inline', id: this.serviceData.length },
+          delete: { type: 'emit', id: this.serviceData.length }
+        }
+      });
+    }
   }
 }
 </script>
