@@ -538,6 +538,29 @@ fieldset{padding:0; margin:0; border:0;}
 .scroll-y-wrapper{width:100%; overflow-x:hidden; overflow-y:auto;}
 
 
+/* Select Search */
+.select-search{display:block; position:relative;}
+.select-search .scroll-y-wrapper{max-height:9.5rem;}
+.select-search > .dropdown{
+    display:block; position:absolute; top:100%; left:0; min-width:100%; z-index:10; 
+    opacity:0; pointer-events:none; border:1.5px solid #c8c8c8;
+    border-radius:.375rem; transition:opacity .25s;
+}
+.select-search > input:focus + .dropdown,
+.select-search > .dropdown:hover{opacity:1; pointer-events:auto;}
+.select-search .options{display:block; width:100%; background:#ffffff; }
+.select-search .option{
+    display:flex; align-items:center; white-space:nowrap; font-size:.875rem;
+    padding:.25rem .5rem; border-bottom:1.5px solid #c8c8c8; cursor:pointer;
+    transition:background .25s;
+}
+.select-search .option:last-child{border:0;}
+.select-search .option:hover{background:#f4f4f4;}
+.select-search .option.disabled{pointer-events:none; background:#f9eecf; color:#D17219;}
+.select-search .option.more{color:#047857; padding:0 .5rem 0 .25rem;}
+.select-search .option-icon{margin:.125rem 0 0 0;}
+
+
 /* Special Box */
 .ss-box{
     display:block; width:100%; max-width:33rem; margin:0 auto; background:#ffffff;

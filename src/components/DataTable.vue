@@ -285,15 +285,10 @@
                   </div>
                 </div>
                 <div v-else-if="add.type == 'searchselect'">
-                  <div class="xs w-full">
-                    <Multiselect 
-                      :required="add.required" :placeholder="add.placeholder" 
-                      v-model="row[key].text" :options="add.options" 
-                      :searchable="true" :createTag="false" 
-                      noResultsText="ไม่พบข้อมูล" 
-                      @change="(value)=>editData[key] = value" 
-                    />
-                  </div>
+                  <SelectSearch
+                    :required="add.required" :placeholder="add.placeholder" 
+                    :options="add.options" :value="row[key].text" 
+                  />
                 </div>
               </td>
               <td class="td-input text-right">
@@ -370,15 +365,10 @@
                 </div>
               </div>
               <div v-else-if="add.type == 'searchselect'" style="padding-bottom:10rem;">
-                <div class="xs w-full">
-                  <Multiselect 
-                    :required="add.required" :placeholder="add.placeholder" 
-                    v-model="add.value" :options="add.options" 
-                    :searchable="true" :createTag="false" 
-                    noResultsText="ไม่พบข้อมูล" 
-                    @change="(value)=>addData[key] = value" 
-                  />
-                </div>
+                <SelectSearch
+                  :required="add.required" :placeholder="add.placeholder" 
+                  :options="add.options" :value="add.value" 
+                />
               </div>
             </td>
             <td class="td-input text-right">
