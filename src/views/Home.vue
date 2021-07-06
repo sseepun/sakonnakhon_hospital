@@ -22,10 +22,12 @@
       <br>
       <a href="/user/cells" target="_blank">/user/cells</a> <br>
       <a href="/user/cell-diagnose" target="_blank">/user/cell-diagnose</a> <br>
+      <a href="/user/cell-diagnose-transfer" target="_blank">/user/cell-diagnose-transfer</a> <br>
       <a href="/user/cell-complete" target="_blank">/user/cell-complete</a> <br>
       <br>
       <a href="/user/tissues" target="_blank">/user/tissues</a> <br>
       <a href="/user/tissue-diagnose" target="_blank">/user/tissue-diagnose</a> <br>
+      <a href="/user/tissue-diagnose-transfer" target="_blank">/user/tissue-diagnose-transfer</a> <br>
       <a href="/user/tissue-complete" target="_blank">/user/tissue-complete</a> <br>
       <br>
       <a href="/user/case-results" target="_blank">/user/case-results</a> <br>

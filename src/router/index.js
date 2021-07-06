@@ -89,6 +89,11 @@ const routes = [
     component: () => import('../views/user/CellDiagnose.vue')
   },
   {
+    path: '/user/cell-diagnose-transfer',
+    name: 'CellDiagnoseTransferPage',
+    component: () => import('../views/user/CellDiagnoseTransfer.vue')
+  },
+  {
     path: '/user/cell-complete',
     name: 'UserCellCompletePage',
     component: () => import('../views/user/CellComplete.vue')
@@ -104,6 +109,11 @@ const routes = [
     path: '/user/tissue-diagnose',
     name: 'UserTissueDiagnosePage',
     component: () => import('../views/user/TissueDiagnose.vue')
+  },
+  {
+    path: '/user/tissue-diagnose-transfer',
+    name: 'TissueDiagnoseTransferPage',
+    component: () => import('../views/user/TissueDiagnoseTransfer.vue')
   },
   {
     path: '/user/tissue-complete',
