@@ -65,14 +65,18 @@ export default {
           return d.indexOf(val) > -1;
         });
       }
+      this.$emit('change-select', this.selfValue);
     },
     onUpdate(val) {
       this.selfValue = val;
+      this.$emit('change-select', this.selfValue);
     },
     onCreate() {
       this.disabled = true;
-      this.selfValue = '380405';
+      this.selfValue = '38405';
+      this.$emit('change-select', this.selfValue);
     }
-  }
+  },
+  emits: [ 'change-select' ]
 }
 </script>

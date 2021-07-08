@@ -127,7 +127,7 @@
           :key="serviceData.length" classer="valign-top" 
           :rows="serviceData" 
           :columns="[
-            { key: 'id', text: 'ID' },
+            { key: 'num_id', text: 'ID' },
             { key: 'service', text: 'รายการบริการ' },
             { key: 'time', text: 'เวลา' },
             { key: 'amount', text: 'จำนวน' },
@@ -139,7 +139,7 @@
           :withOptions="false" 
           :allowAdd="true" allowAddText="เพิ่มรายการบริการ" 
           :addOptions="{
-            id: { 
+            num_id: { 
               type: 'searchselect', value: '', placeholder: '00000', required: true,
               options: [ '30501', '38010', '38401', '38402', '38403', '38404' ]
             },
@@ -156,6 +156,7 @@
             total_price: { unit: 'บาท' }
           }" 
           @row-add="($event)=>serviceDataAdd($event)" 
+          @row-edit="($event)=>serviceDataEdit($event)" 
         />
       </div>
 
@@ -188,27 +189,27 @@ export default {
   },
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
-    this.serviceData.push(
-      {
-        id: { text: '30501' },
-        service: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาว 2 ซม. แต่ไม่เกิน 5 ซม.' },
-        time: { text: '12:22' },
-        amount: { text: '12' },
-        discount: { text: '50' },
-        price: { text: '100' },
-        total_price: { text: '1150' },
-        options: {
-          type: 'options',
-          edit: { type: 'inline', id: 0 },
-          delete: { type: 'emit', id: 0 }
-        }
+    this.serviceData.push({
+      id: this.serviceData.length,
+      num_id: { text: '30501' },
+      service: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาว 2 ซม. แต่ไม่เกิน 5 ซม.' },
+      time: { text: '12:22' },
+      amount: { text: '12' },
+      discount: { text: '50' },
+      price: { text: '100' },
+      total_price: { text: '1150' },
+      options: {
+        type: 'options',
+        edit: { type: 'inline', id: 0 },
+        delete: { type: 'emit', id: 0 }
       }
-    );
+    });
   },
   methods: {
     serviceDataAdd(data) {
       this.serviceData.push({
-        id: { text: data.id },
+        id: this.serviceData.length,
+        num_id: { text: data.num_id },
         service: { text: data.service },
         time: { text: data.time },
         amount: { text: data.amount },
@@ -221,6 +222,9 @@ export default {
           delete: { type: 'emit', id: this.serviceData.length }
         }
       });
+    },
+    serviceDataEdit(data) {
+      console.log(data);
     }
   }
 }

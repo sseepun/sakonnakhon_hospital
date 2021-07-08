@@ -288,6 +288,7 @@
                   <SelectSearch
                     :required="add.required" :placeholder="add.placeholder" 
                     :options="add.options" :value="row[key].text" 
+                    @change-select="(value)=>editData[key] = value" 
                   />
                 </div>
               </td>
@@ -360,7 +361,7 @@
                     :required="add.required" :placeholder="add.placeholder" 
                     v-model="add.value" :options="add.options" 
                     :searchable="true" mode="tags" :createTag="false" 
-                    @change="(value)=>addData[key] = value"
+                    @change="(value)=>addData[key] = value" 
                   />
                 </div>
               </div>
@@ -368,6 +369,7 @@
                 <SelectSearch
                   :required="add.required" :placeholder="add.placeholder" 
                   :options="add.options" :value="add.value" 
+                  @change-select="(value)=>addData[key] = value" 
                 />
               </div>
             </td>
