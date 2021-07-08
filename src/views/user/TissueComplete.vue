@@ -157,6 +157,7 @@
           }" 
           @row-add="($event)=>serviceDataAdd($event)" 
           @row-edit="($event)=>serviceDataEdit($event)" 
+          @click-delete="($event)=>serviceDataDelete($event)" 
         />
       </div>
 
@@ -190,7 +191,7 @@ export default {
   created() {
     AOS.init({ easing: 'ease-in-out-cubic', duration: 750, once: true, offset: 10 });
     this.serviceData.push({
-      id: this.serviceData.length,
+      id: 0,
       num_id: { text: '30501' },
       service: { text: 'Biopsy หรือชิ้นเนื้อที่มีความยาว 2 ซม. แต่ไม่เกิน 5 ซม.' },
       time: { text: '12:22' },
@@ -207,8 +208,9 @@ export default {
   },
   methods: {
     serviceDataAdd(data) {
+      var id = Math.round(Math.random() * 1000000);
       this.serviceData.push({
-        id: this.serviceData.length,
+        id: id,
         num_id: { text: data.num_id },
         service: { text: data.service },
         time: { text: data.time },
@@ -218,13 +220,29 @@ export default {
         total_price: { text: data.total_price },
         options: {
           type: 'options',
-          edit: { type: 'inline', id: this.serviceData.length },
-          delete: { type: 'emit', id: this.serviceData.length }
+          edit: { type: 'inline', id: id },
+          delete: { type: 'emit', id: id }
         }
       });
     },
     serviceDataEdit(data) {
-      console.log(data);
+      this.serviceData = this.serviceData.map(function(d){
+        if(d.id == data.id){
+          if(data.num_id) d.num_id.text = data.num_id;
+          if(data.service) d.service.text = data.service;
+          if(data.time) d.time.text = data.time;
+          if(data.amount) d.amount.text = data.amount;
+          if(data.discount) d.discount.text = data.discount;
+          if(data.price) d.price.text = data.price;
+          if(data.total_price) d.total_price.text = data.total_price;
+        }
+        return d;
+      });
+    },
+    serviceDataDelete(id) {
+      this.serviceData = this.serviceData.filter(function(d){
+        return d.id != id;
+      });
     }
   }
 }
