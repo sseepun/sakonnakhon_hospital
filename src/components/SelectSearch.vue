@@ -73,7 +73,6 @@ export default {
     },
     onCreate() {
       this.disabled = true;
-      this.selfValue = '38405';
       this.$emit('change-select', this.selfValue);
     }
   },
