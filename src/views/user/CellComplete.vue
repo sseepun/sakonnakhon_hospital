@@ -148,7 +148,14 @@
             amount: { type: 'number', value: '', placeholder: '00', required: true },
             discount: { type: 'number', value: '', placeholder: '00', required: true },
             price: { type: 'number', value: '', placeholder: '00', required: true },
-            total_price: { type: 'number', value: '', placeholder: '00', required: true },
+            total_price: { 
+              type: 'total', placeholder: '00', required: true, value: '',
+              calculate: [
+                { key: 'amount', operation: 'main' },
+                { key: 'price', operation: '*' },
+                { key: 'discount', operation: '-' },
+              ]
+            },
           }" 
           :totalRows="{
             discount: { text: 'ราคาต่อหมวด' },

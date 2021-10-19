@@ -261,7 +261,13 @@
                     :placeholder="add.placeholder" :required="add.required" 
                     :minlength="add.minlength" :maxlength="add.maxlength" 
                     :min="add.min" :max="add.max" :step="add.step" 
-                    @input="editData[key] = $event.target.value" 
+                    @input="editData[key] = $event.target.value; calculateRowTotal(addOptions, true);" 
+                  />
+                </div>
+                <div v-if="add.type == 'total'">
+                  <input
+                    type="number" class="xs w-full" :value="editData[key]" 
+                    :placeholder="add.placeholder" readonly  
                   />
                 </div>
                 <div v-else-if="add.type == 'select'">
@@ -342,7 +348,13 @@
                   :placeholder="add.placeholder" :required="add.required"  
                   :minlength="add.minlength" :maxlength="add.maxlength" 
                   :min="add.min" :max="add.max" :step="add.step" 
-                  @input="addData[key] = $event.target.value" 
+                  @input="addData[key] = $event.target.value; calculateRowTotal(addOptions);" 
+                />
+              </div>
+              <div v-if="add.type == 'total'">
+                <input
+                  type="number" class="xs w-full" :value="addData[key]" 
+                  :placeholder="add.placeholder" readonly  
                 />
               </div>
               <div v-else-if="add.type == 'select'">
@@ -557,7 +569,7 @@ export default {
       that.adding = !this.adding;
       that.addData = {};
       Object.keys(that.addOptions).forEach(function(key){
-        if(['text', 'select'].indexOf(that.addOptions[key].type) > -1){
+        if(['text', 'number', 'total', 'select'].indexOf(that.addOptions[key].type) > -1){
           that.addData[key] = that.addOptions[key].value? that.addOptions[key].value: null;
         }
       });
@@ -578,7 +590,7 @@ export default {
       }else{
         that.editData = { id: id };
         Object.keys(that.addOptions).forEach(function(key){
-          if(['text', 'select'].indexOf(that.addOptions[key].type) > -1){
+          if(['text', 'number', 'total', 'select'].indexOf(that.addOptions[key].type) > -1){
             that.editData[key] = row[key].value? row[key].value: row[key].text;
           }else if(['multiselect'].indexOf(that.addOptions[key].type) > -1){
             that.editData[key] = null;
@@ -632,6 +644,7 @@ export default {
         return 0;
       }
     },
+
     calculateTotal(key){
       var total = 0;
       this.rows.forEach(function(d){
@@ -641,6 +654,29 @@ export default {
         }
       });
       return total;
+    },
+
+    calculateRowTotal(rows, editing=false){
+      var keys = Object.keys(rows).filter(k => rows[k].type == 'total');
+      if(keys.length){
+        keys.forEach(k => {
+          var row = rows[k];
+          row.value = 0;
+          row.calculate.forEach(d => {
+            var val = this.addData[d.key];
+            if(editing) val = this.editData[d.key];
+            if(val){
+              if(d.operation=='main') row.value = parseFloat(val);
+              else if(d.operation=='+') row.value += parseFloat(val);
+              else if(d.operation=='-') row.value -= parseFloat(val);
+              else if(d.operation=='*') row.value *= parseFloat(val);
+              else if(d.operation=='/' && d.operation!=0) row.value /= parseFloat(val);
+            }
+          });
+          if(editing) this.editData[k] = row.value;
+          else this.addData[k] = row.value;
+        });
+      }
     }
 
   },
