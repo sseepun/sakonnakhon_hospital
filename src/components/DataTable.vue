@@ -663,15 +663,15 @@ export default {
           var row = rows[k];
           row.value = 0;
           row.calculate.forEach(d => {
-            var val = this.addData[d.key];
-            if(editing) val = this.editData[d.key];
-            if(val){
-              if(d.operation=='main') row.value = parseFloat(val);
-              else if(d.operation=='+') row.value += parseFloat(val);
-              else if(d.operation=='-') row.value -= parseFloat(val);
-              else if(d.operation=='*') row.value *= parseFloat(val);
-              else if(d.operation=='/' && d.operation!=0) row.value /= parseFloat(val);
-            }
+            var val = 0;
+            if(editing && this.editData[d.key]) val = parseFloat(this.editData[d.key]);
+            else if(!editing && this.addData[d.key]) val = parseFloat(this.addData[d.key]);
+
+            if(d.operation=='main') row.value = val;
+            else if(d.operation=='+') row.value += val;
+            else if(d.operation=='-') row.value -= val;
+            else if(d.operation=='*') row.value *= val;
+            else if(d.operation=='/' && val!=0) row.value /= val;
           });
           if(editing) this.editData[k] = row.value;
           else this.addData[k] = row.value;
